@@ -1,0 +1,690 @@
+/* PAGE */
+html{
+    scroll-behavior: smooth;
+}
+
+/* PAGE BODY */
+body{
+    background-color: cornflowerblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* HEADER */
+header{
+    /* Background image properties */
+    background-image: url(img/library.png);
+    background-repeat: no-repeat;
+
+    /* Dimensions */
+    height: 300px;
+}
+
+/* HEADER TITLE AND SUBTITLES */
+header h1, header h2{
+    /* Text outline */
+    -webkit-text-stroke-color: white;
+    -webkit-text-stroke-width: 0.4px;
+
+    /* Background */
+    background-color: rgba(0, 100, 255, 0.5);
+}
+
+/* SUBTITLES */
+header h2{
+    /* Top external space */
+    margin-top: 0;
+}
+
+/* HEADER, MAIN AND FOOTER */
+header, main, footer{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Text position */
+    text-align: center;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* NAVIGATION */
+nav{
+    /* Outline */
+    border: 3px solid black;
+
+    /* Dimensions */
+    width: 70%;
+    height: 40%;
+
+    /* Background color */
+    background-color: rgb(0, 100, 255, 0.8);
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* NAVIGATION IMAGES */
+nav img{
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* Dimensions */
+    width: 100px;
+    height: 100px; 
+}
+
+/* NAVIGATION IMAGES AND FORM BUTTONS */
+nav img, .formBtn{
+    /* Animation duration */
+    transition: 0.3s;
+}
+
+/* HOVERING ON NAVIGATION IMAGES AND FORM BUTTONS */
+nav img:hover, .formBtn:hover{
+    /* Mouse */
+    cursor: pointer;
+
+    /* Animation */
+    transform: scale(1.1, 1.1);
+}
+
+/* LINKS */
+a{
+    /* Remove underline */
+    text-decoration: none;
+}
+
+/* HOVER ON LINKS */
+a:hover{
+    /* Add underline */
+    text-decoration: underline;
+}
+
+/* EXTERNAL SPACE */
+main, form, .user_page_half_div, .user_page_inner_div, .vertical_story_container, .chapter_info_inner_div{
+    /* Space */
+    margin: 2px;
+}
+
+/* USER PAGE OPTIONS DIV */
+#user_page_options_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 70%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* DIV WITH SUBMIT AND RESET BUTTONS */
+.formBtnsDiv{
+    /* Dimensions */
+    width: 30%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+}
+
+/* FORM BUTTONS */
+.formBtn{
+    /* External space */
+    margin: 0 10px;
+}
+
+/* FORM */
+form{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 60%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* FORM DIVS */
+form div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 55%;
+
+    /* External space */
+    margin: 10px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* PASSWORD CRITERIAS DIV */
+#password_criterias_div{
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* LISTS */
+ul, ol{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 40%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* USER PAGE ACCOUNT DELETION SUGGESTION */
+#account_delete_txt{
+    /* Color */
+    color: rgba(140, 0, 0);
+
+    /* Mouse icon */    
+    cursor: pointer;
+}
+
+/* HOVER ON ACCOUNT DELETION SUGGESTION */
+#account_delete_txt:hover{
+    /* Underline */
+    text-decoration: underline;
+}
+
+/* USER PAGE HALF DIVS */
+.user_page_half_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* USER PAGE INNER DIVS */
+.user_page_inner_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 50%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* CHAPTER DELETION WARNING DIV */
+.delete_warning{
+    /* Dimensions */
+    width: 400px;
+    height: 150px;
+
+    /* Colors */
+    background-color: rgba(140, 0, 0);
+    color: white;
+
+    /* Z-Layer */
+    z-index: 1;
+
+    /* Position Type */
+    position: absolute;
+
+    /* Coordinates */
+    top: 60%;
+    right: 38%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Text centering */
+    text-align: center;
+}
+
+/* WARNING DIV'S CLOSE CROSS DIV */
+.warning_close{
+    /* Dimensions */
+    height: 0;
+
+    /* Inner space */
+    padding: 2px;
+
+    /* Color */
+    border:  2px solid white;
+    color: white;
+
+    /* Position type */
+    position: relative;
+
+    /* Coordinates */
+    top: 0;
+    right: 0;
+
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* DIV CONTAINING STYLE OPTIONS DIV AND COLOR OPTIONS DIV */
+#options_container{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+/* STYLE OPTIONS DIV */
+#style_options{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+}
+
+/* STYLE OPTIONS */
+.style_option{
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/*CHAPTER TITLES AND CHAPTER OPTIONS */
+.chapter_title:hover , .chapter_option:hover{
+    /* Mouse icon */
+    cursor: pointer;
+
+    /* Underline */
+    text-decoration: underline;
+}
+
+/* HORIZONTAL RULES */
+hr{
+    /* Dimensions */
+    width: 100%;
+    height: 1px;
+
+    /* Border */
+    border: 1px solid black;
+
+    /* Interior color */
+    background-color: black;
+}
+
+/* LINKS IN USER PAGE INNER DIVS */
+.user_page_inner_div a{
+    /* External space */
+    margin: 10px 0;
+}
+
+/* VERTICAL STORY CONTAINERS */
+.vertical_story_container{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 95%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* STORY DIVS */
+.story_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 95%;
+    height: 240px;
+
+    /* External space */
+    margin: 20px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* TAGS DIVS */
+.tags_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    height: 100px;
+
+    /* External space */
+    margin: 2px;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* TEXT IN TAGS DIVS */
+.tags_div p{
+    /* Internal space */
+    padding: 0 3px;
+
+    /* External space */
+    margin: 0 20px;
+
+    /* Background */
+    background-color: forestgreen;
+    border-radius: 10px;
+}
+
+/* SYNOPSIS TEXT IN STORY DIVS */
+.synopsis_txt{
+    /* Maximum text width */
+    text-overflow: clip;
+}
+
+/* TITLES AND AUTHOR NAMES */
+.title, .author_name{
+    /* Top External space */
+    margin-top: 0;
+}
+
+/* TAGS FIELD */
+#tags_field{
+    /* Dimensions */
+    width: 300px;
+
+    /* Position of internal elements */
+    display: flex;
+    align-items: flex-end;
+}
+
+/* OUTLINE OF BACK TO TOP DIV */
+#back_to_top_outline{
+    /* Outline */
+    border: 2px solid black;
+    border-radius: 100%;
+
+    /* Dimensions */
+    width: 60px;
+    height: 60px;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Fix it to a position */
+    position: fixed;
+    top: 700px;
+    right: 50px;
+
+    /* Mouse icon */
+    cursor: pointer;
+
+    /* Animation duration */
+    transition: 0.3s;
+}
+
+/* HOVERING ON OUTLINE OF BACK TO TOP DIV */
+#back_to_top_outline:hover{
+    /* Size */
+    transform: scale(1.1, 1.1);
+}
+
+/* BACK TO TOP DIV */
+#back_to_top{
+    /* Outline */
+    border-top: 5px solid black;
+    border-right: 5px solid black;
+    border-bottom: 0px solid black;
+    border-left: 0px solid black;
+
+    /* Dimensions */
+    width: 50%;
+    height: 50%;
+
+    /* Rotation */
+    transform: rotate(-45deg);
+}
+
+/* LABELS */
+form div label{
+    /* External space */
+    margin:  10px 0;
+}
+
+/* WRITING DIVS */
+.writing_div{
+    /* Dimensions */
+    width: 90%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+}
+
+/* WORD OR TAGS COUNTING DIVS */
+.counting_div{
+    /* Dimensions */
+    width: 20%;
+    height: 20px;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+}
+
+/* STORY TITLE, TAGS AND CHAPTER TITLE INPUT FIELDS */
+#story_title_input_field, #tags_input_field, #chapter_title_input_field{
+    /* Dimensions */
+    width: 60%;
+}
+
+/* DIV OF AVAILABLE TAGS */
+#tags_box{
+    /* Dimensions */
+    width: 60%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* TAG LABELS */
+.tag{
+    /* Background color */
+    background-color: forestgreen;
+
+    /* Radius */
+    border-radius: 12px;
+
+    /* Internal space */
+    padding: 0 10px;
+
+    /* External space */
+    margin: 8px 14px;
+
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* COLOR WHEEL IMAGE */
+#color_wheel_img{
+    /* Dimensions */
+    width: 20px;
+}
+
+/* USER STORIES PAGE'S CONTAINER OF STORY/CHAPTER TITLES AND CAHPTER INFO DIVS */
+#user_stories_container{
+    /* Position of internal elements */
+    display: flex;
+}
+
+/* USER PAGE STORIES LIST DIV */
+#user_page_stories_list{
+    /* Dimensions */
+    width: 50%;
+
+    /* Scroll properties */
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+/* GREAT DIV THAT CONTAINS STORIES LIST DIVS AND CHAPTER INFO DIV */
+#stories_list_and_chapter_info_container{
+    /* Dimensions */
+    width: 100%;
+    height: 580px;
+
+    /* Position of internal elements */
+    display: flex;
+}
+
+/* SYNOPSIS INPUT AND CHAPTER TEXT AREA */
+#synopsis_input, #chapter_text_area{
+    /* Dimensions */
+    width: 60%;
+}
+
+/* CHAPTER INFO DIVS */
+.chapter_info{
+    /* Dimensions */
+    width: 100%;
+    height: 100%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CHAPTER TEXT AND CHAPTER INFO INNER DIVS */
+#chapter_txt, .chapter_info_inner_div{
+    /* Dimensions */
+    width: 400px;
+} 
+
+/* CHAPTER TEXT DIV */
+#chapter_txt{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    height: 300px;
+
+    /* Scroll properties */
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* CHAPTER INFO INNER DIVS */
+.chapter_info_inner_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* CHAPTER OPTIONS */
+.chapter_option{
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* HOVERING ON TEXT IN CHAPTER OPTIONS DIV */
+.chapter_option:hover{
+    /* Underlining */
+    text-decoration: underline;
+}
+
+/* STYLE OPTIONS DIV */
+.style_option{
+    /* Dimensions */
+    width: 80%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* TEXT COLOR OPTIONS DIV */
+#color_options{
+    /* Dimensions */
+    width: 80%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* COLOR CIRCLES */
+.color_circle{
+    /* Dimensions */
+    width: 20px;
+    height: 20px;
+
+    /* Radius */
+    border-radius: 100%;
+
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* CONFIRMATION MESSAGES */
+.confirm_message{
+    /* Centering */
+    text-align: center;
+}
+
+/* VAR DUMP TEXT */
+pre, font, small{
+    color: black;
+}
