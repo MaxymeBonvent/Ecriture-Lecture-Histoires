@@ -23,7 +23,7 @@
         $chapter_word_count = str_word_count($chapter_text);
         $date = date("Y/m/d");
 
-        // --- INCORRECT FORM ----
+        // ---- INCORRECT FORM ----
 
         // Chapter Title
         if(!isset($chapter_title) || empty($chapter_title))
@@ -148,10 +148,9 @@
                 // ---- INSERT STORY ----
 
                 // Prepare query to insert story
-                $insert_story = $db->prepare("INSERT INTO stories (user_id, story_title, synopsis, pub_date, tags, word_count) VALUES (:user_id, :story_title, :synopsis, :pub_date, :tags, :word_count)");
+                $insert_story = $db->prepare("INSERT INTO stories (story_title, synopsis, pub_date, tags, word_count) VALUES (:story_title, :synopsis, :pub_date, :tags, :word_count)");
 
                 // Binding  
-                $insert_story->bindValue(":user_id", $user_id[0]);
                 $insert_story->bindValue(":story_title", $story_title);
                 $insert_story->bindValue(":synopsis", $synopsis);
                 $insert_story->bindValue(":pub_date", $date);
@@ -192,7 +191,7 @@
                 // Closing
                 $newest_story_id_query->closeCursor();
 
-                // ---- GIVE CHAPTER ID TO STORY ----
+                // ---- GIVE CHAPTER ID TO ITS STORY ----
 
                 // Query to give chapter ID to latest story
                 $give_chapter_id_to_story = $db->query("UPDATE stories SET chapter_ids = ' $newest_chapter_id ' WHERE story_id = $newest_story_id");
@@ -203,7 +202,7 @@
                 // Closing
                 $give_chapter_id_to_story->closeCursor();
 
-                // ---- GIVE STORY ID TO CHAPTER ----
+                // ---- GIVE STORY ID TO ITS CHAPTER ----
 
                 // Prepare query to assign last story ID to last chapter
                 $give_last_story_id_to_last_chapter = $db->query("UPDATE chapters SET story_id = $newest_story_id WHERE chapter_id = $newest_chapter_id");
@@ -213,6 +212,20 @@
 
                 // Closing
                 $give_last_story_id_to_last_chapter->closeCursor();
+
+                // ---- GIVE USER ID TO STORY ----
+
+                // Prepare a query to give user's ID to their story
+                $give_user_id_to_story = $db->prepare("UPDATE stories SET user_id = :user_id");
+
+                // Binding
+                $give_user_id_to_story->bindValue(":user_id", $user_id);
+
+                // Execution
+                $give_user_id_to_story->execute();
+
+                // Closing
+                $give_user_id_to_story->closeCursor();
 
                 // ---- REDIRECTION ----
 

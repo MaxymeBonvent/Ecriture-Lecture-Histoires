@@ -3,12 +3,15 @@
     require_once("database_connection.php");
 
     // User ID
-    $user_id = $_GET["user_id"];
+    $user_id = htmlspecialchars($_GET["user_id"]);
 
     // Try to delete user's chapters, stories, and account
     try
     {
-        // ---- 1. GET EVERY STORY WITH USER'S ID ----
+        // BEGIN TRANSACTION
+        $db->beginTransaction();
+
+        // ---- 1. GET EVERY STORY AND CHAPTER IDS WRITTEN BY USER ----
 
         // Prepare a query to get every story written by user
         $get_stories = $db->prepare("SELECT story_title, chapter_ids FROM stories WHERE user_id = :user_id");
@@ -22,43 +25,78 @@
         // Store result
         $story_titles_and_chapter_ids = $get_stories->fetchAll(PDO::FETCH_ASSOC);
 
-        // Test
-        var_dump($story_titles_and_chapter_ids[0]["chapter_ids"]);
-        exit;
-
-        // Explode chapter_ids in an array
-        // $chapter_ids = explode(",", $story_titles_and_chapter_ids["chapter_ids"]);
-
-        // Test
-        // var_dump($chapter_ids);
-
         // Closing
-        // $get_stories->closeCursor();
+        $get_stories->closeCursor();
 
-        // // ---- 2. FOR EVERY STORY, GET ALL THEIR CHAPTERS ----
+        // ---- 2. FOR EVERY STORY, PUT ITS CHAPTERS IDS IN AN ARRAY ----
 
-        // // For each story
-        // foreach($story_titles_and_chapter_ids as $single_story_title_and_chapter_ids)
-        // {
-        //     // ---- 3. DELETE ALL CHAPTERS ----
+        // For every story
+        for($i = 0; $i < count($story_titles_and_chapter_ids); $i++)
+        {
+            // Put each chapter ID of the current story in an array
+            $current_story_chapter_ids = explode("  ", $story_titles_and_chapter_ids[$i]["chapter_ids"]);
 
-        //     // Prepare a query to delete every chapter of a given story
-        //     $delete_chapters = $db->prepare("DELETE * FROM chapters WHERE chapter_id = :chapter_id");
+            // Test
+            var_dump($current_story_chapter_ids);
 
-        //     // Binding
-        //     $delete_chapters->bindValue(":chapter_id", $single_story_title_and_chapter_ids["chapter_ids"]);
-        // }
+            // For each chapter ID of the current story
+            for($j = 0; $j < count($current_story_chapter_ids); $j++)
+            {
+                // ---- 3. FOR EVERY CHAPTER ID, DELETE ITS CHAPTER ROW ----
+
+                // Prepare a query to delete chapters of given IDs
+                $delete_chapter = $db->prepare("DELETE FROM chapters WHERE chapter_id = :chapter_id");
+
+                // Binding
+                $delete_chapter->bindValue(":chapter_id", $current_story_chapter_ids[$j]);
+
+                // Execution
+                $delete_chapter->execute();
+            }
+        }  
 
         // ---- 4. DELETE ALL STORIES ----
 
+        // Prepare a query to delete all stories of the user
+        $delete_stories = $db->prepare("DELETE FROM stories WHERE user_id = :user_id");
+
+        // Binding
+        $delete_stories->bindValue(":user_id", $user_id);
+
+        // Execution
+        $delete_stories->execute();
+
         // ---- 5. DELETE ACCOUNT ----
 
+        // Prepare a query to delete user's account
+        $delete_user = $db->prepare("DELETE FROM users WHERE user_id = :user_id");
+
+        // Binding
+        $delete_user->bindValue(":user_id", $user_id);
+
+        // Execution
+        $delete_user->execute();
+
+        // COMMIT TRANSACTION
+        $db->commit();
+
         // ---- 6. REDIRECTION ----
+
+        // Redirect user to account deletion confirmation page
+        header("Location: user_delete_confirm.php");
+
+        // End script
+        exit();
     }
 
     // Catch any exception
     catch(Exception $exc)
     {
+        // CANCEL TRANSACTION
+        $db->rollBack();
+
+        // Log and Output error message
+        error_log("Exception caught during account deletion : ".$exc->getMessage());
         echo "<p>Exception caught during account deletion : ".$exc->getMessage()."</p>";
     }
 ?>

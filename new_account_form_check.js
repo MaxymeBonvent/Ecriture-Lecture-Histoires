@@ -547,7 +547,7 @@ function AllPasswordCriteriasCheck()
     PasswordsEqualityCheck();
 
     // If every criteria is met
-    if(isUsernameSmall && !doesUsernameExist && !doesMailExist && hasPasswordEnoughChars && hasLowercase && hasUppercase && hasSpecial && hasNumber && arePasswordsEqual && isAvatarSmall)
+    if(isUsernameSmall && !doesUsernameExist && !doesMailExist && hasPasswordEnoughChars && hasLowercase && hasUppercase && hasSpecial && hasNumber && arePasswordsEqual)
     {
         // Confirm that all criterias are met
         console.log("All criterias met.");

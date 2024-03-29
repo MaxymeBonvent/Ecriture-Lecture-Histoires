@@ -154,16 +154,16 @@
                     // ---- GET CHAPTER IDS AND TITLES OF THE CURRENT STORY ----
 
                     // Prepare query to get chapter ids and titles of the current story
-                    $get_chapter_titles = $db->prepare("SELECT chapter_id, chapter_title FROM chapters WHERE story_id = :story_id");
+                    $get_chapter_infos = $db->prepare("SELECT chapter_id, chapter_title FROM chapters WHERE story_id = :story_id");
 
                     // Binding
-                    $get_chapter_titles->bindValue(":story_id", $story_id);
+                    $get_chapter_infos->bindValue(":story_id", $story_id);
 
                     // Execution
-                    $get_chapter_titles->execute();
+                    $get_chapter_infos->execute();
 
                     // Store every chapter of the current story in an associative array
-                    $chapter_titles = $get_chapter_titles->fetchAll(PDO::FETCH_ASSOC);
+                    $chapter_infos = $get_chapter_infos->fetchAll(PDO::FETCH_ASSOC);
 
                     // ---- DISPLAY CHAPTER TITLES OF THE CURRENT STORY ----
 
@@ -171,10 +171,10 @@
                     echo "<ol>";
 
                     // Loop of chapter titles
-                    foreach($chapter_titles as $chapter_title)
+                    foreach($chapter_infos as $chapter_info)
                     {
                         // Display a chapter title of the current story
-                        echo "<li onclick='GetChapterInfo(".$chapter_title['chapter_id'].")' id='".$chapter_title['chapter_id']."' class='chapter_title' title='Click to manage chapter'>".$chapter_title['chapter_title']."</li>";
+                        echo "<li onclick='GetChapterInfo(".$chapter_info['chapter_id'].")' id='".$chapter_info['chapter_id']."' class='chapter_title' title='Click to manage chapter'>".$chapter_info['chapter_title']."</li>";
                     }
 
                     // Chapter Titles List End

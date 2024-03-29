@@ -7,6 +7,9 @@ let chapter_info = document.getElementById("chapter_info");
 // Function to call a PHP script that will get info of the clicked chapter and display it on the page
 function GetChapterInfo(chapter_id)
 {
+    // Confirm Chapter ID obtention
+    console.log(`Chapter ID == ${chapter_id}.`);
+
     // ---- START ----
 
     // XMLHttpRequest Object
@@ -112,6 +115,9 @@ function EditChapter(json_story_id, json_chapter_title)
             // Log that request is not done
             console.log("Request not done.");
             console.log(`xhr.status == ${xhr.status}.`);
+
+            // Log response
+            console.log(`Response = ${xhr.response}`);
         }
     }
 

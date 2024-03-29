@@ -114,7 +114,7 @@
             $get_chapter_id->execute();
 
             // Store result in a variable
-            $chapter_id = $get_chapter_id->fetch();
+            $chapter_id = $get_chapter_id->fetchColumn();
 
             // ---- GET CHAPTER TEXT ----
 
@@ -129,7 +129,7 @@
             $get_chapter_text->execute();
 
             // Store result in a variable
-            $chapter_text = $get_chapter_text->fetch();
+            $chapter_text = $get_chapter_text->fetchColumn();
 
             // ---- CHAPTER EDIT FORM ----
 
@@ -150,7 +150,7 @@
 
                                 <label for='chapter_id'>Chapter ID</label>
 
-                                <input type='text' id='chapter_id' value='$chapter_id[0]' name='chapter_id'>
+                                <input type='text' id='chapter_id' value='$chapter_id' name='chapter_id'>
 
                             </div>
 
@@ -206,7 +206,7 @@
 
                                 </div>
 
-                                <textarea id='chapter_text_area' name='chapter_text' cols='30' rows='10' placeholder='The creature opened its eyes and looked around...' required='true' autocomplete='off' maxlength='60000' onkeyup='ChapterTextCheck()' title='Enter the text of the first chapter of your story'>$chapter_text[0]</textarea>
+                                <textarea id='chapter_text_area' name='chapter_text' cols='30' rows='10' placeholder='The creature opened its eyes and looked around...' required='true' autocomplete='off' maxlength='60000' onkeyup='ChapterTextCheck()' title='Enter the text of the first chapter of your story' >$chapter_text</textarea>
 
                                 <div class='counting_div'>
 
