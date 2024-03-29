@@ -32,7 +32,6 @@ function GetChapterInfo(chapter_id)
             let json_chapter_title = json_response[0]["chapter_title"];
 
             let json_text = json_response[0]["chapter_text"];
-            // console.log(`Chapter text == ${json_text}`);
 
             let json_likes = json_response[0]["likes"];
 
@@ -57,7 +56,7 @@ function GetChapterInfo(chapter_id)
                         
                         <p class='chapter_option' onclick="EditChapter(${json_story_id}, '${json_chapter_title}')">Edit</p>
                         <p class='chapter_option' onclick="NewChapter(${json_story_id})">Write new chapter</p>
-                        <p class='chapter_option' onclick="DeleteChapter(${json_story_id}, '${json_chapter_title}')">Delete</p>
+                        <p class='chapter_option' style='color: rgb(140, 0, 0);' onclick="DeleteChapter(${json_story_id}, '${json_chapter_title}')">Delete</p>
 
                     </div> 
 

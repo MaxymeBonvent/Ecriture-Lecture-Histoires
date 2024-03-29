@@ -111,10 +111,15 @@
 
                                 <div class='story_div'>
 
-                                    <h4 class='title'>Story Title</h4>
-                                    <h5 class='title'>Chapter title</h5>
+                                    <div class='story_info'>
 
-                                    <p class='author_name'>Author</p>
+                                        <h4 class='title'>Story Title</h4>
+                                        <h5 class='title'>Chapter title</h5>
+
+                                        <p class='author_name'>Author</p>
+
+                                    </div>
+
 
                                     <div class='tags_div'>
 

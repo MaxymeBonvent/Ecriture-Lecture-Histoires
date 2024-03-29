@@ -148,10 +148,11 @@
                 // ---- INSERT STORY ----
 
                 // Prepare query to insert story
-                $insert_story = $db->prepare("INSERT INTO stories (story_title, synopsis, pub_date, tags, word_count) VALUES (:story_title, :synopsis, :pub_date, :tags, :word_count)");
+                $insert_story = $db->prepare("INSERT INTO stories (story_title, author, synopsis, pub_date, tags, word_count) VALUES (:story_title, :author, :synopsis, :pub_date, :tags, :word_count)");
 
                 // Binding  
                 $insert_story->bindValue(":story_title", $story_title);
+                $insert_story->bindValue(":author", $_SESSION["username"]);
                 $insert_story->bindValue(":synopsis", $synopsis);
                 $insert_story->bindValue(":pub_date", $date);
                 $insert_story->bindValue(":tags", $tags);

@@ -103,22 +103,24 @@
                 $get_user_id->execute();
 
                 // Fetch result and store it in an array
-                $user_id = $get_user_id->fetch();
+                $user_id = $get_user_id->fetchColumn();
 
                 // ---- GET STORY TITLES ----
 
                 // Prepare query to get every story title from the logged in user
-                $get_story_titles = $db->prepare("SELECT story_title FROM stories LEFT JOIN users ON stories.user_id = :user_id");
+                $get_story_titles = $db->prepare("SELECT story_title FROM stories WHERE user_id = :user_id");
 
                 // Binding
-                $get_story_titles->bindValue(":user_id", $user_id[0]);
+                $get_story_titles->bindValue(":user_id", $user_id);
 
                 // Execution
                 $get_story_titles->execute();
 
                 // Store the fetch of all story titles in an associative array
                 $story_titles = $get_story_titles->fetchAll(PDO::FETCH_ASSOC);
-                // var_dump($story_titles);
+
+                // Closing
+                $get_story_titles->closeCursor();
 
                 // ---- DISPLAY STORY TITLES ----
 
@@ -128,7 +130,7 @@
                 // START of the div containing divs containing a story and its chapters
                 echo "<div id='user_page_stories_list'>";
 
-                // Loop of story titles
+                // Loop of story titles and chapters
                 foreach($story_titles as $story_title)
                 {
                     // ---- GET CURRENT STORY ID ----
@@ -138,7 +140,7 @@
 
                     // Binding
                     $get_story_id->bindValue(":story_title", $story_title["story_title"]);
-                    $get_story_id->bindValue(":user_id", $user_id[0]);
+                    $get_story_id->bindValue(":user_id", $user_id);
 
                     // Execution
                     $get_story_id->execute();

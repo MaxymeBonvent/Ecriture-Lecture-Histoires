@@ -373,7 +373,7 @@ hr{
     border: 2px solid black;
 
     /* Dimensions */
-    width: 95%;
+    width: 80%;
     height: 240px;
 
     /* External space */
@@ -382,10 +382,24 @@ hr{
     /* Position of internal elements */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
 
     /* Mouse icon */
     cursor: pointer;
+}
+
+/* STORY INFO DIVS */
+.story_info{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 2px;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 /* TAGS DIVS */
