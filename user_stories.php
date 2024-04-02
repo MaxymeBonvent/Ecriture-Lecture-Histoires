@@ -150,8 +150,13 @@
 
                     // ---- DISPLAY CURRENT STORY TITLE ----
 
-                    // Display current story title
-                    echo "<div style='width: 100%;' class='user_page_inner_div'><h4>".$story_title["story_title"]."</h4><br>";
+                    // Display current story title and options
+                    echo    "   <div style='width: 100%;' class='user_page_inner_div'><h4>".$story_title["story_title"]."</h4>
+
+                                <p class='chapter_option' onclick='NewChapter($story_id)'>Write new chapter</p>
+                                <p class='chapter_option' onclick='MarkStoryComplete($story_id)'>Mark complete</p>
+                                <p onclick='DeleteStory($story_id)' class='delete_txt'>Delete Story</p>
+                            ";
 
                     // ---- GET CHAPTER IDS AND TITLES OF THE CURRENT STORY ----
 
@@ -210,7 +215,7 @@
 </body>
 
 <!-- SCRIPT -->
-<script src="get_chapter_info.js"></script>
+<script src="user_stories.js"></script>
 
 <!-- FOOTER -->
 <footer>

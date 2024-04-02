@@ -99,7 +99,7 @@
 
                                     <a href='log_out.php'>Log out</a>
 
-                                    <p id='account_delete_txt' onclick='DeleteAccount($user_id)'>Delete account</p>
+                                    <p class='delete_txt' onclick='DeleteAccount($user_id)'>Delete account</p>
 
                                 </div>
 

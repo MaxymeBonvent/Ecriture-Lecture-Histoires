@@ -199,8 +199,8 @@ ul, ol{
     align-items: flex-start;
 }
 
-/* USER PAGE ACCOUNT DELETION SUGGESTION */
-#account_delete_txt{
+/* DELETE TEXTS */
+.delete_txt{
     /* Color */
     color: rgba(140, 0, 0);
 
@@ -209,7 +209,7 @@ ul, ol{
 }
 
 /* HOVER ON ACCOUNT DELETION SUGGESTION */
-#account_delete_txt:hover{
+.delete_txt:hover{
     /* Underline */
     text-decoration: underline;
 }
@@ -423,7 +423,7 @@ hr{
 /* TEXT IN TAGS DIVS */
 .tags_div p{
     /* Internal space */
-    padding: 0 3px;
+    padding: 0 4px;
 
     /* External space */
     margin: 0 20px;
