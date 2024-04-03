@@ -46,8 +46,6 @@ function GetChapterInfo(chapter_id)
             // Container's new text
             container.innerHTML = 
             `<div> 
-
-                    <h4>Story n°${json_story_id}</h4>
                     <h4>${json_chapter_title}</h4> 
 
                     <div id='chapter_txt'>${json_text}</div> 
@@ -258,19 +256,22 @@ function DeleteChapter(json_story_id, json_chapter_title)
 }
 
 // Function to get story ID to the story deletion script
-function DeleteStory(story_id)
+function DeleteStory(story_id, story_title)
 {
     // ---- INFO ----
 
     // Confirm function call
     console.log("DeleteStory() called.");
 
-    // Confirm info obtention
+    // Confirm story ID obtention
     console.log(`Story ID == ${story_id}.`);
+
+    // Confirm story title obtention
+    console.log(`Story Title == ${story_title}.`);
 
     // ---- QUESTION ----
 
-    let answer = confirm(`WARNING : You're about to DELETE a story, this operation cannot be undone . Are you sure?`);
+    let answer = confirm(`WARNING : You're about to DELETE story ${story_title}, this operation cannot be undone . Are you sure?`);
 
     // ---- DELETE AJAX REQUEST ----
 
@@ -324,14 +325,4 @@ function DeleteStory(story_id)
         // Send request
         xhr.send();
     }
-}
-
-// Function to get story's ID and open PHP script to mark story as complete
-function MarkStoryComplete(story_id)
-{
-    // Confirm function call
-    console.log("MarkStoryComplete() called.");
-
-    // Confirm Story ID obtention
-    console.log(`Story ID == ${story_id}.`);
 }

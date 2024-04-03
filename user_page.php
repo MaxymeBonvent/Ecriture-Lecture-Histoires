@@ -111,24 +111,31 @@
 
                                 <div class='story_div'>
 
-                                    <div class='story_info'>
+                                        <div class='story_info'>
 
-                                        <h4 class='title'>Story Title</h4>
-                                        <h5 class='title'>Chapter title</h5>
+                                            <h4 class='title'>Story Title</h4>
+                                            <h4 class='title'>Chapter title</h4>
 
-                                        <p class='author_name'>Author</p>
+                                        </div>
 
-                                    </div>
+                                        <div class='story_info'>
+
+                                            <p>Author</p>
+                                            <p>dd-mm-yyyy</p>
+                                            <p>000 Likes</p>
+                                            <p>000 Dislikes</p>
+
+                                        </div>
 
 
-                                    <div class='tags_div'>
+                                        <div class='tags_div'>
 
-                                        <p>Slice of life1</p><p>Slice of life2</p><p>Slice of life3</p>
-                                        <p>Slice of life4</p><p>Slice of life5</p><p>Slice of life6</p>
-                                        
-                                    </div>
+                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
+                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
+                                            
+                                        </div>
                                     
-                            </div>
+                                </div>
 
                         </div>
                             
@@ -146,61 +153,113 @@
 
                                 <div class='story_div'>
 
-                                    <h4 class='title'>Story Title</h4>
-                                    <p class='author_name'>Author</p>
+                                        <div class='story_info'>
 
-                                    <div class='tags_div'>
+                                            <h4 class='title'>Story Title</h4>
 
-                                        <p>Slice of life1</p><p>Slice of life2</p><p>Slice of life3</p>
-                                        <p>Slice of life4</p><p>Slice of life5</p><p>Slice of life6</p>
+                                        </div>
 
-                                    </div>
-                                      
+                                        <div class='story_info'>
+
+                                            <p>Author</p>
+                                            <p>dd-mm-yyyy</p>
+                                            <p>000 Likes</p>
+                                            <p>000 Dislikes</p>
+
+                                        </div>
+
+
+                                        <div class='tags_div'>
+
+                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
+                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
+                                            
+                                        </div>
+                                    
                                 </div>
 
 
                                 <div class='story_div'>
 
-                                    <h4 class='title'>Story Title</h4>
-                                    <p class='author_name'>Author</p>
+                                        <div class='story_info'>
 
-                                    <div class='tags_div'>
+                                            <h4 class='title'>Story Title</h4>
 
-                                        <p>Slice of life1</p><p>Slice of life2</p><p>Slice of life3</p>
-                                        <p>Slice of life4</p><p>Slice of life5</p><p>Slice of life6</p>
+                                        </div>
 
-                                    </div>
-                                      
+                                        <div class='story_info'>
+
+                                            <p>Author</p>
+                                            <p>dd-mm-yyyy</p>
+                                            <p>000 Likes</p>
+                                            <p>000 Dislikes</p>
+
+                                        </div>
+
+
+                                        <div class='tags_div'>
+
+                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
+                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
+                                            
+                                        </div>
+                                    
                                 </div>
 
 
                                 <div class='story_div'>
 
-                                    <h4 class='title'>Story Title</h4>
-                                    <p class='author_name'>Author</p>
+                                        <div class='story_info'>
 
-                                    <div class='tags_div'>
+                                            <h4 class='title'>Story Title</h4>
 
-                                        <p>Slice of life1</p><p>Slice of life2</p><p>Slice of life3</p>
-                                        <p>Slice of life4</p><p>Slice of life5</p><p>Slice of life6</p>
+                                        </div>
 
-                                    </div>
-                                      
+                                        <div class='story_info'>
+
+                                            <p>Author</p>
+                                            <p>dd-mm-yyyy</p>
+                                            <p>000 Likes</p>
+                                            <p>000 Dislikes</p>
+
+                                        </div>
+
+
+                                        <div class='tags_div'>
+
+                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
+                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
+                                            
+                                        </div>
+                                    
                                 </div>
 
 
                                 <div class='story_div'>
 
-                                    <h4 class='title'>Story Title</h4>
-                                    <p class='author_name'>Author</p>
+                                        <div class='story_info'>
 
-                                    <div class='tags_div'>
+                                            <h4 class='title'>Story Title</h4>
 
-                                        <p>Slice of life1</p><p>Slice of life2</p><p>Slice of life3</p>
-                                        <p>Slice of life4</p><p>Slice of life5</p><p>Slice of life6</p>
+                                        </div>
 
-                                    </div>
-                                      
+                                        <div class='story_info'>
+
+                                            <p>Author</p>
+                                            <p>dd-mm-yyyy</p>
+                                            <p>000 Likes</p>
+                                            <p>000 Dislikes</p>
+
+                                        </div>
+
+
+                                        <div class='tags_div'>
+
+                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
+                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
+                                            
+                                        </div>
+                                    
                                 </div>
 
 
@@ -216,61 +275,113 @@
 
                                 <div class='story_div'>
 
-                                    <h4 class='title'>Story Title</h4>
-                                    <p class='author_name'>Author</p>
+                                        <div class='story_info'>
 
-                                    <div class='tags_div'>
+                                            <h4 class='title'>Story Title</h4>
 
-                                        <p>Slice of life1</p><p>Slice of life2</p><p>Slice of life3</p>
-                                        <p>Slice of life4</p><p>Slice of life5</p><p>Slice of life6</p>
+                                        </div>
 
-                                    </div>
-                                      
+                                        <div class='story_info'>
+
+                                            <p>Author</p>
+                                            <p>dd-mm-yyyy</p>
+                                            <p>000 Likes</p>
+                                            <p>000 Dislikes</p>
+
+                                        </div>
+
+
+                                        <div class='tags_div'>
+
+                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
+                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
+                                            
+                                        </div>
+                                    
                                 </div>
 
 
                                 <div class='story_div'>
 
-                                    <h4 class='title'>Story Title</h4>
-                                    <p class='author_name'>Author</p>
+                                        <div class='story_info'>
 
-                                    <div class='tags_div'>
+                                            <h4 class='title'>Story Title</h4>
 
-                                        <p>Slice of life1</p><p>Slice of life2</p><p>Slice of life3</p>
-                                        <p>Slice of life4</p><p>Slice of life5</p><p>Slice of life6</p>
+                                        </div>
 
-                                    </div>
-                                      
+                                        <div class='story_info'>
+
+                                            <p>Author</p>
+                                            <p>dd-mm-yyyy</p>
+                                            <p>000 Likes</p>
+                                            <p>000 Dislikes</p>
+
+                                        </div>
+
+
+                                        <div class='tags_div'>
+
+                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
+                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
+                                            
+                                        </div>
+                                    
                                 </div>
 
 
                                 <div class='story_div'>
 
-                                    <h4 class='title'>Story Title</h4>
-                                    <p class='author_name'>Author</p>
+                                        <div class='story_info'>
 
-                                    <div class='tags_div'>
+                                            <h4 class='title'>Story Title</h4>
 
-                                        <p>Slice of life1</p><p>Slice of life2</p><p>Slice of life3</p>
-                                        <p>Slice of life4</p><p>Slice of life5</p><p>Slice of life6</p>
+                                        </div>
 
-                                    </div>
-                                      
+                                        <div class='story_info'>
+
+                                            <p>Author</p>
+                                            <p>dd-mm-yyyy</p>
+                                            <p>000 Likes</p>
+                                            <p>000 Dislikes</p>
+
+                                        </div>
+
+
+                                        <div class='tags_div'>
+
+                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
+                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
+                                            
+                                        </div>
+                                    
                                 </div>
 
 
                                 <div class='story_div'>
 
-                                    <h4 class='title'>Story Title</h4>
-                                    <p class='author_name'>Author</p>
+                                        <div class='story_info'>
 
-                                    <div class='tags_div'>
+                                            <h4 class='title'>Story Title</h4>
 
-                                        <p>Slice of life1</p><p>Slice of life2</p><p>Slice of life3</p>
-                                        <p>Slice of life4</p><p>Slice of life5</p><p>Slice of life6</p>
+                                        </div>
 
-                                    </div>
-                                      
+                                        <div class='story_info'>
+
+                                            <p>Author</p>
+                                            <p>dd-mm-yyyy</p>
+                                            <p>000 Likes</p>
+                                            <p>000 Dislikes</p>
+
+                                        </div>
+
+
+                                        <div class='tags_div'>
+
+                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
+                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
+                                            
+                                        </div>
+                                    
                                 </div>
 
 
