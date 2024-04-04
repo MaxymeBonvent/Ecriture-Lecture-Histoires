@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Homepage</title>
+    <title>Synopsis</title>
     <link rel="stylesheet" href="stories.css">
 
 </head>
@@ -76,9 +76,194 @@
             $author = htmlspecialchars($_GET["author"]);
             $tags = htmlspecialchars($_GET["tags"]);
             $chapter_ids = htmlspecialchars($_GET["chapter_ids"]);
+
+            // ---- GET STORY ID ---- //
+
+            // Prepare a query to ghet story's ID
+            $get_story_id = $db->prepare("SELECT story_id FROM stories WHERE story_title = :story_title");
+
+            // Binding
+            $get_story_id->bindValue(":story_title", $story_title);
+
+            // Execution
+            $get_story_id->execute();
+
+            // Store story ID
+            $story_id = $get_story_id->fetchColumn();
+
+            // Closing
+            $get_story_id->closeCursor();
+
+            // GET TAGS ARRAY
+            $tags_array = explode(" ", $tags);
+
+            // ---- GET CHAPTERS' INFO ---- //
+
+            // Prepare a query to get title, date, word count, likes and dislikes from every chapter of the clicked story
+            $get_chapter_info = $db->prepare("SELECT chapter_id, chapter_title, pub_date, word_count, likes, dislikes FROM chapters WHERE story_id = :story_id");
+
+            // Binding
+            $get_chapter_info->bindValue(":story_id", $story_id);
+
+            // Execution
+            $get_chapter_info->execute();
+
+            // Store info
+            $chapter_info = $get_chapter_info->fetchAll(PDO::FETCH_ASSOC);
+
+            // ---- GET AUTHOR'S BIO ---- //
+
+            // Prepare a query to get author's bio
+            $get_bio = $db->prepare("SELECT biography FROM users WHERE username = :username");
+
+            // Binding  
+            $get_bio->bindValue(":username", $author);
+
+            // Execution
+            $get_bio->execute();
+
+            // Store bio
+            $bio = $get_bio->fetchColumn();
+
+            // Closing
+            $get_bio->closeCursor();
+
+            // ---- GET STORY'S LIKES AND DISLIKES ---- //
+
+            // Prepare a query to get story's synopsis, likes and dislikes
+            $get_story_info = $db->prepare("SELECT synopsis, likes, dislikes FROM stories WHERE story_title = :story_title");
+
+            // Binding  
+            $get_story_info->bindValue(":story_title", $story_title);
+
+            // Execution
+            $get_story_info->execute();
+
+            // Store story info
+            $story_info = $get_story_info->fetchAll(PDO::FETCH_ASSOC);
+
+            // Closing
+            $get_story_info->closeCursor();
         ?>
 
+        <!-- SECTION 1 : AUTHOR INFO -->
+        <section style="flex-direction:column;">
+
+            <?php
+                echo "<h3>$author</h3>";
+                echo "<p>$bio</p>";
+            ?>
+
+        </section>
+
+
+        <!-- SECTION 2 : STORY OPTIONS -->
+        <section style="justify-content: space-evenly;">
+
+            <p onclick="" class="story_option">Add to Favs</p>
+            <p onclick="" class="story_option">Read Later</p>
+
+            <?php
+                echo "<div class='like_dislike'><p>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb'> </div>";
+
+                echo "<div class='like_dislike'><p>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb'> </div>";
+            ?>
+
+        </section>
+
+
+        <!-- SECTION 3 : STORY INFO -->
+        <section style="flex-direction:column;">
+
+            <?php
+                // TITLE
+                echo "<h3>$story_title</h3>";
+
+                // TAGS DIV START
+                echo "<div class='tags_div'>"; 
+
+                // For each tag of the story
+                foreach($tags_array as $tag)
+                {
+                    // If tag is not an empty string
+                    if($tag != "")
+                    {
+                        // Display it
+                        echo "<p>$tag</p>";
+                    }
+                }
+
+                // TAGS DIV END
+                echo "</div>";
+
+                // SYNOPSIS
+                echo "<p>".$story_info[0]['synopsis']."</p>";
+            ?>
+
+        </section>
+
+        <!-- SECTION 4 : CHAPTER INFO -->
+        <section class="chapter_list" style="justify-content: space-evenly;">
+
+            <?php
+                // For each chapter of the clicked story
+                for($i = 0; $i < count($chapter_info); $i++)
+                {
+                    // START of chapter info div
+                    echo "<div class='synopsis_page_chapter_info' onclick='ChapterPage(".$chapter_info[$i]['chapter_id'].")'>";
+
+                        echo "<p>".$chapter_info[$i]['chapter_title']."</p>";
+                        echo "<p>".date("d-m-Y", strtotime($chapter_info[$i]['pub_date']))."</p>";
+                        echo "<p>".$chapter_info[$i]['word_count']." Words</p>";
+                        echo "<p>".$chapter_info[$i]['likes']." Likes</p>";
+                        echo "<p>".$chapter_info[$i]['dislikes']." Dislikes</p>";
+
+                    // END of chapter info div
+                    echo "</div>";
+                }  
+            ?>
+
+        </section>
+
+        <!-- SECTION 5 : COMMENTS -->
+        <section style="flex-direction: column;">
+
+            <h3>Comments</h3>
+
+            <p>Write a comment about this story</p>
+
+            <form style="width: 40%;" action="register_story_comment.php" method="post">
+
+                <!-- STORY ID -->
+                <?php
+                    echo "<input type='text' name='story_id' value='$story_id' style='display:none;'>";
+                ?>
+
+                <!-- LABEL -->
+                <label for="comment_text">Your comment</label>
+
+                <!-- INPUT -->
+                <textarea name="comment_text" id="comment_text" cols="40" rows="10" maxlength="10000" placeholder="What I like about this story is that...on the other hand..."></textarea>
+
+                <!-- FORM BUTTONS DIV -->
+                <div class="formBtnsDiv">
+
+                    <!-- SUBMIT -->
+                    <input class="formBtn" type="submit" value="Publish">
+
+                    <!-- CANCEL -->
+                    <input class="formBtn" type="reset" value="Cancel">
+
+                </div>
+
+            </form>
+
+        </section>
+
     </main>
+
+    <!-- SCRIPTS -->
+    <script src="chapter_page.js"></script>
 
     <!-- FOOTER -->
     <footer>

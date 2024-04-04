@@ -11,7 +11,7 @@
     if(!isset($_SESSION['username']) || empty($_SESSION['username']))
     {
         // Output an error message
-        echo "<p>Error : no user.</p>";
+        echo "<p>Error : you are not logged in.</p>";
 
         // End script
         exit;

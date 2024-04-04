@@ -191,6 +191,8 @@
 
                                     <input type='submit' value='Publish New Chapter' id='publish_input' class='formBtn'>
 
+                                    <input type='reset' value='Cancel' class='formBtn'>
+
                                 </div>
 
                             </div>
