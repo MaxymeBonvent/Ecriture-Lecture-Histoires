@@ -70,13 +70,97 @@
             // DATABASE CONNECTION
             require_once("database_connection.php");
 
-            // GET CHAPTER ID
+            // If user is logged in
+            if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
+            {
+                // Get their ID
+                require_once("get_user_id.php");
+            }
+
+            // URL VARIABLES
             $chapter_id = htmlspecialchars($_GET["chapter_id"]);
+            $story_id = htmlspecialchars($_GET["story_id"]);
+
+            // GET STORY INFO
+
+            // Prepare query to get story info of the clicked chapter
+            $get_story_info = $db->prepare("SELECT story_title, author, tags, synopsis FROM stories WHERE story_id = :story_id");
+
+            // Binding
+            $get_story_info->bindValue(":story_id", $story_id);
+
+            // Execution
+            $get_story_info->execute();
+
+            // Store story info
+            $story_info = $get_story_info->fetchAll(PDO::FETCH_ASSOC);
+            // var_dump($story_info);
+
+            // GET TAGS ARRAY
+            $tags = explode(" ", $story_info[0]["tags"]);
+            // var_dump($tags);
+
+            // GET CHAPTER TEXT
+
+            // Prepare query to get chapter text of the clicked chapter
+            $get_chapter_text = $db->prepare("SELECT chapter_text FROM chapters WHERE chapter_id = :chapter_id");
+
+            // Binding
+            $get_chapter_text->bindValue(":chapter_id", $chapter_id);
+
+            // Execution
+            $get_chapter_text->execute();
+
+            // Store story info
+            $chapter_text = $get_chapter_text->fetchColumn();
         ?>
 
-        <h3>Chapter Reading Page</h3>
+        <!-- SECTION 1 : STORY INFO, SYNOPSIS, BOOKMARK -->
+        <section style="flex-direction: column;">
+
+            <?php
+                echo "<h4>".$story_info[0]['story_title']."</h4>";
+                echo "<p>".$story_info[0]['author']."</p>";
+
+                // START of tags div
+                echo "<div class='tags_div'>";
+
+                    // For each tag 
+                    foreach($tags as $tag)
+                    {
+                        // If tag is not an empty string
+                        if($tag != "" && $tag != " ")
+                        {
+                            // Display it
+                            echo "<p>$tag</p>";
+                        }
+                    }
+
+                // END of tags div
+                echo "</div>";
+
+                // Synopsis text
+                echo "<p>".$story_info[0]['synopsis']."</p>";
+
+                // Bookmark
+                echo "<p class='chapter_option' onclick='Bookmark($chapter_id, $user_id)'>Bookmark this chapter</p>";
+            ?>
+
+        </section>
+
+        <!-- SECTION 2 :  -->
+        <section>
+
+            <?php
+                
+            ?>
+
+        </section>
 
     </main>
+
+    <!-- SCRIPTS -->
+    <script src="bookmark.js"></script>
 
     <!-- FOOTER -->
     <footer>

@@ -131,7 +131,7 @@
             // ---- GET STORY'S LIKES AND DISLIKES ---- //
 
             // Prepare a query to get story's synopsis, likes and dislikes
-            $get_story_info = $db->prepare("SELECT synopsis, likes, dislikes FROM stories WHERE story_title = :story_title");
+            $get_story_info = $db->prepare("SELECT story_id, synopsis, likes, dislikes FROM stories WHERE story_title = :story_title");
 
             // Binding  
             $get_story_info->bindValue(":story_title", $story_title);
@@ -210,7 +210,7 @@
                 for($i = 0; $i < count($chapter_info); $i++)
                 {
                     // START of chapter info div
-                    echo "<div class='synopsis_page_chapter_info' onclick='ChapterPage(".$chapter_info[$i]['chapter_id'].")'>";
+                    echo "<div class='synopsis_page_chapter_info' onclick='ChapterPage(".$chapter_info[$i]['chapter_id'].",".$story_info[0]['story_id'].")'>";
 
                         echo "<p>".$chapter_info[$i]['chapter_title']."</p>";
                         echo "<p>".date("d-m-Y", strtotime($chapter_info[$i]['pub_date']))."</p>";
@@ -229,6 +229,64 @@
         <section style="flex-direction: column;">
 
             <h3>Comments</h3>
+
+            <!-- WRITTEN COMMENTS -->
+
+            <?php
+                // ---- GET EVERY COMMENTS' TEXT, DATE AND USER ID ---- //
+
+                // Prepare a query to get every comments' tetx, date and user ID
+                $get_story_comments = $db->prepare("SELECT  user_id, pub_date, comment_text FROM comments WHERE story_id = :story_id");
+
+                // Binding  
+                $get_story_comments->bindValue(":story_id", $story_id);
+
+                // Execute
+                $get_story_comments->execute();
+
+                // Store comments
+                $story_comments = $get_story_comments->fetchAll(PDO::FETCH_ASSOC);
+                // var_dump($story_comments);
+
+                // ---- GET COMMENT'S AUTHOR ---- //
+
+                // For each comment
+                foreach($story_comments as $story_comment)
+                {
+                    // Prepare a query to get comment's username
+                    $get_comment_author = $db->prepare("SELECT username FROM users WHERE user_id = :user_id");
+
+                    // Binding
+                    $get_comment_author->bindValue(":user_id", $story_comment["user_id"]);
+
+                    // Execution
+                    $get_comment_author->execute();
+
+                    // Store author
+                    $comment_author = $get_comment_author->fetchColumn();
+
+                    // START of current comment div
+                    echo "<div class='comment_div'>";
+
+                        // USER INFO
+                        echo    "   <div>
+                                        <p>$comment_author</p>
+                                    </div>
+                                ";
+
+                        // COMMENT INFO
+                        echo    "   <div>
+                                        <p class='comment'>".$story_comment['comment_text']."</p>
+                                        <small class='comment_date'>Posted on ".date("d-m-Y", strtotime($story_comment['pub_date']))."</small>
+                                    </div>
+                                ";
+
+                    // END of current comment div
+                    echo "</div>";
+                }
+            ?>
+
+            <!-- COMMENT WRITING SPACE -->
 
             <p>Write a comment about this story</p>
 

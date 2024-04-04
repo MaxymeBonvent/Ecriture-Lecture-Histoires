@@ -110,7 +110,7 @@
                     // ---- GET BOOKMARKED CHAPTER'S STORY INFO ----
 
                     // Prepare a query to get bookmarked chapter's story info
-                    $get_story_info = $db->prepare("SELECT * FROM stories WHERE chapter_ids = ' $marked_chapter_id '");
+                    $get_story_info = $db->prepare("SELECT * FROM stories WHERE chapter_ids = $marked_chapter_id");
 
                     // Execution    
                     $get_story_info->execute();
@@ -127,7 +127,7 @@
                     // Display story box with chapter in progress
                     echo    "   <h3>Currently reading</h3>
 
-                                <div class='story_div' style='width: 50%;'>
+                                <div class='story_div' style='width: 50%;' onclick='Synopsis(\"".$story_info[0]['story_title']."\",\"".$story_info[0]['author']."\",\"".$story_info[0]['tags']."\",\"".$story_info[0]['chapter_ids']."\")'>
 
                                     <div class='story_info'>
 

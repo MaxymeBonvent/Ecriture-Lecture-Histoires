@@ -180,6 +180,59 @@ section .story_div{
     justify-content: space-around;
 }
 
+/* COMMENT DIVS */
+.comment_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+
+    /* External space */
+    margin: 3px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+}
+
+/* USER DIV IN COMMENT DIVS */
+.comment_div div:first-child{
+    /* Outline */
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+
+    /* Dimensions */
+    width: 15%;
+    max-height: 40px;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* COMMENT TEXT AND DATE DIV IN COMMENT DIVS */
+.comment_div div:last-child{
+    /* Outline */
+    border: 2px solid transparent;
+
+    /* Dimensions */
+    width: 85%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* COMMENT DATES */
+.comment_div div:last-child small{
+    /* Position */
+    align-self: flex-end;
+}
+
 /* SYNOPSIS PAGE CHAPTER LIST */
 .chapter_list{
     /* Dimensions */
