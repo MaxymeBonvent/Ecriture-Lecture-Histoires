@@ -133,6 +133,12 @@ section{
     align-items: center;
 }
 
+/* TEXTAREAS AND INPUT FIELDS */
+textarea, input{
+    /* Background */
+    background-color: rgb(220, 220, 220);
+}
+
 /* STORY OPTIONS */
 .story_option:hover{
     text-decoration: underline;
@@ -164,8 +170,8 @@ section .story_div{
     margin: 4px 10px;
 }
 
-/* CHAPTER INFO IN THE SYNOPSIS PAGE */
-.synopsis_page_chapter_info{
+/* CHAPTER LIST */
+.list_chapter_info{
     /* Outline */
     border: 2px solid black;
 
@@ -504,7 +510,7 @@ hr{
     height: 240px;
 
     /* External space */
-    margin: 20px 0;
+    margin: 20px 10px;
 
     /* Position of internal elements */
     display: flex;
@@ -552,7 +558,7 @@ hr{
     padding: 0 4px;
 
     /* External space */
-    margin: 0 20px;
+    margin: 0 26px;
 
     /* Background */
     background-color: forestgreen;
@@ -563,6 +569,15 @@ hr{
 .synopsis_txt{
     /* Maximum text width */
     text-overflow: clip;
+}
+
+/* CHAPTER TEXT SECTIONS */
+.chapter_text_section{
+    /* Dimensions */
+    width: 40%;
+
+    /* Internal space */
+    padding: 0 100px;
 }
 
 /* TITLES AND AUTHOR NAMES */

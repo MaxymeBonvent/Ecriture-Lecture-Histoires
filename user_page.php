@@ -103,9 +103,9 @@
 
                                 </div>
 
-                            </div>
+                            </div>";
      
-                            <div class='user_page_inner_div'>
+                    echo "<div class='user_page_inner_div'>
 
                                 <h3>Bookmarked Chapter</h3>
 
@@ -137,10 +137,9 @@
                                     
                                 </div>
 
-                        </div>
-                            
-
                         </div>";
+                            
+                    echo "</div>";
 
             // BOTTOM HALF DIV OF USER STORIES, FAV STORIES AND READ LATER STORIES
             echo    "<div class='user_page_half_div'>

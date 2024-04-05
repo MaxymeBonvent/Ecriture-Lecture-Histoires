@@ -202,6 +202,9 @@
 
         </section>
 
+        <!-- SECTION NAME -->
+        <h3>Chapters</h3>
+
         <!-- SECTION 4 : CHAPTER INFO -->
         <section class="chapter_list" style="justify-content: space-evenly;">
 
@@ -210,7 +213,7 @@
                 for($i = 0; $i < count($chapter_info); $i++)
                 {
                     // START of chapter info div
-                    echo "<div class='synopsis_page_chapter_info' onclick='ChapterPage(".$chapter_info[$i]['chapter_id'].",".$story_info[0]['story_id'].")'>";
+                    echo "<div class='list_chapter_info' onclick='ChapterPage(".$chapter_info[$i]['chapter_id'].",".$story_info[0]['story_id'].")'>";
 
                         echo "<p>".$chapter_info[$i]['chapter_title']."</p>";
                         echo "<p>".date("d-m-Y", strtotime($chapter_info[$i]['pub_date']))."</p>";
@@ -225,17 +228,17 @@
 
         </section>
 
-        <!-- SECTION 5 : COMMENTS -->
+        <!-- SECTION 5 : STORY COMMENTS -->
         <section style="flex-direction: column;">
 
-            <h3>Comments</h3>
+            <h3>Story Comments</h3>
 
             <!-- WRITTEN COMMENTS -->
 
             <?php
                 // ---- GET EVERY COMMENTS' TEXT, DATE AND USER ID ---- //
 
-                // Prepare a query to get every comments' tetx, date and user ID
+                // Prepare a query to get every story comments' text, date and user ID
                 $get_story_comments = $db->prepare("SELECT  user_id, pub_date, comment_text FROM comments WHERE story_id = :story_id");
 
                 // Binding  
@@ -250,7 +253,7 @@
 
                 // ---- GET COMMENT'S AUTHOR ---- //
 
-                // For each comment
+                // For each story comment
                 foreach($story_comments as $story_comment)
                 {
                     // Prepare a query to get comment's username
@@ -298,10 +301,10 @@
                 ?>
 
                 <!-- LABEL -->
-                <label for="comment_text">Your comment</label>
+                <label for="comment_text">Your comment (up to 3000 characters)</label>
 
                 <!-- INPUT -->
-                <textarea name="comment_text" id="comment_text" cols="40" rows="10" maxlength="10000" placeholder="What I like about this story is that...on the other hand..."></textarea>
+                <textarea name="comment_text" id="comment_text" cols="40" rows="10" maxlength="3000" placeholder="What I like about this story is that...on the other hand..."></textarea>
 
                 <!-- FORM BUTTONS DIV -->
                 <div class="formBtnsDiv">

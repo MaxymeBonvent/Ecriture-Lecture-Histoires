@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Story Comment</title>
+    <title>Chapter Comment</title>
     <link rel="stylesheet" href="stories.css">
 
 </head>
@@ -19,7 +19,7 @@
         <h1>The Reading &amp; Writing Place</h1>
 
         <!-- SUBTITLE -->
-        <h2>Story Comment</h2>
+        <h2>Chapter Comment</h2>
 
         <!-- NAVIGATION -->
         <nav>
@@ -80,8 +80,8 @@
             // If user is logged in
             else if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
             {
-                // Confirm story comment has been registered
-                echo "<p>Your story comment has been successfully registered.</p>";
+                // Confirm chapter comment has been registered
+                echo "<p>Your chapter comment has been successfully registered.</p>";
             }
         ?>
 

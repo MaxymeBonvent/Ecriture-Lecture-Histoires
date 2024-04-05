@@ -94,25 +94,51 @@
 
             // Store story info
             $story_info = $get_story_info->fetchAll(PDO::FETCH_ASSOC);
-            // var_dump($story_info);
 
             // GET TAGS ARRAY
             $tags = explode(" ", $story_info[0]["tags"]);
-            // var_dump($tags);
 
-            // GET CHAPTER TEXT
+            // GET CHAPTER TITLE AND TEXT
 
             // Prepare query to get chapter text of the clicked chapter
-            $get_chapter_text = $db->prepare("SELECT chapter_text FROM chapters WHERE chapter_id = :chapter_id");
+            $get_chapter_title_text = $db->prepare("SELECT chapter_title, chapter_text FROM chapters WHERE chapter_id = :chapter_id");
 
             // Binding
-            $get_chapter_text->bindValue(":chapter_id", $chapter_id);
+            $get_chapter_title_text->bindValue(":chapter_id", $chapter_id);
 
             // Execution
-            $get_chapter_text->execute();
+            $get_chapter_title_text->execute();
 
             // Store story info
-            $chapter_text = $get_chapter_text->fetchColumn();
+            $chapter_title_text = $get_chapter_title_text->fetchAll(PDO::FETCH_ASSOC);
+
+            // ---- GET CHAPTERS' INFO ---- //
+
+            // Prepare a query to get title, date, word count, likes and dislikes from every chapter of the clicked story
+            $get_chapter_info = $db->prepare("SELECT chapter_id, chapter_title, pub_date, word_count, likes, dislikes FROM chapters WHERE story_id = :story_id");
+
+            // Binding
+            $get_chapter_info->bindValue(":story_id", $story_id);
+
+            // Execution
+            $get_chapter_info->execute();
+
+            // Store info
+            $chapter_info = $get_chapter_info->fetchAll(PDO::FETCH_ASSOC);
+            // var_dump($chapter_info);
+            // var_dump(count($chapter_info));
+
+            // ---- CREATE AN ARRAY OF CHAPTER IDS ---- //
+            $chapter_ids = array();
+
+            // For every chapter
+            for($i = 0; $i < count($chapter_info); $i++)
+            {
+                // Place its chapter ID in the array
+                array_push($chapter_ids, $chapter_info[$i]["chapter_id"]);
+            }
+
+            // var_dump($chapter_ids);
         ?>
 
         <!-- SECTION 1 : STORY INFO, SYNOPSIS, BOOKMARK -->
@@ -148,12 +174,131 @@
 
         </section>
 
-        <!-- SECTION 2 :  -->
-        <section>
+        <!-- SECTION 2 : CHAPTER TEXT  -->
+        <section class="chapter_text_section">
 
             <?php
-                
+
+                // START of chapter text div
+                echo "<div>";
+
+                    // Chapter title
+                    echo "<h3>".$chapter_title_text[0]['chapter_title']."</h3>";
+
+                    // Chapter text
+                    echo "<p>".$chapter_title_text[0]['chapter_text']."</p>";
+
+                // END of chapter text div
+                echo "</div>";
             ?>
+
+        </section>
+
+        <!-- (OPTIONAL) SECTION 3 : PREVIOUS/NEXT CHAPTER -->
+        <?php
+            // If this story has more than 1 chapter
+            if(count($chapter_ids) > 1)
+            {
+                // Section title
+                echo "<h3>Previous/next chapter</h3>";
+
+                // START of section 3
+                echo "<section class='list_chapter_info'>";
+
+                // END of section 3
+                echo "</section>";
+            }
+        ?>
+
+        <!-- SECTION 4 : CHAPTER COMMENTS -->
+        <section style="flex-direction: column;">
+
+            <h3>Chapter Comments</h3>
+
+            <!-- WRITTEN COMMENTS -->
+
+            <?php
+                // ---- GET EVERY COMMENTS' TEXT, DATE AND USER ID ---- //
+
+                // Prepare a query to get every chapter comments' tetx, date and user ID
+                $get_chapter_comments = $db->prepare("SELECT  user_id, pub_date, comment_text FROM comments WHERE chapter_id = :chapter_id");
+
+                // Binding  
+                $get_chapter_comments->bindValue(":chapter_id", $chapter_id);
+
+                // Execute
+                $get_chapter_comments->execute();
+
+                // Store comments
+                $chapter_comments = $get_chapter_comments->fetchAll(PDO::FETCH_ASSOC);
+
+                // ---- GET COMMENT'S AUTHOR ---- //
+
+                // For each chapter comment
+                foreach($chapter_comments as $chapter_comment)
+                {
+                    // Prepare a query to get comment's username
+                    $get_comment_author = $db->prepare("SELECT username FROM users WHERE user_id = :user_id");
+
+                    // Binding
+                    $get_comment_author->bindValue(":user_id", $chapter_comment["user_id"]);
+
+                    // Execution
+                    $get_comment_author->execute();
+
+                    // Store author
+                    $comment_author = $get_comment_author->fetchColumn();
+
+                    // START of current comment div
+                    echo "<div class='comment_div'>";
+
+                        // USER INFO
+                        echo    "   <div>
+                                        <p>$comment_author</p>
+                                    </div>
+                                ";
+
+                        // COMMENT INFO
+                        echo    "   <div>
+                                        <p class='comment'>".$chapter_comment['comment_text']."</p>
+                                        <small class='comment_date'>Posted on ".date("d-m-Y", strtotime($chapter_comment['pub_date']))."</small>
+                                    </div>
+                                ";
+
+                    // END of current comment div
+                    echo "</div>";
+                }
+            ?>
+
+            <!-- COMMENT WRITING SPACE -->
+
+            <p>Write a comment about this chapter</p>
+
+            <form style="width: 40%;" action="register_chapter_comment.php" method="post">
+
+                <!-- CHAPTER ID -->
+                <?php
+                    echo "<input type='text' name='chapter_id' value='$chapter_id' style='display:none;'>";
+                ?>
+
+                <!-- LABEL -->
+                <label for="comment_text">Your comment (up to 3000 characters)</label>
+
+                <!-- INPUT -->
+                <textarea name="comment_text" id="comment_text" cols="40" rows="10" maxlength="3000" placeholder="What I like about this chapter is that...on the other hand..."></textarea>
+
+                <!-- FORM BUTTONS DIV -->
+                <div class="formBtnsDiv">
+
+                    <!-- SUBMIT -->
+                    <input class="formBtn" type="submit" value="Publish">
+
+                    <!-- CANCEL -->
+                    <input class="formBtn" type="reset" value="Cancel">
+
+                </div>
+
+            </form>
 
         </section>
 
@@ -161,6 +306,7 @@
 
     <!-- SCRIPTS -->
     <script src="bookmark.js"></script>
+    <script src="chapter_page.js"></script>
 
     <!-- FOOTER -->
     <footer>
