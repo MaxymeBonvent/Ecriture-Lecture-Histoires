@@ -87,6 +87,10 @@
                 // Store marked chapter ID
                 $marked_chapter_id = $get_marked_chapter->fetchColumn();
 
+                // Test
+                // var_dump($marked_chapter_id);
+                // exit;
+
                 // Closing
                 $get_marked_chapter->closeCursor();
 
@@ -95,22 +99,29 @@
                 {
                     // ---- GET BOOKMARKED CHAPTER'S TITLE ----
 
-                    // Prepare a query to get bookmarked chapter's title
-                    $get_chapter_title = $db->prepare("SELECT chapter_title FROM chapters WHERE chapter_id = :chapter_id");
+                    // Prepare a query to get bookmarked chapter's info
+                    $get_chapter_info = $db->prepare("SELECT chapter_id, chapter_title FROM chapters WHERE chapter_id = :chapter_id");
 
                     // Binding
-                    $get_chapter_title->bindValue(":chapter_id", $marked_chapter_id);
+                    $get_chapter_info->bindValue(":chapter_id", $marked_chapter_id);
 
                     // Execution
-                    $get_chapter_title->execute();
+                    $get_chapter_info->execute();
 
-                    // Store chapter title
-                    $chapter_title = $get_chapter_title->fetchColumn();
+                    // Store chapter info
+                    $chapter_info = $get_chapter_info->fetchAll(PDO::FETCH_ASSOC);
+
+                    // Test
+                    var_dump($chapter_info);
+                    // exit;
 
                     // ---- GET BOOKMARKED CHAPTER'S STORY INFO ----
 
                     // Prepare a query to get bookmarked chapter's story info
-                    $get_story_info = $db->prepare("SELECT * FROM stories WHERE chapter_ids = $marked_chapter_id");
+                    $get_story_info = $db->prepare("SELECT story_id, story_title FROM stories WHERE chapter_ids = :chapter_id");
+
+                    // Binding
+                    $get_story_info->bindValue(":chapter_id", $marked_chapter_id);
 
                     // Execution    
                     $get_story_info->execute();
@@ -118,46 +129,54 @@
                     // Store story info
                     $story_info = $get_story_info->fetchAll(PDO::FETCH_ASSOC);
 
+                    // Test
+                    var_dump($story_info);
+                    // exit;
+
                     // Closing
                     $get_story_info->closeCursor();
 
-                    // ---- CREATE TAGS ARRAY ----
-                    $tags_array = explode(" ", $story_info[0]['tags']);
+                    // If there's is a story retrieved
+                    if($story_info != null)
+                    {
+                        // ---- CREATE TAGS ARRAY ---- //
+                        $tags_array = explode(" ", $story_info[0]['tags']);
 
-                    // Display story box with chapter in progress
-                    echo    "   <h3>Currently reading</h3>
+                        // Display story box with chapter in progress
+                        echo    "   <h3>Currently reading</h3>
 
-                                <div class='story_div' style='width: 50%;' onclick='Synopsis(\"".$story_info[0]['story_title']."\",\"".$story_info[0]['author']."\",\"".$story_info[0]['tags']."\",\"".$story_info[0]['chapter_ids']."\")'>
+                                    <div class='story_div' style='width: 50%;' onclick='Synopsis(\"".$story_info[0]['story_title']."\",\"".$story_info[0]['author']."\",\"".$story_info[0]['tags']."\",\"".$story_info[0]['chapter_ids']."\")'>
 
-                                    <div class='story_info'>
+                                        <div class='story_info'>
 
-                                        <h4>".$story_info[0]['story_title']."</h4>
-                                        <h4>$chapter_title</h4>
+                                            <h4>".$story_info[0]['story_title']."</h4>
+                                            <h4>$chapter_title</h4>
+
+                                        </div>
+
+                                        <div class='story_info'>
+
+                                            <p>".$story_info[0]['author']."</p>
+                                            <p>".date("d-m-Y", strtotime($story_info[0]['pub_date']))."</p>
+                                            <p>".$story_info[0]['likes']." Likes</p>
+                                            <p>".$story_info[0]['dislikes']." Dislikes</p>
+
+                                        </div>
+
+                                        <div class='tags_div'>";
+
+                                        // For each tag
+                                        for($i = 0; $i < count($tags_array)-1; $i++)
+                                        {
+                                            // Display it
+                                            echo "<p>".$tags_array[$i]."</p>";
+                                        }
+
+                                        echo "</div>
 
                                     </div>
-
-                                    <div class='story_info'>
-
-                                        <p>".$story_info[0]['author']."</p>
-                                        <p>".date("d-m-Y", strtotime($story_info[0]['pub_date']))."</p>
-                                        <p>".$story_info[0]['likes']." Likes</p>
-                                        <p>".$story_info[0]['dislikes']." Dislikes</p>
-
-                                    </div>
-
-                                    <div class='tags_div'>";
-
-                                    // For each tag
-                                    for($i = 0; $i < count($tags_array)-1; $i++)
-                                    {
-                                        // Display it
-                                        echo "<p>".$tags_array[$i]."</p>";
-                                    }
-
-                                    echo "</div>
-
-                                </div>
-                            ";
+                                ";
+                    }
                 }
             }
 

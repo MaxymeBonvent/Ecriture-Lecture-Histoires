@@ -100,7 +100,7 @@
             // ---- GET CHAPTERS' INFO ---- //
 
             // Prepare a query to get title, date, word count, likes and dislikes from every chapter of the clicked story
-            $get_chapter_info = $db->prepare("SELECT chapter_id, chapter_title, pub_date, word_count, likes, dislikes FROM chapters WHERE story_id = :story_id");
+            $get_chapter_info = $db->prepare("SELECT chapter_id, chapter_title, pub_date, word_count, likes, dislikes FROM chapters WHERE story_id = :story_id ORDER BY chapter_id ASC");
 
             // Binding
             $get_chapter_info->bindValue(":story_id", $story_id);
@@ -110,6 +110,9 @@
 
             // Store info
             $chapter_info = $get_chapter_info->fetchAll(PDO::FETCH_ASSOC);
+
+            // Test 
+            // var_dump($chapter_info);
 
             // ---- GET AUTHOR'S BIO ---- //
 
@@ -213,9 +216,9 @@
                 for($i = 0; $i < count($chapter_info); $i++)
                 {
                     // START of chapter info div
-                    echo "<div class='list_chapter_info' onclick='ChapterPage(".$chapter_info[$i]['chapter_id'].",".$story_info[0]['story_id'].")'>";
+                    echo "<div class='chapter_info_row' onclick='ChapterPage(".$chapter_info[$i]['chapter_id'].",".$story_info[0]['story_id'].")'>";
 
-                        echo "<p>".$chapter_info[$i]['chapter_title']."</p>";
+                        echo "<p>".($i+1).". ".$chapter_info[$i]['chapter_title']."</p>";
                         echo "<p>".date("d-m-Y", strtotime($chapter_info[$i]['pub_date']))."</p>";
                         echo "<p>".$chapter_info[$i]['word_count']." Words</p>";
                         echo "<p>".$chapter_info[$i]['likes']." Likes</p>";

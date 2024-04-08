@@ -196,30 +196,28 @@
                     <div id="style_options">
 
                         <!-- STYLE OPTIONS -->
-                        <p class="style_option" onclick="Bold()"><b>B</b></p>
-                        <p class="style_option" onclick="Italic()"><i>I</i></p>
-                        <p class="style_option" onclick="Underline()"><u>U</u></p>
+                        <img style="cursor: pointer;" src="img/new_line.png" alt="New line symbol" title="Insert a new line" onclick="NewLine()">
+                        <p class="style_option" onclick="Bold()" title="Make text bold"><b>B</b></p>
+                        <p class="style_option" onclick="Italic()" title="Italize text"><i>I</i></p>
+                        <p class="style_option" onclick="Underline()" title="Underline text"><u>U</u></p>
 
-                        <p class="style_option" onclick="Strike()"><del><del>S</del></del></p>
-                        <p class="style_option" onclick="Small()"><small><small>SM</small></small></p>
-                        <img class="style_option" id="color_wheel_img" src="img/color_wheel.png" alt="Color wheel" onclick="ToggleColorDiv()">
+                        <p class="style_option" onclick="Strike()" title="Strike through text"><del><del>S</del></del></p>
+                        <img style="cursor: pointer;" src="img/color_wheel.png" alt="Color wheel" title="Open color box" onclick="ToggleColorBox()">
+                        <p class="style_option" onclick="Small()" title="Make text smaller"><small><small>SM</small></small></p>
 
-                        <p class="style_option" onclick="Superscript()">A<sup>sp</sup></p>
-                        <p class="style_option" onclick="Subscript()">A<sub>sb</sub></p>
-                        <p class="style_option" onclick="Center()">-C-</p>
+                        <p class="style_option" onclick="Superscript()" title="Make text superscript">A<sup>sp</sup></p>
+                        <p class="style_option" onclick="Subscript()" title="Make text subscript">A<sub>sb</sub></p>
+                        <p class="style_option" onclick="Center()" title="Center text">-C-</p>
 
-                        <p class="style_option" onclick="HorizontalRule()"><u>HR</u></p>
+                        <p class="style_option" onclick="HorizontalRule()" title="Add a horizontal line"><u>HR</u></p>
 
                     </div>
 
                     <!-- COLOR OPTIONS DIV -->
                     <div id="color_options">
-
-                        <!-- COLOR CIRCLES -->
-                        <div class="color_circle" style="background-color:rgb(160, 0, 0);" onclick="Red()"></div>
-                        <div class="color_circle" style="background-color:rgb(0, 130, 0);" onclick="Green()"></div>
-                        <div class="color_circle" style="background-color:rgb(0, 0, 220);" onclick="Blue()"></div>
-
+                        <div class="color_option" style="background-color: rgb(160, 0, 0);" onclick="Red()"></div>
+                        <div class="color_option" style="background-color: rgb(0, 120, 0);" onclick="Green()"></div>
+                        <div class="color_option" style="background-color: rgb(0, 60, 180);"  onclick="Blue()"></div>
                     </div>
                     
                 </div>  

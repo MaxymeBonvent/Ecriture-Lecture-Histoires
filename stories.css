@@ -137,6 +137,9 @@ section{
 textarea, input{
     /* Background */
     background-color: rgb(220, 220, 220);
+
+    /* Outline */
+    border: 2px solid transparent;
 }
 
 /* STORY OPTIONS */
@@ -171,7 +174,7 @@ section .story_div{
 }
 
 /* CHAPTER LIST */
-.list_chapter_info{
+.chapter_info_row{
     /* Outline */
     border: 2px solid black;
 
@@ -577,7 +580,7 @@ hr{
     width: 40%;
 
     /* Internal space */
-    padding: 0 100px;
+    padding: 0 40px;
 }
 
 /* TITLES AND AUTHOR NAMES */
@@ -820,8 +823,8 @@ form div label{
     justify-content: space-evenly;
 }
 
-/* COLOR CIRCLES */
-.color_circle{
+/* INDIVIDUAL COLOR OPTIONS */
+.color_option{
     /* Dimensions */
     width: 20px;
     height: 20px;

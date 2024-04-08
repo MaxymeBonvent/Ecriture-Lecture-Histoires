@@ -173,38 +173,37 @@
 
                                 <label for='chapter_text_area' id='chapter_text_label'>Chapter Text (up to 15 000 words)</label>
 
-                                <div id='options_container'>
+                            <div id='options_container'>
 
+                                <!-- STYLE OPTIONS DIV -->
+                                <div id='style_options'>
 
-                                    <div id='style_options'>
+                                    <!-- STYLE OPTIONS -->
+                                    <img style='cursor: pointer;' src='img/new_line.png' alt='New line symbol' title='Insert a new line' onclick='NewLine()'>
+                                    <p class='style_option' onclick='Bold()' title='Make text bold'><b>B</b></p>
+                                    <p class='style_option' onclick='Italic()' title='Italize text'><i>I</i></p>
+                                    <p class='style_option' onclick='Underline()' title='Underline text'><u>U</u></p>
 
-                                        <p class='style_option' onclick='Bold()'><b>B</b></p>
-                                        <p class='style_option' onclick='Italic()'><i>I</i></p>
-                                        <p class='style_option' onclick='Underline()'><u>U</u></p>
+                                    <p class='style_option' onclick='Strike()' title='Strike through text'><del><del>S</del></del></p>
+                                    <img style='cursor: pointer;' src='img/color_wheel.png' alt='Color wheel' title='Open color box' onclick='ToggleColorBox()'>
+                                    <p class='style_option' onclick='Small()' title='Make text smaller'><small><small>SM</small></small></p>
 
-                                        <p class='style_option' onclick='Strike()'><del><del>S</del></del></p>
-                                        <p class='style_option' onclick='Small()'><small><small>SM</small></small></p>
-                                        <img class='style_option' id='color_wheel_img' src='img/color_wheel.png' alt='Color wheel' onclick='ToggleColorDiv()'>
+                                    <p class='style_option' onclick='Superscript()' title='Make text superscript'>A<sup>sp</sup></p>
+                                    <p class='style_option' onclick='Subscript()' title='Make text subscript'>A<sub>sb</sub></p>
+                                    <p class='style_option' onclick='Center()' title='Center text'>-C-</p>
 
-                                        <p class='style_option' onclick='Superscript()'>A<sup>sp</sup></p>
-                                        <p class='style_option' onclick='Subscript()'>A<sub>sb</sub></p>
-                                        <p class='style_option' onclick='Center()'>-C-</p>
-
-                                        <p class='style_option' onclick='HorizontalRule()'><u>HR</u></p>
-
-                                    </div>
-
-
-                                    <div id='color_options'>
-
-                                        <div class='color_circle' style='background-color:rgb(160, 0, 0);' onclick='Red()'></div>
-                                        <div class='color_circle' style='background-color:rgb(0, 130, 0);' onclick='Green()'></div>
-                                        <div class='color_circle' style='background-color:rgb(0, 0, 220);' onclick='Blue()'></div>
-
-                                    </div>
-
+                                    <p class='style_option' onclick='HorizontalRule()' title='Add a horizontal line'><u>HR</u></p>
 
                                 </div>
+
+                                <!-- COLOR OPTIONS DIV -->
+                                <div id='color_options'>
+                                    <div class='color_option' style='background-color: rgb(160, 0, 0);'  onclick='Red()'></div>
+                                    <div class='color_option' style='background-color: rgb(0, 120, 0);' onclick='Green()'></div>
+                                    <div class='color_option' style='background-color: rgb(0, 60, 180);'  onclick='Blue()'></div>
+                                </div>
+                                
+                            </div>
 
                                 <textarea id='chapter_text_area' name='chapter_text' cols='30' rows='10' placeholder='The creature opened its eyes and looked around...' required='true' autocomplete='off' maxlength='60000' onkeyup='ChapterTextCheck()' title='Enter the text of the first chapter of your story' >$chapter_text</textarea>
 
@@ -217,7 +216,8 @@
                                 
                                 <div class='formBtnsDiv'>
 
-                                    <input type='submit' value='Publish Edited Chapter' id='publish_input' class='formBtn'>
+                                    <input type='submit' value='Publish Chapter' id='publish_input' class='formBtn'>
+                                    <input type='reset' value='Reset' class='formBtn'>
 
                                 </div>
 

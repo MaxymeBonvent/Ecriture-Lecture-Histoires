@@ -1,8 +1,11 @@
-// ---- COLOR OPTIONS DIV ----
-let color_options = document.getElementById("color_options");
-color_options.style.display = "none";
-
 // ---- STYLE OPTIONS ---- //
+
+// NEW LINE
+function NewLine()
+{
+    // Add a new line to chapter 1 text area
+    chapter_text_area.value += "<br>";
+}
 
 // BOLD
 function Bold()
@@ -69,42 +72,53 @@ function HorizontalRule()
 
 // ---- COLOR OPTIONS ---- //
 
-// TOGGLE COLOR DIV
-function ToggleColorDiv()
+// COLOR OPTIONS DIV
+let color_box = document.getElementById("color_options");
+
+// Hide color box
+color_box.style.display = "none";
+
+// Function to toggle color box
+function ToggleColorBox()
 {
-    // If the color circles div's display is none
-    if(color_options.style.display == "none")
+    // Confirm function call
+    console.log("ToggleColorBox() called.");
+
+    // If box is hidden
+    if(color_box.style.display == "none")
     {
-        // Assign flex to the color circles div's display
-        color_options.style.display = "flex";
-        color_options.style.justifyContent = "space-evenly";
+        // Reveal color box
+        color_box.style.display = "flex";
+
+        // Distribute color options evenly in the box
+        color_box.style.justifyContent = "space-evenly";
     }
 
-    // If the color circles div's display is flex
-    else if(color_options.style.display == "flex")
+    // If box is on screen
+    else if(color_box.style.display = "flex")
     {
-        // Assign none to the color circles div's display
-        color_options.style.display = "none";
+        // Hide color box
+        color_box.style.display = "none";
     }
 }
 
 // RED
 function Red()
 {
-    // Add a red filter to the text area
-    chapter_text_area.value += "<p style='color: rgb(140, 0, 0);'></p>";
+    // Add red filter to chapter text area
+    chapter_text_area.value += "<p style='color: rgb(160, 0, 0);'></p>";
 }
 
 // GREEN
 function Green()
 {
-    // Add a green filter to the text area
-    chapter_text_area.value += "<p style='color: rgb(0, 130, 0);'></p>";
+    // Add green filter to chapter text area
+    chapter_text_area.value += "<p style='color: rgb(0, 120, 0);'></p>";
 }
 
 // BLUE
 function Blue()
 {
-    // Add a blue filter to the text area
-    chapter_text_area.value += "<p style='color: rgb(0, 0, 220);'></p>";
+    // Add green filter to chapter text area
+    chapter_text_area.value += "<p style='color: rgb(0, 60, 180);'></p>";
 }

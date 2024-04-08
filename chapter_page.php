@@ -78,8 +78,8 @@
             }
 
             // URL VARIABLES
-            $chapter_id = htmlspecialchars($_GET["chapter_id"]);
-            $story_id = htmlspecialchars($_GET["story_id"]);
+            $url_chapter_id = htmlspecialchars($_GET["chapter_id"]);
+            $url_story_id = htmlspecialchars($_GET["story_id"]);
 
             // GET STORY INFO
 
@@ -87,7 +87,7 @@
             $get_story_info = $db->prepare("SELECT story_title, author, tags, synopsis FROM stories WHERE story_id = :story_id");
 
             // Binding
-            $get_story_info->bindValue(":story_id", $story_id);
+            $get_story_info->bindValue(":story_id", $url_story_id);
 
             // Execution
             $get_story_info->execute();
@@ -98,35 +98,41 @@
             // GET TAGS ARRAY
             $tags = explode(" ", $story_info[0]["tags"]);
 
-            // GET CHAPTER TITLE AND TEXT
+            // ---- GET CURRENT CHAPTER'S TITLE AND TEXT ---- //
 
-            // Prepare query to get chapter text of the clicked chapter
+            // Prepare a query to get clicked chapter's title and text
             $get_chapter_title_text = $db->prepare("SELECT chapter_title, chapter_text FROM chapters WHERE chapter_id = :chapter_id");
 
             // Binding
-            $get_chapter_title_text->bindValue(":chapter_id", $chapter_id);
+            $get_chapter_title_text->bindValue(":chapter_id", $url_chapter_id);
 
             // Execution
             $get_chapter_title_text->execute();
 
-            // Store story info
+            // Store result
             $chapter_title_text = $get_chapter_title_text->fetchAll(PDO::FETCH_ASSOC);
 
-            // ---- GET CHAPTERS' INFO ---- //
+            // Test
+            // var_dump($chapter_title_text);
+
+            // ---- GET EVERY CHAPTERS' INFO ---- //
 
             // Prepare a query to get title, date, word count, likes and dislikes from every chapter of the clicked story
-            $get_chapter_info = $db->prepare("SELECT chapter_id, chapter_title, pub_date, word_count, likes, dislikes FROM chapters WHERE story_id = :story_id");
+            $get_chapter_info = $db->prepare("SELECT story_id, chapter_id, chapter_title, chapter_text pub_date, word_count, likes, dislikes FROM chapters WHERE story_id = :story_id");
 
             // Binding
-            $get_chapter_info->bindValue(":story_id", $story_id);
+            $get_chapter_info->bindValue(":story_id", $url_story_id);
 
             // Execution
             $get_chapter_info->execute();
 
             // Store info
             $chapter_info = $get_chapter_info->fetchAll(PDO::FETCH_ASSOC);
+
+            // Test
             // var_dump($chapter_info);
             // var_dump(count($chapter_info));
+            // exit;
 
             // ---- CREATE AN ARRAY OF CHAPTER IDS ---- //
             $chapter_ids = array();
@@ -138,7 +144,109 @@
                 array_push($chapter_ids, $chapter_info[$i]["chapter_id"]);
             }
 
+            // Sort array by ID in ascending order
+            sort($chapter_ids);
+
+            // Test
             // var_dump($chapter_ids);
+
+
+            // ---- GET PREVIOUS/NEXT CHAPTER INFO ---- //
+            // If story has more than 1 chapter
+            if(count($chapter_ids) > 1)
+            {
+                // If URL's chapter ID is also the first one in the chapter IDs array
+                if($url_chapter_id == $chapter_ids[0])
+                {
+                    // GET CHAPTER TWO
+                    // Prepare a query to get 2nd chapter's info
+                    $get_chapter_two = $db->prepare("SELECT chapter_id, chapter_title, pub_date, word_count, likes, dislikes FROM chapters WHERE chapter_id = :chapter_id");
+
+                    // Binding
+                    $get_chapter_two->bindValue(":chapter_id", $chapter_ids[1]);
+
+                    // Execution
+                    $get_chapter_two->execute();
+
+                    // Store chapter two
+                    $chapter_two = $get_chapter_two->fetchAll(PDO::FETCH_ASSOC);
+
+                    // Test
+                    // var_dump($chapter_two);
+                }
+
+                // If URL's chapter ID is also the last one in the chapter IDs array
+                else if($url_chapter_id == $chapter_ids[count($chapter_ids)-1])
+                {
+                    // GET NEXT TO LAST CHAPTER
+                    // Prepare a query to get 2nd chapter's info
+                    $get_next_to_last_chapter = $db->prepare("SELECT chapter_id, chapter_title, pub_date, word_count, likes, dislikes FROM chapters WHERE chapter_id = :chapter_id");
+
+                    // Binding
+                    $get_next_to_last_chapter->bindValue(":chapter_id", $chapter_ids[count($chapter_ids)-2]);
+
+                    // Execution
+                    $get_next_to_last_chapter->execute();
+
+                    // Store next to last chapter 
+                    $next_to_last_chapter = $get_next_to_last_chapter->fetchAll(PDO::FETCH_ASSOC);
+
+                    // Test
+                    // var_dump($next_to_last_chapter);
+                }
+
+                // If URL's chapter ID is not the smallest nor the biggest one in the chapter IDs array
+                else if($url_chapter_id != $chapter_ids[0] && $url_chapter_id != $chapter_ids[count($chapter_ids)-1])
+                {
+                    // GET POSITION OF URL CHAPTER ID IN CHAPTER IDS ARRAY
+                    $url_chapter_id_array_position;
+
+                    // For every chapter ID
+                    for($i = 0; $i < count($chapter_ids); $i++)
+                    {
+                        // If URL chapter ID has the same value as array chapter ID
+                        if($url_chapter_id == $chapter_ids[$i])
+                        {
+                            // Assign that position to a variable
+                            $url_chapter_id_array_position = $i;
+                        }
+                    }
+
+                    // GET PREVIOUS CHAPTER
+                    // Prepare a query to get previous chapter
+                    $get_previous_chapter = $db->prepare("SELECT chapter_id, chapter_title, pub_date, word_count, likes, dislikes FROM chapters WHERE chapter_id = :chapter_id");
+
+                    // Binding
+                    $get_previous_chapter->bindValue(":chapter_id", $chapter_ids[$url_chapter_id_array_position-1]);
+
+                    // Execution
+                    $get_previous_chapter->execute();
+
+                    // Store previous chapter
+                    $previous_chapter = $get_previous_chapter->fetchAll(PDO::FETCH_ASSOC);
+
+                    // Test
+                    // echo "<p>Previous chapter :</p>";
+                    // var_dump($previous_chapter[0]['chapter_title']);
+
+                    // GET NEXT CHAPTER
+                    // Prepare a query to get next chapter
+                    $get_next_chapter = $db->prepare("SELECT chapter_id, chapter_title, pub_date, word_count, likes, dislikes FROM chapters WHERE chapter_id = :chapter_id");
+
+                    // Binding
+                    $get_next_chapter->bindValue(":chapter_id", $chapter_ids[$url_chapter_id_array_position+1]);
+
+                    // Execution
+                    $get_next_chapter->execute();
+
+                    // Store next chapter
+                    $next_chapter = $get_next_chapter->fetchAll(PDO::FETCH_ASSOC);
+
+                    // Test
+                    // echo "<p>Next chapter :</p>";
+                    // var_dump($next_chapter[0]['chapter_title']);
+                }
+            }
         ?>
 
         <!-- SECTION 1 : STORY INFO, SYNOPSIS, BOOKMARK -->
@@ -169,7 +277,10 @@
                 echo "<p>".$story_info[0]['synopsis']."</p>";
 
                 // Bookmark
-                echo "<p class='chapter_option' onclick='Bookmark($chapter_id, $user_id)'>Bookmark this chapter</p>";
+                echo "<p class='chapter_option' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
+
+                // Bookmark request response
+                echo "<p id='bookmark_response'></p>";
             ?>
 
         </section>
@@ -205,6 +316,70 @@
                 // START of section 3
                 echo "<section class='list_chapter_info'>";
 
+                // ---- CHAPTER TWO ONLY ---- //
+                if($url_chapter_id == $chapter_ids[0])
+                {
+                    // START of chapter info div
+                    echo "<div class='chapter_info_row' onclick='ChapterPage(".$chapter_two[0]['chapter_id'].",".$url_story_id.")'>";
+
+                        echo "<p>".$chapter_two[0]['chapter_title']."</p>";
+                        echo "<p>".date("d-m-Y", strtotime($chapter_two[0]['pub_date']))."</p>";
+                        echo "<p>".$chapter_two[0]['word_count']." Words</p>";
+                        echo "<p>".$chapter_two[0]['likes']." Likes</p>";
+                        echo "<p>".$chapter_two[0]['dislikes']." Dislikes</p>";
+
+                    // END of chapter info div
+                    echo "</div>";
+                }
+
+                // ---- NEXT TO LAST CHAPTER ONLY ---- //
+                else if($url_chapter_id == $chapter_ids[count($chapter_ids)-1])
+                {
+                    // START of chapter info div
+                    echo "<div class='chapter_info_row' onclick='ChapterPage(".$next_to_last_chapter[0]['chapter_id'].",".$url_story_id.")'>";
+
+                        echo "<p>".$next_to_last_chapter[0]['chapter_title']."</p>";
+                        echo "<p>".date("d-m-Y", strtotime($next_to_last_chapter[0]['pub_date']))."</p>";
+                        echo "<p>".$next_to_last_chapter[0]['word_count']." Words</p>";
+                        echo "<p>".$next_to_last_chapter[0]['likes']." Likes</p>";
+                        echo "<p>".$next_to_last_chapter[0]['dislikes']." Dislikes</p>";
+
+                    // END of chapter info div
+                    echo "</div>";
+                }
+
+                // ---- PREVIOUS AND NEXT CHAPTERS ---- //
+                else if($url_chapter_id != $chapter_ids[0] && $url_chapter_id != $chapter_ids[count($chapter_ids)-1])
+                {
+                    // PREVIOUS CHAPTER
+
+                    // START of chapter info div
+                    echo "<div class='chapter_info_row' onclick='ChapterPage(".$previous_chapter[0]['chapter_id'].",".$url_story_id.")'>";
+
+                        echo "<p>".$previous_chapter[0]['chapter_title']."</p>";
+                        echo "<p>".date("d-m-Y", strtotime($previous_chapter[0]['pub_date']))."</p>";
+                        echo "<p>".$previous_chapter[0]['word_count']." Words</p>";
+                        echo "<p>".$previous_chapter[0]['likes']." Likes</p>";
+                        echo "<p>".$previous_chapter[0]['dislikes']." Dislikes</p>";
+
+                    // END of chapter info div
+                    echo "</div>";
+
+                    // NEXT CHAPTER
+
+                    // START of chapter info div
+                    echo "<div class='chapter_info_row' onclick='ChapterPage(".$next_chapter[0]['chapter_id'].",".$url_story_id.")'>";
+
+                        echo "<p>".$next_chapter[0]['chapter_title']."</p>";
+                        echo "<p>".date("d-m-Y", strtotime($next_chapter[0]['pub_date']))."</p>";
+                        echo "<p>".$next_chapter[0]['word_count']." Words</p>";
+                        echo "<p>".$next_chapter[0]['likes']." Likes</p>";
+                        echo "<p>".$next_chapter[0]['dislikes']." Dislikes</p>";
+
+                    // END of chapter info div
+                    echo "</div>";
+                }
+
                 // END of section 3
                 echo "</section>";
             }
@@ -224,7 +399,7 @@
                 $get_chapter_comments = $db->prepare("SELECT  user_id, pub_date, comment_text FROM comments WHERE chapter_id = :chapter_id");
 
                 // Binding  
-                $get_chapter_comments->bindValue(":chapter_id", $chapter_id);
+                $get_chapter_comments->bindValue(":chapter_id", $url_chapter_id);
 
                 // Execute
                 $get_chapter_comments->execute();
@@ -278,7 +453,7 @@
 
                 <!-- CHAPTER ID -->
                 <?php
-                    echo "<input type='text' name='chapter_id' value='$chapter_id' style='display:none;'>";
+                    echo "<input type='text' name='chapter_id' value='$url_chapter_id' style='display:none;'>";
                 ?>
 
                 <!-- LABEL -->
