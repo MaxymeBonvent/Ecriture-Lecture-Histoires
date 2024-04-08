@@ -73,7 +73,7 @@
             // If user is logged in
             if(isset($_SESSION["username"]))
             {
-                // GET USER'S BOOKMARKED CHAPTER
+                // GET BOOKMARKED CHAPTER ID
 
                 // Prepare a query to get user's bookmarked chapter
                 $get_marked_chapter = $db->prepare("SELECT bookmarked_chapter_id FROM users WHERE username = :username");
@@ -97,7 +97,7 @@
                 // If marked chapter ID is not null
                 if($marked_chapter_id != null)
                 {
-                    // ---- GET BOOKMARKED CHAPTER'S TITLE ----
+                    // ---- GET BOOKMARKED CHAPTER ----
 
                     // Prepare a query to get bookmarked chapter's info
                     $get_chapter_info = $db->prepare("SELECT chapter_id, chapter_title FROM chapters WHERE chapter_id = :chapter_id");
@@ -112,16 +112,16 @@
                     $chapter_info = $get_chapter_info->fetchAll(PDO::FETCH_ASSOC);
 
                     // Test
-                    var_dump($chapter_info);
+                    // var_dump($chapter_info);
                     // exit;
 
                     // ---- GET BOOKMARKED CHAPTER'S STORY INFO ----
 
                     // Prepare a query to get bookmarked chapter's story info
-                    $get_story_info = $db->prepare("SELECT story_id, story_title FROM stories WHERE chapter_ids = :chapter_id");
+                    $get_story_info = $db->prepare("SELECT story_id, chapter_ids, story_title, author, tags, pub_date, likes, dislikes FROM stories WHERE chapter_ids LIKE '%$marked_chapter_id%'");
 
                     // Binding
-                    $get_story_info->bindValue(":chapter_id", $marked_chapter_id);
+                    // $get_story_info->bindValue(":chapter_id", $chapter_info[0]["chapter_id"]);
 
                     // Execution    
                     $get_story_info->execute();
@@ -130,53 +130,73 @@
                     $story_info = $get_story_info->fetchAll(PDO::FETCH_ASSOC);
 
                     // Test
-                    var_dump($story_info);
+                    // var_dump($story_info);
                     // exit;
 
                     // Closing
                     $get_story_info->closeCursor();
 
                     // If there's is a story retrieved
-                    if($story_info != null)
+                    if($story_info != null && !empty($story_info))
                     {
                         // ---- CREATE TAGS ARRAY ---- //
                         $tags_array = explode(" ", $story_info[0]['tags']);
 
-                        // Display story box with chapter in progress
-                        echo    "   <h3>Currently reading</h3>
+                        // CREATE BOOKMARKED CHAPTER STORY BOX
+                        echo "<h3>Currently reading</h3>";
 
-                                    <div class='story_div' style='width: 50%;' onclick='Synopsis(\"".$story_info[0]['story_title']."\",\"".$story_info[0]['author']."\",\"".$story_info[0]['tags']."\",\"".$story_info[0]['chapter_ids']."\")'>
+                        // START of bookmarked chapter story box
+                        echo    "<div class='story_div' style='width: 50%;' onclick='ChapterPage(".$chapter_info[0]['chapter_id'].",".  $story_info[0]['story_id'].")'>";
 
-                                        <div class='story_info'>
+                                // STORY AND CHAPTER TITLES
+                                echo "  <div class='story_info'>
 
                                             <h4>".$story_info[0]['story_title']."</h4>
-                                            <h4>$chapter_title</h4>
+                                            <h4>".$chapter_info[0]['chapter_title']."</h4>
 
-                                        </div>
+                                        </div>";
 
-                                        <div class='story_info'>
+                                // STATS
+                                echo "  <div class='story_info'>
 
                                             <p>".$story_info[0]['author']."</p>
                                             <p>".date("d-m-Y", strtotime($story_info[0]['pub_date']))."</p>
                                             <p>".$story_info[0]['likes']." Likes</p>
                                             <p>".$story_info[0]['dislikes']." Dislikes</p>
 
-                                        </div>
+                                        </div>";
 
-                                        <div class='tags_div'>";
 
-                                        // For each tag
-                                        for($i = 0; $i < count($tags_array)-1; $i++)
-                                        {
-                                            // Display it
-                                            echo "<p>".$tags_array[$i]."</p>";
-                                        }
+                            // START OF TAGS DIV
+                            echo "  <div class='tags_div'>";
 
-                                        echo "</div>
+                                    // For each tag
+                                    for($i = 0; $i < count($tags_array)-1; $i++)
+                                    {
+                                        // Display it
+                                        echo "<p>".$tags_array[$i]."</p>";
+                                    }
 
-                                    </div>
-                                ";
+                            // END OF TAGS DIV
+                            echo "</div>";
+
+                        // END of bookmarked chapter story box
+                        echo "</div>";
                     }
+
+                    // If there's no story retrieved
+                    else if($story_info == null || empty($story_info))
+                    {
+                        // Tell user there's no story
+                        echo "<p>No story retrieved.</p>";
+                    }
+                }
+
+                // If there's no bookmarked chapter
+                else if($marked_chapter_id == null)
+                {
+                    // Tell user there's no bookmarked chapter
+                    echo "<p>No bookmarked chapter.</p>";
                 }
             }
 
@@ -184,7 +204,6 @@
             $today_date = date("Y-m-d");
 
             // ---- FEATURED STORIES ---- //
-
             echo "<h3>Featured Stories</h3>";
 
             // Section START
@@ -290,13 +309,13 @@
 
             // Section END
             echo "</section>";
-
         ?>
 
     </main>
 
     <!-- SCRIPTS -->
     <script src="synopsis.js"></script>
+    <script src="chapter_page.js"></script>
 
     <!-- FOOTER -->
     <footer>
