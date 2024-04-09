@@ -157,13 +157,6 @@ textarea, input{
     cursor: pointer;
 }
 
-/* LIKE AND DISLIKE DIVS */
-.like_dislike{
-    /* Position of internal elements */
-    display: flex;
-    align-items: center;
-}
-
 /* SECTION'S STORY DIVS */
 section .story_div{
     /* Dimensions */
@@ -171,6 +164,28 @@ section .story_div{
 
     /* External space */
     margin: 4px 10px;
+}
+
+/* CHAPTER OPTIONS DIV */
+.chapter_options{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 40%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* LIKE AND DISLIKE DIVS */
+.thumb_box{
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 /* CHAPTER LIST */

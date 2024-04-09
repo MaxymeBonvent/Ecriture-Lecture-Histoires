@@ -163,13 +163,14 @@
         <!-- SECTION 2 : STORY OPTIONS -->
         <section style="justify-content: space-evenly;">
 
-            <p onclick="" class="story_option">Add to Favs</p>
-            <p onclick="" class="story_option">Read Later</p>
-
             <?php
-                echo "<div class='like_dislike'><p>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb'> </div>";
 
-                echo "<div class='like_dislike'><p>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb'> </div>";
+                echo "<p onclick='AddStoryToFavs($story_id)' class='story_option' id='favs_txt'>Add to Favs</p>";
+                echo "<p onclick='AddStoryToReadLater($story_id)' class='story_option' id='read_later_txt'>Read Later</p>";
+            
+                echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+
+                echo "<div class='thumb_box'><p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeStory($story_id)'> </div>";
             ?>
 
         </section>
@@ -327,6 +328,8 @@
     </main>
 
     <!-- SCRIPTS -->
+    <script src="story_like_dislike.js"></script>
+    <script src="story_addition.js"></script>
     <script src="chapter_page.js"></script>
 
     <!-- FOOTER -->

@@ -42,7 +42,7 @@
             // Start database modification
             $db->beginTransaction();
 
-            // ---- INSERT STORY COMMENT ---- //
+            // ---- INSERT CHAPTER COMMENT ---- //
 
             // Prepare a query to insert a chapter comment
             $insert_story_comment = $db->prepare("INSERT INTO comments (user_id, chapter_id, pub_date, comment_text) VALUES (:user_id, :chapter_id, :pub_date, :comment_text)");

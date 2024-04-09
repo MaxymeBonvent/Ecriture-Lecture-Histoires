@@ -276,11 +276,36 @@
                 // Synopsis text
                 echo "<p>".$story_info[0]['synopsis']."</p>";
 
-                // Bookmark
-                echo "<p class='chapter_option' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
+                // START of chapter options div
+                echo "<div class='chapter_options'>";
 
-                // Bookmark request response
-                echo "<p id='bookmark_response'></p>";
+                    // Bookmark
+                    echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
+
+                    // START of likes div
+                    echo "<div class='thumb_box'>";
+
+                        // Likes
+                        echo "<p>".$chapter_info[0]["likes"]." Likes</p>";
+                        echo "<img src='img/like.png' alt='Like icon' class='thumb'>";
+
+                    // END of likes div
+                    echo "</div>";
+
+
+                    // START of dislikes div
+                    echo "<div class='thumb_box'>";
+
+                        // Likes
+                        echo "<p>".$chapter_info[0]["dislikes"]." Dislikes</p>";
+                        echo "<img src='img/dislike.png' alt='Dislike icon' class='thumb'>";
+
+                    // END of dislikes div
+                    echo "</div>";
+
+
+                // END of chapter options div
+                echo "</div>";
             ?>
 
         </section>

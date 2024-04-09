@@ -1,5 +1,8 @@
-// Bookmark response text
-let bookmark_rsp_txt = document.getElementById("bookmark_response");
+// Bookmark text
+let bookmark_txt = document.getElementById("bookmark_txt");
+
+// Request done color
+let request_done_color = "rgb(0, 130, 0)";
 
 // Function to bookmark a chapter
 function Bookmark(chapter_id, user_id)
@@ -25,7 +28,7 @@ function Bookmark(chapter_id, user_id)
     }
 
     // If there are both a chapter ID and a user ID and button is not already clicked
-    else if(chapter_id != null && user_id != null && bookmark_rsp_txt.textContent != "Chapter bookmarked.")
+    else if(chapter_id != null && user_id != null && bookmark_txt.style.color != request_done_color)
     {
         // Confirm Chapter ID obtention
         console.log(`Chapter ID == ${chapter_id}.`);
@@ -45,11 +48,11 @@ function Bookmark(chapter_id, user_id)
                 // Confirm request is done
                 console.log("Request done.");
 
-                // Tell user request is done
-                bookmark_rsp_txt.textContent = "Chapter bookmarked.";
-
                 // Redirect user to PHP Bookmark script
                 // window.location.href = `bookmark.php?chapter_id=${chapter_id}&user_id=${user_id}`;
+
+                // Change text color
+                bookmark_txt.style.color = request_done_color;
             }
         }
 
