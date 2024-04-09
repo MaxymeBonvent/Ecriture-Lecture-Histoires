@@ -70,6 +70,9 @@
             // DATABASE CONNECTION
             require_once("database_connection.php");
 
+            // USER ID
+            require_once("get_user_id.php");
+
             // ---- CLICKED STORY INFO ---- //
   
             $story_title = htmlspecialchars($_GET["story_title"]);
@@ -96,6 +99,40 @@
 
             // GET TAGS ARRAY
             $tags_array = explode(" ", $tags);
+
+            // ---- GET USER STORY LIKE IDS ---- //
+            // Prepare query
+            $get_story_likes = $db->prepare("SELECT user_like_ids FROM stories WHERE story_id = :story_id");
+
+            // Binding
+            $get_story_likes->bindValue(":story_id", $story_id);
+
+            // Execution
+            $get_story_likes->execute();
+
+            // Store likes
+            $story_likes = $get_story_likes->fetchAll(PDO::FETCH_ASSOC);
+
+            // Test
+            // var_dump($story_likes);
+            // exit;
+
+            // ---- GET USER STORY DISLIKE IDS ---- //
+            // Prepare query
+            $get_story_dislikes = $db->prepare("SELECT user_dislike_ids FROM stories WHERE story_id = :story_id");
+
+            // Binding
+            $get_story_dislikes->bindValue(":story_id", $story_id);
+
+            // Execution
+            $get_story_dislikes->execute();
+
+            // Store dislikes
+            $story_dislikes = $get_story_dislikes->fetchAll(PDO::FETCH_ASSOC);
+
+            // Test
+            // var_dump($story_dislikes);
+            // exit;
 
             // ---- GET CHAPTERS' INFO ---- //
 
@@ -131,7 +168,7 @@
             // Closing
             $get_bio->closeCursor();
 
-            // ---- GET STORY'S LIKES AND DISLIKES ---- //
+            // ---- GET STORY'S LIKE COUNT AND DISLIKE COUNT ---- //
 
             // Prepare a query to get story's synopsis, likes and dislikes
             $get_story_info = $db->prepare("SELECT story_id, synopsis, likes, dislikes FROM stories WHERE story_title = :story_title");
@@ -167,10 +204,53 @@
 
                 echo "<p onclick='AddStoryToFavs($story_id)' class='story_option' id='favs_txt'>Add to Favs</p>";
                 echo "<p onclick='AddStoryToReadLater($story_id)' class='story_option' id='read_later_txt'>Read Later</p>";
-            
-                echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
 
-                echo "<div class='thumb_box'><p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeStory($story_id)'> </div>";
+
+                // ---- CHANGE LIKE COLOR ---- //
+                // If at least one user liked this story
+                if($story_likes[0]["user_like_ids"] != null)
+                {
+                    // If user ID is in Story's like IDs
+                    if(str_contains($story_likes[0]["user_like_ids"], $user_id))
+                    {
+                        echo "<div class='thumb_box'> <p id='like_txt' style='color: forestgreen;'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                    }
+
+                    // If user ID is not in Story's like IDs
+                    else if(!str_contains($story_likes[0]["user_like_ids"], $user_id))
+                    {
+                        echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                    }
+                }
+
+                // If no one like this story
+                else if($story_likes[0]["user_like_ids"] == null)
+                {
+                    echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                }
+
+                // ---- CHANGE DISLIKE COLOR ---- //
+                // If at least one user disliked this story
+                if($story_dislikes[0]["user_dislike_ids"] != null)
+                {
+                    // If user ID is in Story's dislike IDs
+                    if(str_contains($story_dislikes[0]["user_dislike_ids"], $user_id))
+                    {
+                        echo "<div class='thumb_box'> <p id='dislike_txt' style='color: forestgreen;'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeStory($story_id)'> </div>";
+                    }
+
+                    // If user ID is not in Story's dislike IDs
+                    else if(!str_contains($story_dislikes[0]["user_dislike_ids"], $user_id))
+                    {
+                        echo "<div class='thumb_box'> <p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeStory($story_id)'> </div>";
+                    }
+                }
+
+                // If no one disliked this story
+                else if($story_dislikes[0]["user_dislike_ids"] == null)
+                {
+                    echo "<div class='thumb_box'> <p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeStory($story_id)'> </div>";
+                } 
             ?>
 
         </section>
