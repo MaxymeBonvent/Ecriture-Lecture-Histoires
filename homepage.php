@@ -73,6 +73,9 @@
             // If user is logged in
             if(isset($_SESSION["username"]))
             {
+                // GET USER ID
+                require_once("get_user_id.php");
+
                 // GET BOOKMARKED CHAPTER ID
 
                 // Prepare a query to get user's bookmarked chapter
@@ -146,10 +149,10 @@
                         echo "<h3>Currently reading</h3>";
 
                         // START of bookmarked chapter story box
-                        echo    "<div class='story_div' style='width: 50%;' onclick='ChapterPage(".$chapter_info[0]['chapter_id'].",".  $story_info[0]['story_id'].")'>";
+                        echo    "<div class='story_info_section' style='width: 50%;' onclick='ChapterPage(".$chapter_info[0]['chapter_id'].",".  $story_info[0]['story_id'].")'>";
 
                                 // STORY AND CHAPTER TITLES
-                                echo "  <div class='story_info'>
+                                echo "  <div>
 
                                             <h4>".$story_info[0]['story_title']."</h4>
                                             <h4>".$chapter_info[0]['chapter_title']."</h4>
@@ -157,7 +160,7 @@
                                         </div>";
 
                                 // STATS
-                                echo "  <div class='story_info'>
+                                echo "  <div>
 
                                             <p>".$story_info[0]['author']."</p>
                                             <p>".date("d-m-Y", strtotime($story_info[0]['pub_date']))."</p>
@@ -225,13 +228,13 @@
                 $tags = explode(" ", $featured_story["tags"]);
 
                 // Display info of that story in a div
-                echo    "   <div class='story_div' onclick='Synopsis(\"".$featured_story['story_title']."\",\"".$featured_story['author']."\",\"".$featured_story['tags']."\",\"".$featured_story['chapter_ids']."\")'>
+                echo    "   <div class='story_info_section' onclick='Synopsis(\"".$featured_story['story_title']."\",\"".$featured_story['author']."\",\"".$featured_story['tags']."\",\"".$featured_story['chapter_ids']."\")'>
 
-                                <div class='story_info'>
+                                <div>
                                     <h4>".$featured_story['story_title']."</h4>
                                 </div>
 
-                                <div class='story_info'>
+                                <div>
                                     <p>".$featured_story['author']."</p>
                                     <p>".date("d-m-Y", strtotime($featured_story['pub_date']))."</p>
                                     <p>".$featured_story['likes']." Likes</p>
@@ -279,13 +282,13 @@
                 $tags = explode(" ", $newest_story["tags"]);
 
                 // Display info of that story in a div
-                echo    "   <div class='story_div' onclick='Synopsis(\"".$newest_story['story_title']."\",\"".$newest_story['author']."\",\"".$newest_story['tags']."\",\"".$newest_story['chapter_ids']."\")'>
+                echo    "   <div class='story_info_section' onclick='Synopsis(\"".$newest_story['story_title']."\",\"".$newest_story['author']."\",\"".$newest_story['tags']."\",\"".$newest_story['chapter_ids']."\")'>
 
-                                <div class='story_info'>
+                                <div>
                                     <h4>".$newest_story['story_title']."</h4>
                                 </div>
 
-                                <div class='story_info'>
+                                <div>
                                     <p>".$newest_story['author']."</p>
                                     <p>".date("d-m-Y", strtotime($newest_story['pub_date']))."</p>
                                     <p>".$newest_story['likes']." Likes</p>

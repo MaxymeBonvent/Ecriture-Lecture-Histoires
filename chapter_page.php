@@ -73,7 +73,7 @@
             // If user is logged in
             if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
             {
-                // Get their ID
+                // GET USER ID
                 require_once("get_user_id.php");
             }
 
@@ -227,7 +227,7 @@
 
                     // Test
                     // echo "<p>Previous chapter :</p>";
-                    // var_dump($previous_chapter[0]['chapter_title']);
+                    // var_dump($previous_chapter[0]['chapter_title']);  
 
                     // GET NEXT CHAPTER
                     // Prepare a query to get next chapter

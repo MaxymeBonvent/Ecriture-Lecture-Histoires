@@ -82,314 +82,184 @@
                 // ---- GET USER ID ----
                 require_once("get_user_id.php");
 
-                // TOP HALF DIV OF USER AND BOOKMARKED CHAPTER DIV
-                echo   "<div class='user_page_half_div'> 
+                // ---- GET BOOKMARKED CHAPTER ID ---- //
+                // Prepare query
+                $get_marked_chapter_id = $db->prepare("SELECT bookmarked_chapter_id FROM users WHERE user_id = :user_id");
 
-                            <div class='user_page_inner_div'>
+                // Binding
+                $get_marked_chapter_id->bindValue(":user_id", $user_id);
 
-                                <h2 id='username'>".
+                // Execution
+                $get_marked_chapter_id->execute();
 
-                                    $_SESSION['username']."
+                // Store bookmarked chapter ID
+                $marked_chapter_id = $get_marked_chapter_id->fetchColumn();
 
-                                </h2>
+                // Test
+                // echo "<p>Bookmarked chapter ID :</p>";
+                // var_dump($marked_chapter_id);
 
-                                <div id='user_page_options_div'>
+                // --- GET BOOKMARKED CHAPTER'S TITLE AND STORY ID ---- //
+                // Prepare query
+                $get_story_id_chapter_title = $db->prepare("SELECT story_id, chapter_title FROM chapters WHERE chapter_id = :chapter_id");
 
-                                    <a href='story_count_check.php'>Your stories</a>
+                // Binding
+                $get_story_id_chapter_title->bindValue(":chapter_id", $marked_chapter_id);
 
-                                    <a href='log_out.php'>Log out</a>
+                // Execution    
+                $get_story_id_chapter_title->execute();
 
-                                    <p class='delete_txt' onclick='DeleteAccount($user_id)'>Delete account</p>
+                // Store story ID and chapter title
+                $story_id_chapter_title = $get_story_id_chapter_title->fetchAll(PDO::FETCH_ASSOC);
 
-                                </div>
+                // Test
+                // echo "<p>Story ID and chapter title:</p>";
+                // var_dump($story_id_chapter_title);
 
-                            </div>";
-     
-                    echo "<div class='user_page_inner_div'>
+                // ---- GET BOOKMARKED CHAPTER'S STORY INFO ---- //
+                // Prepare query
+                $get_story_info = $db->prepare("SELECT story_title, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
 
-                                <h3>Bookmarked Chapter</h3>
+                // Binding
+                $get_story_info->bindValue(":story_id", $story_id_chapter_title[0]["story_id"]);
 
-                                <div class='story_div'>
+                // Execution
+                $get_story_info->execute();
 
-                                        <div class='story_info'>
+                // Store story info
+                $story_info = $get_story_info->fetchAll(PDO::FETCH_ASSOC);
 
-                                            <h4 class='title'>Story Title</h4>
-                                            <h4 class='title'>Chapter title</h4>
+                // Test
+                // echo "<p>Story info :</p>";
+                // var_dump($story_info);
 
-                                        </div>
+                // ---- CREATE TAGS ARRAY ---- //
+                // Separate each tag
+                $tags = explode(" ", $story_info[0]["tags"]);
 
-                                        <div class='story_info'>
+                // Test
+                // echo "<p>Tags :</p>";
+                // var_dump($tags);
 
-                                            <p>Author</p>
-                                            <p>dd-mm-yyyy</p>
-                                            <p>000 Likes</p>
-                                            <p>000 Dislikes</p>
+                // ---- PAGE LAYOUT ---- //
+                
+                // START of top half section
+                echo "<section class='user_page_half_section'>";
 
-                                        </div>
+                    // START of user info section
+                    echo "<section class='user_page_inner_section'>";
 
+                        // Username
+                        echo "<h2>".$_SESSION['username']."</h2>";
 
-                                        <div class='tags_div'>
+                        // START of account options div
+                        echo "<div class='section_div'>";
 
-                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
-                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
-                                            
-                                        </div>
-                                    
-                                </div>
+                            // User's stories page
+                            echo "<a href='story_count_check.php'>Your stories</a>";
 
-                        </div>";
-                            
-                    echo "</div>";
+                            // Log out
+                            echo "<a href='log_out.php'>Log out</a>";
 
-            // BOTTOM HALF DIV OF USER STORIES, FAV STORIES AND READ LATER STORIES
-            echo    "<div class='user_page_half_div'>
+                            // Account delete
+                            echo "<p onclick='DeleteAccount($user_id)' class='delete_txt'>Delete account</p>";
 
-                        <div div class='user_page_inner_div'>
+                            // END of account options div
+                            echo "</div>";
 
-                            <h3>Favorite Stories</h3>
+                            // START of notifications div
+                            echo "<div class='section_div'>";
 
-                            <div class='vertical_story_container'>
+                                echo "<p>You have 000 notifications.</p>";
 
-                                <div class='story_div'>
+                            // END of notifications div
+                            echo "</div>";
 
-                                        <div class='story_info'>
+                    // END of user info section
+                    echo "</section>";
 
-                                            <h4 class='title'>Story Title</h4>
+                    // START of bookmarked chapter section
+                    echo "<section class='story_info_section' onclick='ChapterPage(".$marked_chapter_id.",".$story_id_chapter_title[0]['story_id'].")'>";
 
-                                        </div>
+                        // START of story and chapter titles div
+                        echo "<div class='section_div'>";
 
-                                        <div class='story_info'>
+                            // Story title
+                            echo "<h4>".$story_info[0]['story_title']."</h4>";
 
-                                            <p>Author</p>
-                                            <p>dd-mm-yyyy</p>
-                                            <p>000 Likes</p>
-                                            <p>000 Dislikes</p>
+                            // Chapter title
+                            echo "<h4>".$story_id_chapter_title[0]['chapter_title']."</h4>";
 
-                                        </div>
+                        // END of story and chapter titles div
+                        echo "</div>";
 
+                        // START of story info div
+                        echo "<div class='section_div'>";
 
-                                        <div class='tags_div'>
+                            // Author
+                            echo "<p>".$story_info[0]['author']."</p>";
 
-                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
-                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
-                                            
-                                        </div>
-                                    
-                                </div>
+                            // Date
+                            echo "<p>".date("d-m-Y", strtotime($story_info[0]['pub_date']))."</p>";
 
+                            // Likes
+                            echo "<p>".$story_info[0]['likes']." Likes</p>";
 
-                                <div class='story_div'>
+                            // Dislikes
+                            echo "<p>".$story_info[0]['dislikes']." Dislikes</p>";
 
-                                        <div class='story_info'>
+                        // END of story info div
+                        echo "</div>";
 
-                                            <h4 class='title'>Story Title</h4>
+                        // START of tags div
+                        echo "<div class='tags_div'>";
 
-                                        </div>
+                            // For every tag
+                            for($i = 0; $i < count($tags); $i++)
+                            {
+                                // If tag is not empty
+                                if($tags[$i] != "")
+                                {
+                                    // Display it
+                                    echo "<p>".$tags[$i]."</p>";
+                                }
+                            }
 
-                                        <div class='story_info'>
+                        // END of tags div
+                        echo "</div>";
 
-                                            <p>Author</p>
-                                            <p>dd-mm-yyyy</p>
-                                            <p>000 Likes</p>
-                                            <p>000 Dislikes</p>
+                    // END of bookmarked chapter section
+                    echo "</section>";
 
-                                        </div>
+                // END of top half section
+                echo "</section>";
 
 
-                                        <div class='tags_div'>
+                // START of bottom half section
+                echo "<section class='user_page_half_section'>";
 
-                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
-                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
-                                            
-                                        </div>
-                                    
-                                </div>
+                    // START of Favorite Stories section
+                    echo "<section class='user_page_inner_section'>";
 
+                        // Section title
+                        echo "<h4>Favorite Stories</h4>";
 
-                                <div class='story_div'>
+                    // END of Favorite Stories section
+                    echo "</section>";
 
-                                        <div class='story_info'>
+                    // START of Read Later section
+                    echo "<section class='user_page_inner_section'>";
 
-                                            <h4 class='title'>Story Title</h4>
+                        // Section title
+                        echo "<h4>Read Later</h4>";
 
-                                        </div>
+                    // END of Read Later section
+                    echo "</section>";
 
-                                        <div class='story_info'>
 
-                                            <p>Author</p>
-                                            <p>dd-mm-yyyy</p>
-                                            <p>000 Likes</p>
-                                            <p>000 Dislikes</p>
 
-                                        </div>
-
-
-                                        <div class='tags_div'>
-
-                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
-                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
-                                            
-                                        </div>
-                                    
-                                </div>
-
-
-                                <div class='story_div'>
-
-                                        <div class='story_info'>
-
-                                            <h4 class='title'>Story Title</h4>
-
-                                        </div>
-
-                                        <div class='story_info'>
-
-                                            <p>Author</p>
-                                            <p>dd-mm-yyyy</p>
-                                            <p>000 Likes</p>
-                                            <p>000 Dislikes</p>
-
-                                        </div>
-
-
-                                        <div class='tags_div'>
-
-                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
-                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
-                                            
-                                        </div>
-                                    
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-                        <div div class='user_page_inner_div'>
-
-                            <h3>Read Later Stories</h3>
-
-                            <div class='vertical_story_container'>
-
-                                <div class='story_div'>
-
-                                        <div class='story_info'>
-
-                                            <h4 class='title'>Story Title</h4>
-
-                                        </div>
-
-                                        <div class='story_info'>
-
-                                            <p>Author</p>
-                                            <p>dd-mm-yyyy</p>
-                                            <p>000 Likes</p>
-                                            <p>000 Dislikes</p>
-
-                                        </div>
-
-
-                                        <div class='tags_div'>
-
-                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
-                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
-                                            
-                                        </div>
-                                    
-                                </div>
-
-
-                                <div class='story_div'>
-
-                                        <div class='story_info'>
-
-                                            <h4 class='title'>Story Title</h4>
-
-                                        </div>
-
-                                        <div class='story_info'>
-
-                                            <p>Author</p>
-                                            <p>dd-mm-yyyy</p>
-                                            <p>000 Likes</p>
-                                            <p>000 Dislikes</p>
-
-                                        </div>
-
-
-                                        <div class='tags_div'>
-
-                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
-                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
-                                            
-                                        </div>
-                                    
-                                </div>
-
-
-                                <div class='story_div'>
-
-                                        <div class='story_info'>
-
-                                            <h4 class='title'>Story Title</h4>
-
-                                        </div>
-
-                                        <div class='story_info'>
-
-                                            <p>Author</p>
-                                            <p>dd-mm-yyyy</p>
-                                            <p>000 Likes</p>
-                                            <p>000 Dislikes</p>
-
-                                        </div>
-
-
-                                        <div class='tags_div'>
-
-                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
-                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
-                                            
-                                        </div>
-                                    
-                                </div>
-
-
-                                <div class='story_div'>
-
-                                        <div class='story_info'>
-
-                                            <h4 class='title'>Story Title</h4>
-
-                                        </div>
-
-                                        <div class='story_info'>
-
-                                            <p>Author</p>
-                                            <p>dd-mm-yyyy</p>
-                                            <p>000 Likes</p>
-                                            <p>000 Dislikes</p>
-
-                                        </div>
-
-
-                                        <div class='tags_div'>
-
-                                            <p>Adventure1</p><p>Adventure2</p><p>Adventure3</p>
-                                            <p>Adventure4</p><p>Adventure5</p><p>Adventure6</p>
-                                            
-                                        </div>
-                                    
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                    ";
+                // END of bottom half section
+                echo "</section>";
         ?>
 
         <?php
@@ -399,6 +269,7 @@
     </main>
 
     <!-- SCRIPTS -->
+    <script src="chapter_page.js"></script>
     <script src="delete_account.js"></script>
 
     <!-- FOOTER -->

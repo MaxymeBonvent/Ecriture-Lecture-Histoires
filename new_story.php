@@ -140,7 +140,7 @@
                     <p class="tag">Comedy</p>
                     <p class="tag">Tragedy</p>
 
-                    <p class="tag" title="Slice of life">S.O.L</p>
+                    <p class="tag" title="Slice of life">S.o.L</p>
                     <p class="tag" title="Alternate Universe">A.U.</p>
                     <p class="tag">Violence</p>
 

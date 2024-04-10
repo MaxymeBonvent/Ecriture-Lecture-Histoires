@@ -110,7 +110,7 @@ a:hover{
 }
 
 /* EXTERNAL SPACE */
-main, form, .user_page_half_div, .user_page_inner_div, .vertical_story_container, .chapter_info_inner_div{
+main, form, .user_page_half_section, .user_page_inner_div, .vertical_story_container, .chapter_info_inner_div{
     /* Space */
     margin: 2px;
 }
@@ -365,8 +365,8 @@ ul, ol{
     text-decoration: underline;
 }
 
-/* USER PAGE HALF DIVS */
-.user_page_half_div{
+/* USER PAGE HALF SECTIONS */
+.user_page_half_section{
     /* Outline */
     border: 2px solid black;
 
@@ -375,16 +375,16 @@ ul, ol{
 
     /* Position of internal elements */
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
-/* USER PAGE INNER DIVS */
-.user_page_inner_div{
+/* USER PAGE INNER SECTIONS */
+.user_page_inner_section{
     /* Outline */
     border: 2px solid black;
 
     /* Dimensions */
-    width: 50%;
+    width: 45%;
 
     /* Position of internal elements */
     display: flex;
@@ -393,57 +393,27 @@ ul, ol{
     align-items: center;
 }
 
-/* CHAPTER DELETION WARNING DIV */
-.delete_warning{
+/* USER PAGE INNER SECTIONS AND STORY SECTIONS */
+.user_page_inner_section, .story_info_section{
     /* Dimensions */
-    width: 400px;
-    height: 150px;
+    width: 40%;
+}
 
-    /* Colors */
-    background-color: rgba(140, 0, 0);
-    color: white;
+/* DIVS INSIDE SECTIONS */
+.section_div{
+    /* Outline */
+    border: 2px solid black;
 
-    /* Z-Layer */
-    z-index: 1;
+    /* Dimensions */
+    width: 70%;
 
-    /* Position Type */
-    position: absolute;
-
-    /* Coordinates */
-    top: 60%;
-    right: 38%;
+    /* External space */
+    margin: 4px 0;
 
     /* Position of internal elements */
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-
-    /* Text centering */
-    text-align: center;
-}
-
-/* WARNING DIV'S CLOSE CROSS DIV */
-.warning_close{
-    /* Dimensions */
-    height: 0;
-
-    /* Inner space */
-    padding: 2px;
-
-    /* Color */
-    border:  2px solid white;
-    color: white;
-
-    /* Position type */
-    position: relative;
-
-    /* Coordinates */
-    top: 0;
-    right: 0;
-
-    /* Mouse icon */
-    cursor: pointer;
 }
 
 /* DIV CONTAINING STYLE OPTIONS DIV AND COLOR OPTIONS DIV */
@@ -518,38 +488,41 @@ hr{
     align-items: center;
 }
 
-/* STORY DIVS */
-.story_div{
+/* SECTIONS CONTAINING THREE DIVS OF STORY INFO */
+.story_info_section{
     /* Outline */
     border: 2px solid black;
 
     /* Dimensions */
-    width: 100%;
-    height: 240px;
+    width: 40%;
 
     /* External space */
-    margin: 20px 10px;
+    margin: 8px;
+
+    /* Mouse icon */
+    cursor: pointer;
 
     /* Position of internal elements */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-
-    /* Mouse icon */
-    cursor: pointer;
+    align-items: center;
 }
 
-/* STORY INFO DIVS */
-.story_info{
+/* DIVS IN SECTIONS CONTAINING THREE DIVS OF STORY INFO */
+.story_info_section div{
     /* Outline */
     border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
 
     /* External space */
     margin: 2px;
 
     /* Position of internal elements */
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 /* TAGS DIVS */
@@ -558,10 +531,7 @@ hr{
     border: 2px solid black;
 
     /* Dimensions */
-    height: 100px;
-
-    /* External space */
-    margin: 2px;
+    height: 80px;
 
     /* Position of internal elements */
     display: flex;
@@ -576,7 +546,7 @@ hr{
     padding: 0 4px;
 
     /* External space */
-    margin: 0 26px;
+    margin: 0 24px;
 
     /* Background */
     background-color: forestgreen;
