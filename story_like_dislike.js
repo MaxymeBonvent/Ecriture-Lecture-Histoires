@@ -1,5 +1,5 @@
 // Request done color
-request_done_color = "forestgreen";
+request_done_color = "rgb(0, 40, 80)";
 
 // STORY LIKE
 // Likes Text

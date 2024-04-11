@@ -480,11 +480,35 @@ hr{
     border: 2px solid black;
 
     /* Dimensions */
-    width: 95%;
+    width: 45%;
 
     /* Position of internal elements */
     display: flex;
     flex-direction: column;
+    align-items: center;
+
+    /* Position of vertical story container itself */
+    align-self: flex-start;
+}
+
+/* SECTIONS CONTAINING THREE DIVS OF STORY INFO, CONTAINED IN VERTICAL STORY CONTAINERS */
+.vertical_story_container .story_info_section{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 90%;
+
+    /* External space */
+    margin: 8px;
+
+    /* Mouse icon */
+    cursor: pointer;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -515,7 +539,7 @@ hr{
     border: 2px solid black;
 
     /* Dimensions */
-    width: 80%;
+    width: 90%;
 
     /* External space */
     margin: 2px;

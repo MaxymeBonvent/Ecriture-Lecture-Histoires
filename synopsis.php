@@ -205,7 +205,6 @@
                 echo "<p onclick='AddStoryToFavs($story_id)' class='story_option' id='favs_txt'>Add to Favs</p>";
                 echo "<p onclick='AddStoryToReadLater($story_id)' class='story_option' id='read_later_txt'>Read Later</p>";
 
-
                 // ---- CHANGE LIKE COLOR ---- //
                 // If at least one user liked this story
                 if($story_likes[0]["user_like_ids"] != null)
@@ -213,7 +212,7 @@
                     // If user ID is in Story's like IDs
                     if(str_contains($story_likes[0]["user_like_ids"], $user_id))
                     {
-                        echo "<div class='thumb_box'> <p id='like_txt' style='color: forestgreen;'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                        echo "<div class='thumb_box'> <p id='like_txt' style='color: rgb(0, 40, 80);'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
                     }
 
                     // If user ID is not in Story's like IDs
