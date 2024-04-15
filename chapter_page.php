@@ -81,9 +81,59 @@
             $url_chapter_id = htmlspecialchars($_GET["chapter_id"]);
             $url_story_id = htmlspecialchars($_GET["story_id"]);
 
-            // GET STORY INFO
+            // ---- GET IDS OF USERS WHO BOOKMARKED THIS CHAPTER ---- //
+            // Prepare query
+            $get_user_marked_ids = $db->prepare("SELECT user_bookmark_ids FROM chapters WHERE chapter_id = :chapter_id");   
 
-            // Prepare query to get story info of the clicked chapter
+            // Binding
+            $get_user_marked_ids->bindValue(":chapter_id", $url_chapter_id);
+
+            // Execution
+            $get_user_marked_ids->execute();
+
+            // Store IDs of users who bookmarked this chapter
+            $user_marked_ids = $get_user_marked_ids->fetchColumn();
+
+            // Test 
+            // echo "<p>IDs of users who bookmarked this chapter : </p>";
+            // var_dump($user_marked_ids);
+
+            // ---- GET IDS OF USERS WHO LIKED CHAPTER ---- //
+            // Prepare query
+            $get_user_like_ids = $db->prepare("SELECT user_like_ids FROM chapters WHERE chapter_id = :chapter_id");   
+
+            // Binding
+            $get_user_like_ids->bindValue(":chapter_id", $url_chapter_id);
+
+            // Execution
+            $get_user_like_ids->execute();
+
+            // Store IDs of users who liked this chapter
+            $user_like_ids = $get_user_like_ids->fetchColumn();
+
+            // Test 
+            // echo "<p>IDs of users who liked this chapter : </p>";
+            // var_dump($user_like_ids);
+
+            // ---- GET IDS OF USERS WHO DISLIKED CHAPTER ---- //
+            // Prepare query
+            $get_user_dislike_ids = $db->prepare("SELECT user_dislike_ids FROM chapters WHERE chapter_id = :chapter_id");   
+
+            // Binding
+            $get_user_dislike_ids->bindValue(":chapter_id", $url_chapter_id);
+
+            // Execution
+            $get_user_dislike_ids->execute();
+
+            // Store IDs of users who disliked this chapter
+            $user_dislike_ids = $get_user_dislike_ids->fetchColumn();
+
+            // Test 
+            // echo "<p>IDs of users who disliked this chapter : </p>";
+            // var_dump($user_dislike_ids);
+
+            // ---- GET STORY INFO ---- //
+            // Prepare query
             $get_story_info = $db->prepare("SELECT story_title, author, tags, synopsis FROM stories WHERE story_id = :story_id");
 
             // Binding
@@ -95,12 +145,11 @@
             // Store story info
             $story_info = $get_story_info->fetchAll(PDO::FETCH_ASSOC);
 
-            // GET TAGS ARRAY
+            // ---- CREATE TAGS ARRAY ---- //
             $tags = explode(" ", $story_info[0]["tags"]);
 
             // ---- GET CURRENT CHAPTER'S TITLE AND TEXT ---- //
-
-            // Prepare a query to get clicked chapter's title and text
+            // Prepare query
             $get_chapter_title_text = $db->prepare("SELECT chapter_title, chapter_text FROM chapters WHERE chapter_id = :chapter_id");
 
             // Binding
@@ -116,8 +165,7 @@
             // var_dump($chapter_title_text);
 
             // ---- GET EVERY CHAPTERS' INFO ---- //
-
-            // Prepare a query to get title, date, word count, likes and dislikes from every chapter of the clicked story
+            // Prepare query
             $get_chapter_info = $db->prepare("SELECT story_id, chapter_id, chapter_title, chapter_text pub_date, word_count, likes, dislikes FROM chapters WHERE story_id = :story_id");
 
             // Binding
@@ -149,7 +197,6 @@
 
             // Test
             // var_dump($chapter_ids);
-
 
             // ---- GET PREVIOUS/NEXT CHAPTER INFO ---- //
             // If story has more than 1 chapter
@@ -279,17 +326,60 @@
                 // START of chapter options div
                 echo "<div class='chapter_options'>";
 
-                    // Bookmark - onclick='Bookmark($url_chapter_id, $user_id)'
-                    echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
+                    // CHANGE "BOOKMARK THIS CHAPTER" COLOR
+                    // If at least 1 user bookmarked this chapter
+                    if($user_marked_ids != null && $user_marked_ids != "")
+                    {
+                        // If user's ID is already in the list of users who bookmarked this chapter
+                        if(str_contains($user_marked_ids, $user_id))
+                        {
+                            // Display "Bookmark this chapter" in "already bookmarked" color
+                            echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)' style='color: rgb(0, 120, 0);'>Bookmark this chapter</p>";
+                        }
+
+                        // If user's ID is not in the list of users who bookmarked this chapter
+                        else if(!str_contains($user_marked_ids, $user_id))
+                        {
+                            // Display "Bookmark this chapter" in default color
+                            echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
+                        }
+                    }
+
+                    // If nobody bookmarked this chapter
+                    else if($user_marked_ids == null || $user_marked_ids != "")
+                    {
+                        // Display "Bookmark this chapter" in default color
+                        echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
+                    }
 
                     // START of likes div
                     echo "<div class='thumb_box'>";
 
-                        // Likes
-                        echo "<p id='like_txt'>".$chapter_info[0]["likes"]." Likes</p>";
+                        // ---- CHANGE "LIKE" COLOR ---- //
+                        // If at least 1 user liked this chapter
+                        if($user_like_ids != null && $user_like_ids != "")
+                        {
+                            // If user ID is in list of users who liked this chapter
+                            if(str_contains($user_like_ids, $user_id))
+                            {
+                                // Display "Like" text in "already liked" color
+                                echo "<div class='thumb_box'> <p id='like_txt' style='color:rgb(0, 120, 0);'>".$chapter_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'> </div>";
+                            }
 
-                        // onclick='LikeChapter($url_chapter_id)'
-                        echo "<img src='img/like.png' alt='Like icon' class='thumb' id='like_icon' onclick='LikeChapter($url_chapter_id)'>";
+                            // If user ID is not in list of users who liked this chapter
+                            else if(!str_contains($user_like_ids, $user_id))
+                            {
+                                // Display "Like" in default color
+                                echo "<div class='thumb_box'> <p id='like_txt'>".$chapter_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'> </div>";
+                            }
+                        }
+
+                        // If nobody liked this chapter
+                        else if($user_like_ids == null || $user_like_ids == "")
+                        {
+                            // Display "Like" in default color
+                            echo "<div class='thumb_box'><p id='like_txt'>".$chapter_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'> </div>";
+                        }
 
                     // END of likes div
                     echo "</div>";
@@ -298,11 +388,31 @@
                     // START of dislikes div
                     echo "<div class='thumb_box'>";
 
-                        // Dislikes
-                        echo "<p id='dislike_txt'>".$chapter_info[0]["dislikes"]." Dislikes</p>";
+                        // ---- CHANGE "DISLIKE" COLOR ---- //
+                        // If at least 1 user disliked this chapter
+                        if($user_dislike_ids != null && $user_dislike_ids != "")
+                        {
+                            // If user ID is in list of users who disliked this chapter
+                            if(str_contains($user_dislike_ids, $user_id))
+                            {
+                                // Display "Dislike" text in "already liked" color
+                                echo "<div class='thumb_box'> <p id='dislike_txt' style='color:rgb(0, 120, 0);'>".$chapter_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'> </div>";
+                            }
 
-                        // onclick='DislikeChapter($url_chapter_id)'
-                        echo "<img src='img/dislike.png' alt='Dislike icon' class='thumb' id='dislike_icon' onclick='DislikeChapter($url_chapter_id)'>";
+                            // If user ID is not in list of users who disliked this chapter
+                            else if(!str_contains($user_dislike_ids, $user_id))
+                            {
+                                // Display "Dislike" in default color
+                                echo "<div class='thumb_box'> <p id='dislike_txt'>".$chapter_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'> </div>";
+                            }
+                        }
+
+                        // If nobody disliked this chapter
+                        else if($user_dislike_ids == null || $user_dislike_ids == "")
+                        {
+                            // Display "Dislike" in default color
+                            echo "<div class='thumb_box'> <p id='dislike_txt'>".$chapter_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'> </div>";
+                        }
 
                     // END of dislikes div
                     echo "</div>";

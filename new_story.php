@@ -10,7 +10,6 @@
 </head>
 
 <body>
-
     <!-- HEADER -->
     <header id="_header">
 
@@ -53,6 +52,9 @@
 
     <!-- MAIN -->
     <main>
+
+        <!-- PREVIEW BACKGROUND -->
+        <div id="preview_bck_on"></div>
 
         <!-- CHECK IF USER IS LOGGED IN -->
         <?php
@@ -233,6 +235,9 @@
 
                 </div>
 
+                <!-- PREVIEW BUTTON -->
+                <button onclick="Preview()">Preview</button>
+
             </div>
 
             <!-- FORM BUTTONS -->
@@ -260,6 +265,7 @@
     </footer>
 
     <!-- SCRIPT -->
+    <script src="preview.js"></script>
     <script src="new_story_check.js"></script>
     <script src="chapter_style.js"></script>
 

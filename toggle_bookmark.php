@@ -82,10 +82,10 @@
 
                     // ---- ADD USER'S ID TO URL CHAPTER'S USER_BOOKMARK_IDS COLUMN ---- //
                     // Prepare query
-                    $add_user_id_to_url_chap = $db->prepare("UPDATE chapters SET user_bookmark_ids = user_bookmark_ids + ' $user_id '  WHERE chapter_id = :previous_chapter_id");
+                    $add_user_id_to_url_chap = $db->prepare("UPDATE chapters SET user_bookmark_ids := ' $user_id ' WHERE chapter_id = :previous_chapter_id");
 
                     // Binding
-                    $add_user_id_to_url_chap->bindValue(":previous_chapter_id", $marked_id);
+                    $add_user_id_to_url_chap->bindValue(":previous_chapter_id", $url_chapter_id);
 
                     // Execution
                     $add_user_id_to_url_chap->execute();

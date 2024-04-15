@@ -109,6 +109,34 @@ a:hover{
     text-decoration: underline;
 }
 
+/* PREVIEW BACKGROUND ON */
+#preview_bck_on{
+    /* Position type */
+    position: fixed;
+
+    /* Dimensions */
+    width: 80%;
+    height: 400px;
+
+    /* Background color */
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* BUTTONS */
+button{
+    /* Mousr icon */
+    cursor: pointer;
+
+    /* Animation duration */
+    transition: 0.3s;
+}
+
+/* HOVER ON BUTTONS */
+button:hover{
+    /* Scale */
+    transform: scale(1.1, 1.1);
+}
+
 /* EXTERNAL SPACE */
 main, form, .user_page_half_section, .user_page_inner_div, .vertical_story_container, .chapter_info_inner_div{
     /* Space */
@@ -133,8 +161,8 @@ section{
     align-items: center;
 }
 
-/* TEXTAREAS AND INPUT FIELDS */
-textarea, input{
+/* TEXTAREAS INPUT FIELDS AND BUTTONS */
+textarea, input, button{
     /* Background */
     background-color: rgb(220, 220, 220);
 

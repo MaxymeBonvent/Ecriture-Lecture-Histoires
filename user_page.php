@@ -99,47 +99,51 @@
                 // echo "<p>Bookmarked chapter ID :</p>";
                 // var_dump($marked_chapter_id);
 
-                // --- GET BOOKMARKED CHAPTER'S TITLE AND STORY ID ---- //
-                // Prepare query
-                $get_story_id_chapter_title = $db->prepare("SELECT story_id, chapter_title FROM chapters WHERE chapter_id = :chapter_id");
+                // If user did bookmark a chapter
+                if($marked_chapter_id != null && $marked_chapter_id != "")
+                {
+                    // --- GET BOOKMARKED CHAPTER'S TITLE AND STORY ID ---- //
+                    // Prepare query
+                    $get_story_id_chapter_title = $db->prepare("SELECT story_id, chapter_title FROM chapters WHERE chapter_id = :chapter_id");
 
-                // Binding
-                $get_story_id_chapter_title->bindValue(":chapter_id", $marked_chapter_id);
+                    // Binding
+                    $get_story_id_chapter_title->bindValue(":chapter_id", $marked_chapter_id);
 
-                // Execution    
-                $get_story_id_chapter_title->execute();
+                    // Execution    
+                    $get_story_id_chapter_title->execute();
 
-                // Store story ID and chapter title
-                $story_id_chapter_title = $get_story_id_chapter_title->fetchAll(PDO::FETCH_ASSOC);
+                    // Store story ID and chapter title
+                    $story_id_chapter_title = $get_story_id_chapter_title->fetchAll(PDO::FETCH_ASSOC);
 
-                // Test
-                // echo "<p>Story ID and chapter title:</p>";
-                // var_dump($story_id_chapter_title);
+                    // Test
+                    // echo "<p>Story ID and chapter title:</p>";
+                    // var_dump($story_id_chapter_title);
 
-                // ---- GET BOOKMARKED CHAPTER'S STORY INFO ---- //
-                // Prepare query
-                $get_story_info = $db->prepare("SELECT story_title, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
+                    // ---- GET BOOKMARKED CHAPTER'S STORY INFO ---- //
+                    // Prepare query
+                    $get_story_info = $db->prepare("SELECT story_title, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
 
-                // Binding
-                $get_story_info->bindValue(":story_id", $story_id_chapter_title[0]["story_id"]);
+                    // Binding
+                    $get_story_info->bindValue(":story_id", $story_id_chapter_title[0]["story_id"]);
 
-                // Execution
-                $get_story_info->execute();
+                    // Execution
+                    $get_story_info->execute();
 
-                // Store story info
-                $story_info = $get_story_info->fetchAll(PDO::FETCH_ASSOC);
+                    // Store story info
+                    $story_info = $get_story_info->fetchAll(PDO::FETCH_ASSOC);
 
-                // Test
-                // echo "<p>Story info :</p>";
-                // var_dump($story_info);
+                    // Test
+                    // echo "<p>Story info :</p>";
+                    // var_dump($story_info);
 
-                // ---- CREATE TAGS ARRAY ---- //
-                // Separate each tag
-                $tags = explode(" ", $story_info[0]["tags"]);
+                    // ---- CREATE TAGS ARRAY ---- //
+                    // Separate each tag
+                    $tags = explode(" ", $story_info[0]["tags"]);
 
-                // Test
-                // echo "<p>Tags :</p>";
-                // var_dump($tags);
+                    // Test
+                    // echo "<p>Tags :</p>";
+                    // var_dump($tags);
+                }
 
                 // ---- GET USER'S FAVORITE STORIES IDS ---- //
                 // Prepare query
@@ -227,58 +231,77 @@
                     // END of user info section
                     echo "</section>";
 
-                    // START of bookmarked chapter section
-                    echo "<section class='story_info_section' onclick='ChapterPage(".$marked_chapter_id.",".$story_id_chapter_title[0]['story_id'].")'>";
+                    // If user bookmarked a chapter
+                    if($marked_chapter_id != null && $marked_chapter_id != "")
+                    {
+                        // START of bookmarked chapter section
+                        echo "<section class='story_info_section' onclick='ChapterPage(".$marked_chapter_id.",".$story_id_chapter_title[0]['story_id'].")'>";
 
-                        // START of story and chapter titles div
-                        echo "<div class='section_div'>";
+                            // START of story and chapter titles div
+                            echo "<div class='section_div'>";
 
-                            // Story title
-                            echo "<h4>".$story_info[0]['story_title']."</h4>";
+                                // Story title
+                                echo "<h4>".$story_info[0]['story_title']."</h4>";
 
-                            // Chapter title
-                            echo "<h4>".$story_id_chapter_title[0]['chapter_title']."</h4>";
+                                // Chapter title
+                                echo "<h4>".$story_id_chapter_title[0]['chapter_title']."</h4>";
 
-                        // END of story and chapter titles div
-                        echo "</div>";
+                            // END of story and chapter titles div
+                            echo "</div>";
 
-                        // START of story info div
-                        echo "<div class='section_div'>";
+                            // START of story info div
+                            echo "<div class='section_div'>";
 
-                            // Author
-                            echo "<p>".$story_info[0]['author']."</p>";
+                                // Author
+                                echo "<p>".$story_info[0]['author']."</p>";
 
-                            // Date
-                            echo "<p>".date("d-m-Y", strtotime($story_info[0]['pub_date']))."</p>";
+                                // Date
+                                echo "<p>".date("d-m-Y", strtotime($story_info[0]['pub_date']))."</p>";
 
-                            // Likes
-                            echo "<p>".$story_info[0]['likes']." Likes</p>";
+                                // Likes
+                                echo "<p>".$story_info[0]['likes']." Likes</p>";
 
-                            // Dislikes
-                            echo "<p>".$story_info[0]['dislikes']." Dislikes</p>";
+                                // Dislikes
+                                echo "<p>".$story_info[0]['dislikes']." Dislikes</p>";
 
-                        // END of story info div
-                        echo "</div>";
+                            // END of story info div
+                            echo "</div>";
 
-                        // START of tags div
-                        echo "<div class='tags_div'>";
+                            // START of tags div
+                            echo "<div class='tags_div'>";
 
-                            // For every tag
-                            for($i = 0; $i < count($tags); $i++)
-                            {
-                                // If tag is not empty
-                                if($tags[$i] != "")
+                                // For every tag
+                                for($i = 0; $i < count($tags); $i++)
                                 {
-                                    // Display it
-                                    echo "<p>".$tags[$i]."</p>";
+                                    // If tag is not empty
+                                    if($tags[$i] != "")
+                                    {
+                                        // Display it
+                                        echo "<p>".$tags[$i]."</p>";
+                                    }
                                 }
-                            }
 
-                        // END of tags div
-                        echo "</div>";
+                            // END of tags div
+                            echo "</div>";
 
-                    // END of bookmarked chapter section
-                    echo "</section>";
+                        // END of bookmarked chapter section
+                        echo "</section>";
+                    }
+
+                    // If user did not bookmark a chapter
+                    else if($marked_chapter_id == null || $marked_chapter_id == "")
+                    {
+                        // START of bookmarked chapter section
+                        echo "<section class='story_info_section'>";
+
+                            // Tell user they did not bookmark any chapter
+                            echo "<p>No bookmarked chapter.</p>";
+
+                        // END of bookmarked chapter section
+                        echo "</section>";  
+                    }
+
+                    
 
                 // END of top half section
                 echo "</section>";
@@ -294,42 +317,147 @@
                         // Section title
                         echo "<h3>Favorite Stories</h3>";
 
-                            // ---- GET INFO FROM FAVORITE STORIES ---- //
-                            // For every favorite story
-                            for($i = 0; $i < count($favs_ids_array); $i++)
+                            // If user has at least 1 story in their favs
+                            if($favs_ids_array[0] != null && $favs_ids_array[0] != "")
+                            {
+                                // ---- GET INFO FROM FAVORITE STORIES ---- //
+                                // For every favorite story
+                                for($i = 0; $i < count($favs_ids_array); $i++)
+                                {
+                                    // Prepare query to get its info
+                                    $get_current_fav_story_info = $db->prepare("SELECT story_title, chapter_ids, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
+
+                                    // Binding  
+                                    $get_current_fav_story_info->bindValue(":story_id", $favs_ids_array[$i]);
+
+                                    // Execution
+                                    $get_current_fav_story_info->execute();
+
+                                    // Store current favorite story info
+                                    $current_fav_story_info = $get_current_fav_story_info->fetchAll(PDO::FETCH_ASSOC);
+
+                                    // Test
+                                    // echo "<p>Info of favorite story n°".($i+1).":</p>";
+                                    // var_dump($current_fav_story_info);
+
+                                    // ---- CREATE CURRENT FAVORITE'S STORY'S TAGS ARRAY ---- //
+                                    $current_fav_story_tags_array = explode(" ", $current_fav_story_info[0]["tags"]);
+
+                                    // Test
+                                    // echo "<p>Current favorite story tags array :</p>";
+                                    // var_dump($current_fav_story_tags_array);
+
+                                    // ---- DISPLAY CURRENT FAVORITE STORY'S STORY BOX ---- //
+                                    // START of current favorite story's story box
+                                    echo "<section class='story_info_section' onclick='Synopsis(\"".$current_fav_story_info[0]['story_title']."\",\"".$current_fav_story_info[0]['author']."\",\"".$current_fav_story_info[0]['tags']."\",\"".$current_fav_story_info[0]['chapter_ids']."\")'>";
+
+                                        // START of story title div
+                                        echo "<div>";
+
+                                            // Story title
+                                            echo "<h4>".$current_fav_story_info[0]['story_title']."</h4>";
+
+                                        // END of story title div
+                                        echo "</div>";
+
+
+                                        // START of story stats div
+                                        echo "<div>";
+
+                                            // Author
+                                            echo "<p>".$current_fav_story_info[0]['author']."</p>";
+
+                                            // Date
+                                            echo "<p>".date("d-m-Y", strtotime($current_fav_story_info[0]['pub_date']))."</p>";
+
+                                            // Likes
+                                            echo "<p>".$current_fav_story_info[0]['likes']." Likes</p>";
+
+                                            // Dislikes
+                                            echo "<p>".$current_fav_story_info[0]['dislikes']." Dislikes</p>";
+
+                                        // END of story stats div
+                                        echo "</div>";
+
+
+                                        // START of tags div
+                                        echo "<div class='tags_div'>";
+
+                                            // For each tag
+                                            foreach($current_fav_story_tags_array as $tag)
+                                            {
+                                                // If that tag is not empty
+                                                if($tag != "")
+                                                {
+                                                    // Display it
+                                                    echo "<p>$tag</p>";
+                                                }
+                                            }
+
+                                        // END of tags div
+                                        echo "</div>";
+
+                                    // END of current favorite story's story box
+                                    echo "</section>";
+                                }
+                            }
+
+                            // If user has less than 1 story in their favs
+                            else if($favs_ids_array[0] == null || $favs_ids_array[0] == "")
+                            {
+                                // Tell user they have no stories in their favorites
+                                echo "<p>You have no favorite story.</p>";
+                            }
+
+                    // END of Favorite Stories section
+                    echo "</section>";
+
+                    // START of Read Later Story Container
+                    echo "<section class='vertical_story_container'>";
+
+                        // Section title
+                        echo "<h3>Read Later</h3>";
+
+                        // If user has at least 1 story in their read later
+                        if($later_ids_array[0] != null && $later_ids_array[0] != "")
+                        {
+                            // ---- GET INFO FROM READ LATER STORIES ---- //
+                            // For every Read Later story
+                            for($i = 0; $i < count($later_ids_array); $i++)
                             {
                                 // Prepare query to get its info
-                                $get_current_fav_story_info = $db->prepare("SELECT story_title, chapter_ids, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
+                                $get_current_later_story_info = $db->prepare("SELECT story_title, chapter_ids, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
 
                                 // Binding  
-                                $get_current_fav_story_info->bindValue(":story_id", $favs_ids_array[$i]);
+                                $get_current_later_story_info->bindValue(":story_id", $later_ids_array[$i]);
 
                                 // Execution
-                                $get_current_fav_story_info->execute();
+                                $get_current_later_story_info->execute();
 
                                 // Store current favorite story info
-                                $current_fav_story_info = $get_current_fav_story_info->fetchAll(PDO::FETCH_ASSOC);
+                                $current_later_story_info = $get_current_later_story_info->fetchAll(PDO::FETCH_ASSOC);
 
                                 // Test
-                                // echo "<p>Info of favorite story n°".($i+1).":</p>";
-                                // var_dump($current_fav_story_info);
+                                // echo "<p>Info of Read Later story n°".($i+1).":</p>";
+                                // var_dump($current_later_story_info);
+                                // exit;
 
-                                // ---- CREATE CURRENT FAVORITE'S STORY'S TAGS ARRAY ---- //
-                                $current_fav_story_tags_array = explode(" ", $current_fav_story_info[0]["tags"]);
+                                // ---- CREATE CURRENT READ LATER STORY'S TAGS ARRAY ---- //
+                                $current_later_story_tags_array = explode(" ", $current_later_story_info[0]["tags"]);
 
                                 // Test
                                 // echo "<p>Current favorite story tags array :</p>";
                                 // var_dump($current_fav_story_tags_array);
 
-                                // ---- DISPLAY CURRENT FAVORITE STORY'S STORY BOX ---- //
-                                // START of current favorite story's story box
-                                echo "<section class='story_info_section' onclick='Synopsis(\"".$current_fav_story_info[0]['story_title']."\",\"".$current_fav_story_info[0]['author']."\",\"".$current_fav_story_info[0]['tags']."\",\"".$current_fav_story_info[0]['chapter_ids']."\")'>";
+                                // ---- DISPLAY CURRENT READ LATER STORY'S STORY BOX ---- //
+                                // START of current read later story's story box
+                                echo "<section class='story_info_section' onclick='Synopsis(\"".$current_later_story_info[0]['story_title']."\",\"".$current_later_story_info[0]['author']."\",\"".$current_later_story_info[0]['tags']."\",\"".$current_later_story_info[0]['chapter_ids']."\")'>";
 
                                     // START of story title div
                                     echo "<div>";
 
                                         // Story title
-                                        echo "<h4>".$current_fav_story_info[0]['story_title']."</h4>";
+                                        echo "<h4>".$current_later_story_info[0]['story_title']."</h4>";
 
                                     // END of story title div
                                     echo "</div>";
@@ -339,16 +467,16 @@
                                     echo "<div>";
 
                                         // Author
-                                        echo "<p>".$current_fav_story_info[0]['author']."</p>";
+                                        echo "<p>".$current_later_story_info[0]['author']."</p>";
 
                                         // Date
-                                        echo "<p>".date("d-m-Y", strtotime($current_fav_story_info[0]['pub_date']))."</p>";
+                                        echo "<p>".date("d-m-Y", strtotime($current_later_story_info[0]['pub_date']))."</p>";
 
                                         // Likes
-                                        echo "<p>".$current_fav_story_info[0]['likes']." Likes</p>";
+                                        echo "<p>".$current_later_story_info[0]['likes']." Likes</p>";
 
                                         // Dislikes
-                                        echo "<p>".$current_fav_story_info[0]['dislikes']." Dislikes</p>";
+                                        echo "<p>".$current_later_story_info[0]['dislikes']." Dislikes</p>";
 
                                     // END of story stats div
                                     echo "</div>";
@@ -358,7 +486,7 @@
                                     echo "<div class='tags_div'>";
 
                                         // For each tag
-                                        foreach($current_fav_story_tags_array as $tag)
+                                        foreach($current_later_story_tags_array as $tag)
                                         {
                                             // If that tag is not empty
                                             if($tag != "")
@@ -374,99 +502,13 @@
                                 // END of current favorite story's story box
                                 echo "</section>";
                             }
+                        }
 
-
-                    // END of Favorite Stories section
-                    echo "</section>";
-
-
-
-                    // START of Read Later Story Container
-                    echo "<section class='vertical_story_container'>";
-
-                        // Section title
-                        echo "<h3>Read Later</h3>";
-
-                        // ---- GET INFO FROM READ LATER STORIES ---- //
-                        // For every Read Later story
-                        for($i = 0; $i < count($later_ids_array); $i++)
+                        // If user has less than 1 story in their read later
+                        else if($later_ids_array[0] == null || $later_ids_array[0] == "")
                         {
-                            // Prepare query to get its info
-                            $get_current_later_story_info = $db->prepare("SELECT story_title, chapter_ids, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
-
-                            // Binding  
-                            $get_current_later_story_info->bindValue(":story_id", $later_ids_array[$i]);
-
-                            // Execution
-                            $get_current_later_story_info->execute();
-
-                            // Store current favorite story info
-                            $current_later_story_info = $get_current_later_story_info->fetchAll(PDO::FETCH_ASSOC);
-
-                            // Test
-                            // echo "<p>Info of Read Later story n°".($i+1).":</p>";
-                            // var_dump($current_later_story_info);
-                            // exit;
-
-                            // ---- CREATE CURRENT READ LATER STORY'S TAGS ARRAY ---- //
-                            $current_later_story_tags_array = explode(" ", $current_later_story_info[0]["tags"]);
-
-                            // Test
-                            // echo "<p>Current favorite story tags array :</p>";
-                            // var_dump($current_fav_story_tags_array);
-
-                            // ---- DISPLAY CURRENT READ LATER STORY'S STORY BOX ---- //
-                            // START of current read later story's story box
-                            echo "<section class='story_info_section' onclick='Synopsis(\"".$current_later_story_info[0]['story_title']."\",\"".$current_later_story_info[0]['author']."\",\"".$current_later_story_info[0]['tags']."\",\"".$current_later_story_info[0]['chapter_ids']."\")'>";
-
-                                // START of story title div
-                                echo "<div>";
-
-                                    // Story title
-                                    echo "<h4>".$current_later_story_info[0]['story_title']."</h4>";
-
-                                // END of story title div
-                                echo "</div>";
-
-
-                                // START of story stats div
-                                echo "<div>";
-
-                                    // Author
-                                    echo "<p>".$current_later_story_info[0]['author']."</p>";
-
-                                    // Date
-                                    echo "<p>".date("d-m-Y", strtotime($current_later_story_info[0]['pub_date']))."</p>";
-
-                                    // Likes
-                                    echo "<p>".$current_later_story_info[0]['likes']." Likes</p>";
-
-                                    // Dislikes
-                                    echo "<p>".$current_later_story_info[0]['dislikes']." Dislikes</p>";
-
-                                // END of story stats div
-                                echo "</div>";
-
-
-                                // START of tags div
-                                echo "<div class='tags_div'>";
-
-                                    // For each tag
-                                    foreach($current_later_story_tags_array as $tag)
-                                    {
-                                        // If that tag is not empty
-                                        if($tag != "")
-                                        {
-                                            // Display it
-                                            echo "<p>$tag</p>";
-                                        }
-                                    }
-
-                                // END of tags div
-                                echo "</div>";
-
-                            // END of current favorite story's story box
-                            echo "</section>";
+                            // Tell user they have no stories to read later
+                            echo "<p>You have no story to read later.</p>";
                         }
 
                     // END of Read Later section
