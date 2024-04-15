@@ -1,5 +1,32 @@
-// CHAPTER LIKE
+// CHAPTER "LIKE" TEXT
 let like_txt = document.getElementById("like_txt");
+
+// LIKE ICON
+let like_icon = document.getElementById("like_icon");
+
+// TOGGLE "LIKE" COLOR
+like_icon.addEventListener("click", function()
+{
+    // If text is not green
+    if(like_txt.style.color != request_done_color)
+    {
+        // Set text color to green
+        like_txt.style.color = request_done_color;
+
+        // Log color change
+        console.log("\"Likes\" changed to green.");
+    }
+
+    // If text is green
+    else if(like_txt.style.color == request_done_color)
+    {
+        // Set text color to default
+        like_txt.style.color = "black";
+
+        // Log color change
+        console.log("\"Likes\" changed to black.");
+    }
+})
 
 // Function to open a PHP script to like a chapter
 function LikeChapter(chapter_id)
@@ -62,6 +89,33 @@ function LikeChapter(chapter_id)
 
 // CHAPTER DISLIKE
 let dislike_txt = document.getElementById("dislike_txt");
+
+// DISLIKE ICON
+let dislike_icon = document.getElementById("dislike_icon");
+
+// TOGGLE "DISLIKE" COLOR
+dislike_icon.addEventListener("click", function()
+{
+    // If text is not green
+    if(dislike_txt.style.color != request_done_color)
+    {
+        // Set text color to green
+        dislike_txt.style.color = request_done_color;
+
+        // Log color change
+        console.log("\"Dislikes\" changed to green.");
+    }
+
+    // If text is green
+    else if(dislike_txt.style.color == request_done_color)
+    {
+        // Set text color to default
+        dislike_txt.style.color = "black";
+
+        // Log color change
+        console.log("\"Dislikes\" changed to black.");
+    }
+})
 
 function DislikeChapter(chapter_id)
 {

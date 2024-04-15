@@ -279,7 +279,7 @@
                 // START of chapter options div
                 echo "<div class='chapter_options'>";
 
-                    // Bookmark
+                    // Bookmark - onclick='Bookmark($url_chapter_id, $user_id)'
                     echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
 
                     // START of likes div
@@ -287,7 +287,9 @@
 
                         // Likes
                         echo "<p id='like_txt'>".$chapter_info[0]["likes"]." Likes</p>";
-                        echo "<img src='img/like.png' alt='Like icon' class='thumb' onclick='LikeChapter($url_chapter_id)'>";
+
+                        // onclick='LikeChapter($url_chapter_id)'
+                        echo "<img src='img/like.png' alt='Like icon' class='thumb' id='like_icon' onclick='LikeChapter($url_chapter_id)'>";
 
                     // END of likes div
                     echo "</div>";
@@ -298,7 +300,9 @@
 
                         // Dislikes
                         echo "<p id='dislike_txt'>".$chapter_info[0]["dislikes"]." Dislikes</p>";
-                        echo "<img src='img/dislike.png' alt='Dislike icon' class='thumb' onclick='DislikeChapter($url_chapter_id)'>";
+
+                        // onclick='DislikeChapter($url_chapter_id)'
+                        echo "<img src='img/dislike.png' alt='Dislike icon' class='thumb' id='dislike_icon' onclick='DislikeChapter($url_chapter_id)'>";
 
                     // END of dislikes div
                     echo "</div>";
@@ -505,8 +509,7 @@
     </main>
 
     <!-- SCRIPTS -->
-    <script src="bookmark.js"></script>
-    <script src="chapter_page.js"></script>
+    <script src="toggle_bookmark.js"></script>
     <script src="chapter_like_dislike.js"></script>
 
     <!-- FOOTER -->

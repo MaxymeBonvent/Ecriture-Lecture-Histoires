@@ -5,13 +5,38 @@ let request_done_color = "rgb(0, 130, 0)";
 // Add to Favs text
 let favs_txt = document.getElementById("favs_txt");
 
-function AddStoryToFavs(story_id)
+// TOGGLE COLOR OF "ADD TO FAVS" ON CLICK
+favs_txt.addEventListener("click", function()
+{
+    // If text is not green
+    if(favs_txt.style.color != request_done_color)
+    {
+        // Set its color to green
+        favs_txt.style.color = request_done_color;
+
+        // Confirm color toggle
+        console.log("\"Add to Favs\" changed to green.");
+    }
+
+    // If text is green
+    else if(favs_txt.style.color == request_done_color)
+    {
+        // Set its color to default
+        favs_txt.style.color = "black";
+
+        // Confirm color toggle
+        console.log("\"Add to Favs\" changed to black.");
+    }
+})
+
+// Function to toggle a story from/to user's Favorites stack
+function ToggleStoryFavs(story_id)
 {
     // Confirm story ID obtention
     console.log(`Story ID == ${story_id}.`);
 
-    // If there is a Story ID and "Add to Favs" is not green
-    if(story_id != null && favs_txt.style.color != request_done_color)
+    // If there is a Story ID
+    if(story_id != null)
     {
         // AJAX variable
         let xhr = new XMLHttpRequest();
@@ -23,13 +48,10 @@ function AddStoryToFavs(story_id)
             if(xhr.status == 200)
             {
                 // Redirect user to PHP script that adds clicked story to their favorites
-                // window.location.href = `add_story_favs.php?story_id=${story_id}`;
-
-                // Visual indication of request completion
-                favs_txt.style.color = request_done_color;
+                // window.location.href = `toggle_story_favs.php?story_id=${story_id}`;
 
                 // Log that story is part of user's favorites
-                console.log("Request done.");
+                console.log("Favorites toggle done.");
             }
         }
 
@@ -37,11 +59,11 @@ function AddStoryToFavs(story_id)
         xhr.onerror = function()
         {
             // Log error
-            console.log(`Error during AJAX request to add story to favorites : ${xhr.status}.`);
+            console.log(`Error during AJAX request to add/remove story to/from favorites : ${xhr.status}.`);
         }
 
         // SEND REQUEST
-        xhr.open("GET", `add_story_favs.php?story_id=${story_id}`);
+        xhr.open("GET", `toggle_story_favs.php?story_id=${story_id}`);
         xhr.send();
     }
 
@@ -50,13 +72,6 @@ function AddStoryToFavs(story_id)
     {
         // Log it
         console.log("Error : no story ID.");
-    }
-
-    // If "Add to favs" is already green
-    else if(favs_txt.style.color == request_done_color)
-    {
-        // Log that request is already done
-        console.log("Story already added to favorites.");
     }
 }
 
@@ -64,13 +79,14 @@ function AddStoryToFavs(story_id)
 // Read later text
 let read_later_txt = document.getElementById("read_later_txt");
 
-function AddStoryToReadLater(story_id)
+// Function to toggle a story from/to user's Read Later stack
+function ToggleStoryReadLater(story_id)
 {
     // Confirm story ID obtention
     console.log(`Story ID == ${story_id}.`);
 
-    // If there is a Story ID and "Read Later" is not green
-    if(story_id != null && read_later_txt.style.color != request_done_color)
+    // If there is a Story ID
+    if(story_id != null)
     {
         // AJAX variable
         let xhr = new XMLHttpRequest();
@@ -82,13 +98,10 @@ function AddStoryToReadLater(story_id)
             if(xhr.status == 200)
             {
                 // Redirect user to PHP script that adds clicked story to their favorites
-                // window.location.href = `add_story_read_later.php?story_id=${story_id}`;
-
-                // Visual indication of request completion
-                read_later_txt.style.color = request_done_color;
+                // window.location.href = `toggle_story_read_later.php?story_id=${story_id}`;
 
                 // Log that story is part of user's read later
-                console.log("Request done.");
+                console.log("Read Later toggle done.");
             }
         }
 
@@ -96,11 +109,11 @@ function AddStoryToReadLater(story_id)
         xhr.onerror = function()
         {
             // Log error
-            console.log(`Error during AJAX request to add story to Read Later : ${xhr.status}.`);
+            console.log(`Error during AJAX request to add/remove story to/from Read Later : ${xhr.status}.`);
         }
 
         // SEND REQUEST
-        xhr.open("GET", `add_story_read_later.php?story_id=${story_id}`);
+        xhr.open("GET", `toggle_story_read_later.php?story_id=${story_id}`);
         xhr.send();
     }
 
@@ -109,12 +122,5 @@ function AddStoryToReadLater(story_id)
     {
         // Log it
         console.log("Error : no story ID.");
-    }
-
-    // If "Add to favs" is already green
-    else if(read_later_txt.style.color == request_done_color)
-    {
-        // Log that request is already done
-        console.log("Story already added to Read Later.");
     }
 }

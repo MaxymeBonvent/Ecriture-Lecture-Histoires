@@ -388,86 +388,86 @@
                         echo "<h3>Read Later</h3>";
 
                         // ---- GET INFO FROM READ LATER STORIES ---- //
-                            // For every Read Later story
-                            for($i = 0; $i < count($later_ids_array); $i++)
-                            {
-                                // Prepare query to get its info
-                                $get_current_later_story_info = $db->prepare("SELECT story_title, chapter_ids, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
+                        // For every Read Later story
+                        for($i = 0; $i < count($later_ids_array); $i++)
+                        {
+                            // Prepare query to get its info
+                            $get_current_later_story_info = $db->prepare("SELECT story_title, chapter_ids, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
 
-                                // Binding  
-                                $get_current_later_story_info->bindValue(":story_id", $later_ids_array[$i]);
+                            // Binding  
+                            $get_current_later_story_info->bindValue(":story_id", $later_ids_array[$i]);
 
-                                // Execution
-                                $get_current_later_story_info->execute();
+                            // Execution
+                            $get_current_later_story_info->execute();
 
-                                // Store current favorite story info
-                                $current_later_story_info = $get_current_later_story_info->fetchAll(PDO::FETCH_ASSOC);
+                            // Store current favorite story info
+                            $current_later_story_info = $get_current_later_story_info->fetchAll(PDO::FETCH_ASSOC);
 
-                                // Test
-                                // echo "<p>Info of Read Later story n°".($i+1).":</p>";
-                                // var_dump($current_later_story_info);
-                                // exit;
+                            // Test
+                            // echo "<p>Info of Read Later story n°".($i+1).":</p>";
+                            // var_dump($current_later_story_info);
+                            // exit;
 
-                                // ---- CREATE CURRENT READ LATER STORY'S TAGS ARRAY ---- //
-                                $current_later_story_tags_array = explode(" ", $current_later_story_info[0]["tags"]);
+                            // ---- CREATE CURRENT READ LATER STORY'S TAGS ARRAY ---- //
+                            $current_later_story_tags_array = explode(" ", $current_later_story_info[0]["tags"]);
 
-                                // Test
-                                // echo "<p>Current favorite story tags array :</p>";
-                                // var_dump($current_fav_story_tags_array);
+                            // Test
+                            // echo "<p>Current favorite story tags array :</p>";
+                            // var_dump($current_fav_story_tags_array);
 
-                                // ---- DISPLAY CURRENT READ LATER STORY'S STORY BOX ---- //
-                                // START of current read later story's story box
-                                echo "<section class='story_info_section' onclick='Synopsis(\"".$current_later_story_info[0]['story_title']."\",\"".$current_later_story_info[0]['author']."\",\"".$current_later_story_info[0]['tags']."\",\"".$current_later_story_info[0]['chapter_ids']."\")'>";
+                            // ---- DISPLAY CURRENT READ LATER STORY'S STORY BOX ---- //
+                            // START of current read later story's story box
+                            echo "<section class='story_info_section' onclick='Synopsis(\"".$current_later_story_info[0]['story_title']."\",\"".$current_later_story_info[0]['author']."\",\"".$current_later_story_info[0]['tags']."\",\"".$current_later_story_info[0]['chapter_ids']."\")'>";
 
-                                    // START of story title div
-                                    echo "<div>";
+                                // START of story title div
+                                echo "<div>";
 
-                                        // Story title
-                                        echo "<h4>".$current_later_story_info[0]['story_title']."</h4>";
+                                    // Story title
+                                    echo "<h4>".$current_later_story_info[0]['story_title']."</h4>";
 
-                                    // END of story title div
-                                    echo "</div>";
-
-
-                                    // START of story stats div
-                                    echo "<div>";
-
-                                        // Author
-                                        echo "<p>".$current_later_story_info[0]['author']."</p>";
-
-                                        // Date
-                                        echo "<p>".date("d-m-Y", strtotime($current_later_story_info[0]['pub_date']))."</p>";
-
-                                        // Likes
-                                        echo "<p>".$current_later_story_info[0]['likes']." Likes</p>";
-
-                                        // Dislikes
-                                        echo "<p>".$current_later_story_info[0]['dislikes']." Dislikes</p>";
-
-                                    // END of story stats div
-                                    echo "</div>";
+                                // END of story title div
+                                echo "</div>";
 
 
-                                    // START of tags div
-                                    echo "<div class='tags_div'>";
+                                // START of story stats div
+                                echo "<div>";
 
-                                        // For each tag
-                                        foreach($current_later_story_tags_array as $tag)
+                                    // Author
+                                    echo "<p>".$current_later_story_info[0]['author']."</p>";
+
+                                    // Date
+                                    echo "<p>".date("d-m-Y", strtotime($current_later_story_info[0]['pub_date']))."</p>";
+
+                                    // Likes
+                                    echo "<p>".$current_later_story_info[0]['likes']." Likes</p>";
+
+                                    // Dislikes
+                                    echo "<p>".$current_later_story_info[0]['dislikes']." Dislikes</p>";
+
+                                // END of story stats div
+                                echo "</div>";
+
+
+                                // START of tags div
+                                echo "<div class='tags_div'>";
+
+                                    // For each tag
+                                    foreach($current_later_story_tags_array as $tag)
+                                    {
+                                        // If that tag is not empty
+                                        if($tag != "")
                                         {
-                                            // If that tag is not empty
-                                            if($tag != "")
-                                            {
-                                                // Display it
-                                                echo "<p>$tag</p>";
-                                            }
+                                            // Display it
+                                            echo "<p>$tag</p>";
                                         }
+                                    }
 
-                                    // END of tags div
-                                    echo "</div>";
+                                // END of tags div
+                                echo "</div>";
 
-                                // END of current favorite story's story box
-                                echo "</section>";
-                            }
+                            // END of current favorite story's story box
+                            echo "</section>";
+                        }
 
                     // END of Read Later section
                     echo "</section>";
