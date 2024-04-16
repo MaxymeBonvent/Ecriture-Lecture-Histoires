@@ -424,22 +424,44 @@
 
         </section>
 
-        <!-- SECTION 2 : CHAPTER TEXT  -->
-        <section class="chapter_text_section">
+        <!-- FORMAT DIV -->
+        <div class="formatting">Format</div>
+
+        <!-- TEXT FONT DIV -->
+        <div class="formatting">Text Font</div>
+
+        <!-- FONT NAMES DIV -->
+        <div id="font_names">
+            <p>Times New Roman</p>
+            <p>Arial</p>
+            <p>Helvetica</p>
+            <p>Verdana</p>
+        </div>
+
+        <!-- FONT SIZE DIV -->
+        <div class="formatting">Font Size</div>
+
+        <!-- FONT SIZE INPUT DIV -->
+        <div id="font_size_input_div">
+
+            <!-- LABEL -->
+            <label for="font_size">Enter a font size between 14 and 28 :</label>
+
+            <!-- INPUT -->
+            <input type="number" id="font_size" placeholder="00">
+
+        </div>
+
+        <!-- SECTION 2 : CHAPTER TITLE AND TEXT  -->
+        <section class="chapter_section">
 
             <?php
 
-                // START of chapter text div
-                echo "<div>";
+                // Chapter title
+                echo "<h3 id='chaper_title'>".$chapter_title_text[0]['chapter_title']."</h3>";
 
-                    // Chapter title
-                    echo "<h3>".$chapter_title_text[0]['chapter_title']."</h3>";
-
-                    // Chapter text
-                    echo "<p>".$chapter_title_text[0]['chapter_text']."</p>";
-
-                // END of chapter text div
-                echo "</div>";
+                // Chapter text
+                echo "<p id='chaper_txt'>".$chapter_title_text[0]['chapter_text']."</p>";
             ?>
 
         </section>

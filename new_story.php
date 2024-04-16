@@ -54,7 +54,20 @@
     <main>
 
         <!-- PREVIEW BACKGROUND -->
-        <div id="preview_bck_on"></div>
+        <div id="preview_bck">
+
+            <!-- DIV CONTAINING CHAPTER TITLE AND TEXT PREVIEW -->
+            <div id="preview_div">
+
+                <!-- CHAPTER TITLE PREVIEW -->
+                <h3 id="chapter_title_preview"></h3>
+
+                <!-- CHAPTER TEXT PREVIEW -->
+                <p id="chapter_text_preview"></p>
+
+            </div>
+
+        </div>
 
         <!-- CHECK IF USER IS LOGGED IN -->
         <?php
@@ -236,7 +249,7 @@
                 </div>
 
                 <!-- PREVIEW BUTTON -->
-                <button onclick="Preview()">Preview</button>
+                <button onclick="TogglePreviewBackground()" style="z-index: 1;">Toggle preview</button>
 
             </div>
 

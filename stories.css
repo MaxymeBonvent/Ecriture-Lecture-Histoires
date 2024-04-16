@@ -109,32 +109,91 @@ a:hover{
     text-decoration: underline;
 }
 
-/* PREVIEW BACKGROUND ON */
-#preview_bck_on{
+/* FORMAT DIV */
+.formatting{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Internal space */
+    padding: 3px;
+
+    /* External space */
+    margin: 3px;
+
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* FONT NAMES DIV AND FONT SIZE INPUT DIV */
+#font_names, #font_size_input_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* TEXTS IN FONT NAMES DIV */
+#font_names p{
+    /* External space */
+    margin: 0;
+
+    /* Internal space */
+    padding: 3px 0;
+
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* ODD NUMBERED TEXTS IN FONT NAMES DIV */
+#font_names :nth-child(odd){
+    /* Background */
+    background-color: rgb(0, 130, 200);
+}
+
+/* EVEN NUMBERED TEXTS IN FONT NAMES DIV */
+#font_names :nth-child(even){
+    /* Background */
+    background-color: rgb(0, 80, 200);
+}
+
+/* PREVIEW BACKGROUND */
+#preview_bck{
     /* Position type */
     position: fixed;
 
-    /* Dimensions */
-    width: 80%;
-    height: 400px;
+    /* Coordinates */
+    top: 50%;
+    right: 50%;
 
-    /* Background color */
+    /* Offset position */
+    transform: translate(50%, -50%);
+
+    /* Dimensions */
+    width: 100%;
+    height: 900px;
+
+    /* Color */
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* BUTTONS */
-button{
-    /* Mousr icon */
-    cursor: pointer;
+/* DIV CONTAINING PREVIEWS OF CHAPTER TITLE AND TEXT */
+#preview_div{
+    /* Dimensions */
+    width: 50%;
+    height: 80%;
 
-    /* Animation duration */
-    transition: 0.3s;
-}
+    /* Corners */
+    border-radius: 10px;
 
-/* HOVER ON BUTTONS */
-button:hover{
-    /* Scale */
-    transform: scale(1.1, 1.1);
+    /* Color */
+    background-color: goldenrod;
+
+    /* Scroll properties */
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* EXTERNAL SPACE */
@@ -168,6 +227,12 @@ textarea, input, button{
 
     /* Outline */
     border: 2px solid transparent;
+}
+
+/* INPUTS AND BUTTONS */
+input, button{
+    /* Mouse */
+    cursor: pointer;
 }
 
 /* STORY OPTIONS */
@@ -611,8 +676,8 @@ hr{
     text-overflow: clip;
 }
 
-/* CHAPTER TEXT SECTIONS */
-.chapter_text_section{
+/* CHAPTER SECTIONS */
+.chapter_section{
     /* Dimensions */
     width: 40%;
 
