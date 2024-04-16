@@ -33,7 +33,9 @@
             <img src="img/sun.png" alt="Day Symbol" title="Day Theme On">
 
             <!-- MAGNIFYING GLASS -->
-            <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
+            <a href="story_search_page.php">
+                <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
+            </a>
 
             <!-- NOTIFICATIONS -->
             <img src="img/mail.png" alt="Mail" title="Notifications">
@@ -70,8 +72,8 @@
             // DATABASE CONNECTION
             require_once("database_connection.php");
 
-            // If user is logged in
-            if(isset($_SESSION["username"]))
+            // If user is logged in (optional)
+            if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
             {
                 // GET USER ID
                 require_once("get_user_id.php");

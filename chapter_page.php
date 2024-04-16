@@ -33,7 +33,9 @@
             <img src="img/sun.png" alt="Day Symbol" title="Day Theme On">
 
             <!-- MAGNIFYING GLASS -->
-            <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
+            <a href="story_search_page.php">
+                <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
+            </a>
 
             <!-- NOTIFICATIONS -->
             <img src="img/mail.png" alt="Mail" title="Notifications">
@@ -70,7 +72,7 @@
             // DATABASE CONNECTION
             require_once("database_connection.php");
 
-            // If user is logged in
+            // If user is logged in (optional)
             if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
             {
                 // GET USER ID
@@ -425,30 +427,33 @@
         </section>
 
         <!-- FORMAT DIV -->
-        <div class="formatting">Format</div>
+        <div class="formatting" id="format" onclick="ToggleFontTypeAndSizeButtons()">Format</div>
 
         <!-- TEXT FONT DIV -->
-        <div class="formatting">Text Font</div>
+        <div class="formatting" id="text_font" onclick="ToggleFontNamesDiv()">Text Font</div>
 
         <!-- FONT NAMES DIV -->
-        <div id="font_names">
-            <p>Times New Roman</p>
-            <p>Arial</p>
-            <p>Helvetica</p>
-            <p>Verdana</p>
+        <div id="font_names_div">
+            <p onclick="SetFontTimesNewRoman()">Times New Roman</p>
+            <p onclick="SetFontArial()">Arial</p>
+            <p onclick="SetFontVerdana()">Verdana</p>
+            <p onclick="SetFontLucidaSansUnicode()">Lucida Sans Unicode</p>
         </div>
 
         <!-- FONT SIZE DIV -->
-        <div class="formatting">Font Size</div>
+        <div class="formatting" id="font_size" onclick="ToggleFontSizeDiv()">Font Size</div>
 
         <!-- FONT SIZE INPUT DIV -->
         <div id="font_size_input_div">
 
             <!-- LABEL -->
-            <label for="font_size">Enter a font size between 14 and 28 :</label>
+            <label for="font_size_field">Enter a font size between 14 and 28 :</label>
 
             <!-- INPUT -->
-            <input type="number" id="font_size" placeholder="00">
+            <input type="number" id="font_size_field" placeholder="00">
+
+            <!-- SUBMIT -->
+            <button id="font_size_btn" onclick="ChangeFontSize()">Change Font Size</button>
 
         </div>
 
@@ -641,6 +646,8 @@
     </main>
 
     <!-- SCRIPTS -->
+    <script src="chapter_page.js"></script>
+    <script src="formatting.js"></script>
     <script src="toggle_bookmark.js"></script>
     <script src="chapter_like_dislike.js"></script>
 

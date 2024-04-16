@@ -2,7 +2,7 @@
 let body = document.querySelector("body");
 
 // Clicked chapter info div
-let chapter_info = document.getElementById("chapter_info");
+let chapter_info = document.getElementById("user_stories_chapter_info");
 
 // Function to call a PHP script that will get info of the clicked chapter and display it on the page
 function GetChapterInfo(chapter_id)

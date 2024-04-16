@@ -109,6 +109,22 @@ a:hover{
     text-decoration: underline;
 }
 
+/* PREVIEW TOGGLE DIV */
+#preview_toggle{
+    /* Dimensions */
+    width: 20%;
+
+    /* Background */
+    background-color: rgb(210, 210, 210);
+
+    /* Mouse */
+    cursor: pointer;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+}
+
 /* FORMAT DIV */
 .formatting{
     /* Outline */
@@ -125,7 +141,7 @@ a:hover{
 }
 
 /* FONT NAMES DIV AND FONT SIZE INPUT DIV */
-#font_names, #font_size_input_div{
+#font_names_div, #font_size_input_div{
     /* Outline */
     border: 2px solid black;
 
@@ -136,25 +152,28 @@ a:hover{
 }
 
 /* TEXTS IN FONT NAMES DIV */
-#font_names p{
+#font_names_div p{
     /* External space */
     margin: 0;
 
     /* Internal space */
-    padding: 3px 0;
+    padding: 3px 10px;
 
     /* Mouse */
     cursor: pointer;
+
+    /* Color */
+    color: rgb(210, 210, 210);
 }
 
 /* ODD NUMBERED TEXTS IN FONT NAMES DIV */
-#font_names :nth-child(odd){
+#font_names_div :nth-child(odd){
     /* Background */
     background-color: rgb(0, 130, 200);
 }
 
 /* EVEN NUMBERED TEXTS IN FONT NAMES DIV */
-#font_names :nth-child(even){
+#font_names_div :nth-child(even){
     /* Background */
     background-color: rgb(0, 80, 200);
 }
@@ -233,6 +252,18 @@ textarea, input, button{
 input, button{
     /* Mouse */
     cursor: pointer;
+}
+
+/* FONT SIZE BUTTON */
+#font_size_btn{
+    /* Dimensions */
+    width: 60%;
+
+    /* External space */
+    margin: 8px 0;
+
+    /* Position */
+    align-self: center;
 }
 
 /* STORY OPTIONS */
@@ -490,6 +521,20 @@ ul, ol{
 .user_page_inner_section, .story_info_section{
     /* Dimensions */
     width: 40%;
+}
+
+/* DIV CONTAINING A STORY TITLE, STORY OPTIONS AND A LIST OF ITS CHAPTERS */
+.story_chapters{
+    /* Outline */
+    border-bottom: 2px solid black;
+
+    /* External space */
+    margin: 3px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* DIVS INSIDE SECTIONS */
@@ -849,6 +894,20 @@ form div label{
 #synopsis_input, #chapter_text_area{
     /* Dimensions */
     width: 60%;
+}
+
+/* USER STORIES PAGE'S CLICKED CHAPTER INFO DIV */
+#user_stories_chapter_info{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 50%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* CHAPTER INFO DIVS */

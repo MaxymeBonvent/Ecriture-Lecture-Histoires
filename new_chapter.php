@@ -54,6 +54,22 @@
     <!-- MAIN -->
     <main>
 
+        <!-- PREVIEW BACKGROUND -->
+        <div id="preview_bck">
+
+            <!-- DIV CONTAINING CHAPTER TITLE AND TEXT PREVIEW -->
+            <div id="preview_div">
+
+                <!-- CHAPTER TITLE PREVIEW -->
+                <h3 id="chapter_title_preview"></h3>
+
+                <!-- CHAPTER TEXT PREVIEW -->
+                <p id="chapter_text_preview"></p>
+
+            </div>
+
+        </div>
+
     <!-- CHECK IF USER IS LOGGED IN -->
     <?php
         // Start user session
@@ -185,6 +201,8 @@
 
                                 </div>
 
+                                <div onclick='TogglePreviewBackground()' style='z-index: 1;' id='preview_toggle'>Toggle preview</div>
+
                                 
                                 <div class='formBtnsDiv'>
 
@@ -207,6 +225,7 @@
 </body>
 
 <!-- SCRIPT -->
+<script src="preview.js"></script>
 <script src="check_chapter.js"></script>
 <script src="chapter_style.js"></script>
 

@@ -30,7 +30,9 @@
             <img src="img/sun.png" alt="Day Symbol" title="Day Theme On">
 
             <!-- MAGNIFYING GLASS -->
-            <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
+            <a href="story_search_page.php">
+                <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
+            </a>
 
             <!-- NOTIFICATIONS -->
             <img src="img/mail.png" alt="Mail" title="Notifications">

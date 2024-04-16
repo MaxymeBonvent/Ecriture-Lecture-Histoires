@@ -32,7 +32,9 @@
             <img src="img/sun.png" alt="Day Symbol" title="Day Theme On">
 
             <!-- MAGNIFYING GLASS -->
-            <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
+            <a href="story_search_page.php">
+                <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
+            </a>
 
             <!-- NOTIFICATIONS -->
             <img src="img/mail.png" alt="Mail" title="Notifications">
@@ -126,7 +128,7 @@
                     // ---- DISPLAY CURRENT STORY TITLE ----
 
                     // Display current story title and options
-                    echo    "   <div style='width: 100%;' class='user_page_inner_div'><h4>".$story_title["story_title"]."</h4>
+                    echo    "   <div style='width: 100%;' class='story_chapters'><h4>".$story_title["story_title"]."</h4>
 
                                 <p class='chapter_option' onclick='NewChapter($story_id)'>Write new chapter</p>
                                 <p onclick='DeleteStory($story_id,\"".$story_title["story_title"]."\")' class='delete_txt'>Delete Story</p>
@@ -166,7 +168,7 @@
                 echo "</div>";
 
                 // ---- CHAPTER INFO ----
-                echo "<div id='chapter_info' class='user_page_inner_div'><h3>Click on a chapter to show it here</h3></div>";
+                echo "<div id='user_stories_chapter_info' class='user_page_inner_div'><h3>Click on a chapter to show it here</h3></div>";
                 
                 // END OF PAGE CONTAINER
                 echo "</div>";

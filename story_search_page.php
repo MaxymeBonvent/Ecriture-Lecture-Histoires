@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Homepage</title>
+    <title>Story Search</title>
     <link rel="stylesheet" href="stories.css">
 
 </head>
@@ -13,13 +13,13 @@
 <body>
 
     <!-- HEADER -->
-    <header>
+    <header id="_header">
 
         <!-- TITLE -->
         <h1>The Reading &amp; Writing Place</h1>
 
         <!-- SUBTITLE -->
-        <h2>Homepage</h2>
+        <h2>Story Search</h2>
 
         <!-- NAVIGATION -->
         <nav>
@@ -57,28 +57,30 @@
     <!-- MAIN -->
     <main>
 
+        <h3>Story Search</h3>
+
+        <!-- OUTLINE OF BACK TO TOP DIV -->
+        <a id="back_to_top_outline" href="#_header">
+
+            <!-- BACK TO TOP LINK  -->
+            <div id="back_to_top"></div>
+
+        </a>
+
         <?php
             // Start user session
             session_start();
 
-            // Database connection
+            // DATABASE CONNECTION
             require_once("database_connection.php");
 
-            // If user is not logged in
-            if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
+            // If user is logged in (optional)
+            if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
             {
-                // Redirect user to log in page
-                header("Location: log_in_form.php");
-            }
-
-            // If user is logged in
-            else if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
-            {
-                // Tell user their story is gone
-                echo "<p>Your story has been successfully deleted.</p>";
+                // GET USER ID
+                require_once("get_user_id.php");
             }
         ?>
-
     </main>
 
     <!-- FOOTER -->
