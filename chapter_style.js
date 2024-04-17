@@ -106,19 +106,19 @@ function ToggleColorBox()
 function Red()
 {
     // Add red filter to chapter text area
-    chapter_text_area.value += "<p style='color: rgb(160, 0, 0);'></p>";
+    chapter_text_area.value += "<span style='color: rgb(160, 0, 0);'></span>";
 }
 
 // GREEN
 function Green()
 {
     // Add green filter to chapter text area
-    chapter_text_area.value += "<p style='color: rgb(0, 120, 0);'></p>";
+    chapter_text_area.value += "<span style='color: rgb(0, 120, 0);'></span>";
 }
 
 // BLUE
 function Blue()
 {
     // Add green filter to chapter text area
-    chapter_text_area.value += "<p style='color: rgb(0, 60, 180);'></p>";
+    chapter_text_area.value += "<span style='color: rgb(0, 60, 180);'></span>";
 }

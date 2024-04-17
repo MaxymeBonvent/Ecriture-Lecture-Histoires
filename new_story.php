@@ -251,7 +251,7 @@
                 </div>
 
                 <!-- PREVIEW BUTTON -->
-                <button onclick="TogglePreviewBackground()" style="z-index: 1;">Toggle preview</button>
+                <div id="preview_toggle" onclick="TogglePreviewBackground()" style="z-index: 1;">Toggle preview</div>
 
             </div>
 

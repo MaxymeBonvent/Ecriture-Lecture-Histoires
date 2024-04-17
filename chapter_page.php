@@ -447,7 +447,7 @@
         <div id="font_size_input_div">
 
             <!-- LABEL -->
-            <label for="font_size_field">Enter a font size between 14 and 28 :</label>
+            <label for="font_size_field">Enter a font size (in pixels) between 14 and 28 :</label>
 
             <!-- INPUT -->
             <input type="number" id="font_size_field" placeholder="00">
@@ -465,8 +465,14 @@
                 // Chapter title
                 echo "<h3 id='chaper_title'>".$chapter_title_text[0]['chapter_title']."</h3>";
 
-                // Chapter text
-                echo "<p id='chaper_txt'>".$chapter_title_text[0]['chapter_text']."</p>";
+                // START of chapter text div
+                echo "<div id='chapter_txt_div'>";
+
+                    // Chapter text
+                    echo "<p id='chaper_txt'>".$chapter_title_text[0]['chapter_text']."</p>";
+
+                // END of chapter text div
+                echo "</div>";
             ?>
 
         </section>

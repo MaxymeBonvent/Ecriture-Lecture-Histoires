@@ -201,7 +201,7 @@
 
                                 </div>
 
-                                <div onclick='TogglePreviewBackground()' style='z-index: 1;' id='preview_toggle'>Toggle preview</div>
+                                <div id='preview_toggle' onclick='TogglePreviewBackground()' style='z-index: 1;'>Toggle preview</div>
 
                                 
                                 <div class='formBtnsDiv'>

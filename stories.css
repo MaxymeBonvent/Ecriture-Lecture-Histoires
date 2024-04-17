@@ -109,6 +109,26 @@ a:hover{
     text-decoration: underline;
 }
 
+/* PREVIEW BACKGROUND */
+#preview_bck{
+    /* Position type */
+    position: fixed;
+
+    /* Coordinates */
+    top: 50%;
+    right: 50%;
+
+    /* Offset position */
+    transform: translate(50%, -50%);
+
+    /* Dimensions */
+    width: 100%;
+    height: 900px;
+
+    /* Color */
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
 /* PREVIEW TOGGLE DIV */
 #preview_toggle{
     /* Dimensions */
@@ -178,26 +198,6 @@ a:hover{
     background-color: rgb(0, 80, 200);
 }
 
-/* PREVIEW BACKGROUND */
-#preview_bck{
-    /* Position type */
-    position: fixed;
-
-    /* Coordinates */
-    top: 50%;
-    right: 50%;
-
-    /* Offset position */
-    transform: translate(50%, -50%);
-
-    /* Dimensions */
-    width: 100%;
-    height: 900px;
-
-    /* Color */
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
 /* DIV CONTAINING PREVIEWS OF CHAPTER TITLE AND TEXT */
 #preview_div{
     /* Dimensions */
@@ -246,12 +246,6 @@ textarea, input, button{
 
     /* Outline */
     border: 2px solid transparent;
-}
-
-/* INPUTS AND BUTTONS */
-input, button{
-    /* Mouse */
-    cursor: pointer;
 }
 
 /* FONT SIZE BUTTON */
@@ -728,6 +722,10 @@ hr{
 
     /* Internal space */
     padding: 0 40px;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
 }
 
 /* TITLES AND AUTHOR NAMES */
@@ -926,9 +924,9 @@ form div label{
 #chapter_txt, .chapter_info_inner_div{
     /* Dimensions */
     width: 400px;
-} 
+}
 
-/* CHAPTER TEXT DIV */
+/* CHAPTER TEXT */
 #chapter_txt{
     /* Outline */
     border: 2px solid black;
