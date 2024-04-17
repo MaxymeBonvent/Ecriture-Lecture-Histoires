@@ -152,7 +152,7 @@
             <p>Already have an account? <a href="log_in_form.php">Log in.</a></p>
 
             <!-- FORM BUTTONS -->
-            <div>
+            <div id="form_buttons_div">
 
                 <!-- SUBMIT BUTTON -->
                 <input id="submit_btn" type="submit" value="Create account" class="formBtn">

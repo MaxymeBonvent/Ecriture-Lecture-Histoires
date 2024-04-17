@@ -421,7 +421,7 @@ form{
     border: 2px solid black;
 
     /* Dimensions */
-    width: 60%;
+    width: 50%;
 
     /* Position of internal elements */
     display: flex;
@@ -435,15 +435,10 @@ form div{
     border: 2px solid black;
 
     /* Dimensions */
-    width: 55%;
+    width: 60%;
 
     /* External space */
     margin: 10px 0;
-
-    /* Position of internal elements */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 /* PASSWORD CRITERIAS DIV */
@@ -820,22 +815,57 @@ form div label{
     justify-content: center;
 }
 
-/* STORY TITLE, TAGS AND CHAPTER TITLE INPUT FIELDS */
-#story_title_input_field, #tags_input_field, #chapter_title_input_field{
+/* FORM INPUT FIELDS */
+.form_input_field{
     /* Dimensions */
-    width: 60%;
+    width: 80%;
 }
 
-/* DIV OF AVAILABLE TAGS */
-#tags_box{
+/* STYLE OPTIONS DIV */
+#style_options_div{
     /* Dimensions */
     width: 60%;
 
     /* Position of internal elements */
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+/* ACCOUNT PAGE AND LOG IN PAGE FORM DIVS */
+.account_div{
+    /* Dimensions */
+    width: 40%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*  FORM END BUTTONS DIV */
+#form_buttons_div{
+    /* Dimensions */
+    width: 20%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* DIV OF AVAILABLE TAGS */
+#tags_select_div{
+    /* Dimensions */
+    width: 90%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 /* TAG LABELS */
@@ -850,7 +880,7 @@ form div label{
     padding: 0 10px;
 
     /* External space */
-    margin: 8px 14px;
+    margin: 8px 9px;
 
     /* Mouse icon */
     cursor: pointer;

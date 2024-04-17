@@ -62,7 +62,7 @@
         <form action="login.php" method="post">
 
             <!-- USERNAME DIV -->
-            <div>
+            <div class="account_div">
 
                 <!-- LABEL -->
                 <label id="user_label" for="username">Username</label>
@@ -73,7 +73,7 @@
             </div>
 
             <!-- PASSWORD DIV -->
-            <div>
+            <div class="account_div">
 
                 <!-- LABEL -->
                 <label for="password">Password</label>
@@ -88,7 +88,7 @@
             <p>Don't have an account yet? <a href="create_account.php">Create one.</a></p>
 
             <!-- FORM BUTTONS -->
-            <div>
+            <div id="form_buttons_div">
 
                 <!-- SUBMIT BUTTON -->
                 <input type="submit" value="Login" class="formBtn">

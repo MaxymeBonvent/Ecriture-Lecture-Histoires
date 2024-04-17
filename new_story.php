@@ -109,7 +109,7 @@
                 <label for="story_title_input_field" id="story_title_label">Story Title (up to 30 words)</label>
 
                 <!-- INPUT -->
-                <input type="text" id="story_title_input_field" name="story_title" placeholder="Story of a strange creature" required="true" autocomplete="off" maxlength="400" onkeyup="StoryTitleCheck()" title="Enter a title for your story">
+                <input type="text" class="form_input_field" id="story_title_input_field" name="story_title" placeholder="Story of a strange creature" required="true" autocomplete="off" maxlength="400" onkeyup="StoryTitleCheck()" title="Enter a title for your story">
 
                 <!-- STORY TITLE WORD COUNTING DIV -->
                 <div class="counting_div">
@@ -128,7 +128,7 @@
                 <label for="synopsis_input" id="synopsis_label">Synopsis (up to 100 words)</label>
 
                 <!-- INPUT -->
-                <textarea id="synopsis_input" name="synopsis"  cols="30" rows="10" placeholder="Once upon a time..." required="true" autocomplete="off" onkeyup="SynopsisCheck()" title="Enter a synopsis for your story"></textarea>
+                <textarea class="form_input_field" id="synopsis_input" name="synopsis"  cols="30" rows="10" placeholder="Once upon a time..." required="true" autocomplete="off" onkeyup="SynopsisCheck()" title="Enter a synopsis for your story"></textarea>
 
                 <!-- SYNOPSIS WORD COUNTING DIV -->
                 <div class="counting_div">
@@ -147,10 +147,10 @@
                 <label for="tags_input_field" id="tags_label">Tags (up to 6), you can only insert or remove them by click</label>
 
                 <!-- INPUT -->
-                <input type="text" id="tags_input_field" name="tags" placeholder="[First tag] [Second tag]" required="true" autocomplete="off" maxlength="60" onkeyup="EmptyTagsField()" title="Click tags for your story">
+                <input type="text" class="form_input_field" id="tags_input_field" name="tags" placeholder="[First Tag] [Second Tag] [Third Tag] [Fourth Tag] [Fifth Tag] [Sixth Tag]" required="true" autocomplete="off" maxlength="60" onkeyup="EmptyTagsField()" title="Click tags for your story">
 
                 <!-- DIV OF AVAILABLE TAGS -->
-                <div id="tags_box">
+                <div id="tags_select_div">
 
                     <!-- TAG LIST -->
                     <p class="tag">Adventure</p>
@@ -188,7 +188,7 @@
                 <label for="chapter_title_input_field" id="chapter_title_label">Chapter 1 Title (up to 30 words)</label>
 
                 <!-- INPUT -->
-                <input type="text" id="chapter_title_input_field" name="chapter_title" placeholder="Chapter 1 : a small creature appears" required="true" autocomplete="off" maxlength="400" onkeyup="ChapterTitleCheck()" title="Enter the title of the first chapter of your story">
+                <input type="text" class="form_input_field" id="chapter_title_input_field" name="chapter_title" placeholder="Chapter 1 : a small creature appears" required="true" autocomplete="off" maxlength="400" onkeyup="ChapterTitleCheck()" title="Enter the title of the first chapter of your story">
 
                 <!-- CHAPTER TITLE WORD COUNTING DIV -->
                 <div class="counting_div">
@@ -204,13 +204,13 @@
             <div class="writing_div">
 
                 <!-- LABEL -->
-                <label for="chapter_text_area" id="chapter_text_label">Chapter 1 Text (up to 15 000 words)</label>
+                <label for="chapter_text_area" class="form_input_field" id="chapter_text_label">Chapter 1 Text (up to 15 000 words)</label>
 
                 <!-- DIV CONTAINING STYLE OPTIONS DIV AND COLOR OPTIONS DIV -->
                 <div id="options_container">
 
                     <!-- STYLE OPTIONS DIV -->
-                    <div id="style_options">
+                    <div id="style_options_div">
 
                         <!-- STYLE OPTIONS -->
                         <img style="cursor: pointer;" src="img/new_line.png" alt="New line symbol" title="Insert a new line" onclick="NewLine()">
@@ -251,12 +251,12 @@
                 </div>
 
                 <!-- PREVIEW BUTTON -->
-                <div id="preview_toggle" onclick="TogglePreviewBackground()" style="z-index: 1;">Toggle preview</div>
+                <div id="preview_toggle" onclick="TogglePreviewBackground()" style="z-index: 1;">Preview</div>
 
             </div>
 
             <!-- FORM BUTTONS -->
-            <div>
+            <div id="form_buttons_div">
 
                 <!-- SUBMIT BUTTON -->
                 <input type="submit" value="Publish Story" id="publish_input" class="formBtn">
