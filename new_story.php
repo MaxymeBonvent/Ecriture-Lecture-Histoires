@@ -103,7 +103,7 @@
         <form action="register_story.php" method="post">
 
             <!-- STORY TITLE DIV -->
-            <div class="writing_div">
+            <div class="new_story_div">
 
                 <!-- LABEL -->
                 <label for="story_title_input_field" id="story_title_label">Story Title (up to 30 words)</label>
@@ -122,7 +122,7 @@
             </div>
 
             <!-- SYNOPSIS DIV -->
-            <div class="writing_div">
+            <div class="new_story_div">
 
                 <!-- LABEL -->
                 <label for="synopsis_input" id="synopsis_label">Synopsis (up to 100 words)</label>
@@ -141,7 +141,7 @@
             </div>
 
             <!-- TAGS DIV -->
-            <div class="writing_div">
+            <div class="new_story_div">
 
                 <!-- LABEL -->
                 <label for="tags_input_field" id="tags_label">Tags (up to 6), you can only insert or remove them by click</label>
@@ -182,7 +182,7 @@
             </div>
 
             <!-- CHAPTER TITLE DIV -->
-            <div class="writing_div">
+            <div class="new_story_div">
 
                 <!-- LABEL -->
                 <label for="chapter_title_input_field" id="chapter_title_label">Chapter 1 Title (up to 30 words)</label>
@@ -201,7 +201,7 @@
             </div>
 
             <!-- CHAPTER TEXT DIV -->
-            <div class="writing_div">
+            <div class="new_story_div">
 
                 <!-- LABEL -->
                 <label for="chapter_text_area" class="form_input_field" id="chapter_text_label">Chapter 1 Text (up to 15 000 words)</label>
@@ -210,7 +210,7 @@
                 <div id="options_container">
 
                     <!-- STYLE OPTIONS DIV -->
-                    <div id="style_options_div">
+                    <div id="style_options">
 
                         <!-- STYLE OPTIONS -->
                         <img style="cursor: pointer;" src="img/new_line.png" alt="New line symbol" title="Insert a new line" onclick="NewLine()">

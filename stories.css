@@ -109,6 +109,121 @@ a:hover{
     text-decoration: underline;
 }
 
+/* FORM */
+form{
+    /* Outline */
+    border: 2px solid navy;
+
+    /* Dimensions */
+    width: 60%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ---- NEW STORY ---- */
+
+/* NEW STORY FORM DIV */
+.new_story_div{
+    /* Dimensions */
+    width: 80%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* WORD OR TAGS COUNTING DIVS */
+.counting_div{
+    /* Dimensions */
+    width: 20%;
+    height: 20px;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* TEXTAREAS */
+textarea{
+    /* Dimensions */
+    width: 50%;
+}
+
+/* DIV CONTAINING STYLE OPTIONS DIV AND COLOR OPTIONS DIV */
+#options_container{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* STYLE AND COLOR OPTIONS DIVS */
+#style_options, #color_options{
+    /* Dimensions */
+    width: 90%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+/* ---- STORY SEARCH ---- */
+
+/* STORY SEARCH FORM DIV */
+.search_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* STORY SEARCH FORM DIV WITH ELEMENTS IN A ROW */
+.search_div_row{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 60%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
 /* PREVIEW BACKGROUND */
 #preview_bck{
     /* Position type */
@@ -415,20 +530,6 @@ section .story_div{
     cursor: pointer;
 }
 
-/* FORM */
-form{
-    /* Outline */
-    border: 2px solid black;
-
-    /* Dimensions */
-    width: 50%;
-
-    /* Position of internal elements */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 /* FORM DIVS */
 form div{
     /* Outline */
@@ -541,30 +642,6 @@ ul, ol{
     display: flex;
     justify-content: space-around;
     align-items: center;
-}
-
-/* DIV CONTAINING STYLE OPTIONS DIV AND COLOR OPTIONS DIV */
-#options_container{
-    /* Outline */
-    border: 2px solid black;
-
-    /* Dimensions */
-    width: 80%;
-
-    /* Position of internal elements */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-}
-
-/* STYLE OPTIONS DIV */
-#style_options{
-    /* Outline */
-    border: 2px solid black;
-
-    /* Dimensions */
-    width: 80%;
 }
 
 /* STYLE OPTIONS */
@@ -804,39 +881,16 @@ form div label{
     flex-direction: column;
 }
 
-/* WORD OR TAGS COUNTING DIVS */
-.counting_div{
-    /* Dimensions */
-    width: 20%;
-    height: 20px;
-
-    /* Position of internal elements */
-    display: flex;
-    justify-content: center;
-}
-
 /* FORM INPUT FIELDS */
 .form_input_field{
     /* Dimensions */
     width: 80%;
 }
 
-/* STYLE OPTIONS DIV */
-#style_options_div{
-    /* Dimensions */
-    width: 60%;
-
-    /* Position of internal elements */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
 /* ACCOUNT PAGE AND LOG IN PAGE FORM DIVS */
 .account_div{
     /* Dimensions */
-    width: 40%;
+    width: 55%;
 
     /* Position of internal elements */
     display: flex;
@@ -847,7 +901,7 @@ form div label{
 /*  FORM END BUTTONS DIV */
 #form_buttons_div{
     /* Dimensions */
-    width: 20%;
+    width: 30%;
 
     /* Position of internal elements */
     display: flex;
@@ -880,7 +934,7 @@ form div label{
     padding: 0 10px;
 
     /* External space */
-    margin: 8px 9px;
+    margin: 10px 4px;
 
     /* Mouse icon */
     cursor: pointer;
@@ -994,16 +1048,6 @@ form div label{
 
 /* STYLE OPTIONS DIV */
 .style_option{
-    /* Dimensions */
-    width: 80%;
-
-    /* Position of internal elements */
-    display: flex;
-    justify-content: space-evenly;
-}
-
-/* TEXT COLOR OPTIONS DIV */
-#color_options{
     /* Dimensions */
     width: 80%;
 

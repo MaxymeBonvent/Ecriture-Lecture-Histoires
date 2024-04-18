@@ -71,10 +71,10 @@
         <form action="register_user.php" method="post">
 
             <!-- USERNAME DIV -->
-            <div>
+            <div class="account_div">
 
                 <!-- LABEL -->
-                <label id="user_label" for="username">Username (up to 20 characters)</label>
+                <label id="user_label" for="username">Username (max. 20 char.)</label>
 
                 <!-- INPUT -->
                 <input type="text" name="username" id="username" placeholder="Your name" required="true" autocomplete="on" maxlength="20" oninput="UsernameCheck()">
@@ -85,7 +85,7 @@
             <p id="username_existence">Username availability text</p>
 
             <!-- MAIL DIV -->
-            <div>
+            <div class="account_div">
 
                 <!-- LABEL -->
                 <label for="mail">Mail</label>
@@ -101,7 +101,7 @@
             <!-- aA0%aA0%aA0% -->
 
             <!-- PASSWORD DIV -->
-            <div>
+            <div class="account_div">
 
                 <!-- LABEL -->
                 <label for="password">Password</label>
@@ -135,7 +135,7 @@
             </div>
 
             <!-- PASSWORD CHECK DIV -->
-            <div>
+            <div class="account_div">
 
                 <!-- LABEL -->
                 <label for="password_check">Repeat Password</label>

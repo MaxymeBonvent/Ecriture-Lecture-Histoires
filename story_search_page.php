@@ -54,6 +54,21 @@
 
     </header>
 
+    <?php
+        // Start user session
+        session_start();
+
+        // DATABASE CONNECTION
+        require_once("database_connection.php");
+
+        // If user is logged in (optional)
+        if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
+        {
+            // GET USER ID
+            require_once("get_user_id.php");
+        }
+    ?>
+
     <!-- MAIN -->
     <main>
 
@@ -66,10 +81,11 @@
             <!-- SEARCH FORM -->
             <form action="story_search.php" method="get">
 
-                <!-- TAG INPUT DIV -->
-                <div>
+                <!-- TAGS DIV -->
+                <div class="search_div">
+
                     <!-- LABEL -->
-                    <label for="tags">Tags</label>
+                    <label for="tags">Tags (up to 6), you can only insert or remove them by click</label>
 
                     <!-- INPUT -->
                     <input class="form_input_field" id="tags" name="tags" type="text" required="off" autocomplete="off" placeholder="[First Tag] [Second Tag] [Third Tag] [Fourth Tag] [Fifth Tag] [Sixth Tag]">
@@ -97,6 +113,28 @@
                     </div>
 
                 </div>
+
+                <!-- STORY TITLE -->
+                <div class="search_div_row">
+
+                    <!-- LABEL -->
+                    <label for="story_title">Story Title (max. 100 char.)</label>
+
+                    <!-- INPUT -->
+                    <input id="story_title" name="story_title" type="text" required="false" autocomplete="off" maxlength="100" placeholder="Story title">
+
+                </div>
+
+                <!-- AUTHOR -->
+                <div class="search_div_row">
+
+                    <!-- LABEL -->
+                    <label for="author">Author (max. 100 char.)</label>
+
+                    <!-- INPUT -->
+                    <input id="author" name="author" type="text" required="false" autocomplete="off" maxlength="100" placeholder="Author's name">
+
+                </div>
   
             </form>
 
@@ -121,20 +159,6 @@
 
         </a>
 
-        <?php
-            // Start user session
-            session_start();
-
-            // DATABASE CONNECTION
-            require_once("database_connection.php");
-
-            // If user is logged in (optional)
-            if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
-            {
-                // GET USER ID
-                require_once("get_user_id.php");
-            }
-        ?>
     </main>
 
     <!-- FOOTER -->
