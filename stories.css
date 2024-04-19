@@ -123,6 +123,12 @@ form{
     align-items: center;
 }
 
+/* REQUIRED SYMBOL */
+.required_star{
+    /* Color */
+    color: rgb(110, 0, 0);
+}
+
 /* ---- NEW STORY ---- */
 
 /* NEW STORY FORM DIV */
@@ -188,13 +194,23 @@ textarea{
 
 /* ---- STORY SEARCH ---- */
 
-/* STORY SEARCH FORM DIV */
-.search_div{
+#search_section{
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* STORY SEARCH FORM COLUMN DIV */
+.search_div_col{
     /* Outline */
     border: 2px solid black;
 
     /* Dimensions */
-    width: 80%;
+    width: 50%;
+
+    /* External space */
+    margin: 10px 0;
 
     /* Position of internal elements */
     display: flex;
@@ -202,13 +218,16 @@ textarea{
     align-items: center;
 }
 
-/* STORY SEARCH FORM DIV WITH ELEMENTS IN A ROW */
+/* STORY SEARCH FORM ROW DIV */
 .search_div_row{
     /* Outline */
     border: 2px solid black;
 
     /* Dimensions */
-    width: 60%;
+    width: 50%;
+
+    /* External space */
+    margin: 10px 0;
 
     /* Position of internal elements */
     display: flex;
@@ -217,11 +236,57 @@ textarea{
     align-items: center;
 }
 
+/* WORD COUNT DIVS */
+.word_count_div{
+    /* Outline */
+    border: 2px solid black;
 
+    /* Dimensions */
+    width: 45%;
 
+    /* External space */
+    margin: 4px;
 
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
+/* INPUTS IN WORD COUNT DIVS */
+.word_count_div input{
+    /* Dimensions */
+    width: 30%;
+}
 
+/* PSEUDO BUTTONS */
+.pseudoBtn{
+    /* Back */
+    background-color: rgb(210, 210, 210);
+
+    /* Outline */
+    border: 2px solid transparent;
+
+    /* Mouse icon */
+    cursor: pointer;
+
+    /* Font properties */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+
+    /* Internal space */
+    padding: 3px;
+
+    /* Animation duration */
+    transition: 0.3s;
+}
+
+/* HOVER ON PSEUDO BUTTONS */
+.pseudoBtn:hover{
+    /* Size */
+    transform: scale(1.1, 1.1);
+}
 
 
 /* PREVIEW BACKGROUND */
@@ -515,9 +580,12 @@ section .story_div{
 }
 
 /* DIV WITH SUBMIT AND RESET BUTTONS */
-.formBtnsDiv{
+.form_btns_div{
+    /* Outline */
+    border: 2px solid black;
+
     /* Dimensions */
-    width: 40%;
+    width: 30%;
 
     /* Position of internal elements */
     display: flex;
@@ -879,6 +947,7 @@ form div label{
     /* Position of internal elements */
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 /* FORM INPUT FIELDS */

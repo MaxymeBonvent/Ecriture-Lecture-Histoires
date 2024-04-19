@@ -58,6 +58,9 @@
         <!-- LOGIN FORM TITLE -->
         <h3>Login form</h3>
 
+        <!-- REQUIRED SYMBOL -->
+        <p><span class="required_star">*</span> = required</p>
+
         <!-- FORM -->
         <form action="login.php" method="post">
 
@@ -65,7 +68,7 @@
             <div class="account_div">
 
                 <!-- LABEL -->
-                <label id="user_label" for="username">Username</label>
+                <label id="user_label" for="username">Username<span class="required_star">*</span></label>
 
                 <!-- INPUT -->
                 <input type="text" name="username" id="username" placeholder="Your name" required="true" autocomplete="on">
@@ -76,7 +79,7 @@
             <div class="account_div">
 
                 <!-- LABEL -->
-                <label for="password">Password</label>
+                <label for="password">Password<span class="required_star">*</span></label>
 
                 <!-- INPUT -->
                 <input type="password" name="password" id="password" placeholder="************" required="true" autocomplete="off">
@@ -88,7 +91,7 @@
             <p>Don't have an account yet? <a href="create_account.php">Create one.</a></p>
 
             <!-- FORM BUTTONS -->
-            <div id="form_buttons_div">
+            <div class="form_btns_div">
 
                 <!-- SUBMIT BUTTON -->
                 <input type="submit" value="Login" class="formBtn">

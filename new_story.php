@@ -99,6 +99,9 @@
         <!-- FORM TITLE -->
         <h3>Write a new story</h3>
 
+        <!-- REQUIRED SYMBOL -->
+        <p><span class="required_star">*</span> = required</p>
+
         <!-- FORM -->
         <form action="register_story.php" method="post">
 
@@ -106,7 +109,7 @@
             <div class="new_story_div">
 
                 <!-- LABEL -->
-                <label for="story_title_input_field" id="story_title_label">Story Title (up to 30 words)</label>
+                <label for="story_title_input_field" id="story_title_label">Story Title (up to 30 words)<span class="required_star">*</span></label>
 
                 <!-- INPUT -->
                 <input type="text" class="form_input_field" id="story_title_input_field" name="story_title" placeholder="Story of a strange creature" required="true" autocomplete="off" maxlength="400" onkeyup="StoryTitleCheck()" title="Enter a title for your story">
@@ -125,7 +128,7 @@
             <div class="new_story_div">
 
                 <!-- LABEL -->
-                <label for="synopsis_input" id="synopsis_label">Synopsis (up to 100 words)</label>
+                <label for="synopsis_input" id="synopsis_label">Synopsis (up to 100 words)<span class="required_star">*</span></label>
 
                 <!-- INPUT -->
                 <textarea class="form_input_field" id="synopsis_input" name="synopsis"  cols="30" rows="10" placeholder="Once upon a time..." required="true" autocomplete="off" onkeyup="SynopsisCheck()" title="Enter a synopsis for your story"></textarea>
@@ -144,7 +147,7 @@
             <div class="new_story_div">
 
                 <!-- LABEL -->
-                <label for="tags_input_field" id="tags_label">Tags (up to 6), you can only insert or remove them by click</label>
+                <label for="tags_input_field" id="tags_label">Tags (up to 6), you can only insert or remove them by click<span class="required_star">*</span></label>
 
                 <!-- INPUT -->
                 <input type="text" class="form_input_field" id="tags_input_field" name="tags" placeholder="[First Tag] [Second Tag] [Third Tag] [Fourth Tag] [Fifth Tag] [Sixth Tag]" required="true" autocomplete="off" maxlength="60" onkeyup="EmptyTagsField()" title="Click tags for your story">
@@ -185,7 +188,7 @@
             <div class="new_story_div">
 
                 <!-- LABEL -->
-                <label for="chapter_title_input_field" id="chapter_title_label">Chapter 1 Title (up to 30 words)</label>
+                <label for="chapter_title_input_field" id="chapter_title_label">Chapter 1 Title (up to 30 words)<span class="required_star">*</span></label>
 
                 <!-- INPUT -->
                 <input type="text" class="form_input_field" id="chapter_title_input_field" name="chapter_title" placeholder="Chapter 1 : a small creature appears" required="true" autocomplete="off" maxlength="400" onkeyup="ChapterTitleCheck()" title="Enter the title of the first chapter of your story">
@@ -204,7 +207,7 @@
             <div class="new_story_div">
 
                 <!-- LABEL -->
-                <label for="chapter_text_area" class="form_input_field" id="chapter_text_label">Chapter 1 Text (up to 15 000 words)</label>
+                <label for="chapter_text_area" class="form_input_field" id="chapter_text_label">Chapter 1 Text (up to 15 000 words)<span class="required_star">*</span></label>
 
                 <!-- DIV CONTAINING STYLE OPTIONS DIV AND COLOR OPTIONS DIV -->
                 <div id="options_container">
@@ -256,7 +259,7 @@
             </div>
 
             <!-- FORM BUTTONS -->
-            <div id="form_buttons_div">
+            <div class="form_btns_div">
 
                 <!-- SUBMIT BUTTON -->
                 <input type="submit" value="Publish Story" id="publish_input" class="formBtn">

@@ -67,6 +67,9 @@
         <!-- NEW ACCOUNT FORM TITLE -->
         <h3>New account form</h3>
 
+        <!-- REQUIRED SYMBOL -->
+        <p><span class="required_star">*</span> = required</p>
+
         <!-- FORM -->
         <form action="register_user.php" method="post">
 
@@ -74,7 +77,7 @@
             <div class="account_div">
 
                 <!-- LABEL -->
-                <label id="user_label" for="username">Username (max. 20 char.)</label>
+                <label id="user_label" for="username">Username (max. 20 char.)<span class="required_star">*</span></label>
 
                 <!-- INPUT -->
                 <input type="text" name="username" id="username" placeholder="Your name" required="true" autocomplete="on" maxlength="20" oninput="UsernameCheck()">
@@ -88,7 +91,7 @@
             <div class="account_div">
 
                 <!-- LABEL -->
-                <label for="mail">Mail</label>
+                <label for="mail">Mail<span class="required_star">*</span></label>
 
                 <!-- INPUT -->
                 <input type="email" name="mail" id="mail" placeholder="your.adress@example.com" required="true" autocomplete="on" maxlength="50" oninput="MailExistenceCheck()">
@@ -104,7 +107,7 @@
             <div class="account_div">
 
                 <!-- LABEL -->
-                <label for="password">Password</label>
+                <label for="password">Password<span class="required_star">*</span></label>
 
                 <!-- INPUT -->
                 <input type="password" name="password" id="password" placeholder="************" required="true" autocomplete="off" maxlength="50" oninput="AllPasswordCriteriasCheck()">
@@ -138,7 +141,7 @@
             <div class="account_div">
 
                 <!-- LABEL -->
-                <label for="password_check">Repeat Password</label>
+                <label for="password_check">Repeat Password<span class="required_star">*</span></label>
 
                 <!-- INPUT -->
                 <input type="password" name="password_check" id="password_check" placeholder="************" required="true" autocomplete="off" maxlength="50" oninput="AllPasswordCriteriasCheck()">
@@ -151,14 +154,14 @@
             <!-- LOGIN SUGGESTION -->
             <p>Already have an account? <a href="log_in_form.php">Log in.</a></p>
 
-            <!-- FORM BUTTONS -->
-            <div id="form_buttons_div">
+            <!-- FORM END BUTTONS -->
+            <div class="form_btns_div">
 
                 <!-- SUBMIT BUTTON -->
                 <input id="submit_btn" type="submit" value="Create account" class="formBtn">
 
                 <!-- CANCEL BUTTON -->
-                <input type="reset" value="Reset" class="formBtn">
+                <input type="reset" value="Cancel" class="formBtn">
 
             </div>
 

@@ -75,68 +75,114 @@
         <!-- SECTION TITLE -->
         <h3>Search Stories</h3>
 
-        <!-- TOP HALF -->
-        <section>
+        <!-- TELL USER EVERY FIELD IS OPTIONAL -->
+        <p>Each field is optional</p>
 
-            <!-- SEARCH FORM -->
-            <form action="story_search.php" method="get">
+        <!-- SEARCH SECTION -->
+        <section id="search_section">
 
-                <!-- TAGS DIV -->
-                <div class="search_div">
+            <!-- SEARCH PSEUDO FORM -->
+        
+            <!-- TAGS DIV -->
+            <div class="search_div_col">
 
-                    <!-- LABEL -->
-                    <label for="tags">Tags (up to 6), you can only insert or remove them by click</label>
+                <!-- LABEL -->
+                <label for="tags_input">Tags, you can only insert or remove them by click</label>
 
-                    <!-- INPUT -->
-                    <input class="form_input_field" id="tags" name="tags" type="text" required="off" autocomplete="off" placeholder="[First Tag] [Second Tag] [Third Tag] [Fourth Tag] [Fifth Tag] [Sixth Tag]">
+                <!-- INPUT -->
+                <input onkeyup="EmptyTagsField()" class="form_input_field" id="tags_input" name="tags" type="text" maxlength="100" autocomplete="off" placeholder="[First Tag] [Second Tag] [Third Tag] [Fourth Tag] [Fifth Tag] [Sixth Tag]">
 
-                    <!-- TAGS SELECTION DIV -->
-                    <div id="tags_select_div">
+                <!-- TAGS SELECTION DIV -->
+                <div id="tags_select_div">
 
-                        <!-- TAG LIST -->
-                        <p class="tag">Adventure</p>
-                        <p class="tag">Comedy</p>
-                        <p class="tag">Tragedy</p>
+                    <!-- TAG LIST -->
+                    <p class="tag">Adventure</p>
+                    <p class="tag">Comedy</p>
+                    <p class="tag">Tragedy</p>
 
-                        <p class="tag" title="Slice of life">S.o.L</p>
-                        <p class="tag" title="Alternate Universe">A.U.</p>
-                        <p class="tag">Violence</p>
+                    <p class="tag" title="Slice of life">S.o.L</p>
+                    <p class="tag" title="Alternate Universe">A.U.</p>
+                    <p class="tag">Violence</p>
 
-                        <p class="tag">Horror</p>
-                        <p class="tag">Romance</p>
-                        <p class="tag">Tale</p>
+                    <p class="tag">Horror</p>
+                    <p class="tag">Romance</p>
+                    <p class="tag">Tale</p>
 
-                        <p class="tag">Poetry</p>
-                        <p class="tag">Fantasy</p>
-                        <p class="tag">Mystery</p>
-
-                    </div>
-
-                </div>
-
-                <!-- STORY TITLE -->
-                <div class="search_div_row">
-
-                    <!-- LABEL -->
-                    <label for="story_title">Story Title (max. 100 char.)</label>
-
-                    <!-- INPUT -->
-                    <input id="story_title" name="story_title" type="text" required="false" autocomplete="off" maxlength="100" placeholder="Story title">
+                    <p class="tag">Poetry</p>
+                    <p class="tag">Fantasy</p>
+                    <p class="tag">Mystery</p>
 
                 </div>
 
-                <!-- AUTHOR -->
-                <div class="search_div_row">
+            </div>
+
+            <!-- STORY TITLE -->
+            <div class="search_div_row">
+
+                <!-- LABEL -->
+                <label for="story_title">Story Title (max. 100 char.)</label>
+
+                <!-- INPUT -->
+                <input id="story_title" name="story_title" type="text" autocomplete="off" maxlength="100" placeholder="Story title">
+
+            </div>
+
+            <!-- AUTHOR -->
+            <div class="search_div_row">
+
+                <!-- LABEL -->
+                <label for="author">Author (max. 100 char.)</label>
+
+                <!-- INPUT -->
+                <input id="author" name="author" type="text" autocomplete="off" maxlength="100" placeholder="Author's name">
+
+            </div>
+
+            <!-- STORY WORD COUNT DIV -->
+            <div class="search_div_row">
+
+                <!-- GREATER THAN DIV -->
+                <div class="word_count_div">
 
                     <!-- LABEL -->
-                    <label for="author">Author (max. 100 char.)</label>
+                    <label for="min_word_count">At least</label>
 
                     <!-- INPUT -->
-                    <input id="author" name="author" type="text" required="false" autocomplete="off" maxlength="100" placeholder="Author's name">
+                    <input id="min_word_count" name="min_word_count" type="number" autocomplete="off" maxlength="10" placeholder="00000">
+
+                    <!-- TEXT -->
+                    <p>words</p>
 
                 </div>
+
+                <!-- LESS THAN DIV -->
+                <div class="word_count_div">
+
+                    <!-- LABEL -->
+                    <label for="max_word_count">At most</label>
+
+                    <!-- INPUT -->
+                    <input id="max_word_count" name="max_word_count" type="number" autocomplete="off" maxlength="10" placeholder="00000">
+
+                    <!-- TEXT -->
+                    <p>words</p>
+
+                </div>
+
+            </div>
+
+            <!-- PSEUDO FORM END BUTTONS -->
+            <div class="form_btns_div">
+
+                <!-- PSEUDO SUBMIT BUTTON -->
+                <div onclick="Search()" id="search_btn" class="pseudoBtn">Search</div>
+
+                <!-- PSEUDO CANCEL BUTTON -->
+                <div onclick="PseudoCancel()" id="cancel_btn" class="pseudoBtn">Cancel</div>
+
+            </div>
   
-            </form>
+            
 
         </section>
 
@@ -145,8 +191,8 @@
         <h3>Results</h3>
 
 
-        <!-- BOTTOM HALF -->
-        <section>
+        <!-- RESULTS SECTION -->
+        <section id="results_section">
 
         </section>
         
@@ -160,6 +206,9 @@
         </a>
 
     </main>
+
+    <!-- SCRIPTS -->
+    <script src="story_search_form_check.js"></script>
 
     <!-- FOOTER -->
     <footer>

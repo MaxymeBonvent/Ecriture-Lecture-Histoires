@@ -32,7 +32,9 @@
             <img src="img/sun.png" alt="Day Symbol" title="Day Theme On">
 
             <!-- MAGNIFYING GLASS -->
-            <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
+            <a href="story_search_page.php">
+                <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
+            </a>
 
             <!-- NOTIFICATIONS -->
             <img src="img/mail.png" alt="Mail" title="Notifications">
@@ -151,6 +153,7 @@
 
             echo "<h3>Editing chapter $chapter_title</h3>";
 
+            echo "<p><span class='required_star'>*</span> = required</p>";
 
             echo    "   <form method='post' action='update_chapter.php'>
 
@@ -173,9 +176,9 @@
 
                             <div class='writing_div'>
 
-                                <label for='chapter_title_input_field' id='chapter_title_label'>Chapter Title (up to 30 words)</label>
+                                <label for='chapter_title_input_field' id='chapter_title_label'>Chapter Title (up to 30 words)<span class='required_star'>*</span></label>
 
-                                <input type='text' id='chapter_title_input_field' name='chapter_title' placeholder='Chapter ? : a small creature appears' required='true' autocomplete='off' maxlength='400' onkeyup='ChapterTitleCheck()' title='Enter the title of the next chapter of your story' value='$chapter_title'>
+                                <input type='text' class='form_input_field' name='chapter_title' placeholder='Chapter ? : a small creature appears' required='true' autocomplete='off' maxlength='400' onkeyup='ChapterTitleCheck()' title='Enter the title of the next chapter of your story' value='$chapter_title'>
 
                                 <div class='counting_div'>
 
@@ -187,7 +190,7 @@
 
                             <div class='writing_div'>
 
-                                <label for='chapter_text_area' id='chapter_text_label'>Chapter Text (up to 15 000 words)</label>
+                                <label for='chapter_text_area' id='chapter_text_label'>Chapter Text (up to 15 000 words)<span class='required_star'>*</span></label>
 
                             <div id='options_container'>
 
@@ -232,7 +235,7 @@
                                 <div id='preview_toggle' onclick='TogglePreviewBackground()' style='z-index: 1;'>Preview</div>
 
                                 
-                                <div class='formBtnsDiv'>
+                                <div class='form_btns_div'>
 
                                     <input type='submit' value='Publish Chapter' id='publish_input' class='formBtn'>
                                     <input type='reset' value='Reset' class='formBtn'>
