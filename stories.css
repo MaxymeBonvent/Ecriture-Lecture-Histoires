@@ -112,7 +112,7 @@ a:hover{
 /* FORM */
 form{
     /* Outline */
-    border: 2px solid navy;
+    border: 2px solid black;
 
     /* Dimensions */
     width: 60%;
@@ -242,7 +242,7 @@ textarea{
     border: 2px solid black;
 
     /* Dimensions */
-    width: 45%;
+    width: 35%;
 
     /* External space */
     margin: 4px;
@@ -419,6 +419,15 @@ section{
     align-items: center;
 }
 
+/* RESULTS SECTION */
+#results_section{
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 /* TEXTAREAS INPUT FIELDS AND BUTTONS */
 textarea, input, button{
     /* Background */
@@ -586,6 +595,9 @@ section .story_div{
 
     /* Dimensions */
     width: 30%;
+
+    /* External space */
+    margin: 4px 0;
 
     /* Position of internal elements */
     display: flex;

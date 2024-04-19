@@ -72,6 +72,14 @@
     <!-- MAIN -->
     <main>
 
+        <!-- OUTLINE OF BACK TO TOP DIV -->
+        <a id="back_to_top_outline" href="#_header">
+
+            <!-- BACK TO TOP LINK  -->
+            <div id="back_to_top"></div>
+
+        </a>
+
         <!-- SECTION TITLE -->
         <h3>Search Stories</h3>
 
@@ -175,10 +183,10 @@
             <div class="form_btns_div">
 
                 <!-- PSEUDO SUBMIT BUTTON -->
-                <div onclick="Search()" id="search_btn" class="pseudoBtn">Search</div>
+                <div onclick="Search()" id="search_div" class="pseudoBtn">Search</div>
 
                 <!-- PSEUDO CANCEL BUTTON -->
-                <div onclick="PseudoCancel()" id="cancel_btn" class="pseudoBtn">Cancel</div>
+                <div onclick="PseudoCancel()" id="cancel_div" class="pseudoBtn">Cancel</div>
 
             </div>
   
@@ -195,15 +203,6 @@
         <section id="results_section">
 
         </section>
-        
-
-        <!-- OUTLINE OF BACK TO TOP DIV -->
-        <a id="back_to_top_outline" href="#_header">
-
-            <!-- BACK TO TOP LINK  -->
-            <div id="back_to_top"></div>
-
-        </a>
 
     </main>
 

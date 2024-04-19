@@ -14,9 +14,8 @@ let min_word_count = document.getElementById("min_word_count");
 // ---- LESS THAN  ---- //
 let max_word_count = document.getElementById("max_word_count");
 
-// ---- PUBLISH ---- //
-let search_btn = document.getElementById("search_btn");
-search_btn.disabled = true;
+// ---- SEARCH DIV ---- //
+let search_div = document.getElementById("search_div");
 
 // ---- RESULTS SECTION ---- //
 let results_section = document.getElementById("results_section");
@@ -61,6 +60,30 @@ for(let tagCounter = 0; tagCounter < tags.length; tagCounter++)
     });
 }
 
+// MIN AND MAX WORD COUNT INPUTS
+// function CheckMinMax()
+// {
+//     // If maximum word count is less than minimum word count
+//     if(parseInt(max_word_count.value) < parseInt(min_word_count.value))
+//     {
+//         // Hide Search div
+//         search_div.style.display = "none";
+
+//         // Log why Search button is off
+//         console.log("Search button turned off because maximum word count is less than minimum word count.");
+//     }
+
+//     // If maximum word count is greater than or equal to minimum word count
+//     else if(parseInt(max_word_count.value) >= parseInt(min_word_count.value))
+//     {
+//         // Hide Search div
+//         search_div.style.display = "block";
+
+//         // Log why Search button is off
+//         console.log("Search button turned on because maximum word count greater than or equal to minimum word count.");
+//     }
+// }
+
 // PSEUDO CANCEL BUTTON
 function PseudoCancel()
 {
@@ -87,7 +110,7 @@ function Search()
         console.log("Cannot search a story with no criteria.");
 
         // Show it to user
-        results_section.textContent = "Cannot search a story with no criteria.";
+        results_section.innerHTML = "<p>Cannot search a story with no criteria.</p>";
 
         // End function
         return 0;
@@ -117,7 +140,27 @@ function Search()
                 console.log("Story search request done.");
 
                 // Redirect user to PHP story search script
-                window.location.href = `story_search.php?tags=${tags_input.value}&story_title=${story_title.value}&author=${author.value}&minWrdCnt=${min_word_count.value}&maxWrdCnt=${max_word_count.value}`;
+                // window.location.href = `story_search.php?tags=${tags_input.value}&story_title=${story_title.value}&author=${author.value}&min_word_count=${min_word_count.value}&max_word_count=${max_word_count.value}`;
+
+                // if no story was found
+                if(xhr.responseText == null || xhr.responseText == "")
+                {
+                    // Tell it to user
+                    results_section.innerHTML = "<p>No story found.</p>";
+
+                    // Log it
+                    console.log("No story found.");
+                }
+
+                // if at least 1 story was found  
+                else if(xhr.responseText != null && xhr.responseText != "")
+                {
+                    // Display IDs of matching stories in the Results section
+                    results_section.innerHTML = `<p id='result_ids'>${xhr.responseText}</p>`;
+
+                    // Log it
+                    console.log("At least 1 story found.");
+                }              
             }
         }
 
@@ -129,7 +172,7 @@ function Search()
         }
 
         // Open PHP story search script
-        xhr.open("GET", `story_search.php?tags=${tags_input.value}&story_title=${story_title.value}&author=${author.value}&minWrdCnt=${min_word_count.value}&maxWrdCnt=${max_word_count.value}`);
+        xhr.open("GET", `story_search.php?tags=${tags_input.value}&story_title=${story_title.value}&author=${author.value}&min_word_count=${min_word_count.value}&max_word_count=${max_word_count.value}`);
 
         // Send request
         xhr.send();
