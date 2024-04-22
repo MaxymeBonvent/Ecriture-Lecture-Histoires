@@ -157,7 +157,7 @@ form{
 /* TEXTAREAS */
 textarea{
     /* Dimensions */
-    width: 50%;
+    width: 60%;
 }
 
 /* DIV CONTAINING STYLE OPTIONS DIV AND COLOR OPTIONS DIV */
@@ -459,7 +459,7 @@ textarea, input, button{
 /* FONT SIZE BUTTON */
 #font_size_btn{
     /* Dimensions */
-    width: 60%;
+    width: 45%;
 
     /* External space */
     margin: 8px 0;
@@ -527,6 +527,9 @@ textarea, input, button{
 
     /* Dimensions */
     width: 40%;
+
+    /* External space */
+    margin: 4px 0;
 
     /* Position of internal elements */
     display: flex;
@@ -641,7 +644,7 @@ textarea, input, button{
     border: 2px solid black;
 
     /* Dimensions */
-    width: 30%;
+    width: 40%;
 
     /* External space */
     margin: 4px 0;

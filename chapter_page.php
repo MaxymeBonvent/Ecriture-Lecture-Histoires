@@ -37,9 +37,6 @@
                 <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
             </a>
 
-            <!-- NOTIFICATIONS -->
-            <img src="img/mail.png" alt="Mail" title="Notifications">
-
             <!-- QUILL -->
             <a href="new_story.php">
                 <img src="img/quill.png" alt="Quill" title="Write a new story">
@@ -635,7 +632,7 @@
                 <textarea name="comment_text" id="comment_text" cols="40" rows="10" maxlength="3000" placeholder="What I like about this chapter is that...on the other hand..."></textarea>
 
                 <!-- FORM BUTTONS DIV -->
-                <div class="formBtnsDiv">
+                <div class="form_btns_div">
 
                     <!-- SUBMIT -->
                     <input class="formBtn" type="submit" value="Publish">
