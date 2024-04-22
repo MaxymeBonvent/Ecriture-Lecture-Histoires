@@ -67,6 +67,17 @@
             // GET USER ID
             require_once("get_user_id.php");
         }
+
+
+        // If a story search has been done
+        if(isset($_GET["story_ids"]) && !empty($_GET["story_ids"]))
+        {
+            // Get URL's story IDs
+            $story_ids = htmlspecialchars($_GET["story_ids"]);
+
+            // Array of story IDs
+            $story_ids_array = explode(" ", $story_ids);
+        }
     ?>
 
     <!-- MAIN -->
@@ -84,7 +95,7 @@
         <h3>Search Stories</h3>
 
         <!-- TELL USER EVERY FIELD IS OPTIONAL -->
-        <p>Each field is optional</p>
+        <p>At least one field must be filled to run a search</p>
 
         <!-- SEARCH SECTION -->
         <section id="search_section">
@@ -98,7 +109,7 @@
                 <label for="tags_input">Tags, you can only insert or remove them by click</label>
 
                 <!-- INPUT -->
-                <input onkeyup="EmptyTagsField()" class="form_input_field" id="tags_input" name="tags" type="text" maxlength="100" autocomplete="off" placeholder="[First Tag] [Second Tag] [Third Tag] [Fourth Tag] [Fifth Tag] [Sixth Tag]">
+                <input onkeyup="EmptyTagsField()" class="form_input_field" id="tags_input" name="tags" type="text" maxlength="100" autocomplete="off" placeholder="[Tag 1] [Tag 2] ... [Tag N]">
 
                 <!-- TAGS SELECTION DIV -->
                 <div id="tags_select_div">
@@ -190,8 +201,6 @@
 
             </div>
   
-            
-
         </section>
 
 
@@ -202,12 +211,119 @@
         <!-- RESULTS SECTION -->
         <section id="results_section">
 
+            <?php
+                // If a story search has been done
+                if(isset($_GET["story_ids"]) && !empty($_GET["story_ids"]))
+                {
+                    // ---- NUMBER OF STORIES MESSAGE ---- //
+                    // If only one story was found
+                    if(count($story_ids_array) == 1)
+                    {
+                        // Message with singular form
+                        echo "<p>".count($story_ids_array)." story found :</p>";
+                    }
+
+                    // If more than one story was found
+                    else if(count($story_ids_array) > 1)
+                    {
+                        // Message with plural form
+                        echo "<p>".count($story_ids_array)." stories found :</p>";
+                    }
+
+                    // ---- STORY BOXES DISPLAY ---- //
+                    // For each ID in story IDs array
+                    foreach($story_ids_array as $story_id)
+                    {
+                        // GET INFO OF CURRENT STORY
+                        // Prepare query
+                        $get_story_info = $db->prepare("SELECT story_title, author, pub_date, likes, dislikes, tags, chapter_ids FROM stories WHERE story_id = :story_id");
+
+                        // Binding  
+                        $get_story_info->bindValue(":story_id", $story_id);
+
+                        // Execution
+                        $get_story_info->execute();
+
+                        // Store result
+                        $story_info = $get_story_info->fetchAll(PDO::FETCH_ASSOC);
+
+                        // Test
+                        // echo "<p>Info of story n°$story_id :</p>";
+                        // var_dump($story_info);
+
+                        // CREATE TAGS ARRAY
+                        $tags_array = explode(" ", $story_info[0]["tags"]);
+
+                        // Test
+                        // echo "<p>Tags array of story n°$story_id :</p>";
+                        // var_dump($tags_array);
+
+
+                        // START of current story div
+                        echo "<div class='story_div' onclick='Synopsis(\"".$story_info[0]['story_title']."\", \"".$story_info[0]['author']."\", \"".$story_info[0]['tags']."\", \"".$story_info[0]['chapter_ids']."\")'>";
+
+
+                            // START of story title div
+                            echo "<div class='story_div_inner_div'>";
+
+                                // Story title
+                                echo "<h4>".$story_info[0]['story_title']."</h4>";
+
+                            // END of story title div
+                            echo "</div>";
+
+
+                            // START of info and stats div
+                            echo "<div class='story_div_inner_div'>";
+
+                                // Author
+                                echo "<p>".$story_info[0]['author']."</p>";
+
+                                // Publication date
+                                echo "<p>".date("d-m-Y", strtotime($story_info[0]['pub_date']))."</p>";
+
+                                // Likes
+                                echo "<p>".$story_info[0]['likes']." Likes</p>";
+
+                                // Dislikes
+                                echo "<p>".$story_info[0]['dislikes']." Dislikes</p>";
+
+                            // END of info and stats div
+                            echo "</div>";
+
+
+                            // START of tags div
+                            echo "<div class='tags_div'>";
+
+                                // For each tag
+                                foreach($tags_array as $tag)
+                                {
+                                    // If that tag is not empty
+                                    if($tag != null && $tag != "")
+                                    {
+                                        // Display it
+                                        echo "<p>$tag</p>";
+                                    }
+                                }
+
+                            // END of tags div
+                            echo "</div>";
+
+
+
+                        // END of current story div
+                        echo "</div>";
+                    }
+                }
+            ?>
+
         </section>
 
     </main>
 
     <!-- SCRIPTS -->
     <script src="story_search_form_check.js"></script>
+    <script src="synopsis.js"></script>
 
     <!-- FOOTER -->
     <footer>

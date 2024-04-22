@@ -60,10 +60,6 @@
             $dynamic_query .= "AND word_count <= $max_word_count ";
         }
 
-        // Show full query
-        // var_dump($dynamic_query);
-        // exit;
-
         // Prepare full query
         $full_query = $db->prepare($dynamic_query);
 
@@ -73,10 +69,10 @@
         // Store result
         $story_ids = $full_query->fetchAll(PDO::FETCH_ASSOC);
 
-        // For every story found
+        // For every story ID found
         for($i = 0; $i < count($story_ids); $i++)
         {
-            // Transfer its ID
+            // Transfer it
             echo $story_ids[$i]["story_id"];
 
             // Add a space to distinguish the different stories
@@ -89,5 +85,8 @@
     {
         // Show error message
         echo "<p>Exception caught during story search : ".$exc->getMessage().".</p>";
+
+        // End script
+        exit;
     }
 ?>

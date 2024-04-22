@@ -194,6 +194,14 @@ textarea{
 
 /* ---- STORY SEARCH ---- */
 
+/* STORY SEARCH AND RESULTS SECTIONS */
+#search_section, #results_section{
+    /* Dimensions */
+    width: 50%;
+}
+
+
+/* STORY SEARCH SECTION */
 #search_section{
     /* Position of internal elements */
     display: flex;
@@ -201,13 +209,16 @@ textarea{
     align-items: center;
 }
 
+/* SEARCH SECTION ROW AND COLUMN DIVS */
+.search_div_row, .search_div_col{
+    /* Dimensions */
+    width: 80%;
+}
+
 /* STORY SEARCH FORM COLUMN DIV */
 .search_div_col{
     /* Outline */
     border: 2px solid black;
-
-    /* Dimensions */
-    width: 50%;
 
     /* External space */
     margin: 10px 0;
@@ -222,9 +233,6 @@ textarea{
 .search_div_row{
     /* Outline */
     border: 2px solid black;
-
-    /* Dimensions */
-    width: 50%;
 
     /* External space */
     margin: 10px 0;
@@ -288,6 +296,17 @@ textarea{
     transform: scale(1.1, 1.1);
 }
 
+/* AUTHOR TEXT */
+.author_txt{
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* HOVERING ON AUTHOR TEXT */
+.author_txt:hover{
+    /* Text decoration */
+    text-decoration: underline;
+}
 
 /* PREVIEW BACKGROUND */
 #preview_bck{
@@ -464,13 +483,41 @@ textarea, input, button{
     cursor: pointer;
 }
 
-/* SECTION'S STORY DIVS */
-section .story_div{
+/* STORY DIVS */
+.story_div{
+    /* Outline */
+    border: 2px solid black;
+
     /* Dimensions */
-    width: 40%;
+    width: 60%;
 
     /* External space */
-    margin: 4px 10px;
+    margin: 4px;
+
+    /* Mouse icon */
+    cursor: pointer;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* DIVS IN STORY DIVS */
+.story_div_inner_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+
+    /* External space */
+    margin: 4px;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
 }
 
 /* CHAPTER OPTIONS DIV */
@@ -602,6 +649,12 @@ section .story_div{
     /* Position of internal elements */
     display: flex;
     justify-content: space-between;
+}
+
+/* BUTTONS */
+button{
+    /* Mouse icon */
+    cursor: pointer;
 }
 
 /* FORM BUTTONS */
@@ -839,7 +892,11 @@ hr{
     border: 2px solid black;
 
     /* Dimensions */
+    width: 80%;
     height: 80px;
+
+    /* External space */
+    margin: 4px;
 
     /* Position of internal elements */
     display: flex;
@@ -854,7 +911,7 @@ hr{
     padding: 0 4px;
 
     /* External space */
-    margin: 0 24px;
+    margin: 0 12px;
 
     /* Background */
     background-color: forestgreen;

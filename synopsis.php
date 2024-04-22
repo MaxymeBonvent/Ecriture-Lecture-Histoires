@@ -226,7 +226,7 @@
         <section style="flex-direction:column;">
 
             <?php
-                echo "<h3>$author</h3>";
+                echo "<h3 class='author_txt' title='Click to send a private message' onclick='PrivateMessage(\"$author\")'>$author</h3>";
                 echo "<p>$bio</p>";
             ?>
 
@@ -501,6 +501,7 @@
     <script src="story_like_dislike.js"></script>
     <script src="story_toggles.js"></script>
     <script src="chapter_page.js"></script>
+    <script src="private_message.js"></script>
 
     <!-- FOOTER -->
     <footer>
