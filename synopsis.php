@@ -69,8 +69,36 @@
             // DATABASE CONNECTION
             require_once("database_connection.php");
 
-            // USER ID
-            require_once("get_user_id.php");
+            // --- GET USER ID --- //
+
+            // Prepare query to get logged in user's ID
+            $get_user_id = $db->prepare("SELECT user_id FROM users WHERE username = :username");
+
+            // If user is not logged in
+            if(!isset($_SESSION['username']) || empty($_SESSION['username']))
+            {
+                // Output an error message
+                echo "<p id='not_logged_in_txt'>You are not logged in and won't be able to fav, bookshelf, like or dislike this story.</p>";
+
+                // End script
+                // exit;
+            }
+
+            // If user is logged in
+            else if(isset($_SESSION['username']) && !empty($_SESSION['username']))
+            {
+                // Bind their name to the prepared username variable
+                $get_user_id->bindValue(":username", $_SESSION['username']);
+
+                // Execution
+                $get_user_id->execute();
+
+                // Fetch result
+                $user_id = $get_user_id->fetchColumn();
+
+                // Closing
+                $get_user_id->closeCursor();
+            }
 
             // ---- CLICKED STORY INFO ---- //
   
@@ -234,109 +262,154 @@
         <section style="justify-content: space-evenly;">
 
             <?php
+
                 // ---- CHANGE "ADD TO FAVS" COLOR ---- //
-                // If at least 1 user faved that story
-                if($user_fav_ids != null && $user_fav_ids != "")
+                // If user is logged in
+                if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
                 {
-                    // If user's ID is part of IDs of users who faved this story
-                    if(str_contains($user_fav_ids, $user_id))
+                    // If at least 1 user faved that story
+                    if($user_fav_ids != null && $user_fav_ids != "")
                     {
-                        // Display "Add to Favs" in "already in my stack" color
-                        echo "<p onclick='ToggleStoryFavs($story_id)' class='story_option' id='favs_txt' style='color:rgb(0, 120, 0);'>Add to Favs</p>";
+                        // If user's ID is part of IDs of users who faved this story
+                        if(str_contains($user_fav_ids, $user_id))
+                        {
+                            // Display "Add to Favs" in "already in my stack" color
+                            echo "<p onclick='ToggleStoryFavs($story_id)' class='story_option' id='favs_txt' style='color:rgb(0, 120, 0);'>Add to Favs</p>";
+                        }
+                        
+                        // If user's ID is not part of IDs of users who faved this story
+                        else if(!str_contains($user_fav_ids, $user_id))
+                        {
+                            // Display "Add to Favs" in default color
+                            echo "<p onclick='ToggleStoryFavs($story_id)' class='story_option' id='favs_txt'>Add to Favs</p>";
+                        }
                     }
-                    
-                    // If user's ID is not part of IDs of users who faved this story
-                    else if(!str_contains($user_fav_ids, $user_id))
+
+                    // If nobody faved that story
+                    else if($user_fav_ids == null || $user_fav_ids != "")
                     {
                         // Display "Add to Favs" in default color
                         echo "<p onclick='ToggleStoryFavs($story_id)' class='story_option' id='favs_txt'>Add to Favs</p>";
                     }
                 }
 
-                // If nobody faved that story
-                else if($user_fav_ids == null || $user_fav_ids != "")
+                // If user is not logged in
+                else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                 {
-                    // Display "Add to Favs" in default color
-                    echo "<p onclick='ToggleStoryFavs($story_id)' class='story_option' id='favs_txt'>Add to Favs</p>";
+                    // Display "Add to Favs" in default color without the click functions
+                    echo "<p class='story_option'>Add to Favs</p>";
                 }
 
                 // ---- CHANGE "READ LATER" COLOR ---- //
-                // If at least 1 user added that story to their Read Later stack
-                if($user_later_ids != null && $user_later_ids != "")
+                // If user is logged in
+                if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
                 {
-                    // If user's ID is part of IDs of users who added that story to their Read Later stack
-                    if(str_contains($user_later_ids, $user_id))
+                    // If at least 1 user added that story to their Read Later stack
+                    if($user_later_ids != null && $user_later_ids != "")
                     {
-                        // Display "Read Later" in "already in my stack" color
-                        echo "<p onclick='ToggleStoryReadLater($story_id)' class='story_option' id='favs_txt' style='color:rgb(0, 120, 0);'>Read Later</p>";
+                        // If user's ID is part of IDs of users who added that story to their Read Later stack
+                        if(str_contains($user_later_ids, $user_id))
+                        {
+                            // Display "Read Later" in "already in my stack" color
+                            echo "<p id='read_later_txt' onclick='ToggleStoryReadLater($story_id)' class='story_option' id='favs_txt' style='color:rgb(0, 120, 0);'>Read Later</p>";
+                        }
+                        
+                        // If user's ID is not part of IDs of users who added that story to their Read Later stack
+                        else if(!str_contains($user_later_ids, $user_id))
+                        {
+                            // Display "Read Later" in default color
+                            echo "<p id='read_later_txt' onclick='ToggleStoryReadLater($story_id)' class='story_option' id='favs_txt'>Read Later</p>";
+                        }
                     }
-                    
-                    // If user's ID is not part of IDs of users who added that story to their Read Later stack
-                    else if(!str_contains($user_later_ids, $user_id))
+
+                    // If nobody added that story to their Read Later stack
+                    else if($user_later_ids == null || $user_later_ids != "")
                     {
                         // Display "Read Later" in default color
-                        echo "<p onclick='ToggleStoryReadLater($story_id)' class='story_option' id='favs_txt'>Read Later</p>";
+                        echo "<p id='read_later_txt' onclick='ToggleStoryReadLater($story_id)' class='story_option' id='favs_txt'>Read Later</p>";
                     }
                 }
 
-                // If nobody added that story to their Read Later stack
-                else if($user_later_ids == null || $user_later_ids != "")
+                // If user is not logged in
+                else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                 {
-                     // Display "Read Later" in default color
-                        echo "<p onclick='ToggleStoryReadLater($story_id)' class='story_option' id='favs_txt'>Read Later</p>";
-                }
-                
+                    // Display "Read Later" in default color without the click functions
+                    echo "<p class='story_option'>Read Later</p>";
+                } 
 
                 // ---- CHANGE "LIKE" COLOR ---- //
-                // If at least one user liked this story
-                if($story_likes[0]["user_like_ids"] != null)
+                // If user is logged in
+                if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
                 {
-                    // If user ID is in Story's like IDs
-                    if(str_contains($story_likes[0]["user_like_ids"], $user_id))
+                    // If at least one user liked this story
+                    if($story_likes[0]["user_like_ids"] != null && $story_likes[0]["user_like_ids"] != "")
                     {
-                        // Display like text in green
-                        echo "<div class='thumb_box'> <p id='like_txt' style='color:rgb(0, 120, 0);'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                        // If user ID is in Story's like IDs
+                        if(str_contains($story_likes[0]["user_like_ids"], $user_id))
+                        {
+                            // Display like text in green
+                            echo "<div class='thumb_box'> <p id='like_txt' style='color:rgb(0, 120, 0);'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                        }
+
+                        // If user ID is not in Story's like IDs
+                        else if(!str_contains($story_likes[0]["user_like_ids"], $user_id))
+                        {
+                            // Display "Like" in default color
+                            echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                        }
                     }
 
-                    // If user ID is not in Story's like IDs
-                    else if(!str_contains($story_likes[0]["user_like_ids"], $user_id))
+                    // If no one like this story
+                    else if($story_likes[0]["user_like_ids"] == null || $story_likes[0]["user_like_ids"] == "")
                     {
                         // Display "Like" in default color
                         echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
                     }
                 }
 
-                // If no one like this story
-                else if($story_likes[0]["user_like_ids"] == null)
+                // If user is not logged in
+                else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                 {
-                    // Display "Like" in default color
-                    echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                    // Display "Like" in default color without the click function
+                    echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb'> </div>";
                 }
+
 
                 // ---- CHANGE "DISLIKE" COLOR ---- //
-                // If at least one user disliked this story
-                if($story_dislikes[0]["user_dislike_ids"] != null)
+                // If user is logged in
+                if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
                 {
-                    // If user ID is in Story's dislike IDs
-                    if(str_contains($story_dislikes[0]["user_dislike_ids"], $user_id))
-                    {   
-                        // Display dislike text in green
-                        echo "<div class='thumb_box'> <p id='dislike_txt' style='color: forestgreen;'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeStory($story_id)'> </div>";
+                    // If at least one user disliked this story
+                    if($story_dislikes[0]["user_dislike_ids"] != null && $story_dislikes[0]["user_dislike_ids"] != "")
+                    {
+                        // If user ID is in Story's dislike IDs
+                        if(str_contains($story_dislikes[0]["user_dislike_ids"], $user_id))
+                        {   
+                            // Display dislike text in green
+                            echo "<div class='thumb_box'> <p id='dislike_txt' style='color: forestgreen;'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' id='dislike_icon' onclick='DislikeStory($story_id)'> </div>";
+                        }
+
+                        // If user ID is not in Story's dislike IDs
+                        else if(!str_contains($story_dislikes[0]["user_dislike_ids"], $user_id))
+                        {
+                            // Display dislike text in black
+                            echo "<div class='thumb_box'> <p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' id='dislike_icon' onclick='DislikeStory($story_id)'> </div>";
+                        }
                     }
 
-                    // If user ID is not in Story's dislike IDs
-                    else if(!str_contains($story_dislikes[0]["user_dislike_ids"], $user_id))
+                    // If no one disliked this story
+                    else if($story_dislikes[0]["user_dislike_ids"] == null || $story_dislikes[0]["user_dislike_ids"] == "")
                     {
-                        // Display dislike text in black
-                        echo "<div class='thumb_box'> <p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeStory($story_id)'> </div>";
+                        // Display "Dislike" in default color
+                        echo "<div class='thumb_box'> <p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' id='dislike_icon' onclick='DislikeStory($story_id)'> </div>";
                     }
                 }
 
-                // If no one disliked this story
-                else if($story_dislikes[0]["user_dislike_ids"] == null)
+                // If user is not logged in
+                else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                 {
-                    // Display "Dislike" in default color
-                    echo "<div class='thumb_box'> <p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeStory($story_id)'> </div>";
+                    // Display "Dislike" in default color without the click function
+                    echo "<div class='thumb_box'> <p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb'> </div>";
                 } 
             ?>
 
@@ -410,7 +483,7 @@
                 // ---- GET EVERY COMMENTS' TEXT, DATE AND USER ID ---- //
 
                 // Prepare a query to get every story comments' text, date and user ID
-                $get_story_comments = $db->prepare("SELECT  user_id, pub_date, comment_text FROM comments WHERE story_id = :story_id");
+                $get_story_comments = $db->prepare("SELECT comment_id, user_id, pub_date, comment_text FROM comments WHERE story_id = :story_id");
 
                 // Binding  
                 $get_story_comments->bindValue(":story_id", $story_id);
@@ -442,18 +515,88 @@
                     // START of current comment div
                     echo "<div class='comment_div'>";
 
-                        // USER INFO
-                        echo    "   <div>
-                                        <p>$comment_author</p>
-                                    </div>
-                                ";
 
-                        // COMMENT INFO
-                        echo    "   <div>
-                                        <p class='comment'>".$story_comment['comment_text']."</p>
-                                        <small class='comment_date'>Posted on ".date("d-m-Y", strtotime($story_comment['pub_date']))."</small>
-                                    </div>
-                                ";
+                        // START of top div
+                        echo "<div class='comment_div_top_inner_div'>";
+
+                            // START of author div
+                            echo "<div id='author_div'>";
+
+                                // Author
+                                echo "<p>$comment_author</p>";
+
+                            // END of author div
+                            echo "</div>";
+
+                            // START of comment options div 
+                            echo "<div class='comment_options'>";
+
+                                // If user is logged in and the comment is theirs
+                                if(isset($_SESSION["username"]) && !empty($_SESSION["username"]) && $_SESSION["username"] == $comment_author)
+                                {
+                                    // Display delete icon
+                                    echo "<div class='comment_delete_icon' onclick='DeleteStoryComment(".$story_comment["comment_id"].")'>X</div>";
+                                }
+
+                                // Quote icon
+                                echo "<div class='comment_quote_icon'>Q</div>";
+
+                                // START of comment likes div
+                                echo "<div class='thumb_box'>";
+
+                                    // Number of likes
+                                    echo "<p>000 Likes</p>";
+
+                                    // Like icon
+                                    echo "<img class='thumb' src=img/like.png alt='Like icon'>";
+
+                                // END of comment likes div
+                                echo "</div>";
+
+                                // START of comment dislikes div
+                                echo "<div class='thumb_box'>";
+
+                                    // Number of dislikes
+                                    echo "<p>000 Dislikes</p>";
+
+                                    // Like icon
+                                    echo "<img class='thumb' src=img/dislike.png alt='Dislike icon'>";
+
+                                // END of comment dislikes div
+                                echo "</div>";
+
+                            // END of comment options div 
+                            echo "</div>";
+
+
+                        // END of top div
+                        echo "</div>";
+
+
+
+
+                        // START of mid div
+                        echo "<div class='comment_div_mid_inner_div'>";
+
+                            // Comment text
+                            echo "<p>".$story_comment['comment_text']."</p>";
+
+                        // END of mid div
+                        echo "</div>";
+
+
+
+
+                        // START of bottom div
+                        echo "<div class='comment_div_bottom_inner_div'>";
+
+                            // Publication date
+                            echo "<small class='pub_date_txt'>Posted on ".date("d-m-Y", strtotime($story_comment['pub_date']))."</small>";
+
+                        // END of bottom div
+                        echo "</div>";
+
+                                
 
                     // END of current comment div
                     echo "</div>";
@@ -495,10 +638,10 @@
     </main>
 
     <!-- SCRIPTS -->
-    <script src="story_like_dislike.js"></script>
     <script src="story_toggles.js"></script>
+    <script src="story_like_dislike.js"></script>
     <script src="chapter_page.js"></script>
-    <script src="private_message.js"></script>
+    <script src="story_comment_delete.js"></script>
 
     <!-- FOOTER -->
     <footer>

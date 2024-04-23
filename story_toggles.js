@@ -1,33 +1,39 @@
 // Color for when request is done
-let request_done_color = "rgb(0, 130, 0)";
+let request_done_color = "rgb(0, 120, 0)";
 
 // ---- FAVORITES ---- //
 // Add to Favs text
 let favs_txt = document.getElementById("favs_txt");
+// console.log(`favs_txt == ${favs_txt}.`);
 
 // TOGGLE COLOR OF "ADD TO FAVS" ON CLICK
-favs_txt.addEventListener("click", function()
+// If there's an element with a "favs_txt" ID
+if(favs_txt != null)
 {
-    // If text is not green
-    if(favs_txt.style.color != request_done_color)
+    favs_txt.addEventListener("click", function()
     {
-        // Set its color to green
-        favs_txt.style.color = request_done_color;
+        // If text is not green
+        if(favs_txt.style.color != request_done_color)
+        {
+            // Set its color to green
+            favs_txt.style.color = request_done_color;
 
-        // Confirm color toggle
-        console.log("\"Add to Favs\" changed to green.");
-    }
+            // Confirm color toggle
+            console.log("\"Add to Favs\" changed to green.");
+        }
 
-    // If text is green
-    else if(favs_txt.style.color == request_done_color)
-    {
-        // Set its color to default
-        favs_txt.style.color = "black";
+        // If text is green
+        else if(favs_txt.style.color == request_done_color)
+        {
+            // Set its color to default
+            favs_txt.style.color = "black";
 
-        // Confirm color toggle
-        console.log("\"Add to Favs\" changed to black.");
-    }
-})
+            // Confirm color toggle
+            console.log("\"Add to Favs\" changed to black.");
+        }
+    })
+}
+
 
 // Function to toggle a story from/to user's Favorites stack
 function ToggleStoryFavs(story_id)
@@ -78,6 +84,35 @@ function ToggleStoryFavs(story_id)
 // ---- READ LATER ---- //
 // Read later text
 let read_later_txt = document.getElementById("read_later_txt");
+// console.log(`read_later_txt == ${read_later_txt}.`);
+
+// TOGGLE COLOR OF "READ LATER" ON CLICK
+// If there's an elment with a "read_later_txt" ID
+if(read_later_txt != null)
+{
+    read_later_txt.addEventListener("click", function()
+    {
+        // If text is not green
+        if(read_later_txt.style.color != request_done_color)
+        {
+            // Set its color to green
+            read_later_txt.style.color = request_done_color;
+
+            // Confirm color toggle
+            console.log("\"Read Later\" changed to green.");
+        }
+
+        // If text is green
+        else if(read_later_txt.style.color == request_done_color)
+        {
+            // Set its color to default
+            read_later_txt.style.color = "black";
+
+            // Confirm color toggle
+            console.log("\"Read Later\" changed to black.");
+        }
+    })
+}
 
 // Function to toggle a story from/to user's Read Later stack
 function ToggleStoryReadLater(story_id)

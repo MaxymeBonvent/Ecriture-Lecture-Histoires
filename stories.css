@@ -156,8 +156,17 @@ form{
 
 /* TEXTAREAS */
 textarea{
-    /* Dimensions */
-    width: 60%;
+    /* Width */
+    min-width: 60%;
+    max-width: 60%;
+
+    /*  Height */
+    min-height: 100px;
+    max-height: 300px;
+
+    /* Scroll properties */
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* DIV CONTAINING STYLE OPTIONS DIV AND COLOR OPTIONS DIV */
@@ -468,6 +477,12 @@ textarea, input, button{
     align-self: center;
 }
 
+/* USER NOT LOGGED IN TEXT */
+#not_logged_in_txt{
+    /* Underline */
+    text-decoration: underline;
+}
+
 /* STORY OPTIONS */
 .story_option:hover{
     text-decoration: underline;
@@ -568,50 +583,107 @@ textarea, input, button{
 
     /* Dimensions */
     width: 80%;
+    height: 150px;
 
     /* External space */
-    margin: 3px 0;
-
-    /* Position of internal elements */
-    display: flex;
-    justify-content: center;
-}
-
-/* USER DIV IN COMMENT DIVS */
-.comment_div div:first-child{
-    /* Outline */
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
-
-    /* Dimensions */
-    width: 15%;
-    max-height: 40px;
-
-    /* Position of internal elements */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* COMMENT TEXT AND DATE DIV IN COMMENT DIVS */
-.comment_div div:last-child{
-    /* Outline */
-    border: 2px solid transparent;
-
-    /* Dimensions */
-    width: 85%;
+    margin: 8px 0;
 
     /* Position of internal elements */
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+/* ALL THIRDS DIVS IN COMMENT DIVS */
+.comment_div_top_inner_div, .comment_div_mid_inner_div, .comment_div_bottom_inner_div{
+    /* Dimensions */
+    width: 100%;
+    height: 33%;
+}
+
+/* TOP DIVS IN COMMENT DIVS */
+.comment_div_top_inner_div{
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* AUTHOR DIVS */
+#author_div{
+    /* Outline */
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+
+    /* Dimensions */
+    width: 33%;
+    height: 100%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-/* COMMENT DATES */
-.comment_div div:last-child small{
-    /* Position */
-    align-self: flex-end;
+/* COMMENT OPTIONS */
+.comment_options{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 40%;
+    height: 50%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* DELETE AND QUOTE ICONS */
+.comment_delete_icon, .comment_quote_icon{
+    /* Dimensions */
+    width: 24px;
+    height: 24px;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* COMMENT DELETE ICON */
+.comment_delete_icon{
+    /* Color */
+    background-color: rgb(110, 0, 0);
+    color: white;
+
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* COMMENT QUOTE ICON */
+.comment_quote_icon{
+    /* Color */
+    background-color: rgb(40, 0, 160);
+    color: white;
+
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* BOTTOM INNER DIVS IN COMMENT DIVS */
+.comment_div_bottom_inner_div{
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+/* COMMENT PUBLICATION DATE TEXT */
+.pub_date_txt{
+    /* External space */
+    margin-right: 3px;
 }
 
 /* SYNOPSIS PAGE CHAPTER LIST */

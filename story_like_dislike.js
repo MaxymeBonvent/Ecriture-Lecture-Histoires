@@ -1,9 +1,44 @@
 // Request done color
-request_done_color = "rgb(0, 40, 80)";
+request_done_color = "rgb(0, 120, 0)";
 
 // STORY LIKE
-// Likes Text
+// Like Text
 let like_txt = document.getElementById("like_txt");
+// console.log(`like_txt == ${like_txt}.`);
+
+// Like icon
+let like_icon = document.getElementById("like_icon");
+// console.log(`like_icon == ${like_icon}.`);
+
+// TOGGLE COLOR OF "LIKES" ON CLICK
+// If there is an element with a "like_icon" ID
+if(like_icon != null)
+{
+    like_icon.addEventListener("click", function()
+    {
+        // If text is not green
+        if(like_txt.style.color != request_done_color)
+        {
+            // Set its color to green
+            like_txt.style.color = request_done_color;
+
+            // Confirm color toggle
+            console.log("\"Likes\" changed to green.");
+        }
+
+        // If text is green
+        else if(like_txt.style.color == request_done_color)
+        {
+            // Set its color to default
+            like_txt.style.color = "black";
+
+            // Confirm color toggle
+            console.log("\"Likes\" changed to black.");
+        }
+    })
+}
+
+
 
 // Function to call a PHP script to like a story
 function LikeStory(story_id)
@@ -12,7 +47,7 @@ function LikeStory(story_id)
     console.log(`Story ID == ${story_id}.`);
 
     // If story ID exists and like is not already given
-    if(story_id != null && like_txt.style.color != request_done_color)
+    if(story_id != null)
     {
         // AJAX variable
         let xhr = new XMLHttpRequest();
@@ -26,11 +61,29 @@ function LikeStory(story_id)
                 // Redirect user to Story Like PHP script
                 // window.location.href = `story_like.php?story_id=${story_id}`;
 
-                // Change like text color
-                like_txt.style.color = request_done_color;
-
                 // Confirm request is done
                 console.log("Request done.");
+
+                // LIKE COLOR
+                // If text is not green
+                if(favs_txt.style.color != request_done_color)
+                {
+                    // Set its color to green
+                    favs_txt.style.color = request_done_color;
+
+                    // Confirm color toggle
+                    console.log("\"Add to Favs\" changed to green.");
+                }
+
+                // If text is green
+                else if(favs_txt.style.color == request_done_color)
+                {
+                    // Set its color to default
+                    favs_txt.style.color = "black";
+
+                    // Confirm color toggle
+                    console.log("\"Add to Favs\" changed to black.");
+                }
             }
         }
 
@@ -52,21 +105,44 @@ function LikeStory(story_id)
         // Log it
         console.log("Error : no story ID.");
     }
-
-    // If "Likes" is already green  
-    else if(like_txt.style.color == request_done_color)
-    {
-        // Change color to black
-        like_txt.style.color = "black";
-
-        // Log it
-        console.log("Story like removed.");
-    }
 }
 
 // STORY DISLIKE
-// Dislikes Text
+// Dislike Text
 let dislike_txt = document.getElementById("dislike_txt");
+// console.log(`dislike_txt == ${dislike_txt}.`);
+
+// Dislike Icon
+let dislike_icon = document.getElementById("dislike_icon");
+// console.log(`dislike_icon == ${dislike_icon}.`);
+
+// TOGGLE COLOR OF "LIKES" ON CLICK
+// If there is an element with a "dislike_icon" ID
+if(dislike_icon != null)
+{
+    dislike_icon.addEventListener("click", function()
+    {
+        // If text is not green
+        if(dislike_txt.style.color != request_done_color)
+        {
+            // Set its color to green
+            dislike_txt.style.color = request_done_color;
+
+            // Confirm color toggle
+            console.log("\"Dislikes\" changed to green.");
+        }
+
+        // If text is green
+        else if(dislike_txt.style.color == request_done_color)
+        {
+            // Set its color to default
+            dislike_txt.style.color = "black";
+
+            // Confirm color toggle
+            console.log("\"Dislikes\" changed to black.");
+        }
+    })
+}
 
 // Function to call a PHP script to dislike a story
 function DislikeStory(story_id)
@@ -74,8 +150,8 @@ function DislikeStory(story_id)
     // Confirm Story ID obtention
     console.log(`Story ID == ${story_id}.`);
 
-    // If story ID exists and like is not already given
-    if(story_id != null && dislike_txt.style.color != request_done_color)
+    // If story ID exists
+    if(story_id != null)
     {
         // AJAX variable
         let xhr = new XMLHttpRequest();
@@ -88,9 +164,6 @@ function DislikeStory(story_id)
             {
                 // Redirect user to Story Like PHP script
                 // window.location.href = `story_like.php?story_id=${story_id}`;
-
-                // Change like text color
-                dislike_txt.style.color = request_done_color;
 
                 // Confirm request is done
                 console.log("Request done.");
@@ -114,15 +187,5 @@ function DislikeStory(story_id)
     {
         // Log it
         console.log("Error : no story ID.");
-    }
-
-    // If "Dislikes" is already green  
-    else if(dislike_txt.style.color == request_done_color)
-    {
-        // Change color to black
-        dislike_txt.style.color = "black";
-
-        // Log it
-        console.log("Story dislike removed.");
     }
 }
