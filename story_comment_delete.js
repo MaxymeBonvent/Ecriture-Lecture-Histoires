@@ -30,7 +30,7 @@ function DeleteStoryComment(story_comment_id)
 
     // PROCESS REQUEST
     // Open PHP script to delete clicked story comment
-    xhr.open("GET", `story_comment_delete.php?story_comment_id=${story_comment_id}`);
+    xhr.open("GET", `story_comment_delete.php?story_comment_id=${story_comment_id}`, true);
 
     // // Send request
     xhr.send();

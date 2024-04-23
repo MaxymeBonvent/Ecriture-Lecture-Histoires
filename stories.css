@@ -490,7 +490,7 @@ textarea, input, button{
 }
 
 /* LIKE AND DISLIKE ICONS */
-.thumb{
+.thumb, .comment_like_icon, .comment_dislike_icon{
     /* Dimensions */
     width: 40px;
 
@@ -631,7 +631,7 @@ textarea, input, button{
 
     /* Dimensions */
     width: 40%;
-    height: 50%;
+    height: 60%;
 
     /* Position of internal elements */
     display: flex;
@@ -640,7 +640,7 @@ textarea, input, button{
 }
 
 /* DELETE AND QUOTE ICONS */
-.comment_delete_icon, .comment_quote_icon{
+.delete_icon, .quote_icon{
     /* Dimensions */
     width: 24px;
     height: 24px;
@@ -652,7 +652,7 @@ textarea, input, button{
 }
 
 /* COMMENT DELETE ICON */
-.comment_delete_icon{
+.delete_icon{
     /* Color */
     background-color: rgb(110, 0, 0);
     color: white;
@@ -662,7 +662,7 @@ textarea, input, button{
 }
 
 /* COMMENT QUOTE ICON */
-.comment_quote_icon{
+.quote_icon{
     /* Color */
     background-color: rgb(40, 0, 160);
     color: white;

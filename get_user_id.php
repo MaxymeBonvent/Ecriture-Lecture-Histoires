@@ -14,7 +14,7 @@
         echo "<p>Error : you are not logged in.</p>";
 
         // End script
-        // exit;
+        exit;
     }
 
     // If user is logged in
