@@ -498,6 +498,19 @@ textarea, input, button{
     cursor: pointer;
 }
 
+/* QUOTED TEXT */
+#quote{
+    /* Outline */
+    border:  2px solid transparent;
+
+    /* Font size */
+    font-size: 19px;
+
+    /* Colors */
+    background-color: rgba(0, 0, 0, 0.8);
+    color: gray;
+}
+
 /* STORY DIVS */
 .story_div{
     /* Outline */
@@ -583,7 +596,6 @@ textarea, input, button{
 
     /* Dimensions */
     width: 80%;
-    height: 150px;
 
     /* External space */
     margin: 8px 0;
@@ -627,7 +639,8 @@ textarea, input, button{
 /* COMMENT OPTIONS */
 .comment_options{
     /* Outline */
-    border: 2px solid black;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
 
     /* Dimensions */
     width: 40%;

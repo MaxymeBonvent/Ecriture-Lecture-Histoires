@@ -9,7 +9,7 @@
     require_once("get_user_id.php");
 
     // ---- COMMENT VARIABLES ---- //
-    $comment_text = htmlspecialchars($_POST["comment_text"]);
+    $comment_text = $_POST["comment_textarea"];
     $chapter_id = htmlspecialchars($_POST["chapter_id"]);
     $date = date("Y-m-d");
 

@@ -9,7 +9,7 @@
     require_once("get_user_id.php");
 
     // ---- COMMENT VARIABLES ---- //
-    $comment_text = htmlspecialchars($_POST["comment_text"]);
+    $comment_text = $_POST["comment_textarea"];
     $story_id = htmlspecialchars($_POST["story_id"]);
     $date = date("Y-m-d");
 
@@ -17,7 +17,7 @@
     if(!isset($comment_text) || empty($comment_text))
     {
         // Error message
-        echo "Error : no comment text.";
+        echo "<p>Error : no comment text.</p>";
 
         // End script
         exit;
@@ -27,7 +27,7 @@
     if(!isset($story_id) || empty($story_id))
     {
         // Error message
-        echo "Error : no story ID.";
+        echo "<p>Error : no story ID.</p>";
 
         // End script
         exit;

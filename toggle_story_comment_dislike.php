@@ -26,39 +26,39 @@
     // If both IDs exists and are numbers
     if(isset($story_comment_id) && !empty($story_comment_id) && is_numeric($story_comment_id) && isset($user_id) && !empty($user_id) && is_numeric($user_id))
     {
-        // Try to like/unlike comment
+        // Try to dislike/undislike comment
         try
         {
             // Start database modification
             $db->beginTransaction();
 
-            // ---- GET IDS OF EVERYONE WHO LIKED THIS COMMENT ---- //
+            // ---- GET IDS OF EVERYONE WHO DISLIKED THIS COMMENT ---- //
             // Prepare query
-            $get_user_like_ids = $db->prepare("SELECT user_like_ids FROM comments WHERE comment_id = :comment_id");
+            $get_user_dislike_ids = $db->prepare("SELECT user_dislike_ids FROM comments WHERE comment_id = :comment_id");
 
             // Binding
-            $get_user_like_ids->bindValue(":comment_id", $story_comment_id);
+            $get_user_dislike_ids->bindValue(":comment_id", $story_comment_id);
 
             // Execution
-            $get_user_like_ids->execute();
+            $get_user_dislike_ids->execute();
 
             // Store results
-            $user_like_ids = $get_user_like_ids->fetchColumn();
+            $user_dislike_ids = $get_user_dislike_ids->fetchColumn();
 
             // Test
-            // echo "<p>IDs of users who already liked this story comment :</p>";
-            // var_dump($user_like_ids);
+            // echo "<p>IDs of users who already disliked this story comment :</p>";
+            // var_dump($user_dislike_ids);
             // exit;
 
-            // ---- AT LEAST ONE USER LIKED THE COMMENT ---- //
-            if($user_like_ids != null && $user_like_ids != "")
+            // ---- AT LEAST ONE USER DISLIKED THE COMMENT ---- //
+            if($user_dislike_ids != null && $user_dislike_ids != "")
             {
-                // ---- USER ALREADY LIKED THIS COMMENT ---- //
-                if(str_contains($user_like_ids, $user_id))
+                // ---- USER ALREADY DISLIKED THIS COMMENT ---- //
+                if(str_contains($user_dislike_ids, $user_id))
                 {
                     // REMOVE USER ID FROM COLUMN
                     // Prepare query
-                    $remove_user_id = $db->prepare("UPDATE comments SET user_like_ids = REPLACE(user_like_ids, ' $user_id ', '') WHERE comment_id = :comment_id");
+                    $remove_user_id = $db->prepare("UPDATE comments SET user_dislike_ids = REPLACE(user_dislike_ids, ' $user_id ', '') WHERE comment_id = :comment_id");
 
                     // Binding
                     $remove_user_id->bindValue(":comment_id", $story_comment_id);
@@ -66,26 +66,26 @@
                     // Execution
                     $remove_user_id->execute();
 
-                    // DECREASE LIKES NUMBER
+                    // DECREASE DISLIKES NUMBER
                     // Prepare query
-                    $decrease_likes_number = $db->prepare("UPDATE comments SET likes = likes - 1 WHERE comment_id = :comment_id");
+                    $decrease_dislikes_number = $db->prepare("UPDATE comments SET dislikes = dislikes - 1 WHERE comment_id = :comment_id");
 
                     // Binding
-                    $decrease_likes_number->bindValue(":comment_id", $story_comment_id);
+                    $decrease_dislikes_number->bindValue(":comment_id", $story_comment_id);
 
                     // Execution
-                    $decrease_likes_number->execute();
+                    $decrease_dislikes_number->execute();
 
                     // Process database modification
                     $db->commit();
                 }
 
-                // ---- USER DID NOT LIKE THIS COMMENT YET ---- // 
-                else if(!str_contains($user_like_ids, $user_id))
+                // ---- USER DID NOT DISLIKE THIS COMMENT YET ---- // 
+                else if(!str_contains($user_dislike_ids, $user_id))
                 {
                     // ADD USER ID TO COLUMN
                     // Prepare query
-                    $add_user_id = $db->prepare("UPDATE comments SET user_like_ids = CONCAT(user_like_ids, ' $user_id ') WHERE comment_id = :comment_id");
+                    $add_user_id = $db->prepare("UPDATE comments SET user_dislike_ids = CONCAT(user_dislike_ids, ' $user_id ') WHERE comment_id = :comment_id");
 
                     // Binding
                     $add_user_id->bindValue(":comment_id", $story_comment_id);
@@ -93,27 +93,27 @@
                     // Execution
                     $add_user_id->execute();
 
-                    // INCREASE LIKES NUMBER
+                    // INCREASE DISLIKES NUMBER
                     // Prepare query
-                    $increase_likes_number = $db->prepare("UPDATE comments SET likes = likes + 1 WHERE comment_id = :comment_id");
+                    $increase_dislikes_number = $db->prepare("UPDATE comments SET dislikes = dislikes + 1 WHERE comment_id = :comment_id");
 
                     // Binding
-                    $increase_likes_number->bindValue(":comment_id", $story_comment_id);
+                    $increase_dislikes_number->bindValue(":comment_id", $story_comment_id);
 
                     // Execution
-                    $increase_likes_number->execute();
+                    $increase_dislikes_number->execute();
 
                     // Process database modification
                     $db->commit();
                 }                
             }
 
-            // ---- NO ONE LIKED THE COMMENT YET ---- //
-            else if($user_like_ids == null || $user_like_ids == "")
+            // ---- NO ONE DISLIKED THE COMMENT YET ---- //
+            else if($user_dislike_ids == null || $user_dislike_ids == "")
             {
                 // ADD USER ID TO COLUMN
                 // Prepare query
-                $add_user_id = $db->prepare("UPDATE comments SET user_like_ids = ' $user_id ' WHERE comment_id = :comment_id");
+                $add_user_id = $db->prepare("UPDATE comments SET user_dislike_ids = ' $user_id ' WHERE comment_id = :comment_id");
 
                 // Binding
                 $add_user_id->bindValue(":comment_id", $story_comment_id);
@@ -121,15 +121,15 @@
                 // Execution
                 $add_user_id->execute();
 
-                // INCREASE LIKES NUMBER
+                // INCREASE DISLIKES NUMBER
                 // Prepare query
-                $increase_likes_number = $db->prepare("UPDATE comments SET likes = likes + 1 WHERE comment_id = :comment_id");
+                $increase_dislikes_number = $db->prepare("UPDATE comments SET dislikes = dislikes + 1 WHERE comment_id = :comment_id");
 
                 // Binding
-                $increase_likes_number->bindValue(":comment_id", $story_comment_id);
+                $increase_dislikes_number->bindValue(":comment_id", $story_comment_id);
 
                 // Execution
-                $increase_likes_number->execute();
+                $increase_dislikes_number->execute();
 
                 // Process database modification
                 $db->commit();
@@ -143,7 +143,7 @@
             $db->rollBack();
 
             // Show error
-            echo "<p>Exception caught during story comment like toggling : ".$exc->getMessage().".</p>";
+            echo "<p>Exception caught during story comment dislike toggling : ".$exc->getMessage().".</p>";
 
             // End script
             exit;

@@ -2,11 +2,16 @@
 
 
 
-// STORY COMMENT LIKE ICONS AND TEXTS
+// CHAPTER COMMENT LIKE ICONS AND TEXTS
 let comment_like_icon = document.getElementsByClassName("comment_like_icon");
-let comment_like_txt = document.getElementsByClassName("comment_like_txt");
+console.log(`comment_like_icon == ${comment_like_icon}.`);
+console.log(`Number of comment_like_icon == ${comment_like_icon.length}.`);
 
-// TOGGLE STORY COMMENTS' "LIKE" TEXT COLOR
+let comment_like_txt = document.getElementsByClassName("comment_like_txt");
+console.log(`comment_like_txt == ${comment_like_txt}.`);
+console.log(`Number of comment_like_txt == ${comment_like_txt.length}.`);
+
+// TOGGLE CHAPTER COMMENTS' "LIKE" TEXT COLOR
 // For every comment like icon
 for(let i = 0; i < comment_like_icon.length; i++)
 {
@@ -23,7 +28,7 @@ for(let i = 0; i < comment_like_icon.length; i++)
                 comment_like_txt[i].style.color = request_done_color;
 
                 // Log color change
-                // console.log(`\"Like\" n°${i} from story comments changed to green.`);
+                console.log(`\"Like\" n°${i} from chapter comments changed to green.`);
             }
 
             // If "Like" is green
@@ -33,17 +38,17 @@ for(let i = 0; i < comment_like_icon.length; i++)
                 comment_like_txt[i].style.color = "black";
 
                 // Log color change
-                // console.log(`\"Like\" n°${i} from story comments changed to black.`);
+                console.log(`\"Like\" n°${i} from chapter comments changed to black.`);
             }
         })
     }
 }
 
-// Function to pass story comment ID and user ID to a PHP script to toggle story comment liking
-function ToggleStoryCommentLike(story_comment_id, user_id)
+// Function to pass chapter comment ID and user ID to a PHP script to toggle chapter comment liking
+function ToggleChapterCommentLike(chapter_comment_id, user_id)
 {
     // If both IDs exists and are numbers
-    if(story_comment_id != null && Number.isInteger(story_comment_id) && user_id != null && Number.isInteger(user_id))
+    if(chapter_comment_id != null && Number.isInteger(chapter_comment_id) && user_id != null && Number.isInteger(user_id))
     {
         // ---- AJAX ---- //
         xhr = new XMLHttpRequest();
@@ -55,14 +60,14 @@ function ToggleStoryCommentLike(story_comment_id, user_id)
             if(xhr.status == 200)
             {
                 // Log it
-                console.log("Toggling of story comment like request done.");
+                console.log("Toggling of chapter comment like request done.");
 
                 // Confirm variables obtention
-                console.log(`Story comment ID == ${story_comment_id}.`);
+                console.log(`Chapter comment ID == ${chapter_comment_id}.`);
                 console.log(`User ID == ${user_id}.`);
 
                 // Redirect user to PHP script that toggles story comment likes
-                // window.location.href = `toggle_story_comment_like.php?story_comment_id=${story_comment_id}&user_id=${user_id}`;
+                // window.location.href = `toggle_chapter_comment_like.php?chapter_comment_id=${chapter_comment_id}&user_id=${user_id}`;
             }
         }
 
@@ -70,18 +75,18 @@ function ToggleStoryCommentLike(story_comment_id, user_id)
         xhr.onerror = function()
         {
             // Log error
-            console.log(`Error during toggling of story comment like request : ${xhr.status}.`);
+            console.log(`Error during toggling of chapter comment like request : ${xhr.status}.`);
         }
 
         // Open PHP script
-        xhr.open("GET", `toggle_story_comment_like.php?story_comment_id=${story_comment_id}&user_id=${user_id}`, true);
+        xhr.open("GET", `toggle_chapter_comment_like.php?chapter_comment_id=${chapter_comment_id}&user_id=${user_id}`, true);
 
         // Send request
         xhr.send();
     }
 
     // If either ID does not exist and/or is not a number
-    else if(story_comment_id == null || !Number.isInteger(story_comment_id) || user_id == null || !Number.isInteger(user_id))
+    else if(chapter_comment_id == null || !Number.isInteger(chapter_comment_id) || user_id == null || !Number.isInteger(user_id))
     {
         // Log error
         console.log("Error : one ID does not exist or is not a number.");
@@ -118,7 +123,7 @@ for(let i = 0; i < comment_dislike_icon.length; i++)
                 comment_dislike_txt[i].style.color = request_done_color;
 
                 // Log color change
-                // console.log(`\"Dislike\" n°${i} from story comments changed to green.`);
+                console.log(`\"Dislike\" n°${i} from story comments changed to green.`);
             }
 
             // If "Dislike" is green
@@ -128,17 +133,17 @@ for(let i = 0; i < comment_dislike_icon.length; i++)
                 comment_dislike_txt[i].style.color = "black";
 
                 // Log color change
-                // console.log(`\"Dislike\" n°${i} from story comments changed to black.`);
+                console.log(`\"Dislike\" n°${i} from story comments changed to black.`);
             }
         })
     }
 }
 
-// Function to pass story comment ID and user ID to a PHP script to toggle story comment disliking
-function ToggleStoryCommentDislike(story_comment_id, user_id)
+// Function to pass chapter comment ID and user ID to a PHP script to toggle chapter comment disliking
+function ToggleChapterCommentDislike(chapter_comment_id, user_id)
 {
     // If both IDs exists and are numbers
-    if(story_comment_id != null && Number.isInteger(story_comment_id) && user_id != null && Number.isInteger(user_id))
+    if(chapter_comment_id != null && Number.isInteger(chapter_comment_id) && user_id != null && Number.isInteger(user_id))
     {
         // ---- AJAX ---- //
         xhr = new XMLHttpRequest();
@@ -150,14 +155,14 @@ function ToggleStoryCommentDislike(story_comment_id, user_id)
             if(xhr.status == 200)
             {
                 // Log it
-                // console.log("Toggling of story comment dislike request done.");
+                // console.log("Toggling of chapter comment dislike request done.");
 
                 // Confirm variables obtention
-                // console.log(`Story comment ID == ${story_comment_id}.`);
+                // console.log(`Chapter comment ID == ${story_comment_id}.`);
                 // console.log(`User ID == ${user_id}.`);
 
                 // Redirect user to PHP script that toggles story comment dislikes
-                // window.location.href = `toggle_story_comment_dislike.php?story_comment_id=${story_comment_id}&user_id=${user_id}`;
+                // window.location.href = `toggle_chapter_comment_dislike.php?chapter_comment_id=${chapter_comment_id}&user_id=${user_id}`;
             }
         }
 
@@ -165,18 +170,18 @@ function ToggleStoryCommentDislike(story_comment_id, user_id)
         xhr.onerror = function()
         {
             // Log error
-            console.log(`Error during toggling of story comment dislike request : ${xhr.status}.`);
+            console.log(`Error during toggling of chapter comment dislike request : ${xhr.status}.`);
         }
 
         // Open PHP script
-        xhr.open("GET", `toggle_story_comment_dislike.php?story_comment_id=${story_comment_id}&user_id=${user_id}`, true);
+        xhr.open("GET", `toggle_chapter_comment_dislike.php?chapter_comment_id=${chapter_comment_id}&user_id=${user_id}`, true);
 
         // Send request
         xhr.send();
     }
 
     // If either ID does not exist and/or is not a number
-    else if(story_comment_id == null || !Number.isInteger(story_comment_id) || user_id == null || !Number.isInteger(user_id))
+    else if(chapter_comment_id == null || !Number.isInteger(chapter_comment_id) || user_id == null || !Number.isInteger(user_id))
     {
         // Log error
         console.log("Error : one ID does not exist or is not a number.");

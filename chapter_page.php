@@ -554,7 +554,7 @@
             }
         ?>
 
-        <!-- SECTION 4 : CHAPTER COMMENTS -->
+        <!-- SECTION 5 : CHAPTER COMMENTS -->
         <section style="flex-direction: column;">
 
             <h3>Chapter Comments</h3>
@@ -562,10 +562,9 @@
             <!-- WRITTEN COMMENTS -->
 
             <?php
-                // ---- GET EVERY COMMENTS' TEXT, DATE AND USER ID ---- //
-
-                // Prepare a query to get every chapter comments' tetx, date and user ID
-                $get_chapter_comments = $db->prepare("SELECT  user_id, pub_date, comment_text FROM comments WHERE chapter_id = :chapter_id");
+                // ---- GET INFO OF CHAPTER COMMENTS ---- //
+                // Prepare query
+                $get_chapter_comments = $db->prepare("SELECT comment_id, user_id, pub_date, comment_text, likes, dislikes, user_like_ids, user_dislike_ids FROM comments WHERE chapter_id = :chapter_id");
 
                 // Binding  
                 $get_chapter_comments->bindValue(":chapter_id", $url_chapter_id);
@@ -576,16 +575,40 @@
                 // Store comments
                 $chapter_comments = $get_chapter_comments->fetchAll(PDO::FETCH_ASSOC);
 
+                // Test
+                // echo "<p>Chapter comments :</p>";
+                // var_dump($chapter_comments);
+                // exit;
+
                 // ---- GET COMMENT'S AUTHOR ---- //
 
                 // For each chapter comment
                 foreach($chapter_comments as $chapter_comment)
                 {
-                    // Prepare a query to get comment's username
+                    // GET CURRENT COMMMENT INFO
+                    // Prepare query
+                    $get_comment_info = $db->prepare("SELECT comment_id, user_id, pub_date, comment_text, likes, dislikes, user_like_ids, user_dislike_ids FROM comments WHERE comment_id = :comment_id");
+
+                    // Binding
+                    $get_comment_info->bindValue(":comment_id", $chapter_comment["comment_id"]);
+
+                    // Execution
+                    $get_comment_info->execute();
+
+                    // Store info
+                    $comment_info = $get_comment_info->fetchAll(PDO::FETCH_ASSOC);
+
+                    // Test 
+                    // echo "<p>Single chapter comment info :</p>";
+                    // var_dump($comment_info);
+                    // exit;
+              
+                    // GET CURRENT COMMMENT AUTHOR
+                    // Prepare query
                     $get_comment_author = $db->prepare("SELECT username FROM users WHERE user_id = :user_id");
 
                     // Binding
-                    $get_comment_author->bindValue(":user_id", $chapter_comment["user_id"]);
+                    $get_comment_author->bindValue(":user_id", $comment_info[0]["user_id"]);
 
                     // Execution
                     $get_comment_author->execute();
@@ -593,25 +616,186 @@
                     // Store author
                     $comment_author = $get_comment_author->fetchColumn();
 
+                    // Test
+                    // echo "<p>Chapter comment author :</p>";
+                    // var_dump($comment_author);
+                    // exit;
+
                     // START of current comment div
                     echo "<div class='comment_div'>";
 
-                        // USER INFO
-                        echo    "   <div>
-                                        <p>$comment_author</p>
-                                    </div>
-                                ";
 
-                        // COMMENT INFO
-                        echo    "   <div>
-                                        <p class='comment'>".$chapter_comment['comment_text']."</p>
-                                        <small class='comment_date'>Posted on ".date("d-m-Y", strtotime($chapter_comment['pub_date']))."</small>
-                                    </div>
-                                ";
+                        // START of top div
+                        echo "<div class='comment_div_top_inner_div'>";
+
+                            // START of author div
+                            echo "<div id='author_div'>";
+
+                                // Author
+                                echo "<p id='comment_author'>$comment_author</p>";
+
+                            // END of author div
+                            echo "</div>";
+
+                            // START of comment options div 
+                            echo "<div class='comment_options'>";
+
+                                // If user is logged in and the comment is theirs
+                                if(isset($_SESSION["username"]) && !empty($_SESSION["username"]) && $_SESSION["username"] == $comment_author)
+                                {
+                                    // Display delete icon
+                                    echo "<div class='delete_icon' onclick='DeleteChapterComment(".$chapter_comment["comment_id"].")'>X</div>";
+                                }
+
+                                // Quote icon
+                                echo "<div class='quote_icon' onclick='QuoteComment(\"".$comment_author."\", \"".htmlspecialchars($chapter_comment['comment_text'])."\", \"".date("d-m-Y", strtotime($chapter_comment['pub_date']))."\")'>Q</div>";
+
+                                // START of comment likes div
+                                echo "<div class='thumb_box'>";
+
+                                    // If user is not logged in
+                                    if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
+                                    {
+                                        // Display number of likes with default color
+                                        echo "<p class='comment_like_txt'>".$chapter_comment["likes"]." Likes</p>";
+
+                                        // Display like icon without functions
+                                        echo "<img class='thumb' src=img/like.png alt='Like icon'>";
+                                    }
+
+                                    // If user is logged in
+                                    else if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
+                                    {
+                                        // If at least one user liked this comment
+                                        if($comment_info[0]["user_like_ids"] != null && $comment_info[0]["user_like_ids"] != "")
+                                        {
+                                            // If user liked this comment
+                                            if(str_contains($comment_info[0]["user_like_ids"], $user_id))
+                                            {
+                                                // Display number of likes with "valid" color
+                                                echo "<p class='comment_like_txt' style='color: rgb(0, 120, 0);'>".$chapter_comment["likes"]." Likes</p>";
+
+                                                // Display like icon with functions
+                                                echo "<img class='comment_like_icon' onclick='ToggleChapterCommentLike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";
+                                            }
+
+                                            // If user did not like this comment
+                                            else if(!str_contains($comment_info[0]["user_like_ids"], $user_id))
+                                            {
+                                                // Display number of likes with default color
+                                                echo "<p class='comment_like_txt'>".$story_comment["likes"]." Likes</p>";
+
+                                                // Display like icon with functions
+                                                echo "<img class='comment_like_icon' onclick='ToggleChapterCommentLike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";
+                                            }
+                                        }
+                                        
+                                        // If nobody liked this comment
+                                        else if($chapter_comment["user_like_ids"] == null || $chapter_comment["user_like_ids"] == "")
+                                        {
+                                            // Display number of likes with default color
+                                            echo "<p class='comment_like_txt'>".$chapter_comment["likes"]." Likes</p>";
+
+                                            // Display like icon with functions and default color
+                                            echo "<img class='comment_like_icon' onclick='ToggleChapterCommentLike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";  
+                                        } 
+                                    }
+
+                                // END of comment likes div
+                                echo "</div>";
+
+
+
+                                // START of comment dislikes div
+                                echo "<div class='thumb_box'>";
+
+                                    // If user is not logged in
+                                    if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
+                                    {
+                                        // Display number of dislikes with default color
+                                        echo "<p class='comment_dislike_txt'>".$chapter_comment["dislikes"]." Dislikes</p>";
+
+                                        // Display dislike icon without functions
+                                        echo "<img class='thumb' src=img/dislike.png alt='Dislike icon'>";
+                                    }
+
+                                    // If user is logged in
+                                    else if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
+                                    {
+                                        // If at least one user disliked this comment
+                                        if($comment_info[0]["user_dislike_ids"] != null && $comment_info[0]["user_dislike_ids"] != "")
+                                        {
+                                            // If user disliked this comment
+                                            if(str_contains($comment_info[0]["user_dislike_ids"], $user_id))
+                                            {
+                                                // Display number of dislikes with "valid" color
+                                                echo "<p class='comment_dislike_txt' style='color: rgb(0, 120, 0);'>".$chapter_comment["dislikes"]." Dislikes</p>";
+
+                                                // Display dislike icon with functions
+                                                echo "<img class='comment_dislike_icon' onclick='ToggleChapterCommentDislike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";
+                                            }
+
+                                            // If user did not dislike this comment
+                                            else if(!str_contains($comment_info[0]["user_dislike_ids"], $user_id))
+                                            {
+                                                // Display number of dislikes with default color
+                                                echo "<p class='comment_dislike_txt'>".$chapter_comment["dislikes"]." Dislikes</p>";
+
+                                                // Display dislike icon with functions
+                                                echo "<img class='comment_dislike_icon' onclick='ToggleChapterCommentDislike(".$chapter_comment["comment_id"].", ".$user_id.")'  src=img/dislike.png alt='Dislike icon'>";
+                                            }
+                                        }
+                                        
+                                        // If nobody disliked this comment
+                                        else if($chapter_comment["user_dislike_ids"] == null || $chapter_comment["user_dislike_ids"] == "")
+                                        {
+                                            // Display number of dislikes with default color
+                                            echo "<p class='comment_dislike_txt'>".$chapter_comment["dislikes"]." Dislikes</p>";
+
+                                            // Display dislike icon with functions and default color
+                                            echo "<img class='comment_dislike_icon' onclick='ToggleChapterCommentDislike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";  
+                                        }  
+                                    }
+
+                                // END of comment dislikes div
+                                echo "</div>";
+
+                            // END of comment options div 
+                            echo "</div>";
+
+
+                        // END of top div
+                        echo "</div>";
+
+
+
+
+                        // START of mid div
+                        echo "<div class='comment_div_mid_inner_div'>";
+
+                            // Comment text
+                            echo "<p id='comment_txt'>".$chapter_comment['comment_text']."</p>";
+
+                        // END of mid div
+                        echo "</div>";
+
+
+
+
+                        // START of bottom div
+                        echo "<div class='comment_div_bottom_inner_div'>";
+
+                            // Publication date
+                            echo "<small id='comment_date'>Posted on ".date("d-m-Y", strtotime($chapter_comment['pub_date']))."</small>";
+
+                        // END of bottom div
+                        echo "</div>";
+
+                                
 
                     // END of current comment div
                     echo "</div>";
-                }
+                }  
             ?>
 
             <!-- COMMENT WRITING SPACE -->
@@ -626,10 +810,10 @@
                 ?>
 
                 <!-- LABEL -->
-                <label for="comment_text">Your comment (up to 3000 characters)</label>
+                <label for="comment_textarea">Your comment (up to 3000 characters)</label>
 
                 <!-- INPUT -->
-                <textarea name="comment_text" id="comment_text" cols="40" rows="10" maxlength="3000" placeholder="What I like about this chapter is that...on the other hand..."></textarea>
+                <textarea name="comment_textarea" id="comment_textarea" cols="40" rows="10" maxlength="3000" placeholder="What I like about this story is that...on the other hand..."></textarea>
 
                 <!-- FORM BUTTONS DIV -->
                 <div class="form_btns_div">
@@ -653,6 +837,9 @@
     <script src="formatting.js"></script>
     <script src="toggle_bookmark.js"></script>
     <script src="chapter_like_dislike.js"></script>
+    <script src="chapter_comment_delete.js"></script>
+    <script src="chapter_comment_like_dislike.js"></script>
+    <script src="quote_comment.js"></script>
 
     <!-- FOOTER -->
     <footer>
