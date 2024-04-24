@@ -219,14 +219,6 @@
                             // END of account options div
                             echo "</div>";
 
-                            // START of notifications div
-                            echo "<div class='section_div'>";
-
-                                echo "<p>You have 000 notifications.</p>";
-
-                            // END of notifications div
-                            echo "</div>";
-
                     // END of user info section
                     echo "</section>";
 
