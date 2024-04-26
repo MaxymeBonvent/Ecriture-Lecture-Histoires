@@ -96,6 +96,10 @@
                 // Fetch result
                 $user_id = $get_user_id->fetchColumn();
 
+                // Test
+                // echo "<p>User ID :</p>";
+                // var_dump($user_id);
+
                 // Closing
                 $get_user_id->closeCursor();
             }
@@ -212,23 +216,6 @@
             // Test 
             // var_dump($chapter_info);
 
-            // ---- GET AUTHOR'S BIO ---- //
-
-            // Prepare a query to get author's bio
-            $get_bio = $db->prepare("SELECT biography FROM users WHERE username = :username");
-
-            // Binding  
-            $get_bio->bindValue(":username", $author);
-
-            // Execution
-            $get_bio->execute();
-
-            // Store bio
-            $bio = $get_bio->fetchColumn();
-
-            // Closing
-            $get_bio->closeCursor();
-
             // ---- GET STORY'S LIKE COUNT AND DISLIKE COUNT ---- //
 
             // Prepare a query to get story's synopsis, likes and dislikes
@@ -252,7 +239,6 @@
 
             <?php
                 echo "<h3 class='author_txt' title='Click to send a private message' onclick='PrivateMessage(\"$author\")'>$author</h3>";
-                echo "<p>$bio</p>";
             ?>
 
         </section>

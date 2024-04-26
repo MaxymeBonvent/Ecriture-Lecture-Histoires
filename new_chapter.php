@@ -147,7 +147,7 @@
 
                                 <label for='chapter_title_input_field' id='chapter_title_label'>Chapter Title (up to 30 words)<span class='required_star'>*</span></label>
 
-                                <input type='text' class='form_input_field' name='chapter_title' placeholder='Chapter ? : a small creature appears' required='true' autocomplete='off' maxlength='400' onkeyup='ChapterTitleCheck()' title='Enter the title of the next chapter of your story'>
+                                <input id='chapter_title_input_field' type='text' class='form_input_field' name='chapter_title' placeholder='Chapter ? : a small creature appears' required='true' autocomplete='off' maxlength='400' onkeyup='ChapterTitleCheck()' title='Enter the title of the next chapter of your story'>
 
                                 <div class='counting_div'>
 

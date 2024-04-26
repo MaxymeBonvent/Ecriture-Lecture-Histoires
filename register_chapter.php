@@ -73,6 +73,9 @@
             )
 
             {
+                // Start database modification
+                $db->beginTransaction();
+
                 // ---- INSERT NEW CHAPTER ----
 
                 // Prepare a query to insert a chapter with its story ID, title, text, word count and date
@@ -150,6 +153,9 @@
 
                 // ---- REDIRECTION ----
 
+                // Process database modification
+                $db->commit();
+
                 // Redirect user to chapter storage confirmation page
                 header("Location: chapter_registration_confirm.php");
             }
@@ -158,6 +164,9 @@
     // Catch any exception
     catch(Exception $exc)
     {
+        // Cancel database modification
+        $db->rollBack();
+
         // Output error message
         echo "<p>Exception caught during chapter registration  : " . $exc->getMessage() . "</p>";
 

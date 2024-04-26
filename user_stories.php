@@ -82,7 +82,7 @@
                 // ---- GET STORY TITLES ----
 
                 // Prepare query to get every story title from the logged in user
-                $get_story_titles = $db->prepare("SELECT story_title FROM stories WHERE user_id = :user_id");
+                $get_story_titles = $db->prepare("SELECT pub_date, story_title FROM stories WHERE user_id = :user_id ORDER BY pub_date DESC");
 
                 // Binding
                 $get_story_titles->bindValue(":user_id", $user_id);

@@ -20,7 +20,6 @@ let chapter_title = document.getElementById("chapter_title_input_field");
 // CHAPTER TEXT
 let chapter_text = document.getElementById("chapter_text_area");
 
-
 // Function to toggle preview background on or off
 function TogglePreviewBackground()
 {

@@ -97,6 +97,9 @@
             ) 
 
             {
+                // Start database modification
+                $db->beginTransaction();
+
                 // ---- GET USER ID ----
                 require_once("get_user_id.php");
 
@@ -228,6 +231,9 @@
                 // Closing
                 $give_user_id_to_story->closeCursor();
 
+                // Process database modification
+                $db->commit();
+
                 // ---- REDIRECTION ----
 
                 // Redirect user to Story Storage Confirmation Page
@@ -238,6 +244,9 @@
     // Catch any exception
     catch(Exception $exc)
     {
+        // Cancel database modification
+        $db->rollBack();
+
         // Output error message
         echo "<p>Exception caught during story registration  : " . $exc->getMessage() . "</p>";
 
