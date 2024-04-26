@@ -71,7 +71,7 @@
         <form action="register_user.php" method="post">
 
             <!-- USERNAME DIV -->
-            <div class="account_div">
+            <div class="form_div_row">
 
                 <!-- LABEL -->
                 <label id="user_label" for="username">Username (max. 20 char.)<span class="required_star">*</span></label>
@@ -85,7 +85,7 @@
             <p id="username_existence">Username availability text</p>
 
             <!-- MAIL DIV -->
-            <div class="account_div">
+            <div class="form_div_row">
 
                 <!-- LABEL -->
                 <label for="mail">Mail<span class="required_star">*</span></label>
@@ -101,7 +101,7 @@
             <!-- aA0%aA0%aA0% -->
 
             <!-- PASSWORD DIV -->
-            <div class="account_div">
+            <div class="form_div_row">
 
                 <!-- LABEL -->
                 <label for="password">Password<span class="required_star">*</span></label>
@@ -112,7 +112,7 @@
             </div>
 
             <!-- PASSWORD CRITERIAS DIV -->
-            <div id="password_criterias_div">
+            <div class="form_div_col">
 
                 <!-- SUBTITLE -->
                 <h4>Your password must have at least :</h4>
@@ -135,7 +135,7 @@
             </div>
 
             <!-- PASSWORD CHECK DIV -->
-            <div class="account_div">
+            <div class="form_div_row">
 
                 <!-- LABEL -->
                 <label for="password_check">Repeat Password<span class="required_star">*</span></label>

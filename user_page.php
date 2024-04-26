@@ -210,6 +210,9 @@
                             // User's stories page
                             echo "<a href='story_count_check.php'>Your stories</a>";
 
+                            // Password editing page
+                            echo "<a href='password_edit_form.php'>Edit password</a>";
+
                             // Log out
                             echo "<a href='log_out.php'>Log out</a>";
 
@@ -397,7 +400,7 @@
                             else if($favs_ids_array[0] == null || $favs_ids_array[0] == "")
                             {
                                 // Tell user they have no stories in their favorites
-                                echo "<p>You have no favorite story.</p>";
+                                echo "<p>No favorite story.</p>";
                             }
 
                     // END of Favorite Stories section
@@ -499,7 +502,7 @@
                         else if($later_ids_array[0] == null || $later_ids_array[0] == "")
                         {
                             // Tell user they have no stories to read later
-                            echo "<p>You have no story to read later.</p>";
+                            echo "<p>No story to read later.</p>";
                         }
 
                     // END of Read Later section

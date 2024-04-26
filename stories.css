@@ -115,7 +115,7 @@ form{
     border: 2px solid black;
 
     /* Dimensions */
-    width: 60%;
+    width: 50%;
 
     /* Position of internal elements */
     display: flex;
@@ -1113,6 +1113,28 @@ form div label{
     width: 80%;
 }
 
+/* HORIZONTAL AND VERTICAL FORM DIVS */
+.form_div_row, .form_div_col{
+    /* Dimensions */
+    width: 60%;
+} 
+
+/* HORIZONTAL FORM DIVS */
+.form_div_row{
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* VERTICAL FORM DIVS */
+.form_div_col{
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 /* ACCOUNT PAGE AND LOG IN PAGE FORM DIVS */
 .account_div{
     /* Dimensions */
@@ -1127,7 +1149,7 @@ form div label{
 /*  FORM END BUTTONS DIV */
 #form_buttons_div{
     /* Dimensions */
-    width: 30%;
+    width: 25%;
 
     /* Position of internal elements */
     display: flex;
