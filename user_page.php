@@ -28,9 +28,6 @@
                 <img src="img/home.png" alt="Home" title="Go to homepage">
             </a>
 
-            <!-- DAY/NIGHT -->
-            <img src="img/sun.png" alt="Day Symbol" title="Day Theme On">
-
             <!-- MAGNIFYING GLASS -->
             <a href="story_search_page.php">
                 <img src="img/magnifying_glass.png" alt="Magnifying glass" title="Search stories">
@@ -209,9 +206,6 @@
 
                             // User's stories page
                             echo "<a href='story_count_check.php'>Your stories</a>";
-
-                            // Password editing page
-                            echo "<a href='password_edit_form.php'>Edit password</a>";
 
                             // Log out
                             echo "<a href='log_out.php'>Log out</a>";
