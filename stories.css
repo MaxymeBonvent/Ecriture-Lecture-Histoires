@@ -11,65 +11,6 @@ body{
     justify-content: center;
 }
 
-/* HEADER */
-header{
-    /* Background image properties */
-    background-image: url(img/library.png);
-    background-repeat: no-repeat;
-
-    /* Dimensions */
-    height: 300px;
-}
-
-/* HEADER TITLE AND SUBTITLES */
-header h1, header h2{
-    /* Text outline */
-    -webkit-text-stroke-color: rgb(230, 230, 230);
-    -webkit-text-stroke-width: 0.6px;
-
-    /* Background */
-    background-color: rgba(0, 100, 255, 0.5);
-}
-
-/* SUBTITLES */
-header h2{
-    /* Top external space */
-    margin-top: 0;
-}
-
-/* HEADER, MAIN AND FOOTER */
-header, main, footer{
-    /* Outline */
-    border: 2px solid black;
-
-    /* Text position */
-    text-align: center;
-
-    /* Position of internal elements */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* NAVIGATION */
-nav{
-    /* Outline */
-    border: 3px solid black;
-
-    /* Dimensions */
-    width: 70%;
-    height: 40%;
-
-    /* Background color */
-    background-color: rgb(0, 100, 255, 0.8);
-
-    /* Position of internal elements */
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
 /* NAVIGATION IMAGES */
 nav img{
     /* Position of internal elements */

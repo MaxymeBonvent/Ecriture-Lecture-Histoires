@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Homepage</title>
-    <link rel="stylesheet" href="stories.css">
+
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="back_to_top.css">
+    <link rel="stylesheet" href="homepage.css">
 
 </head>
 
@@ -51,13 +55,13 @@
     <!-- MAIN -->
     <main>
 
-        <!-- OUTLINE OF BACK TO TOP DIV -->
-        <a id="back_to_top_outline" href="#_header">
+        <!-- BACK TO TOP DIV -->
+        <div id="back_to_top_div">
 
             <!-- BACK TO TOP LINK  -->
-            <div id="back_to_top"></div>
+            <a id="back_to_top_link" href="#_header">TOP</a>
 
-        </a>
+        </div>
 
         <?php
             // Start user session
@@ -141,11 +145,11 @@
                         // ---- CREATE TAGS ARRAY ---- //
                         $tags_array = explode(" ", $story_info[0]['tags']);
 
-                        // CREATE BOOKMARKED CHAPTER STORY BOX
+                        // SECTION TITLE
                         echo "<h3>Currently reading</h3>";
 
                         // START of bookmarked chapter story box
-                        echo    "<div class='story_info_section' style='width: 50%;' onclick='ChapterPage(".$chapter_info[0]['chapter_id'].",".  $story_info[0]['story_id'].")'>";
+                        echo    "<div class='story_box' onclick='ChapterPage(".$chapter_info[0]['chapter_id'].",".  $story_info[0]['story_id'].")'>";
 
                                 // STORY AND CHAPTER TITLES
                                 echo "  <div>
@@ -224,7 +228,7 @@
                 $tags = explode(" ", $featured_story["tags"]);
 
                 // Display info of that story in a div
-                echo    "   <div class='story_info_section' onclick='Synopsis(\"".$featured_story['story_title']."\",\"".$featured_story['author']."\",\"".$featured_story['tags']."\",\"".$featured_story['chapter_ids']."\")'>
+                echo    "   <div class='story_box' onclick='Synopsis(\"".$featured_story['story_title']."\",\"".$featured_story['author']."\",\"".$featured_story['tags']."\",\"".$featured_story['chapter_ids']."\")'>
 
                                 <div>
                                     <h4>".$featured_story['story_title']."</h4>
@@ -278,7 +282,7 @@
                 $tags = explode(" ", $newest_story["tags"]);
 
                 // Display info of that story in a div
-                echo    "   <div class='story_info_section' onclick='Synopsis(\"".$newest_story['story_title']."\",\"".$newest_story['author']."\",\"".$newest_story['tags']."\",\"".$newest_story['chapter_ids']."\")'>
+                echo    "   <div class='story_box' onclick='Synopsis(\"".$newest_story['story_title']."\",\"".$newest_story['author']."\",\"".$newest_story['tags']."\",\"".$newest_story['chapter_ids']."\")'>
 
                                 <div>
                                     <h4>".$newest_story['story_title']."</h4>

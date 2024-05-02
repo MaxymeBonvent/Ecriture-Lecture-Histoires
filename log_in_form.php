@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Login</title>
-    <link rel="stylesheet" href="stories.css">
+
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="back_to_top.css">
+    <link rel="stylesheet" href="log_in_form.css">
 
 </head>
 <body>
@@ -58,28 +62,17 @@
         <!-- FORM -->
         <form action="login.php" method="post">
 
-            <!-- USERNAME DIV -->
-            <div class="account_div">
+            <!-- LABEL -->
+            <label id="user_label" for="username">Username<span class="required_star">*</span></label>
 
-                <!-- LABEL -->
-                <label id="user_label" for="username">Username<span class="required_star">*</span></label>
+            <!-- INPUT -->
+            <input type="text" name="username" id="username" placeholder="Your name" required="true" autocomplete="on">
 
-                <!-- INPUT -->
-                <input type="text" name="username" id="username" placeholder="Your name" required="true" autocomplete="on">
+            <!-- LABEL -->
+            <label for="password">Password<span class="required_star">*</span></label>
 
-            </div>
-
-            <!-- PASSWORD DIV -->
-            <div class="account_div">
-
-                <!-- LABEL -->
-                <label for="password">Password<span class="required_star">*</span></label>
-
-                <!-- INPUT -->
-                <input type="password" name="password" id="password" placeholder="************" required="true" autocomplete="off">
-
-            </div>
-
+            <!-- INPUT -->
+            <input type="password" name="password" id="password" placeholder="************" required="true" autocomplete="off">
 
             <!-- NEW ACCOUNT SUGGESTION -->
             <p>Don't have an account yet? <a href="create_account.php">Create one.</a></p>

@@ -1,0 +1,147 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* BACK TO TOP LINK */
+#back_to_top_link{
+    /* Text color */
+    color: black;
+}
+
+/* HOVERING ON BACK TO TOP LINK */
+#back_to_top_link:hover{
+    /* Underline */
+    text-decoration: underline;
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* BACK TO TOP DIV */
+    #back_to_top_div{
+        /* Outline */
+        border: 2px solid black;
+        border-radius: 100%;
+
+        /* Dimensions */
+        width: 30px;
+        height: 30px;
+
+        /* Position */
+        position: fixed;
+        bottom: 3%;
+        right: 3%;
+
+        /* Position of internal elements */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* BACK TO TOP LINK */
+    #back_to_top_link{
+        /* Text properties */
+        font-weight: bold;
+        font-size: 12px;
+        text-decoration: none;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* BACK TO TOP DIV */
+    #back_to_top_div{
+        /* Outline */
+        border: 2px solid black;
+        border-radius: 100%;
+
+        /* Dimensions */
+        width: 30px;
+        height: 30px;
+
+        /* Position */
+        position: fixed;
+        bottom: 3%;
+        right: 2.5%;
+
+        /* Position of internal elements */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* BACK TO TOP LINK */
+    #back_to_top_link{
+        /* Text properties */
+        font-weight: bold;
+        font-size: 12px;
+        text-decoration: none;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* BACK TO TOP DIV */
+    #back_to_top_div{
+        /* Outline */
+        border: 2px solid black;
+        border-radius: 100%;
+
+        /* Dimensions */
+        width: 40px;
+        height: 40px;
+
+        /* Position */
+        position: fixed;
+        bottom: 3%;
+        right: 3%;
+
+        /* Position of internal elements */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* BACK TO TOP LINK */
+    #back_to_top_link{
+        /* Text properties */
+        font-weight: bold;
+        font-size: 16px;
+        text-decoration: none;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* BACK TO TOP DIV */
+    #back_to_top_div{
+        /* Outline */
+        border: 2px solid black;
+        border-radius: 100%;
+
+        /* Dimensions */
+        width: 60px;
+        height: 60px;
+
+        /* Position */
+        position: fixed;
+        bottom: 3%;
+        right: 3%;
+
+        /* Position of internal elements */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* BACK TO TOP LINK */
+    #back_to_top_link{
+        /* Text properties */
+        font-weight: bold;
+        font-size: 22px;
+        text-decoration: none;
+    }
+}

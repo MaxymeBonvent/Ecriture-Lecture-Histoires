@@ -1,6 +1,4 @@
 <?php
-    // ---- DATABASE VARIABLES ----
-
     // Database connection variables
     $dsn = "mysql:dbname=storiesdb;host=localhost";
     $user = "root";

@@ -1,0 +1,57 @@
+/* COMMON PROPERTIES */
+footer{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 100%;
+
+    /* External space */
+    margin-top: 10px;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* Text */
+    p{
+        /* Font-size */
+        font-size: 16px;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* Text */
+    p{
+        /* Font-size */
+        font-size: 20px;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* Text */
+    p{
+        /* Font-size */
+        font-size: 22px;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* Text */
+    p{
+        /* Font-size */
+        font-size: 24px;
+    }
+}

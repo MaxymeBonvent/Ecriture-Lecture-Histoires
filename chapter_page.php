@@ -680,7 +680,7 @@
                                             else if(!str_contains($comment_info[0]["user_like_ids"], $user_id))
                                             {
                                                 // Display number of likes with default color
-                                                echo "<p class='comment_like_txt'>".$story_comment["likes"]." Likes</p>";
+                                                echo "<p class='comment_like_txt'>".$chapter_comment["likes"]." Likes</p>";
 
                                                 // Display like icon with functions
                                                 echo "<img class='comment_like_icon' onclick='ToggleChapterCommentLike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";

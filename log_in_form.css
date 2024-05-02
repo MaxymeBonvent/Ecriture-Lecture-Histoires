@@ -1,0 +1,74 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* SCROLL */
+html{
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    background-color: cornflowerblue;
+}
+
+/* MAIN */
+main{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* REQUIRED SYMBOL */
+.required_star{
+    color: rgb(120, 0, 0);
+}
+
+/* FORM */
+form{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 4px;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* FORM INPUT FIELDS */
+form input{
+    /* External space */
+    margin-bottom: 10px;
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+
+}

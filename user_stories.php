@@ -71,6 +71,10 @@
             // --- USER ID ---
             require_once("get_user_id.php");
 
+            // Test
+            // echo "<p>User ID :</p>";
+            // var_dump($user_id);
+
             // ---- ALL STORIES AND CHAPTERS ----
 
             // Try getting user ID, their stories, their chapters and info from those chapters

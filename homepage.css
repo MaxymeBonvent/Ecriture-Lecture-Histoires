@@ -1,0 +1,237 @@
+/* COMMON PROPERTIES */
+html{
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    /* Bakcground */
+    background-color: cornflowerblue;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* MAIN */
+main{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 100%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* DIVS IN MAIN */
+main div{
+    width: 80%;
+}
+
+/* SECTIONS */
+section{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* STORY BOXES */
+.story_box{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 90%;
+
+    /* External space */
+    margin: 8px 10px;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* DIVS IN STORY BOXES */
+.story_box div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 95%;
+    height: 70px;
+
+    /* External space */
+    margin: 5px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* TAGS DIVS */
+.tags_div{
+    /* Position of internal elements */
+    flex-wrap: wrap;
+}
+
+/* TEXT IN TAGS DIVS */
+.tags_div p{
+    /* Color */
+    background-color: forestgreen;
+
+    /* Outline */
+    border-radius: 10px;
+
+    /* External space */
+    margin: 4px;
+
+    /* Internal space */
+    padding: 0 4px;
+}
+
+/* ---- SIZED-BASED PROPERTIES */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* SECTIONS */
+    section{
+        /* Dimensions */
+        width: 75%;
+    } 
+
+    /* SECTION TITLES */
+    h3{
+        /* Font-size */
+        font-size: 16px;
+    }
+
+    /* STORY TITLES */
+    h4{
+        /* Centering */
+        text-align: center;
+
+        /* Font-size */
+        font-size: 12px;
+    }
+
+    /* TEXT IN DIVS IN STORY BOXES */   
+    .story_box div p{
+
+        /* Font-size */
+        font-size: 12px;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* SECTIONS */
+    section{
+        /* Dimensions */
+        width: 80%;
+    }   
+
+    /* SECTION TITLES */
+    h3{
+        /* Font-size */
+        font-size: 16px;
+    }
+
+    /* STORY TITLES */
+    h4{
+        /* Font-size */
+        font-size: 14px;
+    }
+
+    /* TEXT IN DIVS IN STORY BOXES */   
+    .story_box div p{
+
+        /* Font-size */
+        font-size: 16px;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* SECTIONS */
+    section{
+        /* Dimensions */
+        width: 70%;
+    } 
+
+    /* SECTION TITLES */
+    h3{
+        /* Font-size */
+        font-size: 24px;
+    }
+
+    /* STORY TITLES */
+    h4{
+        /* Font-size */
+        font-size: 22px;
+    }
+
+    /* TEXT IN DIVS IN STORY BOXES */   
+    .story_box div p{
+
+        /* Font-size */
+        font-size: 22px;
+    }    
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* SECTIONS */
+    section{
+        /* Dimensions */
+        width: 70%;
+    } 
+
+    /* STORY BOXES */
+    .story_box{
+        /* Dimensions */
+        width: 45%;
+    }
+
+
+    /* SECTION TITLES */
+    h3{
+        /* Font-size */
+        font-size: 24px;
+    }
+
+    /* STORY TITLES */
+    h4{
+        /* Font-size */
+        font-size: 22px;
+    }
+
+    /* TEXT IN DIVS IN STORY BOXES */   
+    .story_box div p{
+
+        /* Font-size */
+        font-size: 18px;
+    } 
+}
