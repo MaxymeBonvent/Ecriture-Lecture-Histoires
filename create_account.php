@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Create Account</title>
-    <link rel="stylesheet" href="stories.css">
+
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="back_to_top.css">
+    <link rel="stylesheet" href="create_account.css">
 
 </head>
 
@@ -50,13 +54,13 @@
     <!-- MAIN -->
     <main>
 
-        <!-- OUTLINE OF BACK TO TOP DIV -->
-        <a id="back_to_top_outline" href="#_header">
+        <!-- BACK TO TOP DIV -->
+        <div id="back_to_top_div">
 
             <!-- BACK TO TOP LINK  -->
-            <div id="back_to_top"></div>
+            <a id="back_to_top_link" href="#_header">TOP</a>
 
-        </a>
+        </div>
 
         <!-- NEW ACCOUNT FORM TITLE -->
         <h3>New account form</h3>
@@ -67,46 +71,32 @@
         <!-- FORM -->
         <form action="register_user.php" method="post">
 
-            <!-- USERNAME DIV -->
-            <div class="form_div_row">
+            <!-- LABEL -->
+            <label id="user_label" for="username">Username (max. 20 char.)<span class="required_star">*</span></label>
 
-                <!-- LABEL -->
-                <label id="user_label" for="username">Username (max. 20 char.)<span class="required_star">*</span></label>
+            <!-- INPUT -->
+            <input type="text" name="username" id="username" placeholder="Your name" required="true" autocomplete="on" maxlength="20" oninput="UsernameCheck()">
 
-                <!-- INPUT -->
-                <input type="text" name="username" id="username" placeholder="Your name" required="true" autocomplete="on" maxlength="20" oninput="UsernameCheck()">
-
-            </div>
+            
 
             <!-- USERNAME EXISTENCE -->
             <p id="username_existence">Username availability text</p>
 
-            <!-- MAIL DIV -->
-            <div class="form_div_row">
+            <!-- LABEL -->
+            <label for="mail">Mail<span class="required_star">*</span></label>
 
-                <!-- LABEL -->
-                <label for="mail">Mail<span class="required_star">*</span></label>
-
-                <!-- INPUT -->
-                <input type="email" name="mail" id="mail" placeholder="your.adress@example.com" required="true" autocomplete="on" maxlength="50" oninput="MailExistenceCheck()">
-
-            </div>
+            <!-- INPUT -->
+            <input type="email" name="mail" id="mail" placeholder="your.adress@example.com" required="true" autocomplete="on" maxlength="50" oninput="MailExistenceCheck()">
 
             <!-- MAIL EXISTENCE -->
             <p id="mail_existence">Mail availability text</p>
 
-            <!-- aA0%aA0%aA0% -->
+            <!-- LABEL -->
+            <label for="password">Password<span class="required_star">*</span></label>
 
-            <!-- PASSWORD DIV -->
-            <div class="form_div_row">
+            <!-- INPUT -->
+            <input type="password" name="password" id="password" placeholder="************" required="true" autocomplete="off" maxlength="50" oninput="AllPasswordCriteriasCheck()">
 
-                <!-- LABEL -->
-                <label for="password">Password<span class="required_star">*</span></label>
-
-                <!-- INPUT -->
-                <input type="password" name="password" id="password" placeholder="************" required="true" autocomplete="off" maxlength="50" oninput="AllPasswordCriteriasCheck()">
-
-            </div>
 
             <!-- PASSWORD CRITERIAS DIV -->
             <div class="form_div_col">
@@ -123,7 +113,7 @@
 
                     <li id="one_upper">1 uppercase letter (A)</li>
 
-                    <li id="one_special">1 special character (%)</li>
+                    <li id="one_special">1 special character (?)</li>
 
                     <li id="one_num">1 number (0)</li>
 
@@ -131,16 +121,11 @@
 
             </div>
 
-            <!-- PASSWORD CHECK DIV -->
-            <div class="form_div_row">
+            <!-- LABEL -->
+            <label for="password_check">Repeat Password<span class="required_star">*</span></label>
 
-                <!-- LABEL -->
-                <label for="password_check">Repeat Password<span class="required_star">*</span></label>
-
-                <!-- INPUT -->
-                <input type="password" name="password_check" id="password_check" placeholder="************" required="true" autocomplete="off" maxlength="50" oninput="AllPasswordCriteriasCheck()">
-
-            </div>
+            <!-- INPUT -->
+            <input type="password" name="password_check" id="password_check" placeholder="************" required="true" autocomplete="off" maxlength="50" oninput="AllPasswordCriteriasCheck()">
 
             <!-- PASSWORD EQUALITY TEXT -->
             <p id="pwd_equal_txt">Password equality text</p>

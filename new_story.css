@@ -1,0 +1,171 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* SCROLL */
+html{
+    /* Page scroll */
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    /* background color */
+    background-color: cornflowerblue;
+}
+
+/* TITLES */
+h1, h2, h3, h4{
+    /* Centering */
+    text-align: center;
+}
+
+/* REQUIRED STAR */
+.required_star{
+    /* Color */
+    color: rgb(120, 0, 0);
+}
+
+/* MAIN */
+main{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* FORM */
+form{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 50%;
+
+    /* Position of internal elements */ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* COUNTING TEXT */
+.count_txt{
+    /* External space */
+    margin-top: 0;
+}
+
+/* TAGS DIV AND OPTIONS CONTAINER */
+#tags_div, #options_container{
+    /* Dimensions */
+    width: 70%;
+}
+
+/* TAGS DIV */
+#tags_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 10px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* TEXT IN TAGS DIV */
+#tags_div p{
+    /* Background */
+    background-color: forestgreen;
+
+    /* Radius */
+    border-radius: 10px;
+
+    /* Internal space */
+    padding: 0 4px;
+
+    /* External space */
+    margin: 4px 10px;
+}
+
+/* OPTIONS CONTAINER */
+#options_container{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 10px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+}
+
+/* DIVS IN OPTIONS CONTAINER */
+#options_container div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 6px;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* IMAGES IN DIVS IN OPTIONS CONTAINER */
+#options_container div img{
+    /* Dimensions */
+    width: 30px;
+    height: 30px;
+}
+
+/* STYLE OPTIONS AND COLOR OPTIONS */
+.style_option, .color_option{
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* PREVIEW BACKGROUND */
+#preview_bck{
+    /* Background */
+    background-color: goldenrod;
+
+    /* Dimensions */
+    width: 100px;
+    height: 100px;
+
+    /* Position type */
+    position: fixed; 
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+
+}

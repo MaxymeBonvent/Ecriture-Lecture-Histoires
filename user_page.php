@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>User page</title>
-    <link rel="stylesheet" href="stories.css">
+
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="back_to_top.css">
+    <link rel="stylesheet" href="user_page.css">
 
 </head>
 
@@ -50,13 +54,13 @@
     <!-- MAIN -->
     <main>
 
-        <!-- OUTLINE OF BACK TO TOP DIV -->
-        <a id="back_to_top_outline" href="#_header">
+        <!-- BACK TO TOP DIV -->
+        <div id="back_to_top_div">
 
             <!-- BACK TO TOP LINK  -->
-            <div id="back_to_top"></div>
+            <a id="back_to_top_link" href="#_header">TOP</a>
 
-        </a>
+        </div>
 
         <?php
             // Start user session
@@ -193,7 +197,7 @@
                 // ---- PAGE LAYOUT ---- //
                 
                 // START of top half section
-                echo "<section class='user_page_half_section'>";
+                echo "<section id='top_half_section'>";
 
                     // START of user info section
                     echo "<section class='user_page_inner_section'>";
@@ -202,7 +206,7 @@
                         echo "<h2>".$_SESSION['username']."</h2>";
 
                         // START of account options div
-                        echo "<div class='section_div'>";
+                        echo "<div id='account_options_div'>";
 
                             // User's stories page
                             echo "<a href='story_count_check.php'>Your stories</a>";
@@ -211,19 +215,22 @@
                             echo "<a href='log_out.php'>Log out</a>";
 
                             // Account delete
-                            echo "<p onclick='DeleteAccount($user_id)' class='delete_txt'>Delete account</p>";
+                            echo "<p onclick='DeleteAccount($user_id)' id='delete_txt'>Delete account</p>";
 
-                            // END of account options div
-                            echo "</div>";
+                        // END of account options div
+                        echo "</div>";
 
                     // END of user info section
                     echo "</section>";
+
+                    // CHAPTER BOX ANNOUNCE
+                    // echo "<h3>Currently reading</h3>";
 
                     // If user bookmarked a chapter
                     if($marked_chapter_id != null && $marked_chapter_id != "")
                     {
                         // START of bookmarked chapter section
-                        echo "<section class='story_info_section' onclick='ChapterPage(".$marked_chapter_id.",".$story_id_chapter_title[0]['story_id'].")'>";
+                        echo "<section id='chapter_box' onclick='ChapterPage(".$marked_chapter_id.",".$story_id_chapter_title[0]['story_id'].")'>";
 
                             // START of story and chapter titles div
                             echo "<div class='section_div'>";
@@ -238,13 +245,13 @@
                             echo "</div>";
 
                             // START of story info div
-                            echo "<div class='section_div'>";
+                            echo "<div class='story_info_div'>";
 
                                 // Author
                                 echo "<p>".$story_info[0]['author']."</p>";
 
                                 // Date
-                                echo "<p>".date("d-m-Y", strtotime($story_info[0]['pub_date']))."</p>";
+                                echo "<p class='date_txt'>".date("d-m-Y", strtotime($story_info[0]['pub_date']))."</p>";
 
                                 // Likes
                                 echo "<p>".$story_info[0]['likes']." Likes</p>";
@@ -296,7 +303,7 @@
 
 
                 // START of bottom half section
-                echo "<section class='user_page_half_section'>";
+                echo "<section id='bottom_half_section'>";
 
 
                     // START of Favorite Stories Story Container
@@ -337,7 +344,7 @@
 
                                     // ---- DISPLAY CURRENT FAVORITE STORY'S STORY BOX ---- //
                                     // START of current favorite story's story box
-                                    echo "<section class='story_info_section' onclick='Synopsis(\"".$current_fav_story_info[0]['story_title']."\",\"".$current_fav_story_info[0]['author']."\",\"".$current_fav_story_info[0]['tags']."\",\"".$current_fav_story_info[0]['chapter_ids']."\")'>";
+                                    echo "<section class='story_box' onclick='Synopsis(\"".$current_fav_story_info[0]['story_title']."\",\"".$current_fav_story_info[0]['author']."\",\"".$current_fav_story_info[0]['tags']."\",\"".$current_fav_story_info[0]['chapter_ids']."\")'>";
 
                                         // START of story title div
                                         echo "<div>";
@@ -349,14 +356,14 @@
                                         echo "</div>";
 
 
-                                        // START of story stats div
-                                        echo "<div>";
+                                        // START of story info div
+                                        echo "<div class='story_info_div'>";
 
                                             // Author
                                             echo "<p>".$current_fav_story_info[0]['author']."</p>";
 
                                             // Date
-                                            echo "<p>".date("d-m-Y", strtotime($current_fav_story_info[0]['pub_date']))."</p>";
+                                            echo "<p class='date_txt'>".date("d-m-Y", strtotime($current_fav_story_info[0]['pub_date']))."</p>";
 
                                             // Likes
                                             echo "<p>".$current_fav_story_info[0]['likes']." Likes</p>";
@@ -439,7 +446,7 @@
 
                                 // ---- DISPLAY CURRENT READ LATER STORY'S STORY BOX ---- //
                                 // START of current read later story's story box
-                                echo "<section class='story_info_section' onclick='Synopsis(\"".$current_later_story_info[0]['story_title']."\",\"".$current_later_story_info[0]['author']."\",\"".$current_later_story_info[0]['tags']."\",\"".$current_later_story_info[0]['chapter_ids']."\")'>";
+                                echo "<section class='story_box' onclick='Synopsis(\"".$current_later_story_info[0]['story_title']."\",\"".$current_later_story_info[0]['author']."\",\"".$current_later_story_info[0]['tags']."\",\"".$current_later_story_info[0]['chapter_ids']."\")'>";
 
                                     // START of story title div
                                     echo "<div>";
@@ -451,14 +458,14 @@
                                     echo "</div>";
 
 
-                                    // START of story stats div
-                                    echo "<div>";
+                                    // START of story info div
+                                    echo "<div class='story_info_div'>";
 
                                         // Author
                                         echo "<p>".$current_later_story_info[0]['author']."</p>";
 
                                         // Date
-                                        echo "<p>".date("d-m-Y", strtotime($current_later_story_info[0]['pub_date']))."</p>";
+                                        echo "<p class='date_txt'>".date("d-m-Y", strtotime($current_later_story_info[0]['pub_date']))."</p>";
 
                                         // Likes
                                         echo "<p>".$current_later_story_info[0]['likes']." Likes</p>";

@@ -1,0 +1,287 @@
+/* ---- COMMON PROPERTITES ---- */
+
+/* SCROLL */
+html{
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    background-color: cornflowerblue;
+}
+
+/* MAIN */
+main{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 100%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* REQUIRED SYMBOL */
+.required_star{
+    /* Color */
+    color: rgb(120, 0, 0);
+}
+
+/* FORM */
+form{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FORM DIVS */
+form div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 90%;
+
+    /* External space */
+    margin: 4px 0;
+}
+
+/* FORM BUTTONS DIV */
+.form_btns_div{
+    /* Dimensions */
+    width: 40%;
+    height: 60px;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* SUBTITLE */
+h4{
+    /* Centering */
+    text-align: center;
+}
+
+/* ---- SIZE-BASED PROPERTITES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* FORM */
+    form{
+        /* Dimensions */
+        width: 75%;
+    }
+
+    /* FORM DIV */
+    form div{
+        /* Dimensions */
+        width: 90%;
+    }
+
+    /* FORM TITLE */
+    h3{
+        font-size: 22px;
+    }
+
+    /* PASSWORD CRITERIAS ANNOUNCE */
+    h4{
+        font-size: 18px;
+    }
+
+    /* TEXT AND LABELS */
+    p, label{
+        font-size: 18px;
+    }
+
+    /* INPUTS */
+    input{
+        width: 80%;
+    }
+
+    /* PLACEHOLDER */
+    input::placeholder{
+        font-size: 16px;
+    }
+
+    /* FORM END DIV */
+    .form_btns_div{
+        width: 50%;
+    }
+
+    /* FORM END BUTTONS */
+    .formBtn{
+        font-size: 16px;
+        width: 100%;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* FORM */
+    form{
+        /* Dimensions */
+        width: 75%;
+    }
+
+    /* FORM DIV */
+    form div{
+        /* Dimensions */
+        width: 90%;
+    }
+
+    /* FORM TITLE */
+    h3{
+        font-size: 22px;
+    }
+
+    /* PASSWORD CRITERIAS ANNOUNCE */
+    h4{
+        font-size: 16px;
+    }
+
+    /* TEXT AND LABELS */
+    p, label{
+        font-size: 20px;
+    }
+
+    /* INPUTS */
+    input{
+        width: 80%;
+    }
+
+    /* PLACEHOLDER */
+    input::placeholder{
+        font-size: 16px;
+    }
+
+    /* FORM END DIV */
+    .form_btns_div{
+        width: 50%;
+    }
+
+    /* FORM END BUTTONS */
+    .formBtn{
+        font-size: 16px;
+        width: 100%;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* FORM */
+    form{
+        /* Dimensions */
+        width: 50%;
+    }
+
+    /* FORM DIV */
+    form div{
+        /* Dimensions */
+        width: 90%;
+    }
+
+    /* FORM TITLE */
+    h3{
+        font-size: 24px;
+    }
+
+    /* PASSWORD CRITERIAS ANNOUNCE */
+    h4{
+        font-size: 20px;
+    }
+
+    /* TEXT AND LABELS */
+    p, label{
+        font-size: 20px;
+    }
+
+    /* INPUTS */
+    input{
+        width: 80%;
+    }
+
+    /* PLACEHOLDER */
+    input::placeholder{
+        font-size: 16px;
+    }
+
+    /* FORM END DIV */
+    .form_btns_div{
+        width: 50%;
+    }
+
+    /* FORM END BUTTONS */
+    .formBtn{
+        font-size: 16px;
+        width: 100%;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* FORM */
+    form{
+        /* Dimensions */
+        width: 45%;
+    }
+
+    /* FORM DIV */
+    form div{
+        /* Dimensions */
+        width: 60%;
+    }
+
+    /* FORM TITLE */
+    h3{
+        font-size: 24px;
+    }
+
+    /* PASSWORD CRITERIAS ANNOUNCE */
+    h4{
+        font-size: 20px;
+    }
+
+    /* TEXT AND LABELS */
+    p, label{
+        font-size: 20px;
+    }
+
+    /* INPUTS */
+    input{
+        width: 50%;
+    }
+
+    /* PLACEHOLDER */
+    input::placeholder{
+        font-size: 16px;
+    }
+
+    /* FORM END DIV */
+    .form_btns_div{
+        width: 20%;
+    }
+
+    /* FORM END BUTTONS */
+    .formBtn{
+        font-size: 16px;
+        width: 100%;
+    }
+}

@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>New Story</title>
-    <link rel="stylesheet" href="stories.css">
+
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="back_to_top.css">
+    <link rel="stylesheet" href="new_story.css">
 
 </head>
 
@@ -49,8 +53,16 @@
     <!-- MAIN -->
     <main>
 
+        <!-- BACK TO TOP DIV -->
+        <div id="back_to_top_div">
+
+            <!-- BACK TO TOP LINK -->
+            <a id="back_to_top_link" href="#_header">TOP</a>
+
+        </div>
+
         <!-- PREVIEW BACKGROUND -->
-        <div id="preview_bck">
+        <section id="preview_bck">
 
             <!-- DIV CONTAINING CHAPTER TITLE AND TEXT PREVIEW -->
             <div id="preview_div">
@@ -63,7 +75,7 @@
 
             </div>
 
-        </div>
+        </section>
 
         <!-- CHECK IF USER IS LOGGED IN -->
         <?php
@@ -82,14 +94,6 @@
             {     
         ?>
 
-        <!-- OUTLINE OF BACK TO TOP DIV -->
-        <a id="back_to_top_outline" href="#_header">
-
-            <!-- BACK TO TOP LINK  -->
-            <div id="back_to_top"></div>
-
-        </a>
-
         <!-- FORM TITLE -->
         <h3>Write a new story</h3>
 
@@ -99,158 +103,114 @@
         <!-- FORM -->
         <form action="register_story.php" method="post">
 
-            <!-- STORY TITLE DIV -->
-            <div class="new_story_div">
+            <!-- LABEL -->
+            <label for="story_title_input_field" id="story_title_label">Story Title (up to 30 words)<span class="required_star">*</span></label>
 
-                <!-- LABEL -->
-                <label for="story_title_input_field" id="story_title_label">Story Title (up to 30 words)<span class="required_star">*</span></label>
+            <!-- INPUT -->
+            <input type="text" class="form_input_field" id="story_title_input_field" name="story_title" placeholder="Story of a strange creature" required="true" autocomplete="off" maxlength="400" onkeyup="StoryTitleCheck()" title="Enter a title for your story">
 
-                <!-- INPUT -->
-                <input type="text" class="form_input_field" id="story_title_input_field" name="story_title" placeholder="Story of a strange creature" required="true" autocomplete="off" maxlength="400" onkeyup="StoryTitleCheck()" title="Enter a title for your story">
+            <!-- STORY TITLE WORD COUNT -->
+            <p class="count_txt"><span id="story_title_word_count">0</span>/30</p>
 
-                <!-- STORY TITLE WORD COUNTING DIV -->
-                <div class="counting_div">
+            <!-- LABEL -->
+            <label for="synopsis_input" id="synopsis_label">Synopsis (up to 100 words)<span class="required_star">*</span></label>
 
-                    <!-- STORY TITLE WORD COUNT -->
-                    <p><span id="story_title_word_count">0</span>/30</p>
+            <!-- INPUT -->
+            <textarea class="form_input_field" id="synopsis_input" name="synopsis"  cols="30" rows="10" placeholder="Once upon a time..." required="true" autocomplete="off" onkeyup="SynopsisCheck()" title="Enter a synopsis for your story"></textarea>
 
-                </div>
+            <!-- SYNOPSIS WORD COUNT -->
+            <p class="count_txt"><span id="synopsis_word_count">0</span>/100</p>
+
+            <!-- TAGS -->
+
+            <!-- LABEL -->
+            <label for="tags_input_field" id="tags_label">Tags (up to 6), you can only insert or remove them by click<span class="required_star">*</span></label>
+
+            <!-- INPUT -->
+            <input type="text" class="form_input_field" id="tags_input_field" name="tags" placeholder="[First Tag] [Second Tag] [Third Tag] [Fourth Tag] [Fifth Tag] [Sixth Tag]" required="true" autocomplete="off" maxlength="60" onkeyup="EmptyTagsField()" title="Click tags for your story">
+
+            <!-- DIV OF AVAILABLE TAGS -->
+            <div id="tags_div">
+
+                <!-- TAG LIST -->
+                <p class="tag">Adventure</p>
+                <p class="tag">Comedy</p>
+                <p class="tag">Tragedy</p>
+
+                <p class="tag" title="Slice of life">S.o.L</p>
+                <p class="tag" title="Alternate Universe">A.U.</p>
+                <p class="tag">Violence</p>
+
+                <p class="tag">Horror</p>
+                <p class="tag">Romance</p>
+                <p class="tag">Tale</p>
+
+                <p class="tag">Poetry</p>
+                <p class="tag">Fantasy</p>
+                <p class="tag">Mystery</p>
 
             </div>
 
-            <!-- SYNOPSIS DIV -->
-            <div class="new_story_div">
+            <!-- TAGS COUNT -->
+            <p class="count_txt"><span id="tag_count_txt">0</span>/6</p>
 
-                <!-- LABEL -->
-                <label for="synopsis_input" id="synopsis_label">Synopsis (up to 100 words)<span class="required_star">*</span></label>
+            <!-- CHAPTER 1 TITLE LABEL -->
+            <label for="chapter_title_input_field" id="chapter_title_label">Chapter 1 Title (up to 30 words)<span class="required_star">*</span></label>
 
-                <!-- INPUT -->
-                <textarea class="form_input_field" id="synopsis_input" name="synopsis"  cols="30" rows="10" placeholder="Once upon a time..." required="true" autocomplete="off" onkeyup="SynopsisCheck()" title="Enter a synopsis for your story"></textarea>
+            <!-- INPUT -->
+            <input type="text" class="form_input_field" id="chapter_title_input_field" name="chapter_title" placeholder="Chapter 1 : a small creature appears" required="true" autocomplete="off" maxlength="400" onkeyup="ChapterTitleCheck()" title="Enter the title of the first chapter of your story">
 
-                <!-- SYNOPSIS WORD COUNTING DIV -->
-                <div class="counting_div">
+            <!-- CHAPTER TITLE WORD COUNT -->
+            <p class="count_txt"><span id="chapter_title_word_count">0</span>/30</p>
 
-                    <!-- SYNOPSIS WORD COUNT -->
-                    <p><span id="synopsis_word_count">0</span>/100</p>
+            <!-- LABEL -->
+            <label for="chapter_text_area" class="form_input_field" id="chapter_text_label">Chapter 1 Text (up to 15 000 words)<span class="required_star">*</span></label>
+
+            <!-- SECTION CONTAINING STYLE OPTIONS DIV AND COLOR OPTIONS DIV -->
+            <section id="options_container">
+
+                <!-- STYLE OPTIONS DIV -->
+                <div>
+
+                    <!-- STYLE OPTIONS -->
+                    <img style="cursor: pointer;" src="img/new_line.png" alt="New line symbol" title="Insert a new line" onclick="NewLine()">
+                    <p class="style_option" onclick="Bold()" title="Make text bold"><b>B</b></p>
+                    <p class="style_option" onclick="Italic()" title="Italize text"><i>I</i></p>
+                    <p class="style_option" onclick="Underline()" title="Underline text"><u>U</u></p>
+
+                    <p class="style_option" onclick="Strike()" title="Strike through text"><del><del>S</del></del></p>
+                    <img style="cursor: pointer;" src="img/color_wheel.png" alt="Color wheel" title="Open color box" onclick="ToggleColorBox()">
+                    <p class="style_option" onclick="Small()" title="Make text smaller"><small><small>SM</small></small></p>
+
+                    <p class="style_option" onclick="Superscript()" title="Make text superscript">A<sup>sp</sup></p>
+                    <p class="style_option" onclick="Subscript()" title="Make text subscript">A<sub>sb</sub></p>
+                    <p class="style_option" onclick="Center()" title="Center text">-C-</p>
+
+                    <p class="style_option" onclick="HorizontalRule()" title="Add a horizontal line"><u>HR</u></p>
+
+                </div>
+
+                <!-- COLOR OPTIONS DIV -->
+                <div id="color_options">
+
+                    <img src="img/red_circle.png" alt="Red circle" class="color_option" onclick="Red()"></img>
+
+                    <img src="img/green_circle.png" alt="Green circle" class="color_option" onclick="Green()"></img>
+
+                    <img src="img/blue_circle.png" alt="Blue circle" class="color_option" onclick="Blue()"></img>
 
                 </div>
                 
-            </div>
+            </section>  
 
-            <!-- TAGS DIV -->
-            <div class="new_story_div">
+            <!-- INPUT -->
+            <textarea id="chapter_text_area" name="chapter_text" cols="30" rows="10" placeholder="The creature opened its eyes and looked around..." required="true" autocomplete="off" maxlength="60000" onkeyup="ChapterTextCheck()" title="Enter the text of the first chapter of your story"></textarea>
 
-                <!-- LABEL -->
-                <label for="tags_input_field" id="tags_label">Tags (up to 6), you can only insert or remove them by click<span class="required_star">*</span></label>
+            <!-- CHAPTER TEXT WORD COUNT -->
+            <p class="count_txt"><span id="chapter_text_word_count">0</span>/15 000</p>
 
-                <!-- INPUT -->
-                <input type="text" class="form_input_field" id="tags_input_field" name="tags" placeholder="[First Tag] [Second Tag] [Third Tag] [Fourth Tag] [Fifth Tag] [Sixth Tag]" required="true" autocomplete="off" maxlength="60" onkeyup="EmptyTagsField()" title="Click tags for your story">
-
-                <!-- DIV OF AVAILABLE TAGS -->
-                <div id="tags_select_div">
-
-                    <!-- TAG LIST -->
-                    <p class="tag">Adventure</p>
-                    <p class="tag">Comedy</p>
-                    <p class="tag">Tragedy</p>
-
-                    <p class="tag" title="Slice of life">S.o.L</p>
-                    <p class="tag" title="Alternate Universe">A.U.</p>
-                    <p class="tag">Violence</p>
-
-                    <p class="tag">Horror</p>
-                    <p class="tag">Romance</p>
-                    <p class="tag">Tale</p>
-
-                    <p class="tag">Poetry</p>
-                    <p class="tag">Fantasy</p>
-                    <p class="tag">Mystery</p>
-
-                </div>
-
-                <!-- TAGS COUNTING DIV -->
-                <div class="counting_div">
-
-                    <!-- TAGS COUNT -->
-                    <p><span id="tag_count_txt">0</span>/6</p>
-
-                </div>
-
-            </div>
-
-            <!-- CHAPTER TITLE DIV -->
-            <div class="new_story_div">
-
-                <!-- LABEL -->
-                <label for="chapter_title_input_field" id="chapter_title_label">Chapter 1 Title (up to 30 words)<span class="required_star">*</span></label>
-
-                <!-- INPUT -->
-                <input type="text" class="form_input_field" id="chapter_title_input_field" name="chapter_title" placeholder="Chapter 1 : a small creature appears" required="true" autocomplete="off" maxlength="400" onkeyup="ChapterTitleCheck()" title="Enter the title of the first chapter of your story">
-
-                <!-- CHAPTER TITLE WORD COUNTING DIV -->
-                <div class="counting_div">
-
-                    <!-- CHAPTER TITLE WORD COUNT -->
-                    <p><span id="chapter_title_word_count">0</span>/30</p>
-
-                </div>
-
-            </div>
-
-            <!-- CHAPTER TEXT DIV -->
-            <div class="new_story_div">
-
-                <!-- LABEL -->
-                <label for="chapter_text_area" class="form_input_field" id="chapter_text_label">Chapter 1 Text (up to 15 000 words)<span class="required_star">*</span></label>
-
-                <!-- DIV CONTAINING STYLE OPTIONS DIV AND COLOR OPTIONS DIV -->
-                <div id="options_container">
-
-                    <!-- STYLE OPTIONS DIV -->
-                    <div id="style_options">
-
-                        <!-- STYLE OPTIONS -->
-                        <img style="cursor: pointer;" src="img/new_line.png" alt="New line symbol" title="Insert a new line" onclick="NewLine()">
-                        <p class="style_option" onclick="Bold()" title="Make text bold"><b>B</b></p>
-                        <p class="style_option" onclick="Italic()" title="Italize text"><i>I</i></p>
-                        <p class="style_option" onclick="Underline()" title="Underline text"><u>U</u></p>
-
-                        <p class="style_option" onclick="Strike()" title="Strike through text"><del><del>S</del></del></p>
-                        <img style="cursor: pointer;" src="img/color_wheel.png" alt="Color wheel" title="Open color box" onclick="ToggleColorBox()">
-                        <p class="style_option" onclick="Small()" title="Make text smaller"><small><small>SM</small></small></p>
-
-                        <p class="style_option" onclick="Superscript()" title="Make text superscript">A<sup>sp</sup></p>
-                        <p class="style_option" onclick="Subscript()" title="Make text subscript">A<sub>sb</sub></p>
-                        <p class="style_option" onclick="Center()" title="Center text">-C-</p>
-
-                        <p class="style_option" onclick="HorizontalRule()" title="Add a horizontal line"><u>HR</u></p>
-
-                    </div>
-
-                    <!-- COLOR OPTIONS DIV -->
-                    <div id="color_options">
-                        <div class="color_option" style="background-color: rgb(160, 0, 0);" onclick="Red()"></div>
-                        <div class="color_option" style="background-color: rgb(0, 120, 0);" onclick="Green()"></div>
-                        <div class="color_option" style="background-color: rgb(0, 60, 180);"  onclick="Blue()"></div>
-                    </div>
-                    
-                </div>  
-
-                <!-- INPUT -->
-                <textarea id="chapter_text_area" name="chapter_text" cols="30" rows="10" placeholder="The creature opened its eyes and looked around..." required="true" autocomplete="off" maxlength="60000" onkeyup="ChapterTextCheck()" title="Enter the text of the first chapter of your story"></textarea>
-
-                <!-- CHAPTER TEXT WORD COUNTING DIV -->
-                <div class="counting_div">
-
-                    <!-- CHAPTER TEXT WORD COUNT -->
-                    <p><span id="chapter_text_word_count">0</span>/15 000</p>
-
-                </div>
-
-                <!-- PREVIEW BUTTON -->
-                <div id="preview_toggle" onclick="TogglePreviewBackground()" style="z-index: 1;">Preview</div>
-
-            </div>
+            <!-- PREVIEW BUTTON -->
+            <p id="preview_toggle" onclick="TogglePreviewBackground()" style="z-index: 1;">Preview</p>
 
             <!-- FORM BUTTONS -->
             <div class="form_btns_div">

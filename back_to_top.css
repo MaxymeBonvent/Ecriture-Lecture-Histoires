@@ -4,6 +4,10 @@
 #back_to_top_link{
     /* Text color */
     color: black;
+    font-weight: bold;
+
+    /* Mouse icon */
+    cursor: pointer;
 }
 
 /* HOVERING ON BACK TO TOP LINK */

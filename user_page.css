@@ -1,0 +1,484 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* SCROLL */
+html{
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    background-color: cornflowerblue;
+}
+
+/* MAIN */
+main{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 100%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* TITLES */
+h1, h2, h3, h4{
+    /* Centering */
+    text-align: center;
+}
+
+/* SECTIONS */
+section{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 10px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* SECTION DIVS */
+section div{
+    /* Outline */
+    border: 2px solid black;
+}
+
+/* LEVEL 2 SECTIONS */
+main section section{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 45%;
+    height: 10%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+}
+
+/* ACCOUNT OPTIONS DIV */
+main section section div{
+    /* Dimensions */
+    width: 90%;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* LINKS */
+a{
+    /* Remove underline */
+    text-decoration: none;
+
+    /* Color */
+    color: black;
+}
+
+/* DELETE TEXT */
+#delete_txt{
+    /* Color */
+    color: rgb(120, 0, 0);
+
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* HOVERING ON LINKS AND DELETE TEXT */
+a:hover, #delete_txt:hover{
+    /* Underline */
+    text-decoration: underline;
+}
+
+/* STORY BOXES IN VERTICAL STORY CONTAINERS */
+.story_box{
+    /* Dimensions */
+    width: 80%;
+}
+
+/* DIVS IN STORY BOXES */
+.story_box div, .tags_div{
+    width: 90%;
+    height: 80px;
+}
+
+/* TAGS DIVS */
+.tags_div{
+    /* Position of internal elements */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* TEXT IN TAGS DIV */
+.tags_div p{
+    /* Back Color */
+    background-color: forestgreen;
+
+    /* Outline */
+    border-radius: 10px;
+
+    /* Internal space */
+    padding: 0 4px;
+
+    /* External space */
+    margin: 0 4px;
+}
+
+/* CHAPTER BOX */
+#chapter_box{
+    /* Dimensions */
+    width: 45%;
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* TOP HALF AND BOTTOM HALF SECTIONS */
+    #top_half_section, #bottom_half_section{
+        /* Dimensions */
+        width: 75%;
+    }
+
+    /* TOP HALF SECTION AND STORY INFO DIVS */
+    #top_half_section, .story_info_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* SECTIONS IN TOP HALF SECTION  */
+    #top_half_section section{
+        /* Dimensions */
+        width: 85%;
+    }
+
+    /* CHAPTER BOX DIVS AND STORY BOX DIVS */
+    #chapter_box div, .story_box div{
+        /* Dimensions */
+        height: 120px;
+    }
+
+    /* TEXT IN CHAPTER BOXES AND STORY INFO DIVS */
+    #chapter_box p, .story_info_div p{
+        /* External space */
+        margin-bottom: 0;
+    }
+
+    /* TAGS DIV IN STORY BOXES */
+    .story_box .tags_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* TEXTS AND LINKS */
+    p, a{
+        font-size: 12px;
+    }
+
+    /* TITLES */
+    h2{
+        /* Text size */
+        font-size: 18px;
+    }
+
+    /* SMALL TITLES */
+    h3{
+        /* Text size */
+        font-size: 14px;
+
+        /* External space */
+        margin-bottom: 0;
+    }
+
+    /* SUBTITLES */
+    h4{
+        /* Text size */
+        font-size: 10px;
+
+        /* External space */
+        margin-bottom: 0;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* TOP HALF AND BOTTOM HALF SECTIONS */
+    #top_half_section, #bottom_half_section{
+        /* Dimensions */
+        width: 75%;
+    }
+
+    /* TOP HALF SECTION AND STORY INFO DIVS */
+    #top_half_section, .story_info_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* SECTIONS IN TOP HALF SECTION  */
+    #top_half_section section{
+        /* Dimensions */
+        width: 85%;
+    }
+
+    /* CHAPTER BOX DIVS AND STORY BOX DIVS */
+    #chapter_box div, .story_box div{
+        /* Dimensions */
+        height: 120px;
+    }
+
+    /* TEXT IN CHAPTER BOXES AND STORY INFO DIVS */
+    #chapter_box p, .story_info_div p{
+        /* External space */
+        margin-bottom: 0;
+    }
+
+    /* TAGS DIV IN STORY BOXES */
+    .story_box .tags_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* TEXTS AND LINKS */
+    p, a{
+        font-size: 14px;
+    }
+
+    /* TITLES */
+    h2{
+        /* Text size */
+        font-size: 20px;
+    }
+
+    /* SMALL TITLES */
+    h3{
+        /* Text size */
+        font-size: 14px;
+
+        /* External space */
+        margin-bottom: 0;
+    }
+
+    /* SUBTITLES */
+    h4{
+        /* Text size */
+        font-size: 14px;
+
+        /* External space */
+        margin-bottom: 0;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* TOP HALF AND BOTTOM HALF SECTIONS */
+    #top_half_section, #bottom_half_section{
+        /* Dimensions */
+        width: 75%;
+    }
+
+    /* SECTIONS IN TOP HALF SECTION */
+    #top_half_section section{
+        /* Dimensions */
+        width: 80%;
+
+        /* External space */
+        margin: 4px;
+    }
+
+    /* TOP HALF SECTION */
+    #top_half_section{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* CHAPTER BOX DIVS AND STORY BOX DIVS */
+    #chapter_box div{
+        /* Dimensions */
+        height: 80px;
+    }
+
+    /* STORY INFO DIV IN CHAPTER BOX */
+    #chapter_box .story_info_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* ACCOUNT OPTIONS DIV */
+    #account_options_div{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: space-around;
+    }
+
+    /* TEXT IN CHAPTER BOXES AND STORY INFO DIVS */
+    #chapter_box p, .story_info_div p{
+        /* External space */
+        margin-bottom: 0;
+    }
+
+    /* TAGS DIV IN STORY BOXES */
+    .story_box .tags_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* STORY BOXES IN VERTICAL STORY CONTAINERS */
+    .vertical_story_container .story_box{
+        /* Dimensions */
+        width: 85%;
+    }
+
+    /* STORY INFO DIVS */
+    .story_info_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* DIVS IN STORY BOXES */
+    .story_box div{
+        /* Dimensions */
+        height: 130px;
+    }
+
+    /* TEXTS AND LINKS */
+    p, a{
+        font-size: 14px;
+    }
+
+    /* TITLES */
+    h2{
+        /* Text size */
+        font-size: 22px;
+    }
+
+    /* SMALL TITLES */
+    h3{
+        /* Text size */
+        font-size: 20px;
+
+        /* External space */
+        margin-bottom: 0;
+    }
+
+    /* SUBTITLES */
+    h4{
+        /* Text size */
+        font-size: 16px;
+
+        /* External space */
+        margin-bottom: 0;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* TOP HALF AND BOTTOM HALF SECTIONS */
+    #top_half_section, #bottom_half_section{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* SECTIONS IN TOP HALF SECTION */
+    #top_half_section section{
+        /* Dimensions */
+        width: 45%;
+        height: 250px;
+    }
+
+    /* TOP HALF SECTION */
+    #top_half_section{
+        /* Position of internal elements */
+        display: flex;
+    }
+
+    /* CHAPTER BOX DIVS AND STORY BOX DIVS */
+    #chapter_box div{
+        /* Dimensions */
+        height: 33%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    /* STORY INFO DIV IN CHAPTER BOX */
+    #chapter_box .story_info_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* TEXT IN CHAPTER BOXES AND STORY INFO DIVS */
+    #chapter_box p, .story_info_div p{
+        /* External space */
+        margin-bottom: 0;
+    }
+
+    /* STORY BOXES IN VERTICAL STORY CONTAINERS */
+    .vertical_story_container .story_box{
+        /* Dimensions */
+        width: 90%;
+    }
+
+    /* DIVS IN STORY BOXES IN VERTICAL STORY CONTAINERS */
+    .vertical_story_container .story_box div{
+        /* Dimensions */
+        width: 90%;
+
+        /* Position of internal elements */
+        display: flex;
+    }
+
+    /* TEXTS AND LINKS */
+    p, a{
+        font-size: 16px;
+    }
+
+    /* TITLES */
+    h2{
+        /* Text size */
+        font-size: 24px;
+
+        /* External space */
+        margin-bottom: 4px;
+    }
+
+    /* SMALL TITLES */
+    h3{
+        /* Text size */
+        font-size: 22px;
+    }
+
+    /* SUBTITLES */
+    h4{
+        /* Text size */
+        font-size: 20px;
+    }
+}

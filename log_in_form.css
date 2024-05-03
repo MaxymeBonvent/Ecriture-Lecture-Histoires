@@ -1,4 +1,18 @@
 /* ---- COMMON PROPERTIES ---- */
+/* BUTTONS */
+.formBtn{
+    /* Mouse icon */
+    cursor: pointer;
+
+    /* Animation duration */
+    transition: 0.3s;
+}
+
+/*  HOVERING ON BUTTONS */
+.formBtn:hover{
+    /* Size */
+    transform: scale(1.1, 1.1);
+}
 
 /* SCROLL */
 html{
@@ -47,28 +61,111 @@ form input{
     margin-bottom: 10px;
 }
 
+/* DIV OF FORM BUTTONS */
+.form_btns_div{
+    /* Dimensions */
+    width: 45%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 /* ---- SIZE-BASED PROPERTIES ---- */
 
 /* SMALL VERSION */
 @media all and (max-width: 390px) 
 {
+    /* FORM */
+    form{
+        width: 80%;
+    }
 
+    /* SUBTITLE */
+    h3{
+        font-size: 26px;
+    }
+
+    /* TEXTS, LABELS*/
+    p, label{
+        font-size: 16px;
+    }
+
+    /* BUTTON TEXTS */
+    input{
+        font-size: 14px;
+    }
 }
 
 /* MEDIUM VERSION */
 @media all and (min-width: 390px) and (max-width: 430px) 
 {
+    /* FORM */
+    form{
+        width: 80%;
+    }
 
+    /* SUBTITLE */
+    h3{
+        font-size: 26px;
+    }
+
+    /* TEXTS, LABELS*/
+    p, label{
+        font-size: 18px;
+    }
+
+    /* BUTTON TEXTS */
+    input{
+        font-size: 16px;
+    }
 }
 
 /* BIG VERSION */
 @media all and (min-width: 430px) and (max-width: 853px) 
 {
+    /* FORM */
+    form{
+        width: 80%;
+    }
 
+    /* SUBTITLE */
+    h3{
+        font-size: 26px;
+    }
+
+    /* TEXTS, LABELS*/
+    p, label{
+        font-size: 20px;
+    }
+
+    /* BUTTON TEXTS */
+    input{
+        font-size: 18px;
+    }
 }
 
 /* VERY BIG VERSION */
 @media all and (min-width: 853px) 
 {
+    /* FORM */
+    form{
+        width: 40%;
+    }
 
+    /* SUBTITLE */
+    h3{
+        font-size: 26px;
+    }
+
+    /* TEXTS, LABELS*/
+    p, label{
+        font-size: 20px;
+    }
+
+    /* BUTTON TEXTS */
+    input{
+        font-size: 18px;
+    }
 }

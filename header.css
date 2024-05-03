@@ -1,5 +1,8 @@
 /* COMMON PROPERTIES */
 header{
+    /* Outline */
+    border: 2px solid black;
+
     /* Position of internal elements */
     display: flex;
     flex-direction: column;
