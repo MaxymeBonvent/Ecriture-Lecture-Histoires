@@ -28,8 +28,8 @@
         border-radius: 100%;
 
         /* Dimensions */
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
 
         /* Position */
         position: fixed;
@@ -94,8 +94,8 @@
         border-radius: 100%;
 
         /* Dimensions */
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
 
         /* Position */
         position: fixed;
@@ -112,7 +112,7 @@
     #back_to_top_link{
         /* Text properties */
         font-weight: bold;
-        font-size: 16px;
+        font-size: 14px;
         text-decoration: none;
     }
 }

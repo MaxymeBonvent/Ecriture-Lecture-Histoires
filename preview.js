@@ -1,16 +1,16 @@
 // ---- PREVIEW VARIABLES ---- //
 
-// PREVIEW DIV
-let preview_div = document.getElementById("preview_bck");
+// PREVIEW BACKGROUND
+let preview_bck = document.getElementById("preview_bck");
 
 // Hide preview div
-preview_div.style.display = "none";
+preview_bck.style.display = "none";
 
 // CHAPTER TITLE PREVIEW
 let chapter_title_pre = document.getElementById("chapter_title_preview");
 
 // CHAPTER TEXT PREVIEW
-let chapter_text_pre = document.getElementById("chapter_text_preview");
+let chapter_text_pre = document.getElementById("chapter_txt_preview");
 
 // ---- TEXT VARIABLES ---- //
 
@@ -24,14 +24,14 @@ let chapter_text = document.getElementById("chapter_text_area");
 function TogglePreviewBackground()
 {
     // If preview background's display is "none"
-    if(preview_div.style.display == "none")
+    if(preview_bck.style.display == "none")
     {
         // Set it to "flex"
-        preview_div.style.display = "flex";
+        preview_bck.style.display = "flex";
 
         // Change position of internal elements
-        preview_div.style.justifyContent = "center";
-        preview_div.style.alignItems = "center";
+        preview_bck.style.justifyContent = "center";
+        preview_bck.style.alignItems = "center";
 
         // Log change
         console.log("Preview background's display set to FLEX.");
@@ -44,10 +44,10 @@ function TogglePreviewBackground()
     }
 
     // If preview background's display is "flex"
-    else if(preview_div.style.display == "flex")
+    else if(preview_bck.style.display == "flex")
     {
         // Set it to "none"
-        preview_div.style.display = "none";
+        preview_bck.style.display = "none";
 
         // Log change
         console.log("Preview background's display set to NONE.");

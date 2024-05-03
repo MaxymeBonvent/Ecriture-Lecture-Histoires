@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>User Stories</title>
-    <link rel="stylesheet" href="stories.css">
+
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="back_to_top.css">
+    <link rel="stylesheet" href="user_stories.css">
 
 </head>
 
@@ -99,76 +103,76 @@
 
                 // ---- DISPLAY STORY TITLES ----
 
-                // GREAT DIV THAT CONTAINS STORIES LIST DIVS AND CHAPTER INFO DIV
-                echo "<div id='stories_list_and_chapter_info_container'>";
+                // START of great container 
+                echo "<div id='great_container'>";
 
-                // START of the div containing divs containing a story and its chapters
-                echo "<div id='user_page_stories_list'>";
+                    // START of story list
+                    echo "<div id='story_list'>";
 
-                // Loop of story titles and chapters
-                foreach($story_titles as $story_title)
-                {
-                    // ---- GET CURRENT STORY ID ----
-
-                    // Prepare a query to get ID of the current story
-                    $get_story_id = $db->prepare("SELECT story_id FROM stories WHERE story_title = :story_title AND user_id = :user_id");
-
-                    // Binding
-                    $get_story_id->bindValue(":story_title", $story_title["story_title"]);
-                    $get_story_id->bindValue(":user_id", $user_id);
-
-                    // Execution
-                    $get_story_id->execute();
-
-                    // Store current story ID in an associative array
-                    $story_id = $get_story_id->fetchColumn();
-
-                    // ---- DISPLAY CURRENT STORY TITLE ----
-
-                    // Display current story title and options
-                    echo    "   <div style='width: 100%;' class='story_chapters'><h4>".$story_title["story_title"]."</h4>
-
-                                <p class='chapter_option' onclick='NewChapter($story_id)'>Write new chapter</p>
-                                <p onclick='DeleteStory($story_id,\"".$story_title["story_title"]."\")' class='delete_txt'>Delete Story</p>
-                            ";
-
-                    // ---- GET CHAPTER IDS AND TITLES OF THE CURRENT STORY ----
-
-                    // Prepare query to get chapter ids and titles of the current story
-                    $get_chapter_infos = $db->prepare("SELECT chapter_id, chapter_title FROM chapters WHERE story_id = :story_id ORDER BY chapter_id ASC");
-
-                    // Binding
-                    $get_chapter_infos->bindValue(":story_id", $story_id);
-
-                    // Execution
-                    $get_chapter_infos->execute();
-
-                    // Store every chapter of the current story in an associative array
-                    $chapter_infos = $get_chapter_infos->fetchAll(PDO::FETCH_ASSOC);
-
-                    // ---- DISPLAY CHAPTER TITLES OF THE CURRENT STORY ----
-
-                    // Chapter Titles List Start
-                    echo "<ol>";
-
-                    // Loop of chapter titles
-                    foreach($chapter_infos as $chapter_info)
+                    // Loop of story titles and chapters
+                    foreach($story_titles as $story_title)
                     {
-                        // Display a chapter title of the current story
-                        echo "<li onclick='GetChapterInfo(".$chapter_info['chapter_id'].")' id='".$chapter_info['chapter_id']."' class='chapter_title' title='Click to manage chapter'>".$chapter_info['chapter_title']."</li>";
+                        // ---- GET CURRENT STORY ID ----
+
+                        // Prepare a query to get ID of the current story
+                        $get_story_id = $db->prepare("SELECT story_id FROM stories WHERE story_title = :story_title AND user_id = :user_id");
+
+                        // Binding
+                        $get_story_id->bindValue(":story_title", $story_title["story_title"]);
+                        $get_story_id->bindValue(":user_id", $user_id);
+
+                        // Execution
+                        $get_story_id->execute();
+
+                        // Store current story ID in an associative array
+                        $story_id = $get_story_id->fetchColumn();
+
+                        // ---- DISPLAY CURRENT STORY TITLE ----
+
+                        // Display current story title and options
+                        echo    "   <div class='story_box'><h4>".$story_title["story_title"]."</h4>
+
+                                    <p class='chapter_option' onclick='NewChapter($story_id)'>Write new chapter</p>
+                                    <p onclick='DeleteStory($story_id,\"".$story_title["story_title"]."\")' class='delete_txt'>Delete Story</p>
+                                ";
+
+                        // ---- GET CHAPTER IDS AND TITLES OF THE CURRENT STORY ----
+
+                        // Prepare query to get chapter ids and titles of the current story
+                        $get_chapter_infos = $db->prepare("SELECT chapter_id, chapter_title FROM chapters WHERE story_id = :story_id ORDER BY chapter_id ASC");
+
+                        // Binding
+                        $get_chapter_infos->bindValue(":story_id", $story_id);
+
+                        // Execution
+                        $get_chapter_infos->execute();
+
+                        // Store every chapter of the current story in an associative array
+                        $chapter_infos = $get_chapter_infos->fetchAll(PDO::FETCH_ASSOC);
+
+                        // ---- DISPLAY CHAPTER TITLES OF THE CURRENT STORY ----
+
+                        // Chapter Titles List Start
+                        echo "<ol>";
+
+                        // For each chapter info
+                        foreach($chapter_infos as $chapter_info)
+                        {
+                            // Display its title
+                            echo "<li onclick='GetChapterInfo(".$chapter_info['chapter_id'].")' id='".$chapter_info['chapter_id']."' class='chapter_title' title='Click to manage chapter'>".$chapter_info['chapter_title']."</li>";
+                        }
+
+                        // Chapter Titles List End
+                        echo "</ol></div>";
                     }
 
-                    // Chapter Titles List End
-                    echo "</ol></div>";
-                }
+                    // END of story list
+                    echo "</div>";
 
-                // END of the div containing divs containing a story and its chapters
-                echo "</div>";
-
-                // ---- CHAPTER INFO ----
-                echo "<div id='user_stories_chapter_info' class='user_page_inner_div'><h3>Click on a chapter to show it here</h3></div>";
+                    // ---- CHAPTER INFO ----
+                    echo "<div id='chapter_info' class='user_page_inner_div'><h3>Click on a chapter to show it here</h3></div>";
                 
-                // END OF PAGE CONTAINER
+                // END of great container
                 echo "</div>";
             }
 

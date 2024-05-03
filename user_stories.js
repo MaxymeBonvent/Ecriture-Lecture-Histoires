@@ -2,7 +2,7 @@
 let body = document.querySelector("body");
 
 // Clicked chapter info div
-let chapter_info = document.getElementById("user_stories_chapter_info");
+let chapter_info = document.getElementById("chapter_info");
 
 // Function to call a PHP script that will get info of the clicked chapter and display it on the page
 function GetChapterInfo(chapter_id)
@@ -45,19 +45,19 @@ function GetChapterInfo(chapter_id)
 
             // Container's new text
             container.innerHTML = 
-            `<div> 
+            `<div id='clicked_chpt_div'> 
                     <h4>${json_chapter_title}</h4> 
 
-                    <div id='chapter_txt'>${json_text}</div> 
+                    <div id='clicked_chapter_txt'>${json_text}</div> 
 
-                    <div class='chapter_info_inner_div'>
+                    <div id='chapter_options'>
                         
                         <p class='chapter_option' onclick="EditChapter(${json_story_id}, '${json_chapter_title}')">Edit</p>
                         <p class='chapter_option' style='color: rgb(140, 0, 0);' onclick="DeleteChapter(${json_story_id}, '${json_chapter_title}')">Delete Chapter</p>
 
                     </div> 
 
-                    <div class='chapter_info_inner_div'> 
+                    <div id='chapter_stats'> 
 
                         <p>${json_likes} Likes</p> <p>${json_dislikes} Dislikes</p>
 

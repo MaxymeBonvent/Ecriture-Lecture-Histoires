@@ -1,0 +1,151 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* SCROLL */
+html{
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    /* Background */
+    background-color: cornflowerblue;
+}
+
+/* MAIN */
+main{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* GREAT CONTAINER */
+#great_container{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimnesions */
+    width: 80%;
+    height: 600px;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* STORY LIST AND CHAPTER INFO */
+#story_list, #chapter_info{
+    /* Dimensions */
+    width: 45%;
+    height: 90%;
+}
+
+/* STORY LIST */
+#story_list{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Scroll properties */
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* STORY BOXES */
+.story_box{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+
+    /* External space */    
+    margin: 4px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CHAPTER TITLES AND DELETE TEXTS */
+.chapter_title, .delete_txt{
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* DELETE TEXT */
+.delete_txt{
+    /* Color */
+    color: rgb(120, 0, 0);
+}
+
+/* HOVERING ON DELETE TEXTS AND CHAPTER TITLES */
+.delete_txt:hover, .chapter_title:hover{
+    /* Underline */
+    text-decoration: underline;
+}
+
+/* CHAPTER INFO */
+#chapter_info{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CHAPTER INFO TEXT */
+#chapter_info h3{
+    /* Mouse icon */
+    cursor: pointer;
+}
+
+/* CLICKED CHAPTER INFO DIV */
+#clicked_chpt_div{
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CLICKED CHAPTER TEXT */
+#clicked_chapter_txt{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+    max-height: 300px;
+
+    /* Centering */
+    text-align: center;
+
+    /* Scroll */
+    overflow-y: scroll;
+}
+
+/* CHAPTER OPTIONS */
+#chapter_options{
+    /* External space */
+    margin: 4px 0;
+}
+
+/* CHAPTER OPTIONS AND CHAPTER STATS */
+#chapter_options, #chapter_stats{
+    /* Outline */
+    border: 2px solid black;
+}
