@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Synopsis</title>
-    <link rel="stylesheet" href="stories.css">
+
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="back_to_top.css">
+    <link rel="stylesheet" href="synopsis.css">
 
 </head>
 
@@ -51,13 +55,13 @@
     <!-- MAIN -->
     <main>
 
-        <!-- OUTLINE OF BACK TO TOP DIV -->
-        <a id="back_to_top_outline" href="#_header">
+        <!-- BACK TO TOP DIV -->
+        <div id="back_to_top_div">
 
             <!-- BACK TO TOP LINK  -->
-            <div id="back_to_top"></div>
+            <a id="back_to_top_link" href="#_header">TOP</a>
 
-        </a>
+        </div>
 
         <?php
             // Start user session
@@ -196,7 +200,7 @@
             // var_dump($story_dislikes);
             // exit;
 
-            // ---- GET CHAPTERS' INFO ---- //
+            // ---- GET ALL CHAPTERS' INFO ---- //
 
             // Prepare a query to get title, date, word count, likes and dislikes from every chapter of the clicked story
             $get_chapter_info = $db->prepare("SELECT chapter_id, chapter_title, pub_date, word_count, likes, dislikes FROM chapters WHERE story_id = :story_id ORDER BY chapter_id ASC");
@@ -231,18 +235,43 @@
             $get_story_info->closeCursor();
         ?>
 
-        <!-- SECTION 1 : AUTHOR INFO -->
-        <section style="flex-direction:column;">
+
+        <!-- SECTION 1 : STORY INFO -->
+        <section>
 
             <?php
-                echo "<h3 class='author_txt' title='Click to send a private message' onclick='PrivateMessage(\"$author\")'>$author</h3>";
+
+                // TITLE
+                echo "<h3>$story_title</h3>";
+
+                // AUTHOR
+                echo "<p>$author</p>";
+
+                // TAGS DIV START
+                echo "<div class='tags_div'>"; 
+
+                // For each tag of the story
+                foreach($tags_array as $tag)
+                {
+                    // If tag is not an empty string
+                    if($tag != "")
+                    {
+                        // Display it
+                        echo "<p class='tag_txt'>$tag</p>";
+                    }
+                }
+
+                // TAGS DIV END
+                echo "</div>";
+
+                // SYNOPSIS
+                echo "<p>".$story_info[0]['synopsis']."</p>";
             ?>
 
         </section>
 
-
         <!-- SECTION 2 : STORY OPTIONS -->
-        <section style="justify-content: space-evenly;">
+        <section class='row_section'>
 
             <?php
 
@@ -398,42 +427,11 @@
 
         </section>
 
-
-        <!-- SECTION 3 : STORY INFO -->
-        <section style="flex-direction:column;">
-
-            <?php
-                // TITLE
-                echo "<h3>$story_title</h3>";
-
-                // TAGS DIV START
-                echo "<div class='tags_div'>"; 
-
-                // For each tag of the story
-                foreach($tags_array as $tag)
-                {
-                    // If tag is not an empty string
-                    if($tag != "")
-                    {
-                        // Display it
-                        echo "<p>$tag</p>";
-                    }
-                }
-
-                // TAGS DIV END
-                echo "</div>";
-
-                // SYNOPSIS
-                echo "<p>".$story_info[0]['synopsis']."</p>";
-            ?>
-
-        </section>
-
         <!-- SECTION NAME -->
         <h3>Chapters</h3>
 
-        <!-- SECTION 4 : CHAPTER INFO -->
-        <section class="chapter_list" style="justify-content: space-evenly;">
+        <!-- SECTION 3 : CHAPTER INFO -->
+        <section class='row_section'>
 
             <?php
                 // For each chapter of the clicked story
@@ -455,8 +453,8 @@
 
         </section>
 
-        <!-- SECTION 5 : STORY COMMENTS -->
-        <section style="flex-direction: column;">
+        <!-- SECTION 4 : STORY COMMENTS -->
+        <section>
 
             <h3>Story Comments</h3>
 

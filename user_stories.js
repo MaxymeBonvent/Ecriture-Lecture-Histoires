@@ -2,14 +2,11 @@
 let body = document.querySelector("body");
 
 // Clicked chapter info div
-let chapter_info = document.getElementById("chapter_info");
+let chapter_info = document.getElementById("clicked_chapter_info");
 
 // Function to call a PHP script that will get info of the clicked chapter and display it on the page
 function GetChapterInfo(chapter_id)
 {
-    // Confirm Chapter ID obtention
-    console.log(`Chapter ID == ${chapter_id}.`);
-
     // ---- START ----
 
     // XMLHttpRequest Object
@@ -50,16 +47,16 @@ function GetChapterInfo(chapter_id)
 
                     <div id='clicked_chapter_txt'>${json_text}</div> 
 
-                    <div id='chapter_options'>
+                    <div class='chapter_small_div'>
                         
-                        <p class='chapter_option' onclick="EditChapter(${json_story_id}, '${json_chapter_title}')">Edit</p>
-                        <p class='chapter_option' style='color: rgb(140, 0, 0);' onclick="DeleteChapter(${json_story_id}, '${json_chapter_title}')">Delete Chapter</p>
+                        <p class='option' onclick="EditChapter(${json_story_id}, '${json_chapter_title}')">Edit</p>
+                        <p class='delete_txt' onclick="DeleteChapter(${json_story_id}, '${json_chapter_title}')">Delete Chapter</p>
 
                     </div> 
 
-                    <div id='chapter_stats'> 
+                    <div class='chapter_small_div'> 
 
-                        <p>${json_likes} Likes</p> <p>${json_dislikes} Dislikes</p>
+                        <p class='stat'>${json_likes} Likes</p> <p class='stat'>${json_dislikes} Dislikes</p>
 
                     </div> 
             </div>`;

@@ -52,6 +52,12 @@ form{
     align-items: center;
 }
 
+/* DIVS */
+.writing_div{
+    /* Outline */
+    border: 2px solid black;
+}
+
 /* LABELS */
 label{
     /* Centering */
@@ -130,54 +136,26 @@ label{
     cursor: pointer;
 }
 
-/* PREVIEW BACKGROUND */
-#preview_bck{
-    /* Background */
-    background-color: rgba(0, 0, 0, 0.8);
-
-    /* Dimensions */
-    width: 100%;
-    height: 100%;
-
-    /* Position type */
-    position: fixed;
-
-    /* Coordinates */
-    top : 0;
-    left: 0;
-
-    /* Order */
-    z-index: 1;
-}
-
-/* PREVIEW DIV */
-#preview_div{
-    /* Background */
-    background-color: goldenrod;
-
-    /* Corners */
-    border-radius: 10px; 
-}
-
-/* PREVIEW TOGGLE */
-#preview_toggle{
-    /* Background */
-    background-color: rgb(220, 220, 220);
-
-    /* Internal space */
-    padding: 0 4px;
-
-    /* Mouse icon */
-    cursor: pointer;
-
-    /* Order */
-    z-index: 2;
-}
 
 /* CHAPTER TEXT PREVIEW */
 #chapter_txt_preview{
     /* Centering */
     text-align: center;
+}
+
+/* FORM BUTTONS */
+.formBtn{
+    /* Mouse icon */
+    cursor: pointer;
+
+    /* Anmation duration */
+    transition: 0.3s;
+}
+
+/* HOVERING ON FORM BUTTONS */
+.formBtn:hover{
+    /* Size */
+    transform: scale(1.1, 1.1);
 }
 
 /* ---- SIZE-BASED PROPERTIES ---- */
@@ -252,13 +230,6 @@ label{
         /* Dimensions */
         font-size: 12px;
     }
-
-    /* PREVIEW DIV */
-    #preview_div{
-        /* Dimensions */
-        width: 70%;
-        height: 80%;
-    }
 }
 
 /* MEDIUM VERSION */
@@ -331,13 +302,6 @@ label{
         /* Dimensions */
         font-size: 18px;
     }
-
-    /* PREVIEW DIV */
-    #preview_div{
-        /* Dimensions */
-        width: 80%;
-        height: 80%;
-    }
 }
 
 /* BIG VERSION */
@@ -409,12 +373,6 @@ label{
     .style_option{
         /* Dimensions */
         font-size: 18px;
-    }
-
-    /* PREVIEW DIV */
-    #preview_div{
-        /* Dimensions */
-        height: 80%;
     }
 }
 
@@ -489,11 +447,5 @@ label{
     .style_option{
         /* Dimensions */
         font-size: 22px;
-    }
-
-    /* PREVIEW DIV */
-    #preview_div{
-        /* Dimensions */
-        height: 90%;
     }
 }

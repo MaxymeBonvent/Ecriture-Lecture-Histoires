@@ -73,7 +73,7 @@ function HorizontalRule()
 // ---- COLOR OPTIONS ---- //
 
 // COLOR OPTIONS DIV
-let color_box = document.getElementById("color_options");
+let color_box = document.getElementById("color_box");
 
 // Hide color box
 color_box.style.display = "none";

@@ -1,0 +1,100 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* PREVIEW BACKGROUND */
+#preview_bck{
+    /* Background */
+    background-color: rgba(0, 0, 0, 0.8);
+
+    /* Dimensions */
+    width: 100%;
+    height: 100%;
+
+    /* Position type */
+    position: fixed;
+
+    /* Coordinates */
+    top : 0;
+    left: 0;
+
+    /* Order */
+    z-index: 1;
+}
+
+/* PREVIEW DIV */
+#preview_div{
+    /* Background */
+    background-color: goldenrod;
+
+    /* Corners */
+    border-radius: 10px; 
+
+    /* Scroll properties */
+    overflow-y: scroll;
+}
+
+/* CHAPTER TITLE PREVIEW AND CHAPTER TEXT PREVIEW */
+#chapter_title_preview, #chapter_txt_preview{
+    /* Centering */
+    text-align: center;
+}
+
+/* PREVIEW TOGGLE */
+#preview_toggle{
+    /* Background */
+    background-color: rgb(220, 220, 220);
+
+    /* Internal space */
+    padding: 0 4px;
+
+    /* Mouse icon */
+    cursor: pointer;
+
+    /* Order */
+    z-index: 2;
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* PREVIEW DIV */
+    #preview_div{
+        /* Dimensions */
+        width: 70%;
+        height: 80%;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* PREVIEW DIV */
+    #preview_div{
+        /* Dimensions */
+        width: 80%;
+        height: 80%;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* PREVIEW DIV */
+    #preview_div{
+        /* Dimensions */
+        width: 60%;
+        height: 80%;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* PREVIEW DIV */
+    #preview_div{
+        /* Dimensions */
+        width: 50%;
+        height: 90%;
+    }
+}

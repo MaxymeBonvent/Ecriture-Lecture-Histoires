@@ -62,6 +62,9 @@ section{
     /* External space */
     margin: 8px 10px;
 
+    /* Mouse */
+    cursor: pointer;
+
     /* Position of internal elements */
     display: flex;
     flex-direction: column;

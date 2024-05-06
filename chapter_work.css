@@ -1,0 +1,291 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* SCROLL */
+html{
+    /* Scroll */
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    /* Background */
+    background-color: cornflowerblue;
+}
+
+/* TITLES AND LABELS */
+h1, h2, h3, label{
+    /* Centering */
+    text-align: center;
+}
+
+/* MAIN */
+main{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Posiiton of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* REQUIRED STAR */
+.required_star{
+    /* Color */
+    color: rgb(100, 0, 0);
+}
+
+/* FORM */
+form{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 50%;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Posiiton of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FORM BUTTONS */
+.formBtn{
+    /* Mouse */
+    cursor: pointer;
+
+    /* Animation duration */
+    transition: 0.3s;
+}
+
+/* HOVERING ON FORM BUTTONS */
+.formBtn:hover{
+    /* Size */
+    transform: scale(1.1, 1.1);
+}
+
+/* OPTIONS DIVS */
+.options_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 60%;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Posiiton of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* TEXT AND IMAGES IN OPTIONS DIVS */
+.options_div p, .options_div img{
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* PREVIEW TOGGLE */
+#preview_toggle{
+    /* Background */
+    background-color: rgb(210, 210, 210);
+
+    /* Internal space */
+    padding: 0 4px;
+
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* TITLE */
+    h3{
+        /* Size */
+        font-size: 20px;
+    }
+
+    /* TEXTS AND LABELS */
+    p, label{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* INPUTS */
+    input{
+        /* Size */
+        font-size: 14px;
+    }
+
+    /* FORM */
+    form{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* OPTIONS DIVS */
+    .options_div{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* IMAGES IN OPTIONS DIVS */
+    .options_div img{
+        /* Dimensions */
+        width: 18px;
+    }
+
+    /* TEXTAREA */
+    textarea{
+        /* Dimensions */
+        width: 80%;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* TITLE */
+    h3{
+        /* Size */
+        font-size: 20px;
+    }
+
+    /* TEXTS AND LABELS */
+    p, label{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* INPUTS */
+    input{
+        /* Size */
+        font-size: 14px;
+    }
+
+    /* FORM */
+    form{
+        /* Dimensions */
+        width: 90%;
+    }
+
+    /* OPTIONS DIVS */
+    .options_div{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* IMAGES IN OPTIONS DIVS */
+    .options_div img{
+        /* Dimensions */
+        width: 18px;
+    }
+
+    /* TEXTAREA */
+    textarea{
+        /* Dimensions */
+        width: 80%;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* TITLE */
+    h3{
+        /* Size */
+        font-size: 22px;
+    }
+
+    /* TEXTS AND LABELS */
+    p, label{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* INPUTS */
+    input{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* FORM */
+    form{
+        /* Dimensions */
+        width: 70%;
+    }
+
+    /* OPTIONS DIVS */
+    .options_div{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* IMAGES IN OPTIONS DIVS */
+    .options_div img{
+        /* Dimensions */
+        width: 18px;
+    }
+
+    /* TEXTAREA */
+    textarea{
+        /* Dimensions */
+        width: 80%;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* TITLE */
+    h3{
+        /* Size */
+        font-size: 22px;
+    }
+
+    /* TEXTS AND LABELS */
+    p, label{
+        /* Size */
+        font-size: 22px;
+    }
+
+    /* INPUTS */
+    input{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* FORM */
+    form{
+        /* Dimensions */
+        width: 40%;
+    }
+
+    /* OPTIONS DIVS */
+    .options_div{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* IMAGES IN OPTIONS DIVS */
+    .options_div img{
+        /* Dimensions */
+        width: 18px;
+    }
+
+    /* TEXTAREA */
+    textarea{
+        /* Dimensions */
+        width: 80%;
+    }
+}

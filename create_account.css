@@ -70,6 +70,21 @@ form div{
     justify-content: space-between;
 }
 
+/* FORM BUTTONS */
+.formBtn{
+    /* Mouse icon */
+    cursor: pointer;
+
+    /* Animation duration */
+    transition: 0.3s;
+}
+
+/* HOVERING ON FORM BUTTONS */
+.formBtn:hover{
+    /* Size */
+    transform: scale(1.1, 1.1);
+}
+
 /* SUBTITLE */
 h4{
     /* Centering */

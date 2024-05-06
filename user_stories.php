@@ -132,7 +132,7 @@
                         // Display current story title and options
                         echo    "   <div class='story_box'><h4>".$story_title["story_title"]."</h4>
 
-                                    <p class='chapter_option' onclick='NewChapter($story_id)'>Write new chapter</p>
+                                    <p class='option' onclick='NewChapter($story_id)'>Write new chapter</p>
                                     <p onclick='DeleteStory($story_id,\"".$story_title["story_title"]."\")' class='delete_txt'>Delete Story</p>
                                 ";
 
@@ -170,7 +170,7 @@
                     echo "</div>";
 
                     // ---- CHAPTER INFO ----
-                    echo "<div id='chapter_info' class='user_page_inner_div'><h3>Click on a chapter to show it here</h3></div>";
+                    echo "<div id='clicked_chapter_info'><h3>Click on a chapter to show it here</h3></div>";
                 
                 // END of great container
                 echo "</div>";

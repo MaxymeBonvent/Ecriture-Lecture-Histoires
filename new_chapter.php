@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>User Stories</title>
-    <link rel="stylesheet" href="stories.css">
+
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="preview.css">
+    <link rel="stylesheet" href="back_to_top.css">
+    <link rel="stylesheet" href="chapter_work.css">
 
 </head>
 
@@ -60,7 +65,7 @@
                 <h3 id="chapter_title_preview"></h3>
 
                 <!-- CHAPTER TEXT PREVIEW -->
-                <p id="chapter_text_preview"></p>
+                <p id="chapter_txt_preview"></p>
 
             </div>
 
@@ -140,78 +145,62 @@
 
                             </div>
 
-                            <div class='writing_div'>
+                            
 
-                                <label for='chapter_title_input_field' id='chapter_title_label'>Chapter Title (up to 30 words)<span class='required_star'>*</span></label>
+                            <label for='chapter_title_input_field' id='chapter_title_label'>Chapter Title (up to 30 words)<span class='required_star'>*</span></label>
 
-                                <input id='chapter_title_input_field' type='text' class='form_input_field' name='chapter_title' placeholder='Chapter ? : a small creature appears' required='true' autocomplete='off' maxlength='400' onkeyup='ChapterTitleCheck()' title='Enter the title of the next chapter of your story'>
+                            <input id='chapter_title_input_field' type='text' class='form_input_field' name='chapter_title' placeholder='Chapter ? : a small creature appears' value='Chapter ? : a small creature appears' required='true' autocomplete='off' maxlength='400' onkeyup='ChapterTitleCheck()' title='Enter the title of the next chapter of your story'>
 
-                                <div class='counting_div'>
+                            <p><span id='chapter_title_word_count'>0</span>/30</p>
+                            
+                            <label for='chapter_text_area' id='chapter_text_label'>Chapter Text (up to 15 000 words)<span class='required_star'>*</span></label>
 
-                                    <p><span id='chapter_title_word_count'>0</span>/30</p>
+                            <!-- STYLE OPTIONS DIV -->
+                            <div class='options_div'>
 
-                                </div>
+                                <!-- STYLE OPTIONS -->
+                                <img style='cursor: pointer;' src='img/new_line.png' alt='New line symbol' title='Insert a new line' onclick='NewLine()'>
+                                <p class='style_option' onclick='Bold()' title='Make text bold'><b>B</b></p>
+                                <p class='style_option' onclick='Italic()' title='Italize text'><i>I</i></p>
+                                <p class='style_option' onclick='Underline()' title='Underline text'><u>U</u></p>
 
-                            </div>
+                                <p class='style_option' onclick='Strike()' title='Strike through text'><del><del>S</del></del></p>
+                                <img style='cursor: pointer;' src='img/color_wheel.png' alt='Color wheel' title='Open color box' onclick='ToggleColorBox()'>
+                                <p class='style_option' onclick='Small()' title='Make text smaller'><small><small>SM</small></small></p>
 
+                                <p class='style_option' onclick='Superscript()' title='Make text superscript'>A<sup>sp</sup></p>
+                                <p class='style_option' onclick='Subscript()' title='Make text subscript'>A<sub>sb</sub></p>
+                                <p class='style_option' onclick='Center()' title='Center text'>-C-</p>
 
-                            <div class='writing_div'>
-
-                                <label for='chapter_text_area' id='chapter_text_label'>Chapter Text (up to 15 000 words)<span class='required_star'>*</span></label>
-
-                                <div id='options_container'>
-
-                                <!-- STYLE OPTIONS DIV -->
-                                <div id='style_options'>
-
-                                    <!-- STYLE OPTIONS -->
-                                    <img style='cursor: pointer;' src='img/new_line.png' alt='New line symbol' title='Insert a new line' onclick='NewLine()'>
-                                    <p class='style_option' onclick='Bold()' title='Make text bold'><b>B</b></p>
-                                    <p class='style_option' onclick='Italic()' title='Italize text'><i>I</i></p>
-                                    <p class='style_option' onclick='Underline()' title='Underline text'><u>U</u></p>
-
-                                    <p class='style_option' onclick='Strike()' title='Strike through text'><del><del>S</del></del></p>
-                                    <img style='cursor: pointer;' src='img/color_wheel.png' alt='Color wheel' title='Open color box' onclick='ToggleColorBox()'>
-                                    <p class='style_option' onclick='Small()' title='Make text smaller'><small><small>SM</small></small></p>
-
-                                    <p class='style_option' onclick='Superscript()' title='Make text superscript'>A<sup>sp</sup></p>
-                                    <p class='style_option' onclick='Subscript()' title='Make text subscript'>A<sub>sb</sub></p>
-                                    <p class='style_option' onclick='Center()' title='Center text'>-C-</p>
-
-                                    <p class='style_option' onclick='HorizontalRule()' title='Add a horizontal line'><u>HR</u></p>
-
-                                </div>
+                                <p class='style_option' onclick='HorizontalRule()' title='Add a horizontal line'><u>HR</u></p>
 
                                 <!-- COLOR OPTIONS DIV -->
-                                <div id='color_options'>
-                                    <div class='color_option' style='background-color: rgb(160, 0, 0);'  onclick='Red()'></div>
-                                    <div class='color_option' style='background-color: rgb(0, 120, 0);' onclick='Green()'></div>
-                                    <div class='color_option' style='background-color: rgb(0, 60, 180);'  onclick='Blue()'></div>
+                                <div class='options_div' id='color_box'>
+
+                                    <img src='img/red_circle.png' alt='Red circle' class='color_option' onclick='Red()'></img>
+                                    <img src='img/green_circle.png' alt='Green circle' class='color_option' onclick='Green()'></img>
+                                    <img src='img/blue_circle.png' alt='Blue circle' class='color_option' onclick='Blue()'></img>
+
                                 </div>
                                 
                             </div>
 
-                                <textarea id='chapter_text_area' name='chapter_text' cols='30' rows='10' placeholder='The creature opened its eyes and looked around...' required='true' autocomplete='off' maxlength='60000' onkeyup='ChapterTextCheck()' title='Enter the text of the first chapter of your story'></textarea>
+                            <textarea id='chapter_text_area' name='chapter_text' cols='30' rows='10' placeholder='The creature opened its eyes and looked around...' required='true' autocomplete='off' maxlength='60000' onkeyup='ChapterTextCheck()' title='Enter the text of the first chapter of your story'>The creature opened its eyes and looked around...</textarea>
 
-                                <div class='counting_div'>
+                            <p><span id='chapter_text_word_count'>0</span>/15 000</p>
 
-                                    <p><span id='chapter_text_word_count'>0</span>/15 000</p>
+                            <p id='preview_toggle' onclick='TogglePreviewBackground()' style='z-index: 1;'>Preview</p>
 
-                                </div>
+                            
+                            <div class='form_btns_div'>
 
-                                <div id='preview_toggle' onclick='TogglePreviewBackground()' style='z-index: 1;'>Preview</div>
+                                <input type='submit' value='Publish Chapter' id='publish_input' class='formBtn'>
 
-                                
-                                <div class='form_btns_div'>
-
-                                    <input type='submit' value='Publish Chapter' id='publish_input' class='formBtn'>
-
-                                    <input type='reset' value='Cancel' class='formBtn'>
-
-                                </div>
+                                <input type='reset' value='Cancel' class='formBtn'>
 
                             </div>
 
+                            
 
                         </form>
                     ";

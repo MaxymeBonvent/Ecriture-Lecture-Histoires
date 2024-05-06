@@ -296,7 +296,7 @@
         <section style="flex-direction: column;">
 
             <?php
-                echo "<h4>".$story_info[0]['story_title']."</h4>";
+                echo "<h3>".$story_info[0]['story_title']."</h3>";
                 echo "<p>".$story_info[0]['author']."</p>";
 
                 // START of tags div

@@ -1,29 +1,32 @@
 <?php
-    // ---- SESSION ----
+    // ---- SESSION ---- //
     session_start();
 
-    // ---- DATABASE CONNECTION ----
+    // ---- DATABASE CONNECTION ---- //
     require_once("database_connection.php");
 
-    // ---- FORM ANALYSIS ----
+    // ---- USER ID ---- //
+    require_once("get_user_id.php");
+
+    // ---- FORM ANALYSIS ---- //
 
     // Try to get form info and store new story
     try
     {
-        // ---- CHAPTER VARIABLES ----
+        // ---- CHAPTER VARIABLES ---- //
         $chapter_title = htmlspecialchars($_POST["chapter_title"]);
         $chapter_text = $_POST["chapter_text"];
 
-        // ---- STORY VARIABLES ----
+        // ---- STORY VARIABLES ---- //
         $story_title = htmlspecialchars($_POST["story_title"]);
         $synopsis = htmlspecialchars($_POST["synopsis"]);
         $tags = htmlspecialchars($_POST["tags"]);
 
-        // ---- VARIABLES COMMON TO BOTH CHAPTER AND STORY ----
+        // ---- VARIABLES COMMON TO BOTH CHAPTER AND STORY ---- //
         $chapter_word_count = str_word_count($chapter_text);
         $date = date("Y/m/d");
 
-        // ---- INCORRECT FORM ----
+        // ---- INCORRECT FORM ---- //
 
         // Chapter Title
         if(!isset($chapter_title) || empty($chapter_title))
@@ -100,9 +103,6 @@
                 // Start database modification
                 $db->beginTransaction();
 
-                // ---- GET USER ID ----
-                require_once("get_user_id.php");
-
                 // --- INSERT CHAPTER ---
 
                 // Prepare query to insert chapter
@@ -123,9 +123,10 @@
                 // ---- INCREASE CHAPTER COUNT ----
 
                 // Prepare a query to increase by 1 user's chapter count
-                $increase_chapter_count = $db->prepare("UPDATE users SET chapter_count = chapter_count + 1 WHERE username = :username");
+                $increase_chapter_count = $db->prepare("UPDATE users SET chapter_count = chapter_count + 1 WHERE username = :username AND user_id = :user_id");
 
                 // Binding
+                $increase_chapter_count->bindValue(":user_id", $user_id);
                 $increase_chapter_count->bindValue(":username", $_SESSION["username"]);
 
                 // Execution
@@ -170,9 +171,10 @@
                 // ---- INCREASE STORY COUNT ----
 
                 // Prepare a query to increase by 1 user's story count
-                $increase_story_count = $db->prepare("UPDATE users SET story_count = story_count + 1 WHERE username = :username");
+                $increase_story_count = $db->prepare("UPDATE users SET story_count = story_count + 1 WHERE username = :username AND user_id = :user_id");
 
                 // Binding
+                $increase_story_count->bindValue(":user_id", $user_id);
                 $increase_story_count->bindValue(":username", $_SESSION["username"]);
 
                 // Execution
@@ -220,10 +222,12 @@
                 // ---- GIVE USER ID TO STORY ----
 
                 // Prepare a query to give user's ID to their story
-                $give_user_id_to_story = $db->prepare("UPDATE stories SET user_id = :user_id");
+                $give_user_id_to_story = $db->prepare("UPDATE stories SET user_id = :user_id WHERE story_id = :story_id AND story_title = :story_title");
 
                 // Binding
                 $give_user_id_to_story->bindValue(":user_id", $user_id);
+                $give_user_id_to_story->bindValue(":story_id", $newest_story_id);
+                $give_user_id_to_story->bindValue(":story_title", $story_title);
 
                 // Execution
                 $give_user_id_to_story->execute();

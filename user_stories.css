@@ -22,6 +22,24 @@ main{
     align-items: center;
 }
 
+/* TITLES */
+h1, h2, h3, h4{
+    /* Centering */
+    text-align: center;
+}
+
+/* OPTIONS AND DELETE TEXTS IN STORY BOXES */
+.story_box .option, .story_box .delete_txt{
+    /* Centering */
+    text-align: center;
+}
+
+/* CHAPTER TITLES */
+.chapter_title{
+    /* Left alignement */
+    text-align: left;
+}
+
 /* GREAT CONTAINER */
 #great_container{
     /* Outline */
@@ -40,8 +58,8 @@ main{
     align-items: center;
 }
 
-/* STORY LIST AND CHAPTER INFO */
-#story_list, #chapter_info{
+/* STORY LIST AND CLICKED CHAPTER INFO */
+#story_list, #clicked_chapter_info{
     /* Dimensions */
     width: 45%;
     height: 90%;
@@ -67,9 +85,6 @@ main{
     /* Outline */
     border: 2px solid black;
 
-    /* Dimensions */
-    width: 80%;
-
     /* External space */    
     margin: 4px 0;
 
@@ -79,8 +94,8 @@ main{
     align-items: center;
 }
 
-/* CHAPTER TITLES AND DELETE TEXTS */
-.chapter_title, .delete_txt{
+/* CHAPTER TITLES, OPTIONS AND DELETE TEXTS */
+.chapter_title, .option, .delete_txt{
     /* Mouse icon */
     cursor: pointer;
 }
@@ -88,17 +103,17 @@ main{
 /* DELETE TEXT */
 .delete_txt{
     /* Color */
-    color: rgb(120, 0, 0);
+    color: rgb(100, 0, 0);
 }
 
-/* HOVERING ON DELETE TEXTS AND CHAPTER TITLES */
-.delete_txt:hover, .chapter_title:hover{
+/* HOVERING ON DELETE TEXTS AND CHAPTER TITLES AND OPTIONS */
+.delete_txt:hover, .chapter_title:hover, .option:hover{
     /* Underline */
     text-decoration: underline;
 }
 
-/* CHAPTER INFO */
-#chapter_info{
+/* CLICKED CHAPTER INFO */
+#clicked_chapter_info{
     /* Outline */
     border: 2px solid black;
 
@@ -106,12 +121,6 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* CHAPTER INFO TEXT */
-#chapter_info h3{
-    /* Mouse icon */
-    cursor: pointer;
 }
 
 /* CLICKED CHAPTER INFO DIV */
@@ -129,13 +138,13 @@ main{
 
     /* Dimensions */
     width: 80%;
-    max-height: 300px;
+    max-height: 280px;
 
     /* Centering */
     text-align: center;
 
     /* Scroll */
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 /* CHAPTER OPTIONS */
@@ -144,8 +153,214 @@ main{
     margin: 4px 0;
 }
 
-/* CHAPTER OPTIONS AND CHAPTER STATS */
-#chapter_options, #chapter_stats{
+/* CHAPTER SMALL DIVS */
+.chapter_small_div{
     /* Outline */
     border: 2px solid black;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Dimensions */
+    width: 40%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* GREAT CONTAINER */
+    #great_container{
+        /* Dimensions */
+        width: 90%;
+    }
+
+    /* STORY BOXES */
+    .story_box{
+        /* Dimensions */
+        width: 90%;
+    }
+
+    /* H3 TITLES */
+    h3{
+        /* Size */
+        font-size: 20px;
+    }
+
+    /* H4 TITLES */
+    h4{
+        /* Size */
+        font-size: 18px;
+    }
+
+    /* OPTIONS, DELETE TEXTS CHAPTER TITLES, STATS AND CHLICKED CHAPTER TEXT */
+    .option, .delete_txt, .chapter_title, .stat, #clicked_chapter_txt{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* CHAPTER SMALL DIVS */
+    .chapter_small_div{
+        /* Dimensions */
+        width: 80%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* OPTIONS */
+    .option{
+        /* External space */
+        margin-bottom: 0;
+        margin-top: 1px;
+    }
+
+    /* STATS */
+    .stat{
+        /* External space */
+        margin: 2px 0;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* GREAT CONTAINER */
+    #great_container{
+        /* Dimensions */
+        width: 90%;
+    }
+
+    /* STORY BOXES */
+    .story_box{
+        /* Dimensions */
+        width: 90%;
+    }
+
+    /* H3 TITLES */
+    h3{
+        /* Size */
+        font-size: 22px;
+    }
+
+    /* H4 TITLES */
+    h4{
+        /* Size */
+        font-size: 20px;
+    }
+
+    /* OPTIONS, DELETE TEXTS CHAPTER TITLES, STATS AND CLICKED CHAPTER TEXT */
+    .option, .delete_txt, .chapter_title, .stat, #clicked_chapter_txt{
+        /* Size */
+        font-size: 18px;
+    }
+
+    /* CHAPTER SMALL DIVS */
+    .chapter_small_div{
+        /* Dimensions */
+        width: 80%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* OPTIONS */
+    .option{
+        /* External space */
+        margin-bottom: 0;
+        margin-top: 1px;
+    }
+
+    /* STATS */
+    .stat{
+        /* External space */
+        margin: 2px 0;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* STORY BOXES */
+    .story_box{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* H3 TITLES */
+    h3{
+        /* Size */
+        font-size: 24px;
+    }
+
+    /* H4 TITLES */
+    h4{
+        /* Size */
+        font-size: 22px;
+    }
+
+    /* OPTIONS, DELETE TEXTS CHAPTER TITLES, STATS AND CLICKED CHAPTER TEXT */
+    .option, .delete_txt, .chapter_title, .stat, #clicked_chapter_txt{
+        /* Size */
+        font-size: 18px;
+    }
+
+    /* CHAPTER SMALL DIVS */
+    .chapter_small_div{
+        /* Dimensions */
+        width: 80%;
+
+        /* Position of internal elements */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* STORY BOXES */
+    .story_box{
+        /* Dimensions */
+        width: 70%;
+    }
+
+    /* H3 TITLES */
+    h3{
+        /* Size */
+        font-size: 26px;
+    }
+
+    /* H4 TITLES */
+    h4{
+        /* Size */
+        font-size: 24px;
+    }
+
+    /* OPTIONS, DELETE TEXTS CHAPTER TITLES, STATS AND CLICKED CHAPTER TEXT */
+    .option, .delete_txt, .chapter_title, .stat, #clicked_chapter_txt{
+        /* Size */
+        font-size: 22px;
+    }
+
+    /* CHAPTER SMALL DIVS */
+    .chapter_small_div{
+        /* Dimensions */
+        width: 80%;
+
+        /* Position of internal elements */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
 }

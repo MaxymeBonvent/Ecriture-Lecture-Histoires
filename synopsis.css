@@ -1,0 +1,42 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* SCROLL */
+html{
+    /* Scroll */
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    /* Back */
+    background-color: cornflowerblue;
+}
+
+/* MAIN */
+main{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* SECTIONS */
+section{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */   
+    margin: 4px 0;
+}
+
+/* ROW SECTIONS */
+.row_section{
+    /* Position of internal elements */
+    display: flex;
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */

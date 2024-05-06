@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="preview.css">
     <link rel="stylesheet" href="back_to_top.css">
     <link rel="stylesheet" href="new_story.css">
 
@@ -158,7 +159,7 @@
             <label for="chapter_title_input_field" id="chapter_title_label">Chapter 1 Title (max. 30 words)<span class="required_star">*</span></label>
 
             <!-- INPUT -->
-            <input type="text" class="form_input_field" id="chapter_title_input_field" name="chapter_title" placeholder="Chapter 1 : Dawn" value="Chapter 1 : Dawn" required="true" autocomplete="off" maxlength="400" onkeyup="ChapterTitleCheck()" title="Enter the title of the first chapter of your story">
+            <input type="text" class="form_input_field" id="chapter_title_input_field" name="chapter_title" placeholder="Chapter 1 : Dawn" required="true" autocomplete="off" maxlength="400" onkeyup="ChapterTitleCheck()" title="Enter the title of the first chapter of your story">
 
             <!-- CHAPTER TITLE WORD COUNT -->
             <p class="count_txt"><span id="chapter_title_word_count">0</span>/30</p>
@@ -194,9 +195,7 @@
                 <div id="color_options">
 
                     <img src="img/red_circle.png" alt="Red circle" class="color_option" onclick="Red()"></img>
-
                     <img src="img/green_circle.png" alt="Green circle" class="color_option" onclick="Green()"></img>
-
                     <img src="img/blue_circle.png" alt="Blue circle" class="color_option" onclick="Blue()"></img>
 
                 </div>
@@ -204,7 +203,7 @@
             </section>  
 
             <!-- INPUT -->
-            <textarea id="chapter_text_area" name="chapter_text" cols="30" rows="10" placeholder="The creature opened its eyes and looked around..." required="true" autocomplete="off" maxlength="60000" onkeyup="ChapterTextCheck()" title="Enter the text of the first chapter of your story">The creature opened its eyes and looked around...</textarea>
+            <textarea id="chapter_text_area" name="chapter_text" cols="30" rows="10" placeholder="The creature opened its eyes and looked around..." required="true" autocomplete="off" maxlength="60000" onkeyup="ChapterTextCheck()" title="Enter the text of the first chapter of your story"></textarea>
 
             <!-- CHAPTER TEXT WORD COUNT -->
             <p class="count_txt"><span id="chapter_text_word_count">0</span>/15 000</p>
