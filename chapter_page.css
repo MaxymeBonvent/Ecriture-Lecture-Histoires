@@ -1,0 +1,52 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* SCROLL */
+html{
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    background-color: cornflowerblue;
+}
+
+/* MAIN */
+main{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LIKE AND DISLIKE ICONS */
+.thumb, .comment_like_icon, .comment_dislike_icon{
+    /* Size */
+    width: 40px;
+}
+
+/* SECTIONS */
+section{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 4px 0;
+}
+
+/* FORMATTING BUTTONS */
+.formatting{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */

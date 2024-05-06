@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Chapter Reading</title>
-    <link rel="stylesheet" href="stories.css">
+
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="back_to_top.css">
+    <link rel="stylesheet" href="chapter_page.css">
 
 </head>
 
@@ -51,13 +55,13 @@
     <!-- MAIN -->
     <main>
 
-        <!-- OUTLINE OF BACK TO TOP DIV -->
-        <a id="back_to_top_outline" href="#_header">
+        <!-- BACK TO TOP DIV -->
+        <div id="back_to_top_div">
 
             <!-- BACK TO TOP LINK  -->
-            <div id="back_to_top"></div>
+            <a id="back_to_top_link" href="#_header">TOP</a>
 
-        </a>
+        </div>
 
         <?php
             // Start user session
@@ -292,7 +296,7 @@
             }
         ?>
 
-        <!-- SECTION 1 : STORY INFO, SYNOPSIS, BOOKMARK -->
+        <!-- SECTION 1 : STORY INFO, SYNOPSIS, CHAPTER BOOKMARK -->
         <section style="flex-direction: column;">
 
             <?php
@@ -480,7 +484,7 @@
                 echo "<h3>Previous/next chapter</h3>";
 
                 // START of section 3
-                echo "<section class='list_chapter_info'>";
+                echo "<section class='chapter_list'>";
 
                 // ---- CHAPTER TWO ONLY ---- //
                 if($url_chapter_id == $chapter_ids[0])
@@ -551,8 +555,8 @@
             }
         ?>
 
-        <!-- SECTION 5 : CHAPTER COMMENTS -->
-        <section style="flex-direction: column;">
+        <!-- SECTION 4 : CHAPTER COMMENTS -->
+        <section>
 
             <h3>Chapter Comments</h3>
 

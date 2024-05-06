@@ -11,5 +11,5 @@ function QuoteComment(comment_author, comment_txt, comment_date)
     console.log(`Comment date == ${comment_date}.`);
 
     // Insert set selected comment text, its author and date, with a quote style in the comment input
-    comment_textarea.innerHTML = `<span id='quote'>${comment_author} wrote on ${comment_date} : ${comment_txt}</span><br><br>`; 
+    comment_textarea.innerHTML = `<span class='quote'>${comment_author} wrote on ${comment_date} : ${comment_txt}</span><br><br>`; 
 }

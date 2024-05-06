@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="synopsis.css">
 
 </head>
-
+ 
 <body>
 
     <!-- HEADER -->
@@ -237,7 +237,7 @@
 
 
         <!-- SECTION 1 : STORY INFO -->
-        <section>
+        <section id='story_info'>
 
             <?php
 
@@ -265,13 +265,13 @@
                 echo "</div>";
 
                 // SYNOPSIS
-                echo "<p>".$story_info[0]['synopsis']."</p>";
+                echo "<p id='synopsis'>".$story_info[0]['synopsis']."</p>";
             ?>
 
         </section>
 
         <!-- SECTION 2 : STORY OPTIONS -->
-        <section class='row_section'>
+        <section id='story_options'>
 
             <?php
 
@@ -430,15 +430,16 @@
         <!-- SECTION NAME -->
         <h3>Chapters</h3>
 
-        <!-- SECTION 3 : CHAPTER INFO -->
-        <section class='row_section'>
+        <!-- SECTION 3 CHAPTER LIST -->
+        <section id="chapter_list">
 
+            <!-- CHAPTER DIVS -->
             <?php
                 // For each chapter of the clicked story
                 for($i = 0; $i < count($chapter_info); $i++)
                 {
                     // START of chapter info div
-                    echo "<div class='chapter_info_row' onclick='ChapterPage(".$chapter_info[$i]['chapter_id'].",".$story_info[0]['story_id'].")'>";
+                    echo "<div class='chapter' style='cursor: pointer;' onclick='ChapterPage(".$chapter_info[$i]['chapter_id'].",".$story_info[0]['story_id'].")'>";
 
                         echo "<p>".($i+1).". ".$chapter_info[$i]['chapter_title']."</p>";
                         echo "<p>".date("d-m-Y", strtotime($chapter_info[$i]['pub_date']))."</p>";
@@ -454,7 +455,7 @@
         </section>
 
         <!-- SECTION 4 : STORY COMMENTS -->
-        <section>
+        <section id='story_comments'>
 
             <h3>Story Comments</h3>
 
@@ -527,16 +528,16 @@
                         echo "<div class='comment_div_top_inner_div'>";
 
                             // START of author div
-                            echo "<div id='author_div'>";
+                            echo "<div class='author_div'>";
 
                                 // Author
-                                echo "<p id='comment_author'>$comment_author</p>";
+                                echo "<p class='comment_author'>$comment_author</p>";
 
                             // END of author div
                             echo "</div>";
 
-                            // START of comment options div 
-                            echo "<div class='comment_options'>";
+                            // START of comment delete and quote div 
+                            echo "<div class='comment_del_quote'>";
 
                                 // If user is logged in and the comment is theirs
                                 if(isset($_SESSION["username"]) && !empty($_SESSION["username"]) && $_SESSION["username"] == $comment_author)
@@ -547,6 +548,12 @@
 
                                 // Quote icon
                                 echo "<div class='quote_icon' onclick='QuoteComment(\"".$comment_author."\", \"".htmlspecialchars($story_comment['comment_text'])."\", \"".date("d-m-Y", strtotime($story_comment['pub_date']))."\")'>Q</div>";
+
+                            // END of comment delete and quote div  
+                            echo "</div>";
+
+                            // START of comment like and dislike div
+                            echo "<div class='comment_like_dislike'>";
 
                                 // START of comment likes div
                                 echo "<div class='thumb_box'>";
@@ -659,7 +666,7 @@
                                 // END of comment dislikes div
                                 echo "</div>";
 
-                            // END of comment options div 
+                            // END of comment like and dislike div  
                             echo "</div>";
 
 
@@ -673,7 +680,7 @@
                         echo "<div class='comment_div_mid_inner_div'>";
 
                             // Comment text
-                            echo "<p id='comment_txt'>".$story_comment['comment_text']."</p>";
+                            echo "<p class='comment_txt'>".$story_comment['comment_text']."</p>";
 
                         // END of mid div
                         echo "</div>";
@@ -700,9 +707,7 @@
 
             <!-- COMMENT WRITING SPACE -->
 
-            <p>Write a comment about this story</p>
-
-            <form style="width: 40%;" action="register_story_comment.php" method="post">
+            <form action="register_story_comment.php" method="post">
 
                 <!-- STORY ID -->
                 <?php
@@ -710,13 +715,14 @@
                 ?>
 
                 <!-- LABEL -->
-                <label for="comment_textarea">Your comment (up to 3000 characters)</label>
+                <label for="comment_textarea">Your comment <br> (max. 3000 characters)</label>
 
                 <!-- INPUT -->
                 <textarea name="comment_textarea" id="comment_textarea" cols="40" rows="10" maxlength="3000" placeholder="What I like about this story is that...on the other hand..."></textarea>
 
+
                 <!-- FORM BUTTONS DIV -->
-                <div class="form_btns_div">
+                <div id="form_btns_div">
 
                     <!-- SUBMIT -->
                     <input class="formBtn" type="submit" value="Publish">

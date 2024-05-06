@@ -24,19 +24,666 @@ main{
     align-items: center;
 }
 
-/* SECTIONS */
-section{
+/* TITLES */
+h1, h2, h3{
+    /* Centering */
+    text-align: center;
+}
+
+/* FOUR SECTIONS */
+#story_info, #story_options, #chapter_list, #story_comments{
     /* Outline */
     border: 2px solid black;
 
-    /* External space */   
+    /* External space */
     margin: 4px 0;
 }
 
-/* ROW SECTIONS */
-.row_section{
+/* STORY INFO AND CHAPTER LIST */
+#story_info, #chapter_list, #story_comments{
     /* Position of internal elements */
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* STORY OPTIONS */
+#story_options{
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* HOVERING ON STORY OPTIONS */
+.story_option:hover{
+    /* Underline */
+    text-decoration: underline;
+}
+
+/* TAG TEXTS */
+.tag_txt{
+    /* Back */  
+    background-color: forestgreen;
+
+    /* Outline */
+    border-radius: 10px;
+
+    /* Internal space */
+    padding: 0 4px;
+}
+
+/* SYNOPSIS */
+#synopsis{
+    /* Centering */
+    text-align: center;
+}
+
+/* LIKE AND DISLIKE DIVS */
+.thumb_box{
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* LIKE AND DISLIKE ICONS */
+.thumb, .comment_like_icon, .comment_dislike_icon{
+    /* Dimensions */
+    width: 40px;
+
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* STORY OPTIONS, THUMBS AND FORM BUTTONS */
+.story_option, .thumb, .formBtn{
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* CHAPTER LIST */
+#chapter_list{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 50%;
+
+    /* Posiiton of internal elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CHAPTERS */
+.chapter{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+    height: 60px;
+
+    /* Posiiton of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* FORM */
+form{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 70%;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* FORM BUTTONS DIV */
+#form_btns_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 50%;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* FORM BUTTONS */
+.formBtn{
+    /* Animation duration */
+    transition: 0.3s;
+}
+
+/* HOVERING ON FORM BUTTONS */
+.formBtn:hover{
+    /* Size */  
+    transform: scale(1.1, 1.1);
+}
+
+/* COMMENT DIVS */
+.comment_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+
+    /* External space */
+    margin: 4px 0;
+}
+
+/* AUTHOR DIV */
+.author_div{
+    /* Outline */
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+
+    /* Dimensions */
+    width: 30%;
+
+    /* Position of internal elements */
+    display: flex;  
+    justify-content: center; 
+}
+
+/* COMMENT DELETE AND QUOTE + LIKE AND DISLIKE DIV */
+.comment_del_quote, .comment_like_dislike{
+    /* Eternal space */
+    margin-top: 4px;
+}
+
+/* DELETE ICONS AND QUOTE ICONS */
+.delete_icon, .quote_icon{
+    /* Dimensions */
+    width: 30px;
+    height: 30px;
+
+    /* External space */
+    margin: 0 10px;
+
+    /* Text color */
+    color: white;
+
+    /* Mouse */
+    cursor: pointer;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* THUMB BOXES */
+.thumb_box{
+    /* Dimensions */
+    width: 150px;
+    height: 30px;
+}
+
+/* DELETE ICONS */
+.delete_icon{
+    /* Back */
+    background-color: rgb(100, 0, 0);
+}
+
+/* QUOTE ICONS */
+.quote_icon{
+    /* Back */
+    background-color: rgb(80, 0, 180);
+}
+
+/* COMMENT TEXT */
+.comment_txt{
+    /* Centering */
+    text-align: center;
+}
+
+/* COMMENT BOTTOM THIRD */
+.comment_div_bottom_inner_div{
+    /* Position of internal elements */
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* QUOTED COMMENTS */
+.quote{
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgb(140, 140, 140);
 }
 
 /* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* TEXTS */
+    p{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* COMMENT DEL AND QUOTE DIV */
+    .comment_del_quote, .comment_like_dislike{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: flex-end;
+    }
+
+   /* FOUR SECTIONS */
+    #story_info, #story_options, #chapter_list, #story_comments{
+        /*  Dimensions */
+        width: 70%;
+    } 
+
+    /* STORY OPTIONS */
+    #story_options{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* THUMBS */
+    .thumb, .comment_like_icon, .comment_dislike_icon{
+        /* Dimensions */
+        width: 22px;
+    }
+
+    /* CHAPTERS */
+    .chapter{
+        /* Dimensions */
+        height: 200px;
+
+        /* External space */
+        margin: 4px 0;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* TEXTS IN CHAPTER DIVS */
+    .chapter p{
+        /* External space */
+        margin-top: 4px;
+        margin-bottom: 0;
+    }
+
+    /* DELETE AND QUOTE ICONS */
+    .delete_icon, .quote_icon{
+        /* Dimensions */
+        width: 15px;
+        height: 15px;
+
+        /* Text */
+        font-size: 12px;
+    }
+
+    /* LABEL */
+    label{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* TEXTAREA */
+    textarea{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* DIV OF FORM BUTTONS */   
+    #form_btns_div{
+        /* Dimensions */
+        height: 60px; 
+
+        /* Position of internal elements */ 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* FORM BUTTONS */
+    .formBtn{
+        /* Size */
+        font-size: 14px;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* TEXTS */
+    p{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* COMMENT DEL AND QUOTE DIV */
+    .comment_del_quote, .comment_like_dislike{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /* FOUR SECTIONS */
+    #story_info, #story_options, #chapter_list, #story_comments{
+        /*  Dimensions */
+        width: 70%;
+    } 
+
+    /* STORY OPTIONS */
+    #story_options{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* THUMBS */
+    .thumb, .comment_like_icon, .comment_dislike_icon{
+        /* Dimensions */
+        width: 22px;
+    }
+
+    /* CHAPTERS */
+    .chapter{
+        /* Dimensions */
+        height: 200px;
+
+        /* External space */
+        margin: 4px 0;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* TEXTS IN CHAPTER DIVS */
+    .chapter p{
+        /* External space */
+        margin-top: 4px;
+        margin-bottom: 0;
+    }
+
+    /* COMMENT LIKE AND DISLIKE DIV */
+    .comment_like_dislike{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: space-around;
+    }
+
+    /* DELETE AND QUOTE ICONS */
+    .delete_icon, .quote_icon{
+        /* Dimensions */
+        width: 15px;
+        height: 15px;
+
+        /* Text */
+        font-size: 12px;
+    }
+
+    /* LABEL */
+    label{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* TEXTAREA */
+    textarea{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* DIV OF FORM BUTTONS */   
+    #form_btns_div{
+        /* Dimensions */
+        height: 60px; 
+
+        /* Position of internal elements */ 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* FORM BUTTONS */
+    .formBtn{
+        /* Size */
+        font-size: 14px;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* TEXTS */
+    p{
+        /* Size */
+        font-size: 18px;
+    }
+
+    /* COMMENT DEL AND QUOTE DIV */
+    .comment_del_quote, .comment_like_dislike{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /* FOUR SECTIONS */
+    #story_info, #story_options, #chapter_list, #story_comments{
+        /*  Dimensions */
+        width: 70%;
+    } 
+
+    /* LIKE AND DISLIKE BOXES */
+    .thumb_box{
+        /* Dimensions */
+        width: 40%;
+    }
+
+    /* STORY OPTIONS */
+    #story_options{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: center;
+    }
+
+    /* STORY OPTION TEXTS */
+    #story_options p{
+        /* External space */
+        margin: 10px 2px;
+    }
+
+    /* THUMBS */
+    .thumb, .comment_like_icon, .comment_dislike_icon{
+        /* Dimensions */
+        width: 24px;
+    }
+
+    /* CHAPTERS */
+    .chapter{
+        /* Dimensions */
+        height: 200px;
+
+        /* External space */
+        margin: 4px 0;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* TEXTS IN CHAPTER DIVS */
+    .chapter p{
+        /* External space */
+        margin-top: 4px;
+        margin-bottom: 0;
+    }
+
+    /* LIKE AND DISLIKE DIV */
+    .comment_like_dislike{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: space-around;
+    }
+
+    /* DELETE AND QUOTE ICONS */
+    .delete_icon, .quote_icon{
+        /* Dimensions */
+        width: 15px;
+        height: 15px;
+
+        /* Text */
+        font-size: 12px;
+    }
+
+    /* LABEL */
+    label{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* TEXTAREA */
+    textarea{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* DIV OF FORM BUTTONS */   
+    #form_btns_div{
+        /* Dimensions */
+        height: 60px; 
+
+        /* Position of internal elements */ 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* FORM BUTTONS */
+    .formBtn{
+        /* Size */
+        font-size: 14px;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* TEXTS */
+    p{
+        /* Size */
+        font-size: 20px;
+    }
+
+    /* COMMENT DEL AND QUOTE DIV */
+    .comment_del_quote, .comment_like_dislike{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /* FOUR SECTIONS */
+    #story_info, #story_options, #chapter_list, #story_comments{
+        /*  Dimensions */
+        width: 60%;
+    } 
+
+    /* LIKE AND DISLIKE BOXES */
+    .thumb_box{
+        /* Dimensions */
+        width: 30%;
+    }
+
+    /* STORY OPTIONS */
+    #story_options{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: center;
+    }
+
+    /* STORY OPTION TEXTS */
+    #story_options p{
+        /* External space */
+        margin: 0 4px;
+    }
+
+    /* THUMBS */
+    .thumb, .comment_like_icon, .comment_dislike_icon{
+        /* Dimensions */
+        width: 30px;
+    }
+
+    /* CHAPTERS */
+    .chapter{
+        /* Dimensions */
+        width: 90%;
+
+        /* External space */
+        margin: 4px 0;
+
+        /* Position of internal elements */
+        display: flex;
+    }
+
+    /* TEXTS IN CHAPTER DIVS */
+    .chapter p{
+        /* External space */
+        margin-top: 4px;
+        margin-bottom: 0;
+    }
+
+    /* DELETE AND QUOTE ICONS */
+    .delete_icon, .quote_icon{
+        /* Dimensions */
+        width: 20px;
+        height: 20px;
+
+        /* Text */
+        font-size: 16px;
+    }
+
+    /* LABEL */
+    label{
+        /* Size */
+        font-size: 16px;
+    }
+
+    /* TEXTAREA */
+    textarea{
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* DIV OF FORM BUTTONS */   
+    #form_btns_div{
+        /* Dimensions */
+        height: 60px; 
+
+        /* Position of internal elements */ 
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* FORM BUTTONS */
+    .formBtn{
+        /* Size */
+        font-size: 14px;
+    }
+}

@@ -149,7 +149,7 @@
 
                             <label for='chapter_title_input_field' id='chapter_title_label'>Chapter Title (up to 30 words)<span class='required_star'>*</span></label>
 
-                            <input id='chapter_title_input_field' type='text' class='form_input_field' name='chapter_title' placeholder='Chapter ? : a small creature appears' value='Chapter ? : a small creature appears' required='true' autocomplete='off' maxlength='400' onkeyup='ChapterTitleCheck()' title='Enter the title of the next chapter of your story'>
+                            <input id='chapter_title_input_field' type='text' class='form_input_field' name='chapter_title' placeholder='Chapter ? : a small creature appears' required='true' autocomplete='off' maxlength='400' onkeyup='ChapterTitleCheck()' title='Enter the title of the next chapter of your story'>
 
                             <p><span id='chapter_title_word_count'>0</span>/30</p>
                             
@@ -185,7 +185,7 @@
                                 
                             </div>
 
-                            <textarea id='chapter_text_area' name='chapter_text' cols='30' rows='10' placeholder='The creature opened its eyes and looked around...' required='true' autocomplete='off' maxlength='60000' onkeyup='ChapterTextCheck()' title='Enter the text of the first chapter of your story'>The creature opened its eyes and looked around...</textarea>
+                            <textarea id='chapter_text_area' name='chapter_text' cols='30' rows='10' placeholder='The creature opened its eyes and looked around...' required='true' autocomplete='off' maxlength='60000' onkeyup='ChapterTextCheck()' title='Enter the text of the first chapter of your story'></textarea>
 
                             <p><span id='chapter_text_word_count'>0</span>/15 000</p>
 

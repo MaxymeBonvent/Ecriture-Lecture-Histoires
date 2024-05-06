@@ -34,7 +34,7 @@
         /* Position */
         position: fixed;
         bottom: 3%;
-        right: 3%;
+        right: 5%;
 
         /* Position of internal elements */
         display: flex;
@@ -67,7 +67,7 @@
         /* Position */
         position: fixed;
         bottom: 3%;
-        right: 2.5%;
+        right: 5%;
 
         /* Position of internal elements */
         display: flex;
