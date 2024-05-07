@@ -6,10 +6,10 @@
 
     <title>User page</title>
 
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="back_to_top.css">
-    <link rel="stylesheet" href="user_page.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/back_to_top.css">
+    <link rel="stylesheet" href="CSS/user_page.css">
 
 </head>
 
@@ -522,9 +522,9 @@
     </main>
 
     <!-- SCRIPTS -->
-    <script src="synopsis.js"></script>
-    <script src="chapter_page.js"></script>
-    <script src="delete_account.js"></script>
+    <script src="JS/synopsis.js"></script>
+    <script src="JS/chapter_page.js"></script>
+    <script src="JS/delete_account.js"></script>
 
     <!-- FOOTER -->
     <footer>

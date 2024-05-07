@@ -6,10 +6,10 @@
 
     <title>Create Account</title>
 
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="back_to_top.css">
-    <link rel="stylesheet" href="create_account.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/back_to_top.css">
+    <link rel="stylesheet" href="CSS/create_account.css">
 
 </head>
 
@@ -155,6 +155,6 @@
 
 </body>
 
-<script src="new_account_form_check.js"></script>
+<script src="JS/new_account_form_check.js"></script>
 
 </html>

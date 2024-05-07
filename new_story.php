@@ -6,11 +6,11 @@
 
     <title>New Story</title>
 
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="preview.css">
-    <link rel="stylesheet" href="back_to_top.css">
-    <link rel="stylesheet" href="new_story.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/preview.css">
+    <link rel="stylesheet" href="CSS/back_to_top.css">
+    <link rel="stylesheet" href="CSS/new_story.css">
 
 </head>
 
@@ -236,8 +236,8 @@
     </footer>
 
     <!-- SCRIPT -->
-    <script src="preview.js"></script>
-    <script src="new_story_check.js"></script>
-    <script src="chapter_style.js"></script>
+    <script src="JS/preview.js"></script>
+    <script src="JS/new_story_check.js"></script>
+    <script src="JS/chapter_style.js"></script>
 
 </body>

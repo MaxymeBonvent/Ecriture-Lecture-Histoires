@@ -1,0 +1,55 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* BODY */
+body{
+    /* Back */
+    background-color: cornflowerblue;
+}
+
+/* TEXT */
+p{
+    /* Centering */
+    text-align: center;
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* TEXT */
+    p{
+        /* Size */
+        font-size: 14px;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* TEXT */
+    p{
+        /* Size */
+        font-size: 16px;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* TEXT */
+    p{
+        /* Size */
+        font-size: 22px;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* TEXT */
+    p{
+        /* Size */
+        font-size: 24px;
+    }
+}

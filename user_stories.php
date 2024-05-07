@@ -6,10 +6,10 @@
 
     <title>User Stories</title>
 
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="back_to_top.css">
-    <link rel="stylesheet" href="user_stories.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/back_to_top.css">
+    <link rel="stylesheet" href="CSS/user_stories.css">
 
 </head>
 
@@ -193,7 +193,7 @@
 </body>
 
 <!-- SCRIPT -->
-<script src="user_stories.js"></script>
+<script src="JS/user_stories.js"></script>
 
 <!-- FOOTER -->
 <footer>

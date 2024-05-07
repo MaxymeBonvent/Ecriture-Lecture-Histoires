@@ -6,11 +6,11 @@
 
     <title>User Stories</title>
 
-    <link rel="stylesheet" href="header.css">
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="preview.css">
-    <link rel="stylesheet" href="back_to_top.css">
-    <link rel="stylesheet" href="chapter_work.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/preview.css">
+    <link rel="stylesheet" href="CSS/back_to_top.css">
+    <link rel="stylesheet" href="CSS/chapter_work.css">
 
 </head>
 
@@ -239,9 +239,9 @@
 </body>
 
 <!-- SCRIPT -->
-<script src="preview.js"></script>
-<script src="check_chapter.js"></script>
-<script src="chapter_style.js"></script>
+<script src="JS/preview.js"></script>
+<script src="JS/check_chapter.js"></script>
+<script src="JS/chapter_style.js"></script>
 
 <!-- FOOTER -->
 <footer>

@@ -1,0 +1,81 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* SCROLL */
+html{
+    scroll-behavior: smooth;
+}
+
+/* BODY */
+body{
+    background-color: cornflowerblue;
+}
+
+/* MAIN */
+main{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* SECTIONS AND DIVS */
+section, div{
+    /* Outline */
+    border: 2px solid black;
+}
+
+/* SECTIONS */
+section{
+    /* Dimensions */
+    width: 50%;
+
+    /* External space */
+    margin: 4px 0;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* DIVS */
+div{
+    /* External space */
+    margin: 6px;
+}
+
+/* LABELS */
+label{
+    /* Centering */
+    text-align: center;
+}
+
+/* TAGS DIV */
+#tags_div{
+    /* Dimensions */
+    width: 50%;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* TAG TEXT */
+.tag_txt{
+    /* Back */
+    background-color: forestgreen;
+
+    /* Internal space */
+    padding: 0 4px;
+
+    /* External space */
+    margin: 4px 10px;
+
+    /* Outline */
+    border-radius: 10px;
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */

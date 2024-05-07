@@ -175,6 +175,7 @@
     .thumb, .comment_like_icon, .comment_dislike_icon{
         /* Dimensions */
         width: 30px;
+        height: 30px;
     }
 
     /* DELETE AND QUOTE ICONS */

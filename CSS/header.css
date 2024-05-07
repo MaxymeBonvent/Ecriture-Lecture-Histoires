@@ -1,9 +1,15 @@
-/* COMMON PROPERTIES */
-header{
-    /* Outline */
-    border: 2px solid black;
+/* ---- COMMON PROPERTIES ---- */
 
-    /* Position of internal elements */
+/* HEADER */
+header{
+    /* Background image properties */
+    background-image: url(../img/library.png);
+    background-repeat: no-repeat;
+
+    /* Dimensions */    
+    width: 100%;
+
+    /* Position of internal elemnts */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,19 +22,11 @@ h1, h2{
     text-align: center;
 }
 
+/* ---- SIZE-BASED PROPERTIES ---- */
+
 /* SMALL VERSION */
 @media all and (max-width: 390px) 
 {
-    /* HEADER */
-    header{
-        /* Background image properties */
-        background-image: url(img/library.png);
-        background-repeat: no-repeat;
-
-        /* Dimensions */    
-        width: 100%;
-    }
-
     /* HEADER TITLE AND SUBTITLES */
     header h1, header h2{
         /* Text outline */
@@ -83,16 +81,6 @@ h1, h2{
 /* MEDIUM VERSION */
 @media all and (min-width: 390px) and (max-width: 430px) 
 {
-    /* HEADER */
-    header{
-        /* Background image properties */
-        background-image: url(img/library.png);
-        background-repeat: no-repeat;
-
-        /* Dimensions */    
-        width: 100%;
-    }
-
     /* HEADER TITLE AND SUBTITLES */
     header h1, header h2{
         /* Text outline */
@@ -147,16 +135,6 @@ h1, h2{
 /* BIG VERSION */
 @media all and (min-width: 430px) and (max-width: 853px) 
 {
-    /* HEADER */
-    header{
-        /* Background image properties */
-        background-image: url(img/library.png);
-        background-repeat: no-repeat;
-
-        /* Dimensions */    
-        width: 100%;
-    }
-
     /* HEADER TITLE AND SUBTITLES */
     header h1, header h2{
         /* Text outline */
@@ -211,16 +189,6 @@ h1, h2{
 /* VERY BIG VERSION */
 @media all and (min-width: 853px) 
 {
-    /* HEADER */
-    header{
-        /* Background image properties */
-        background-image: url(img/library.png);
-        background-repeat: no-repeat;
-
-        /* Dimensions */    
-        width: 100%;
-    }
-
     /* HEADER TITLE AND SUBTITLES */
     header h1, header h2{
         /* Text outline */

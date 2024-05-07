@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Login</title>
-    <link rel="stylesheet" href="stories.css">
+
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="CSS/footer.css">
+    <link rel="stylesheet" href="CSS/process_confirm.css">
 
 </head>
 
@@ -61,5 +64,10 @@
         ?>
 
     </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Footer</p>
+    </footer>
 
 </body>

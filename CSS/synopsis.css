@@ -187,13 +187,6 @@ form{
     transform: scale(1.1, 1.1);
 }
 
-/* THUMB BOXES */
-.thumb_box{
-    /* Dimensions */
-    width: 150px;
-    height: 30px;
-}
-
 
 /* ---- SIZE-BASED PROPERTIES ---- */
 
@@ -406,10 +399,18 @@ form{
         width: 70%;
     } 
 
+    /* STORY OPTIONS */
+    #story_options{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: space-around;
+    }
+
+
     /* LIKE AND DISLIKE BOXES */
     .thumb_box{
         /* Dimensions */
-        width: 40%;
+        width: 10%;
     }
 
     /* TAGS DIV */
@@ -427,13 +428,6 @@ form{
     .tag_txt{
         /* External space */
         margin: 4px 30px;
-    }
-
-    /* STORY OPTIONS */
-    #story_options{
-        /* Position of internal elements */
-        display: flex;
-        justify-content: center;
     }
 
     /* STORY OPTION TEXTS */
@@ -524,18 +518,17 @@ form{
         justify-content: space-around;
     }
 
-    /* LIKE AND DISLIKE BOXES */
-    .thumb_box{
-        /* Dimensions */
-        width: 30%;
-    }
-
     /* STORY OPTIONS */
     #story_options{
         /* Position of internal elements */
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: space-around;
+    }
+
+    /* LIKE AND DISLIKE BOXES */
+    .thumb_box{
+        /* Dimensions */
+        width: 10%;
     }
 
     /* STORY OPTION TEXTS */
