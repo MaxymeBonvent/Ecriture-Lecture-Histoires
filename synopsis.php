@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,9 +10,10 @@
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="back_to_top.css">
     <link rel="stylesheet" href="synopsis.css">
+    <link rel="stylesheet" href="comments.css">
 
 </head>
- 
+
 <body>
 
     <!-- HEADER -->
@@ -55,13 +55,13 @@
     <!-- MAIN -->
     <main>
 
-        <!-- BACK TO TOP DIV -->
-        <div id="back_to_top_div">
+        <!-- BACK TO TOP LINK  -->
+        <a id="back_to_top_link" href="#_header">
 
-            <!-- BACK TO TOP LINK  -->
-            <a id="back_to_top_link" href="#_header">TOP</a>
+            <!-- BACK TO TOP IMAGE -->
+            <img src="img/top.png" alt="Page top icon" id="back_to_top_img">
 
-        </div>
+        </a>
 
         <?php
             // Start user session
@@ -248,7 +248,7 @@
                 echo "<p>$author</p>";
 
                 // TAGS DIV START
-                echo "<div class='tags_div'>"; 
+                echo "<div id='tags_div'>"; 
 
                 // For each tag of the story
                 foreach($tags_array as $tag)
@@ -360,14 +360,14 @@
                         if(str_contains($story_likes[0]["user_like_ids"], $user_id))
                         {
                             // Display like text in green
-                            echo "<div class='thumb_box'> <p id='like_txt' style='color:rgb(0, 120, 0);'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                            echo "<p id='like_txt' style='color:rgb(0, 120, 0);'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'>";
                         }
 
                         // If user ID is not in Story's like IDs
                         else if(!str_contains($story_likes[0]["user_like_ids"], $user_id))
                         {
                             // Display "Like" in default color
-                            echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                            echo "<p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'>";
                         }
                     }
 
@@ -375,7 +375,7 @@
                     else if($story_likes[0]["user_like_ids"] == null || $story_likes[0]["user_like_ids"] == "")
                     {
                         // Display "Like" in default color
-                        echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'> </div>";
+                        echo "<p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeStory($story_id)'>";
                     }
                 }
 
@@ -383,7 +383,7 @@
                 else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                 {
                     // Display "Like" in default color without the click function
-                    echo "<div class='thumb_box'><p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb'> </div>";
+                    echo "<p id='like_txt'>".$story_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb'>";
                 }
 
 
@@ -398,14 +398,14 @@
                         if(str_contains($story_dislikes[0]["user_dislike_ids"], $user_id))
                         {   
                             // Display dislike text in green
-                            echo "<div class='thumb_box'> <p id='dislike_txt' style='color: forestgreen;'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' id='dislike_icon' onclick='DislikeStory($story_id)'> </div>";
+                            echo "<p id='dislike_txt' style='color: forestgreen;'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' id='dislike_icon' onclick='DislikeStory($story_id)'>";
                         }
 
                         // If user ID is not in Story's dislike IDs
                         else if(!str_contains($story_dislikes[0]["user_dislike_ids"], $user_id))
                         {
                             // Display dislike text in black
-                            echo "<div class='thumb_box'> <p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' id='dislike_icon' onclick='DislikeStory($story_id)'> </div>";
+                            echo "<p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' id='dislike_icon' onclick='DislikeStory($story_id)'>";
                         }
                     }
 
@@ -413,7 +413,7 @@
                     else if($story_dislikes[0]["user_dislike_ids"] == null || $story_dislikes[0]["user_dislike_ids"] == "")
                     {
                         // Display "Dislike" in default color
-                        echo "<div class='thumb_box'> <p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' id='dislike_icon' onclick='DislikeStory($story_id)'> </div>";
+                        echo "<p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' id='dislike_icon' onclick='DislikeStory($story_id)'>";
                     }
                 }
 
@@ -421,7 +421,7 @@
                 else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                 {
                     // Display "Dislike" in default color without the click function
-                    echo "<div class='thumb_box'> <p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb'> </div>";
+                    echo "<p id='dislike_txt'>".$story_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb'>";
                 } 
             ?>
 
@@ -523,179 +523,158 @@
                     // START of current comment div
                     echo "<div class='comment_div'>";
 
+                        // START of author div
+                        echo "<div class='author_div'>";
 
-                        // START of top div
-                        echo "<div class='comment_div_top_inner_div'>";
+                            // Author
+                            echo "<p class='comment_author'>$comment_author</p>";
 
-                            // START of author div
-                            echo "<div class='author_div'>";
+                        // END of author div
+                        echo "</div>";
 
-                                // Author
-                                echo "<p class='comment_author'>$comment_author</p>";
+                        // START of comment delete and quote div 
+                        echo "<div class='comment_del_quote'>";
 
-                            // END of author div
-                            echo "</div>";
+                            // If user is logged in and the comment is theirs
+                            if(isset($_SESSION["username"]) && !empty($_SESSION["username"]) && $_SESSION["username"] == $comment_author)
+                            {
+                                // Display delete icon
+                                echo "<img src='img/delete.png' alt='Delete icon' class='delete_icon' onclick='DeleteStoryComment(".$story_comment["comment_id"].")'>";
+                            }
 
-                            // START of comment delete and quote div 
-                            echo "<div class='comment_del_quote'>";
+                            // Quote icon
+                            echo "<img src='img/quote.png' alt='Quote icon' class='quote_icon' onclick='QuoteComment(\"".$comment_author."\", \"".htmlspecialchars($story_comment['comment_text'])."\", \"".date("d-m-Y", strtotime($story_comment['pub_date']))."\")'>";
 
-                                // If user is logged in and the comment is theirs
-                                if(isset($_SESSION["username"]) && !empty($_SESSION["username"]) && $_SESSION["username"] == $comment_author)
+                        // END of comment delete and quote div  
+                        echo "</div>";
+
+                        // START of comment like and dislike div
+                        echo "<div class='comment_like_dislike'>";
+
+                            // ---- LIKES ---- //
+
+                            // START of comment likes div
+                            echo "<div class='thumb_box'>";
+
+                                // If user is not logged in
+                                if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                                 {
-                                    // Display delete icon
-                                    echo "<div class='delete_icon' onclick='DeleteStoryComment(".$story_comment["comment_id"].")'>X</div>";
+                                    // Display number of likes with default color
+                                    echo "<p class='comment_like_txt'>".$story_comment["likes"]." Likes</p>";
+
+                                    // Display like icon without functions
+                                    echo "<img class='thumb' src=img/like.png alt='Like icon'>";
                                 }
 
-                                // Quote icon
-                                echo "<div class='quote_icon' onclick='QuoteComment(\"".$comment_author."\", \"".htmlspecialchars($story_comment['comment_text'])."\", \"".date("d-m-Y", strtotime($story_comment['pub_date']))."\")'>Q</div>";
-
-                            // END of comment delete and quote div  
-                            echo "</div>";
-
-                            // START of comment like and dislike div
-                            echo "<div class='comment_like_dislike'>";
-
-                                // START of comment likes div
-                                echo "<div class='thumb_box'>";
-
-                                    // If user is not logged in
-                                    if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
+                                // If user is logged in
+                                else if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
+                                {
+                                    // If at least one user liked this comment
+                                    if($comment_info[0]["user_like_ids"] != null && $comment_info[0]["user_like_ids"] != "")
                                     {
-                                        // Display number of likes with default color
-                                        echo "<p class='comment_like_txt'>".$story_comment["likes"]." Likes</p>";
-
-                                        // Display like icon without functions
-                                        echo "<img class='thumb' src=img/like.png alt='Like icon'>";
-                                    }
-
-                                    // If user is logged in
-                                    else if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
-                                    {
-                                        // If at least one user liked this comment
-                                        if($comment_info[0]["user_like_ids"] != null && $comment_info[0]["user_like_ids"] != "")
+                                        // If user liked this comment
+                                        if(str_contains($comment_info[0]["user_like_ids"], $user_id))
                                         {
-                                            // If user liked this comment
-                                            if(str_contains($comment_info[0]["user_like_ids"], $user_id))
-                                            {
-                                                // Display number of likes with "valid" color
-                                                echo "<p class='comment_like_txt' style='color: rgb(0, 120, 0);'>".$story_comment["likes"]." Likes</p>";
+                                            // Display number of likes with "valid" color
+                                            echo "<p class='comment_like_txt' style='color: rgb(0, 120, 0);'>".$story_comment["likes"]." Likes</p>";
 
-                                                // Display like icon with functions
-                                                echo "<img class='comment_like_icon' onclick='ToggleStoryCommentLike(".$story_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";
-                                            }
-
-                                            // If user did not like this comment
-                                            else if(!str_contains($comment_info[0]["user_like_ids"], $user_id))
-                                            {
-                                                // Display number of likes with default color
-                                                echo "<p class='comment_like_txt'>".$story_comment["likes"]." Likes</p>";
-
-                                                // Display like icon with functions
-                                                echo "<img class='comment_like_icon' onclick='ToggleStoryCommentLike(".$story_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";
-                                            }
+                                            // Display like icon with functions
+                                            echo "<img class='comment_like_icon' onclick='ToggleStoryCommentLike(".$story_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";
                                         }
-                                        
-                                        // If nobody liked this comment
-                                        else if($story_comment["user_like_ids"] == null || $story_comment["user_like_ids"] == "")
+
+                                        // If user did not like this comment
+                                        else if(!str_contains($comment_info[0]["user_like_ids"], $user_id))
                                         {
                                             // Display number of likes with default color
                                             echo "<p class='comment_like_txt'>".$story_comment["likes"]." Likes</p>";
 
-                                            // Display like icon with functions and default color
-                                            echo "<img class='comment_like_icon' onclick='ToggleStoryCommentLike(".$story_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";  
+                                            // Display like icon with functions
+                                            echo "<img class='comment_like_icon' onclick='ToggleStoryCommentLike(".$story_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";
                                         }
-                                        
                                     }
-
-                                // END of comment likes div
-                                echo "</div>";
-
-
-
-                                // START of comment dislikes div
-                                echo "<div class='thumb_box'>";
-
-                                    // If user is not logged in
-                                    if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
+                                    
+                                    // If nobody liked this comment
+                                    else if($story_comment["user_like_ids"] == null || $story_comment["user_like_ids"] == "")
                                     {
-                                        // Display number of dislikes with default color
-                                        echo "<p class='comment_dislike_txt'>".$story_comment["dislikes"]." Dislikes</p>";
+                                        // Display number of likes with default color
+                                        echo "<p class='comment_like_txt'>".$story_comment["likes"]." Likes</p>";
 
-                                        // Display dislike icon without functions
-                                        echo "<img class='thumb' src=img/dislike.png alt='Dislike icon'>";
-                                    }
+                                        // Display like icon with functions and default color
+                                        echo "<img class='comment_like_icon' onclick='ToggleStoryCommentLike(".$story_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";  
+                                    }   
+                                }
 
-                                    // If user is logged in
-                                    else if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
+                            // END of comment likes div
+                            echo "</div>";
+
+
+                            // ---- DISLIKES ---- //
+
+
+                            // START of comment dislikes div
+                            echo "<div class='thumb_box'>";
+
+                                // If user is not logged in
+                                if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
+                                {
+                                    // Display number of dislikes with default color
+                                    echo "<p class='comment_dislike_txt'>".$story_comment["dislikes"]." Dislikes</p>";
+
+                                    // Display dislike icon without functions
+                                    echo "<img class='thumb' src=img/dislike.png alt='Dislike icon'>";
+                                }
+
+                                // If user is logged in
+                                else if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
+                                {
+                                    // If at least one user disliked this comment
+                                    if($comment_info[0]["user_dislike_ids"] != null && $comment_info[0]["user_dislike_ids"] != "")
                                     {
-                                        // If at least one user disliked this comment
-                                        if($comment_info[0]["user_dislike_ids"] != null && $comment_info[0]["user_dislike_ids"] != "")
+                                        // If user disliked this comment
+                                        if(str_contains($comment_info[0]["user_dislike_ids"], $user_id))
                                         {
-                                            // If user disliked this comment
-                                            if(str_contains($comment_info[0]["user_dislike_ids"], $user_id))
-                                            {
-                                                // Display number of dislikes with "valid" color
-                                                echo "<p class='comment_dislike_txt' style='color: rgb(0, 120, 0);'>".$story_comment["dislikes"]." Dislikes</p>";
+                                            // Display number of dislikes with "valid" color
+                                            echo "<p class='comment_dislike_txt' style='color: rgb(0, 120, 0);'>".$story_comment["dislikes"]." Dislikes</p>";
 
-                                                // Display dislike icon with functions
-                                                echo "<img class='comment_dislike_icon' onclick='ToggleStoryCommentDislike(".$story_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";
-                                            }
-
-                                            // If user did not dislike this comment
-                                            else if(!str_contains($comment_info[0]["user_dislike_ids"], $user_id))
-                                            {
-                                                // Display number of dislikes with default color
-                                                echo "<p class='comment_dislike_txt'>".$story_comment["dislikes"]." Dislikes</p>";
-
-                                                // Display dislike icon with functions
-                                                echo "<img class='comment_dislike_icon' onclick='ToggleStoryCommentDislike(".$story_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";
-                                            }
+                                            // Display dislike icon with functions
+                                            echo "<img class='comment_dislike_icon' onclick='ToggleStoryCommentDislike(".$story_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";
                                         }
-                                        
-                                        // If nobody disliked this comment
-                                        else if($story_comment["user_dislike_ids"] == null || $story_comment["user_dislike_ids"] == "")
+
+                                        // If user did not dislike this comment
+                                        else if(!str_contains($comment_info[0]["user_dislike_ids"], $user_id))
                                         {
                                             // Display number of dislikes with default color
                                             echo "<p class='comment_dislike_txt'>".$story_comment["dislikes"]." Dislikes</p>";
 
-                                            // Display dislike icon with functions and default color
-                                            echo "<img class='comment_dislike_icon' onclick='ToggleStoryCommentDislike(".$story_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";  
-                                        }    
+                                            // Display dislike icon with functions
+                                            echo "<img class='comment_dislike_icon' onclick='ToggleStoryCommentDislike(".$story_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";
+                                        }
                                     }
+                                    
+                                    // If nobody disliked this comment
+                                    else if($story_comment["user_dislike_ids"] == null || $story_comment["user_dislike_ids"] == "")
+                                    {
+                                        // Display number of dislikes with default color
+                                        echo "<p class='comment_dislike_txt'>".$story_comment["dislikes"]." Dislikes</p>";
 
-                                // END of comment dislikes div
-                                echo "</div>";
+                                        // Display dislike icon with functions and default color
+                                        echo "<img class='comment_dislike_icon' onclick='ToggleStoryCommentDislike(".$story_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";  
+                                    }    
+                                }
 
-                            // END of comment like and dislike div  
+                            // END of comment dislikes div
                             echo "</div>";
 
-
-                        // END of top div
+                        // END of comment like and dislike div  
                         echo "</div>";
 
+                        // Comment text
+                        echo "<p class='comment_txt'>".$story_comment['comment_text']."</p>";
 
+                        // Publication date
+                        echo "<small id='comment_date'>Posted on ".date("d-m-Y", strtotime($story_comment['pub_date']))."</small>";
 
-
-                        // START of mid div
-                        echo "<div class='comment_div_mid_inner_div'>";
-
-                            // Comment text
-                            echo "<p class='comment_txt'>".$story_comment['comment_text']."</p>";
-
-                        // END of mid div
-                        echo "</div>";
-
-
-
-
-                        // START of bottom div
-                        echo "<div class='comment_div_bottom_inner_div'>";
-
-                            // Publication date
-                            echo "<small id='comment_date'>Posted on ".date("d-m-Y", strtotime($story_comment['pub_date']))."</small>";
-
-                        // END of bottom div
-                        echo "</div>";
+          
 
                                 
 

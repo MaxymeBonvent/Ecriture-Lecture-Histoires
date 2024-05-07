@@ -55,13 +55,13 @@
     <!-- MAIN -->
     <main>
 
-        <!-- BACK TO TOP DIV -->
-        <div id="back_to_top_div">
+        <!-- BACK TO TOP LINK  -->
+        <a id="back_to_top_link" href="#_header">
 
-            <!-- BACK TO TOP LINK  -->
-            <a id="back_to_top_link" href="#_header">TOP</a>
+            <!-- BACK TO TOP IMAGE -->
+            <img src="img/top.png" alt="Page top icon" id="back_to_top_img">
 
-        </div>
+        </a>
 
         <?php
             // Start user session

@@ -22,31 +22,342 @@ main{
     align-items: center;
 }
 
-/* LIKE AND DISLIKE ICONS */
-.thumb, .comment_like_icon, .comment_dislike_icon{
-    /* Size */
-    width: 40px;
+/* TITLES AND SYNOPSIS */
+h1, h2, h3, h4, #synopsis{
+    /* Centering */ 
+    text-align: center;
 }
 
 /* SECTIONS */
 section{
-    /* Outline */
-    border: 2px solid black;
-
-    /* External space */
-    margin: 4px 0;
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* FORMATTING BUTTONS */
+/* FORMATTING TEXTS */
 .formatting{
     /* Outline */
     border: 2px solid black;
 
+    /* Size */
+    font-size: 20px;
+}
+
+/* FONT NAMES DIV */
+#font_names_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* TEXT IN FONT NAMES DIV */
+#font_names_div p{
+    /* Dimensions */
+    width: 100%;
+
+    /* Centering */
+    text-align: center;
+
     /* External space */
-    margin: 4px 0;
+    margin: 0;
 
     /* Mouse */
     cursor: pointer;
 }
 
+/* FONT SIZE INPUT DIV */
+#font_size_input_div{
+    /* Outline */
+    border: 2px solid black;
+}
+
+/* FONT SIZE BUTTON */
+#font_size_btn{
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* ODD NUMBERED TEXTS IN FONT NAMES DIV */
+#font_names_div p:nth-child(odd){
+    /* Back */
+    background-color: rgb(0, 100, 140);
+}
+
+/* EVEN NUMBERED TEXTS IN FONT NAMES DIV */
+#font_names_div p:nth-child(even){
+    /* Back */
+    background-color: rgb(0, 140, 140);
+}
+
+/* TAGS DIV */
+#tags_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
+}
+
+/* TAG TEXTS */
+.tag_txt{
+    /* Back */
+    background-color: forestgreen;
+
+    /* Outline */
+    border-radius: 10px;
+
+    /* Internal space */
+    padding: 0 4px;
+}
+
+/* CHAPTER OPTIONS */
+#chapter_options{
+    /* Dimensions */
+    width: 70%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* THUMB BOXES */
+.thumb_box{
+    /* Dimensions */
+    width: 25%;
+}
+
+/* LIKE AND DISLIKE ICONS */
+.thumb, .comment_like_icon, .comment_dislike_icon{
+    /* Size */
+    width: 40px;
+    height: 40px;
+}
+
+/* BOOKMARK, LIKE/DISLIKE ICONS, FORMATTING BUTTONS, CHAPTERS AND FORM BUTTONS */
+#bookmark_txt, #like_icon, #dislike_icon, .comment_like_icon, .comment_dislike_icon, .formatting, .chapter, .formBtn{
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* SECTIONS, CHAPTER OPTIONS, CHAPTER AND FORM */
+section, #chapter_options, .chapter, form{
+    /* Outline */
+    border: 2px solid black;
+
+    /* External space */
+    margin: 4px;
+}
+
+/* THUMB BOXES AND CHAPTER */
+.thumb_box, .chapter{
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* CHAPTER TITLE AND TEXT */
+#chapter_title_txt h3, #chapter_title_txt p{
+    /* Centering */
+    text-align: center;
+}
+
+/* CHAPTERS */
+.chapter{
+    /* Dimensions */
+    width: 80%;
+}
+
+/* FORM */
+form{
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* FORM BUTTONS DIV */
+#form_btns_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 50%;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-between;
+}
+
+/* FORM BUTTONS */
+.formBtn{
+    /* Animation duration */
+    transition: 0.3s;
+}
+
+/* HOVERING ON FORM BUTTONS */
+.formBtn:hover{
+    /* Size */
+    transform: scale(1.1, 1.1);
+}
+
+/* TEXTAREA */
+textarea{
+    /* Dimensions */
+    width: 80%;
+
+    /* External space */
+    margin: 4px 0;
+}
+
 /* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* SECTIONS */
+    section{
+        /* Dimensions */
+        width: 70%;
+    }
+
+    /* TAGS DIV */
+    #tags_div{
+        /* Outline */
+        border: 2px solid black;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* TAG TEXTS */
+    .tag_txt{
+        /* Back */
+        background-color: forestgreen;
+
+        /* Outline */
+        border-radius: 10px;
+
+        /* Internal space */
+        padding: 0 4px;
+    }
+
+    /* CHAPTER OPTIONS */
+    #chapter_options{
+        /* Dimensions */
+        width: 70%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* BOOKMARK TEXT */
+    #bookmark_txt{
+        /* Centering */
+        text-align: center;
+    }
+
+    /* LIKE AND DISLIKE ICONS */
+    .thumb{
+        /* Dimensions */
+        width: 20px;    
+        height: 20px;
+    }
+
+    /* FONT SIZE INPUT DIV */
+    #font_size_input_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* TITLES */
+    h3{
+        /* Size */
+        font-size: 18px;
+    }
+
+    /* TEXT */
+    p, .formatting, label{
+        /* Size */
+        font-size: 14px;
+    }
+
+    /* LABEL */
+    label{
+        /* Centering */
+        text-align: center;
+    }
+
+    /* INPUT */
+    input{
+        /* Size */
+        font-size: 14px;
+    }
+
+    /* FONT SIZE CHANGE BUTTON */
+    #font_size_btn{
+        /* Size */
+        font-size: 12px;
+    }
+
+    /* CHAPTERS */
+    .chapter{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* TEXT IN CHAPTER DIVS */
+    .chapter p{
+        /* Centering */
+        text-align: center;
+
+        /* External space */
+        margin-bottom: 0;
+    }
+
+    /* LIKE AND DISLIKE ICONS */
+    .comment_like_icon, .comment_dislike_icon{
+        /* Dimensions */
+        width: 20px;
+        height: 20px;
+    }
+
+    /* DATE TEXT */
+    small{
+        /* Size */
+        font-size: 14px;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+
+}

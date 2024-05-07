@@ -1,0 +1,189 @@
+/* ---- COMMON PROPERTIES ---- */
+
+/* COMMENT DIVS */
+.comment_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Dimensions */
+    width: 80%;
+
+    /* External space */
+    margin: 4px 0;
+}
+
+/* AUTHOR DIV */
+.author_div{
+    /* Outline */
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+
+    /* Dimensions */
+    width: 30%;
+
+    /* Position of internal elements */
+    display: flex;  
+    justify-content: center; 
+}
+
+/* DELETE AND QUOTE + LIKE AND DISLIKE DIV */
+.comment_del_quote, .comment_like_dislike{
+    /* Eternal space */
+    margin-top: 4px;
+}
+
+/* DELETE ICONS AND QUOTE ICONS */
+.delete_icon, .quote_icon{
+    /* Dimensions */
+    width: 30px;
+    height: 30px;
+
+    /* External space */
+    margin: 0 10px;
+
+    /* Text color */
+    color: white;
+
+    /* Mouse */
+    cursor: pointer;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* QUOTE AND COMMENT TEXT */
+.quote, .comment_txt{
+    /* Centering */
+    text-align: center;
+}
+
+/* COMMENT BOTTOM THIRD */
+.comment_div_bottom_inner_div{
+    /* Position of internal elements */
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* QUOTED COMMENTS */
+.quote{
+    background-color: rgba(0, 0, 0, 0.8);
+    color: rgb(140, 140, 140);
+}
+
+/* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* COMMENT DEL AND QUOTE DIV */
+    .comment_del_quote, .comment_like_dislike{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    /* THUMBS */
+    .thumb, .comment_like_icon, .comment_dislike_icon{
+        /* Dimensions */
+        width: 22px;
+    }
+
+    /* DELETE AND QUOTE ICONS */
+    .delete_icon, .quote_icon{
+        /* Dimensions */
+        width: 15px;
+        height: 15px;
+
+        /* Text */
+        font-size: 12px;
+    }
+
+    /* COMMENT LIKE/DISLIKE TEXT */
+    .comment_like_txt, .comment_dislike_txt{
+        /* Text */
+        font-size: 14px;
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* COMMENT DEL AND QUOTE DIV */
+    .comment_del_quote, .comment_like_dislike{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /* THUMBS */
+    .thumb, .comment_like_icon, .comment_dislike_icon{
+        /* Dimensions */
+        width: 22px;
+    }
+
+    /* DELETE AND QUOTE ICONS */
+    .delete_icon, .quote_icon{
+        /* Dimensions */
+        width: 15px;
+        height: 15px;
+
+        /* Text */
+        font-size: 12px;
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* COMMENT DEL AND QUOTE DIV */
+    .comment_del_quote, .comment_like_dislike{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /* THUMBS */
+    .thumb, .comment_like_icon, .comment_dislike_icon{
+        /* Dimensions */
+        width: 24px;
+    }
+
+    /* DELETE AND QUOTE ICONS */
+    .delete_icon, .quote_icon{
+        /* Dimensions */
+        width: 15px;
+        height: 15px;
+
+        /* Text */
+        font-size: 12px;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* COMMENT DEL AND QUOTE DIV */
+    .comment_del_quote, .comment_like_dislike{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    /* THUMBS */
+    .thumb, .comment_like_icon, .comment_dislike_icon{
+        /* Dimensions */
+        width: 30px;
+    }
+
+    /* DELETE AND QUOTE ICONS */
+    .delete_icon, .quote_icon{
+        /* Dimensions */
+        width: 20px;
+        height: 20px;
+
+        /* Text */
+        font-size: 16px;
+    }
+}

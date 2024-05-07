@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="back_to_top.css">
     <link rel="stylesheet" href="chapter_page.css">
+    <link rel="stylesheet" href="comments.css">
 
 </head>
 
@@ -55,13 +56,13 @@
     <!-- MAIN -->
     <main>
 
-        <!-- BACK TO TOP DIV -->
-        <div id="back_to_top_div">
+        <!-- BACK TO TOP LINK  -->
+        <a id="back_to_top_link" href="#_header">
 
-            <!-- BACK TO TOP LINK  -->
-            <a id="back_to_top_link" href="#_header">TOP</a>
+            <!-- BACK TO TOP IMAGE -->
+            <img src="img/top.png" alt="Page top icon" id="back_to_top_img">
 
-        </div>
+        </a>
 
         <?php
             // Start user session
@@ -297,14 +298,14 @@
         ?>
 
         <!-- SECTION 1 : STORY INFO, SYNOPSIS, CHAPTER BOOKMARK -->
-        <section style="flex-direction: column;">
+        <section id="story_info">
 
             <?php
                 echo "<h3>".$story_info[0]['story_title']."</h3>";
                 echo "<p>".$story_info[0]['author']."</p>";
 
                 // START of tags div
-                echo "<div class='tags_div'>";
+                echo "<div id='tags_div'>";
 
                     // For each tag 
                     foreach($tags as $tag)
@@ -313,7 +314,7 @@
                         if($tag != "" && $tag != " ")
                         {
                             // Display it
-                            echo "<p>$tag</p>";
+                            echo "<p class='tag_txt'>$tag</p>";
                         }
                     }
 
@@ -321,10 +322,10 @@
                 echo "</div>";
 
                 // Synopsis text
-                echo "<p>".$story_info[0]['synopsis']."</p>";
+                echo "<p id='synopsis'>".$story_info[0]['synopsis']."</p>";
 
                 // START of chapter options div
-                echo "<div class='chapter_options'>";
+                echo "<div id='chapter_options'>";
 
                     // CHANGE "BOOKMARK THIS CHAPTER" COLOR
                     // If at least 1 user bookmarked this chapter
@@ -352,70 +353,57 @@
                         echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
                     }
 
-                    // START of likes div
-                    echo "<div class='thumb_box'>";
-
-                        // ---- CHANGE "LIKE" COLOR ---- //
-                        // If at least 1 user liked this chapter
-                        if($user_like_ids != null && $user_like_ids != "")
+                    // ---- CHANGE "LIKE" COLOR ---- //
+                    // If at least 1 user liked this chapter
+                    if($user_like_ids != null && $user_like_ids != "")
+                    {
+                        // If user ID is in list of users who liked this chapter
+                        if(str_contains($user_like_ids, $user_id))
                         {
-                            // If user ID is in list of users who liked this chapter
-                            if(str_contains($user_like_ids, $user_id))
-                            {
-                                // Display "Like" text in "already liked" color
-                                echo "<div class='thumb_box'> <p id='like_txt' style='color:rgb(0, 120, 0);'>".$chapter_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'> </div>";
-                            }
-
-                            // If user ID is not in list of users who liked this chapter
-                            else if(!str_contains($user_like_ids, $user_id))
-                            {
-                                // Display "Like" in default color
-                                echo "<div class='thumb_box'> <p id='like_txt'>".$chapter_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'> </div>";
-                            }
+                            // Display "Like" text in "already liked" color
+                            echo "<p id='like_txt' style='color:rgb(0, 120, 0);'>".$chapter_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'>";
                         }
 
-                        // If nobody liked this chapter
-                        else if($user_like_ids == null || $user_like_ids == "")
+                        // If user ID is not in list of users who liked this chapter
+                        else if(!str_contains($user_like_ids, $user_id))
                         {
                             // Display "Like" in default color
-                            echo "<div class='thumb_box'><p id='like_txt'>".$chapter_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'> </div>";
+                            echo "<p id='like_txt'>".$chapter_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'>";
                         }
+                    }
 
-                    // END of likes div
-                    echo "</div>";
+                    // If nobody liked this chapter
+                    else if($user_like_ids == null || $user_like_ids == "")
+                    {
+                        // Display "Like" in default color
+                        echo "<p id='like_txt'>".$chapter_info[0]['likes']." Likes</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'>";
+                    }
 
-
-                    // START of dislikes div
-                    echo "<div class='thumb_box'>";
-
-                        // ---- CHANGE "DISLIKE" COLOR ---- //
-                        // If at least 1 user disliked this chapter
-                        if($user_dislike_ids != null && $user_dislike_ids != "")
+                    // ---- CHANGE "DISLIKE" COLOR ---- //
+                    // If at least 1 user disliked this chapter
+                    if($user_dislike_ids != null && $user_dislike_ids != "")
+                    {
+                        // If user ID is in list of users who disliked this chapter
+                        if(str_contains($user_dislike_ids, $user_id))
                         {
-                            // If user ID is in list of users who disliked this chapter
-                            if(str_contains($user_dislike_ids, $user_id))
-                            {
-                                // Display "Dislike" text in "already liked" color
-                                echo "<div class='thumb_box'> <p id='dislike_txt' style='color:rgb(0, 120, 0);'>".$chapter_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'> </div>";
-                            }
-
-                            // If user ID is not in list of users who disliked this chapter
-                            else if(!str_contains($user_dislike_ids, $user_id))
-                            {
-                                // Display "Dislike" in default color
-                                echo "<div class='thumb_box'> <p id='dislike_txt'>".$chapter_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'> </div>";
-                            }
+                            // Display "Dislike" text in "already liked" color
+                            echo "<p id='dislike_txt' style='color:rgb(0, 120, 0);'>".$chapter_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'>";
                         }
 
-                        // If nobody disliked this chapter
-                        else if($user_dislike_ids == null || $user_dislike_ids == "")
+                        // If user ID is not in list of users who disliked this chapter
+                        else if(!str_contains($user_dislike_ids, $user_id))
                         {
                             // Display "Dislike" in default color
-                            echo "<div class='thumb_box'> <p id='dislike_txt'>".$chapter_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'> </div>";
+                            echo "<p id='dislike_txt'>".$chapter_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'>";
                         }
+                    }
 
-                    // END of dislikes div
-                    echo "</div>";
+                    // If nobody disliked this chapter
+                    else if($user_dislike_ids == null || $user_dislike_ids == "")
+                    {
+                        // Display "Dislike" in default color
+                        echo "<p id='dislike_txt'>".$chapter_info[0]['dislikes']." Dislikes</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'>";
+                    }
 
 
                 // END of chapter options div
@@ -424,58 +412,59 @@
 
         </section>
 
-        <!-- FORMAT DIV -->
-        <div class="formatting" id="format" onclick="ToggleFontTypeAndSizeButtons()">Format</div>
+        <!-- SECTION 2 : FORMATTING -->
+        <section id="formatting_section">
 
-        <!-- TEXT FONT DIV -->
-        <div class="formatting" id="text_font" onclick="ToggleFontNamesDiv()">Text Font</div>
+            <!-- FORMAT DIV -->
+            <p class="formatting" id="format" onclick="ToggleFontTypeAndSizeButtons()">Format</p>
 
-        <!-- FONT NAMES DIV -->
-        <div id="font_names_div">
-            <p onclick="SetFontTimesNewRoman()">Times New Roman</p>
-            <p onclick="SetFontArial()">Arial</p>
-            <p onclick="SetFontVerdana()">Verdana</p>
-            <p onclick="SetFontLucidaSansUnicode()">Lucida Sans Unicode</p>
-        </div>
+            <!-- TEXT FONT DIV -->
+            <p class="formatting" id="text_font" onclick="ToggleFontNamesDiv()">Text Font</p>
 
-        <!-- FONT SIZE DIV -->
-        <div class="formatting" id="font_size" onclick="ToggleFontSizeDiv()">Font Size</div>
+            <!-- FONT NAMES DIV -->
+            <div id="font_names_div">
 
-        <!-- FONT SIZE INPUT DIV -->
-        <div id="font_size_input_div">
+                <p onclick="SetFontTimesNewRoman()">Times New Roman</p>
+                <p onclick="SetFontArial()">Arial</p>
+                <p onclick="SetFontVerdana()">Verdana</p>
+                <p onclick="SetFontLucidaSansUnicode()">Lucida Sans Unicode</p>
 
-            <!-- LABEL -->
-            <label for="font_size_field">Enter a font size (in pixels) between 14 and 28 :</label>
+            </div>
 
-            <!-- INPUT -->
-            <input type="number" id="font_size_field" placeholder="00">
+            <!-- FONT SIZE DIV -->
+            <p class="formatting" id="font_size" onclick="ToggleFontSizeDiv()">Font Size</p>
 
-            <!-- SUBMIT -->
-            <button id="font_size_btn" onclick="ChangeFontSize()">Change Font Size</button>
+            <!-- FONT SIZE INPUT DIV -->
+            <div id="font_size_input_div">
 
-        </div>
+                <!-- LABEL -->
+                <label for="font_size_field">Enter a font size (in pixels) between 14 and 28 :</label>
 
-        <!-- SECTION 2 : CHAPTER TITLE AND TEXT  -->
-        <section class="chapter_section">
+                <!-- INPUT -->
+                <input type="number" id="font_size_field" placeholder="00" maxlength="2">
+
+                <!-- SUBMIT -->
+                <button id="font_size_btn" onclick="ChangeFontSize()">Change Font Size</button>
+
+            </div>
+
+        </section>
+
+        <!-- SECTION 3 : CHAPTER TITLE AND TEXT  -->
+        <section id="chapter_title_txt">
 
             <?php
 
                 // Chapter title
                 echo "<h3 id='chaper_title'>".$chapter_title_text[0]['chapter_title']."</h3>";
 
-                // START of chapter text div
-                echo "<div id='chapter_txt_div'>";
-
-                    // Chapter text
-                    echo "<p id='chaper_txt'>".$chapter_title_text[0]['chapter_text']."</p>";
-
-                // END of chapter text div
-                echo "</div>";
+                // Chapter text
+                echo "<p id='chaper_txt'>".$chapter_title_text[0]['chapter_text']."</p>";
             ?>
 
         </section>
 
-        <!-- (OPTIONAL) SECTION 3 : PREVIOUS/NEXT CHAPTER -->
+        <!-- (OPTIONAL) SECTION 4 : PREVIOUS/NEXT CHAPTER -->
         <?php
             // If this story has more than 1 chapter
             if(count($chapter_ids) > 1)
@@ -490,7 +479,7 @@
                 if($url_chapter_id == $chapter_ids[0])
                 {
                     // START of chapter info div
-                    echo "<div class='chapter_info_row' onclick='ChapterPage(".$chapter_two[0]['chapter_id'].",".$url_story_id.")'>";
+                    echo "<div class='chapter' onclick='ChapterPage(".$chapter_two[0]['chapter_id'].",".$url_story_id.")'>";
 
                         echo "<p>".$chapter_two[0]['chapter_title']."</p>";
                         echo "<p>".date("d-m-Y", strtotime($chapter_two[0]['pub_date']))."</p>";
@@ -506,7 +495,7 @@
                 else if($url_chapter_id == $chapter_ids[count($chapter_ids)-1])
                 {
                     // START of chapter info div
-                    echo "<div class='chapter_info_row' onclick='ChapterPage(".$next_to_last_chapter[0]['chapter_id'].",".$url_story_id.")'>";
+                    echo "<div class='chapter' onclick='ChapterPage(".$next_to_last_chapter[0]['chapter_id'].",".$url_story_id.")'>";
 
                         echo "<p>".$next_to_last_chapter[0]['chapter_title']."</p>";
                         echo "<p>".date("d-m-Y", strtotime($next_to_last_chapter[0]['pub_date']))."</p>";
@@ -524,7 +513,7 @@
                     // PREVIOUS CHAPTER
 
                     // START of chapter info div
-                    echo "<div class='chapter_info_row' onclick='ChapterPage(".$previous_chapter[0]['chapter_id'].",".$url_story_id.")'>";
+                    echo "<div class='chapter' onclick='ChapterPage(".$previous_chapter[0]['chapter_id'].",".$url_story_id.")'>";
 
                         echo "<p>".$previous_chapter[0]['chapter_title']."</p>";
                         echo "<p>".date("d-m-Y", strtotime($previous_chapter[0]['pub_date']))."</p>";
@@ -538,7 +527,7 @@
                     // NEXT CHAPTER
 
                     // START of chapter info div
-                    echo "<div class='chapter_info_row' onclick='ChapterPage(".$next_chapter[0]['chapter_id'].",".$url_story_id.")'>";
+                    echo "<div class='chapter' onclick='ChapterPage(".$next_chapter[0]['chapter_id'].",".$url_story_id.")'>";
 
                         echo "<p>".$next_chapter[0]['chapter_title']."</p>";
                         echo "<p>".date("d-m-Y", strtotime($next_chapter[0]['pub_date']))."</p>";
@@ -555,8 +544,8 @@
             }
         ?>
 
-        <!-- SECTION 4 : CHAPTER COMMENTS -->
-        <section>
+        <!-- SECTION 5 : CHAPTER COMMENTS -->
+        <section id="comments">
 
             <h3>Chapter Comments</h3>
 
@@ -581,12 +570,10 @@
                 // var_dump($chapter_comments);
                 // exit;
 
-                // ---- GET COMMENT'S AUTHOR ---- //
-
                 // For each chapter comment
                 foreach($chapter_comments as $chapter_comment)
                 {
-                    // GET CURRENT COMMMENT INFO
+                    // GET CURRENT COMMENT INFO
                     // Prepare query
                     $get_comment_info = $db->prepare("SELECT comment_id, user_id, pub_date, comment_text, likes, dislikes, user_like_ids, user_dislike_ids FROM comments WHERE comment_id = :comment_id");
 
@@ -604,7 +591,7 @@
                     // var_dump($comment_info);
                     // exit;
               
-                    // GET CURRENT COMMMENT AUTHOR
+                    // GET CURRENT COMMENT AUTHOR
                     // Prepare query
                     $get_comment_author = $db->prepare("SELECT username FROM users WHERE user_id = :user_id");
 
@@ -615,7 +602,7 @@
                     $get_comment_author->execute();
 
                     // Store author
-                    $comment_author = $get_comment_author->fetchColumn();
+                    $author = $get_comment_author->fetchColumn();
 
                     // Test
                     // echo "<p>Chapter comment author :</p>";
@@ -625,31 +612,35 @@
                     // START of current comment div
                     echo "<div class='comment_div'>";
 
-
-                        // START of top div
-                        echo "<div class='comment_div_top_inner_div'>";
-
                             // START of author div
-                            echo "<div id='author_div'>";
+                            echo "<div class='author_div'>";
 
                                 // Author
-                                echo "<p id='comment_author'>$comment_author</p>";
+                                echo "<p class='comment_author'>$author</p>";
 
                             // END of author div
                             echo "</div>";
 
-                            // START of comment options div 
-                            echo "<div class='comment_options'>";
+                            // START of comment delete and quote div 
+                            echo "<div class='comment_del_quote'>";
 
                                 // If user is logged in and the comment is theirs
-                                if(isset($_SESSION["username"]) && !empty($_SESSION["username"]) && $_SESSION["username"] == $comment_author)
+                                if(isset($_SESSION["username"]) && !empty($_SESSION["username"]) && $_SESSION["username"] == $author)
                                 {
                                     // Display delete icon
-                                    echo "<div class='delete_icon' onclick='DeleteChapterComment(".$chapter_comment["comment_id"].")'>X</div>";
+                                    echo "<img src='img/delete.png' alt='Delete icon' class='delete_icon' onclick='DeleteChapterComment(".$chapter_comment["comment_id"].")'>";
                                 }
 
                                 // Quote icon
-                                echo "<div class='quote_icon' onclick='QuoteComment(\"".$comment_author."\", \"".htmlspecialchars($chapter_comment['comment_text'])."\", \"".date("d-m-Y", strtotime($chapter_comment['pub_date']))."\")'>Q</div>";
+                                echo "<img src='img/quote.png' alt='Quote icon' class='quote_icon' onclick='QuoteComment(\"".$author."\", \"".htmlspecialchars($chapter_comment['comment_text'])."\", \"".date("d-m-Y", strtotime($chapter_comment['pub_date']))."\")'>";
+
+                            // END of comment delete and quote div  
+                            echo "</div>";
+
+                            // START of comment like and dislike div
+                            echo "<div class='comment_like_dislike'>";
+
+                                // ---- LIKES ---- //
 
                                 // START of comment likes div
                                 echo "<div class='thumb_box'>";
@@ -677,7 +668,7 @@
                                                 echo "<p class='comment_like_txt' style='color: rgb(0, 120, 0);'>".$chapter_comment["likes"]." Likes</p>";
 
                                                 // Display like icon with functions
-                                                echo "<img class='comment_like_icon' onclick='ToggleChapterCommentLike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";
+                                                echo "<img class='comment_like_icon' onclick='ToggleStoryCommentLike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";
                                             }
 
                                             // If user did not like this comment
@@ -687,7 +678,7 @@
                                                 echo "<p class='comment_like_txt'>".$chapter_comment["likes"]." Likes</p>";
 
                                                 // Display like icon with functions
-                                                echo "<img class='comment_like_icon' onclick='ToggleChapterCommentLike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";
+                                                echo "<img class='comment_like_icon' onclick='ToggleStoryCommentLike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";
                                             }
                                         }
                                         
@@ -698,13 +689,15 @@
                                             echo "<p class='comment_like_txt'>".$chapter_comment["likes"]." Likes</p>";
 
                                             // Display like icon with functions and default color
-                                            echo "<img class='comment_like_icon' onclick='ToggleChapterCommentLike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";  
-                                        } 
+                                            echo "<img class='comment_like_icon' onclick='ToggleStoryCommentLike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/like.png alt='Like icon'>";  
+                                        }   
                                     }
 
                                 // END of comment likes div
                                 echo "</div>";
 
+
+                                // ---- DISLIKES ---- //
 
 
                                 // START of comment dislikes div
@@ -733,7 +726,7 @@
                                                 echo "<p class='comment_dislike_txt' style='color: rgb(0, 120, 0);'>".$chapter_comment["dislikes"]." Dislikes</p>";
 
                                                 // Display dislike icon with functions
-                                                echo "<img class='comment_dislike_icon' onclick='ToggleChapterCommentDislike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";
+                                                echo "<img class='comment_dislike_icon' onclick='ToggleStoryCommentDislike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";
                                             }
 
                                             // If user did not dislike this comment
@@ -743,7 +736,7 @@
                                                 echo "<p class='comment_dislike_txt'>".$chapter_comment["dislikes"]." Dislikes</p>";
 
                                                 // Display dislike icon with functions
-                                                echo "<img class='comment_dislike_icon' onclick='ToggleChapterCommentDislike(".$chapter_comment["comment_id"].", ".$user_id.")'  src=img/dislike.png alt='Dislike icon'>";
+                                                echo "<img class='comment_dislike_icon' onclick='ToggleStoryCommentDislike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";
                                             }
                                         }
                                         
@@ -754,45 +747,22 @@
                                             echo "<p class='comment_dislike_txt'>".$chapter_comment["dislikes"]." Dislikes</p>";
 
                                             // Display dislike icon with functions and default color
-                                            echo "<img class='comment_dislike_icon' onclick='ToggleChapterCommentDislike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";  
-                                        }  
+                                            echo "<img class='comment_dislike_icon' onclick='ToggleStoryCommentDislike(".$chapter_comment["comment_id"].", ".$user_id.")' src=img/dislike.png alt='Dislike icon'>";  
+                                        }    
                                     }
 
                                 // END of comment dislikes div
                                 echo "</div>";
 
-                            // END of comment options div 
+                            // END of comment like and dislike div  
                             echo "</div>";
 
+                        // Comment text
+                        echo "<p class='comment_txt'>".$chapter_comment['comment_text']."</p>";
 
-                        // END of top div
-                        echo "</div>";
-
-
-
-
-                        // START of mid div
-                        echo "<div class='comment_div_mid_inner_div'>";
-
-                            // Comment text
-                            echo "<p id='comment_txt'>".$chapter_comment['comment_text']."</p>";
-
-                        // END of mid div
-                        echo "</div>";
-
-
-
-
-                        // START of bottom div
-                        echo "<div class='comment_div_bottom_inner_div'>";
-
-                            // Publication date
-                            echo "<small id='comment_date'>Posted on ".date("d-m-Y", strtotime($chapter_comment['pub_date']))."</small>";
-
-                        // END of bottom div
-                        echo "</div>";
-
-                                
+              
+                        // Publication date
+                        echo "<small id='comment_date'>Posted on ".date("d-m-Y", strtotime($chapter_comment['pub_date']))."</small>";
 
                     // END of current comment div
                     echo "</div>";
@@ -811,13 +781,13 @@
                 ?>
 
                 <!-- LABEL -->
-                <label for="comment_textarea">Your comment (up to 3000 characters)</label>
+                <label for="comment_textarea">Your comment (max. 3000 characters)</label>
 
                 <!-- INPUT -->
-                <textarea name="comment_textarea" id="comment_textarea" cols="40" rows="10" maxlength="3000" placeholder="What I like about this story is that...on the other hand..."></textarea>
+                <textarea name="comment_textarea" id="comment_textarea" cols="40" rows="10" maxlength="3000" placeholder="What I like about this chapter is that...on the other hand..."></textarea>
 
                 <!-- FORM BUTTONS DIV -->
-                <div class="form_btns_div">
+                <div id="form_btns_div">
 
                     <!-- SUBMIT -->
                     <input class="formBtn" type="submit" value="Publish">

@@ -1,13 +1,16 @@
 /* ---- COMMON PROPERTIES ---- */
 
+/* IMAGE */
+#back_to_top_img{
+    /* Mouse icon */
+    cursor: pointer;
+}
+
 /* BACK TO TOP LINK */
 #back_to_top_link{
     /* Text color */
     color: black;
     font-weight: bold;
-
-    /* Mouse icon */
-    cursor: pointer;
 }
 
 /* HOVERING ON BACK TO TOP LINK */
@@ -21,12 +24,8 @@
 /* SMALL VERSION */
 @media all and (max-width: 390px) 
 {
-    /* BACK TO TOP DIV */
-    #back_to_top_div{
-        /* Outline */
-        border: 2px solid black;
-        border-radius: 100%;
-
+    /* BACK TO TOP IMAGE */
+    #back_to_top_img{
         /* Dimensions */
         width: 28px;
         height: 28px;
@@ -54,12 +53,8 @@
 /* MEDIUM VERSION */
 @media all and (min-width: 390px) and (max-width: 430px) 
 {
-    /* BACK TO TOP DIV */
-    #back_to_top_div{
-        /* Outline */
-        border: 2px solid black;
-        border-radius: 100%;
-
+    /* BACK TO TOP IMAGE */
+    #back_to_top_img{
         /* Dimensions */
         width: 30px;
         height: 30px;
@@ -87,12 +82,8 @@
 /* BIG VERSION */
 @media all and (min-width: 430px) and (max-width: 853px) 
 {
-    /* BACK TO TOP DIV */
-    #back_to_top_div{
-        /* Outline */
-        border: 2px solid black;
-        border-radius: 100%;
-
+    /* BACK TO TOP IMAGE */
+    #back_to_top_img{
         /* Dimensions */
         width: 30px;
         height: 30px;
@@ -120,25 +111,18 @@
 /* VERY BIG VERSION */
 @media all and (min-width: 853px) 
 {
-    /* BACK TO TOP DIV */
-    #back_to_top_div{
-        /* Outline */
-        border: 2px solid black;
-        border-radius: 100%;
-
+    /* BACK TO TOP IMAGE */
+    #back_to_top_img{
         /* Dimensions */
         width: 60px;
         height: 60px;
 
         /* Position */
         position: fixed;
+
+        /* Cooridnates */
         bottom: 3%;
         right: 3%;
-
-        /* Position of internal elements */
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
     /* BACK TO TOP LINK */

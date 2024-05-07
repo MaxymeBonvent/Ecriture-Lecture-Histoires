@@ -52,7 +52,7 @@ h1, h2, h3{
 #story_options{
     /* Position of internal elements */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -60,6 +60,15 @@ h1, h2, h3{
 .story_option:hover{
     /* Underline */
     text-decoration: underline;
+}
+
+/* TAGS DIV */
+#tags_div{
+    /* Outline */
+    border: 2px solid black;
+
+    /* Position of internal elements */
+    display: flex;
 }
 
 /* TAG TEXTS */
@@ -178,59 +187,6 @@ form{
     transform: scale(1.1, 1.1);
 }
 
-/* COMMENT DIVS */
-.comment_div{
-    /* Outline */
-    border: 2px solid black;
-
-    /* Dimensions */
-    width: 80%;
-
-    /* External space */
-    margin: 4px 0;
-}
-
-/* AUTHOR DIV */
-.author_div{
-    /* Outline */
-    border-right: 2px solid black;
-    border-bottom: 2px solid black;
-
-    /* Dimensions */
-    width: 30%;
-
-    /* Position of internal elements */
-    display: flex;  
-    justify-content: center; 
-}
-
-/* COMMENT DELETE AND QUOTE + LIKE AND DISLIKE DIV */
-.comment_del_quote, .comment_like_dislike{
-    /* Eternal space */
-    margin-top: 4px;
-}
-
-/* DELETE ICONS AND QUOTE ICONS */
-.delete_icon, .quote_icon{
-    /* Dimensions */
-    width: 30px;
-    height: 30px;
-
-    /* External space */
-    margin: 0 10px;
-
-    /* Text color */
-    color: white;
-
-    /* Mouse */
-    cursor: pointer;
-
-    /* Position of internal elements */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 /* THUMB BOXES */
 .thumb_box{
     /* Dimensions */
@@ -238,36 +194,6 @@ form{
     height: 30px;
 }
 
-/* DELETE ICONS */
-.delete_icon{
-    /* Back */
-    background-color: rgb(100, 0, 0);
-}
-
-/* QUOTE ICONS */
-.quote_icon{
-    /* Back */
-    background-color: rgb(80, 0, 180);
-}
-
-/* COMMENT TEXT */
-.comment_txt{
-    /* Centering */
-    text-align: center;
-}
-
-/* COMMENT BOTTOM THIRD */
-.comment_div_bottom_inner_div{
-    /* Position of internal elements */
-    display: flex;
-    justify-content: flex-end;
-}
-
-/* QUOTED COMMENTS */
-.quote{
-    background-color: rgba(0, 0, 0, 0.8);
-    color: rgb(140, 140, 140);
-}
 
 /* ---- SIZE-BASED PROPERTIES ---- */
 
@@ -280,30 +206,35 @@ form{
         font-size: 16px;
     }
 
-    /* COMMENT DEL AND QUOTE DIV */
-    .comment_del_quote, .comment_like_dislike{
-        /* Position of internal elements */
-        display: flex;
-        justify-content: flex-end;
-    }
-
    /* FOUR SECTIONS */
     #story_info, #story_options, #chapter_list, #story_comments{
         /*  Dimensions */
         width: 70%;
     } 
 
+    /* TAGS DIV */
+    #tags_div{
+        /*  Dimensions */
+        width: 70%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* TAGS */
+    .tag_txt{
+        /* External space */
+        margin-bottom: 2px;
+    }
+
     /* STORY OPTIONS */
     #story_options{
         /* Position of internal elements */
         display: flex;
         flex-direction: column;
-    }
-
-    /* THUMBS */
-    .thumb, .comment_like_icon, .comment_dislike_icon{
-        /* Dimensions */
-        width: 22px;
     }
 
     /* CHAPTERS */
@@ -317,23 +248,17 @@ form{
         /* Position of internal elements */
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
 
     /* TEXTS IN CHAPTER DIVS */
     .chapter p{
+        /* Centering */
+        text-align: center;
+
         /* External space */
         margin-top: 4px;
         margin-bottom: 0;
-    }
-
-    /* DELETE AND QUOTE ICONS */
-    .delete_icon, .quote_icon{
-        /* Dimensions */
-        width: 15px;
-        height: 15px;
-
-        /* Text */
-        font-size: 12px;
     }
 
     /* LABEL */
@@ -375,30 +300,35 @@ form{
         font-size: 16px;
     }
 
-    /* COMMENT DEL AND QUOTE DIV */
-    .comment_del_quote, .comment_like_dislike{
-        /* Position of internal elements */
-        display: flex;
-        justify-content: flex-end;
-    }
-
     /* FOUR SECTIONS */
     #story_info, #story_options, #chapter_list, #story_comments{
         /*  Dimensions */
         width: 70%;
     } 
 
+    /* TAGS DIV */
+    #tags_div{
+        /*  Dimensions */
+        width: 70%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* TAGS */
+    .tag_txt{
+        /* External space */
+        margin-bottom: 2px;
+    }
+
     /* STORY OPTIONS */
     #story_options{
         /* Position of internal elements */
         display: flex;
         flex-direction: column;
-    }
-
-    /* THUMBS */
-    .thumb, .comment_like_icon, .comment_dislike_icon{
-        /* Dimensions */
-        width: 22px;
     }
 
     /* CHAPTERS */
@@ -416,6 +346,9 @@ form{
 
     /* TEXTS IN CHAPTER DIVS */
     .chapter p{
+        /* Centering */
+        text-align: center;
+
         /* External space */
         margin-top: 4px;
         margin-bottom: 0;
@@ -426,16 +359,6 @@ form{
         /* Position of internal elements */
         display: flex;
         justify-content: space-around;
-    }
-
-    /* DELETE AND QUOTE ICONS */
-    .delete_icon, .quote_icon{
-        /* Dimensions */
-        width: 15px;
-        height: 15px;
-
-        /* Text */
-        font-size: 12px;
     }
 
     /* LABEL */
@@ -477,13 +400,6 @@ form{
         font-size: 18px;
     }
 
-    /* COMMENT DEL AND QUOTE DIV */
-    .comment_del_quote, .comment_like_dislike{
-        /* Position of internal elements */
-        display: flex;
-        justify-content: flex-end;
-    }
-
     /* FOUR SECTIONS */
     #story_info, #story_options, #chapter_list, #story_comments{
         /*  Dimensions */
@@ -494,6 +410,23 @@ form{
     .thumb_box{
         /* Dimensions */
         width: 40%;
+    }
+
+    /* TAGS DIV */
+    #tags_div{
+        /*  Dimensions */
+        width: 80%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    /* TAG TEXT */
+    .tag_txt{
+        /* External space */
+        margin: 4px 30px;
     }
 
     /* STORY OPTIONS */
@@ -507,12 +440,6 @@ form{
     #story_options p{
         /* External space */
         margin: 10px 2px;
-    }
-
-    /* THUMBS */
-    .thumb, .comment_like_icon, .comment_dislike_icon{
-        /* Dimensions */
-        width: 24px;
     }
 
     /* CHAPTERS */
@@ -540,16 +467,6 @@ form{
         /* Position of internal elements */
         display: flex;
         justify-content: space-around;
-    }
-
-    /* DELETE AND QUOTE ICONS */
-    .delete_icon, .quote_icon{
-        /* Dimensions */
-        width: 15px;
-        height: 15px;
-
-        /* Text */
-        font-size: 12px;
     }
 
     /* LABEL */
@@ -591,18 +508,21 @@ form{
         font-size: 20px;
     }
 
-    /* COMMENT DEL AND QUOTE DIV */
-    .comment_del_quote, .comment_like_dislike{
-        /* Position of internal elements */
-        display: flex;
-        justify-content: flex-end;
-    }
-
     /* FOUR SECTIONS */
     #story_info, #story_options, #chapter_list, #story_comments{
         /*  Dimensions */
         width: 60%;
     } 
+
+    /* TAGS DIV */
+    #tags_div{
+        /*  Dimensions */
+        width: 90%;
+
+        /* Position of internal elements */
+        display: flex;
+        justify-content: space-around;
+    }
 
     /* LIKE AND DISLIKE BOXES */
     .thumb_box{
@@ -614,19 +534,14 @@ form{
     #story_options{
         /* Position of internal elements */
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        align-items: center;
     }
 
     /* STORY OPTION TEXTS */
     #story_options p{
         /* External space */
         margin: 0 4px;
-    }
-
-    /* THUMBS */
-    .thumb, .comment_like_icon, .comment_dislike_icon{
-        /* Dimensions */
-        width: 30px;
     }
 
     /* CHAPTERS */
@@ -646,16 +561,6 @@ form{
         /* External space */
         margin-top: 4px;
         margin-bottom: 0;
-    }
-
-    /* DELETE AND QUOTE ICONS */
-    .delete_icon, .quote_icon{
-        /* Dimensions */
-        width: 20px;
-        height: 20px;
-
-        /* Text */
-        font-size: 16px;
     }
 
     /* LABEL */
