@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="CSS/back_to_top.css">
     <link rel="stylesheet" href="CSS/synopsis.css">
     <link rel="stylesheet" href="CSS/comments.css">
+    <link rel="stylesheet" href="CSS/var_dump.css">
 
 </head>
 
@@ -72,14 +73,11 @@
 
             // --- GET USER ID --- //
 
-            // Prepare query to get logged in user's ID
-            $get_user_id = $db->prepare("SELECT user_id FROM users WHERE username = :username");
-
             // If user is not logged in
             if(!isset($_SESSION['username']) || empty($_SESSION['username']))
             {
                 // Output an error message
-                echo "<p id='not_logged_in_txt'>You are not logged in and won't be able to fav, bookshelf, like or dislike this story.</p>";
+                echo "<p id='not_logged_in_txt'>You are not logged in and won't be able to fav, read later, like or dislike this story.</p>";
 
                 // End script
                 // exit;
@@ -88,6 +86,9 @@
             // If user is logged in
             else if(isset($_SESSION['username']) && !empty($_SESSION['username']))
             {
+                // Prepare query to get logged in user's ID
+                $get_user_id = $db->prepare("SELECT user_id FROM users WHERE username = :username");
+
                 // Bind their name to the prepared username variable
                 $get_user_id->bindValue(":username", $_SESSION['username']);
 
@@ -100,6 +101,7 @@
                 // Test
                 // echo "<p>User ID :</p>";
                 // var_dump($user_id);
+                // exit;
 
                 // Closing
                 $get_user_id->closeCursor();
@@ -235,7 +237,6 @@
             $get_story_info->closeCursor();
         ?>
 
-
         <!-- SECTION 1 : STORY INFO -->
         <section id='story_info'>
 
@@ -285,7 +286,7 @@
                         // If user's ID is part of IDs of users who faved this story
                         if(str_contains($user_fav_ids, $user_id))
                         {
-                            // Display "Add to Favs" in "already in my stack" color
+                            // Display "Add to Favs" in "already faved" color
                             echo "<p onclick='ToggleStoryFavs($story_id)' class='story_option' id='favs_txt' style='color:rgb(0, 120, 0);'>Add to Favs</p>";
                         }
                         
@@ -698,7 +699,7 @@
                 ?>
 
                 <!-- LABEL -->
-                <label for="comment_textarea">Your comment <br> (max. 3000 characters)</label>
+                <label for="comment_textarea">Your comment (max. 3000 characters)</label>
 
                 <!-- INPUT -->
                 <textarea name="comment_textarea" id="comment_textarea" cols="40" rows="10" maxlength="3000" placeholder="What I like about this story is that...on the other hand..."></textarea>
@@ -731,7 +732,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>Footer</p>
+        <p>&copy; Développé par Maxyme Bonvent.</p>
     </footer>
 
 </body>

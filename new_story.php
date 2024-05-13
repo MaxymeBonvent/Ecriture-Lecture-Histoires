@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
     <!-- HEADER -->
     <header id="_header">
 
@@ -108,7 +109,7 @@
             <label for="story_title_input_field" id="story_title_label">Story Title (max. 30 words)<span class="required_star">*</span></label>
 
             <!-- INPUT -->
-            <input type="text" class="form_input_field" id="story_title_input_field" name="story_title" placeholder="Story of a strange creature" required="true" autocomplete="off" maxlength="400" onkeyup="StoryTitleCheck()" title="Enter a title for your story">
+            <input id="story_title_input_field" type="text" class="form_input_field" name="story_title" placeholder="Story of a strange creature" required="true" autocomplete="off" maxlength="400" onkeyup="StoryTitleCheck()" title="Enter a title for your story">
 
             <!-- STORY TITLE WORD COUNT -->
             <p class="count_txt"><span id="story_title_word_count">0</span>/30</p>
@@ -128,7 +129,7 @@
             <label for="tags_input_field" id="tags_label">Tags (max. 6), toggle in/out by click<span class="required_star">*</span></label>
 
             <!-- INPUT -->
-            <input type="text" class="form_input_field" id="tags_input_field" name="tags" placeholder="[Tag 1] [...] [Tag 6]" required="true" autocomplete="off" maxlength="60" onkeyup="EmptyTagsField()" title="Click tags for your story">
+            <input id="tags_input_field" type="text" class="form_input_field" name="tags" placeholder="[Tag 1] [...] [Tag 6]" required="true" autocomplete="off" maxlength="60" onkeyup="EmptyTagsField()" title="Click tags for your story">
 
             <!-- SECTION OF AVAILABLE TAGS -->
             <section id="tags_section">
@@ -159,7 +160,7 @@
             <label for="chapter_title_input_field" id="chapter_title_label">Chapter 1 Title (max. 30 words)<span class="required_star">*</span></label>
 
             <!-- INPUT -->
-            <input type="text" class="form_input_field" id="chapter_title_input_field" name="chapter_title" placeholder="Chapter 1 : Dawn" required="true" autocomplete="off" maxlength="400" onkeyup="ChapterTitleCheck()" title="Enter the title of the first chapter of your story">
+            <input id="chapter_title_input_field" type="text" class="form_input_field" name="chapter_title" placeholder="Chapter 1 : Dawn" required="true" autocomplete="off" maxlength="400" onkeyup="ChapterTitleCheck()" title="Enter the title of the first chapter of your story">
 
             <!-- CHAPTER TITLE WORD COUNT -->
             <p class="count_txt"><span id="chapter_title_word_count">0</span>/30</p>
@@ -192,7 +193,7 @@
                 </div>
 
                 <!-- COLOR OPTIONS DIV -->
-                <div id="color_options">
+                <div id="color_box">
 
                     <img src="img/red_circle.png" alt="Red circle" class="color_option" onclick="Red()"></img>
                     <img src="img/green_circle.png" alt="Green circle" class="color_option" onclick="Green()"></img>
@@ -232,7 +233,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>Footer</p>
+        <p>&copy; Développé par Maxyme Bonvent.</p>
     </footer>
 
     <!-- SCRIPT -->

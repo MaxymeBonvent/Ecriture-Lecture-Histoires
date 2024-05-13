@@ -166,9 +166,8 @@
                 $favs_ids_array = explode("  ", $favs_ids);
 
                 // Test
-                echo "<p>Array of Favorite Stories IDs :</p>";
-                var_dump($favs_ids_array);
-
+                // echo "<p>Array of Favorite Stories IDs :</p>";
+                // var_dump($favs_ids_array);
 
                 // ---- GET USER'S READ LATER STORIES IDS ---- //
                 // Prepare query
@@ -312,6 +311,7 @@
                             if($favs_ids_array[0] != null && $favs_ids_array[0] != "")
                             {
                                 // ---- GET INFO FROM FAVORITE STORIES ---- //
+
                                 // For every favorite story
                                 for($i = 0; $i < count($favs_ids_array); $i++)
                                 {
@@ -319,7 +319,7 @@
                                     $get_current_fav_story_info = $db->prepare("SELECT story_title, chapter_ids, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
 
                                     // Binding  
-                                    $get_current_fav_story_info->bindValue(":story_id", intval(trim($favs_ids_array[$i])));
+                                    $get_current_fav_story_info->bindValue(":story_id", $favs_ids_array[$i]);
 
                                     // Execution
                                     $get_current_fav_story_info->execute();
@@ -328,8 +328,8 @@
                                     $current_fav_story_info = $get_current_fav_story_info->fetchAll(PDO::FETCH_ASSOC);
 
                                     // Test
-                                    echo "<p>Info of favorite story n°".($favs_ids_array[$i]).":</p>";
-                                    var_dump($current_fav_story_info);
+                                    // echo "<p>Info of favorite story n°".($favs_ids_array[$i]).":</p>";
+                                    // var_dump($current_fav_story_info);
                                     // exit;
 
                                     // If favorite story exists
@@ -547,7 +547,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>Footer</p>
+        <p>&copy; Développé par Maxyme Bonvent.</p>
     </footer>
 
 </body>

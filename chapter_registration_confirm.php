@@ -77,7 +77,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>Footer</p>
+        <p>&copy; Développé par Maxyme Bonvent.</p>
     </footer>
 
 </body>

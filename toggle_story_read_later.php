@@ -49,7 +49,7 @@
             {
                 // ---- ADD STORY ID TO USER'S READ LATER ---- //
                 // Prepare query
-                $add_story_to_read_later = $db->prepare("UPDATE users SET read_later_ids = CONCAT(read_later_ids, ' $url_story_id ') WHERE user_id = :user_id");
+                $add_story_to_read_later = $db->prepare("UPDATE users SET read_later_ids := ' $url_story_id ' WHERE user_id = :user_id");
 
                 // Binding
                 $add_story_to_read_later->bindValue(":user_id", $user_id);

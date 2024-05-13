@@ -54,12 +54,6 @@ input{
     margin-bottom: 20px;
 }
 
-/* TAGS AND STORY TITLE INPUTS */
-#tags_input, #story_title_input{
-    /* Dimensions */
-    width: 80%;
-}
-
 /* AUTHOR INPUT */
 #author_input{
     /* Dimensions */
@@ -310,8 +304,8 @@ div{
        font-size: 14px;
     }
 
-    /* TAGS AND STORY TITLE INPUTS */
-    #tags_input, #story_title_input{
+    /* TAGS INPUTS */
+    #tags_input{
         /* Dimensions */
         width: 50%;
     }
@@ -385,10 +379,10 @@ div{
        font-size: 16px;
     }
 
-    /* TAGS AND STORY TITLE INPUTS */
-    #tags_input, #story_title_input{
+    /* TAGS INPUTS */
+    #tags_input{
         /* Dimensions */
-        width: 50%;
+        width: 65%;
     }
 
     /* AUTHOR INPUT */
@@ -416,8 +410,12 @@ div{
 
     /* PSEUDO FORM END BUTTONS DIV */
     #form_btns_div{
-        /* Outline */
-        border: 2px solid black;
+        /* Dimensions */
+        width: 30%;
+
+        /* Position of internal elements */
+        display: flex;
+        justify-content: space-around;
     }
 
     /* FORM END BUTTONS */

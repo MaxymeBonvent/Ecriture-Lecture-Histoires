@@ -409,6 +409,12 @@ label{
         font-size: 18px;
     }
 
+    /* INPUT FIELDS */
+    #story_title_input_field , #tags_input_field, #chapter_title_input_field{
+        /* Dimensions */
+        width: 60%;
+    }
+
     /* TEXTAREA */
     textarea{
         /* Dimensions */
@@ -420,9 +426,6 @@ label{
 
     /* TAGS SECTION */
     #tags_section{
-        /* Dimensions */
-        height: 200px;
-
         /* Position of internal elements */
         display: flex;
     }
@@ -433,7 +436,7 @@ label{
         font-size: 20px;
 
         /* External space */
-        margin: 0 15px;
+        margin: 8px 16px;
     }
 
     /* IMAGES IN DIVS IN OPTIONS CONTAINER */

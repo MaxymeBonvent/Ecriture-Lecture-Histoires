@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Homepage</title>
+ 
 
     <link rel="stylesheet" href="CSS/header.css">
     <link rel="stylesheet" href="CSS/footer.css">
@@ -322,7 +323,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>Footer</p>
+        <p>&copy; Développé par Maxyme Bonvent.</p>
     </footer>
 
 </body>

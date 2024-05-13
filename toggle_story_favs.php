@@ -1,7 +1,7 @@
 <?php
     // SESSION
     session_start();
-
+ 
     // DATABASE CONNECTION
     require_once("database_connection.php");
 
@@ -62,7 +62,7 @@
 
                 // ---- ADD STORY ID TO USER'S FAVORITES ---- //
                 // Prepare query
-                $add_story_to_favs = $db->prepare("UPDATE users SET favorite_stories_ids = CONCAT(favorite_stories_ids, ' $url_story_id ') WHERE user_id = :user_id");
+                $add_story_to_favs = $db->prepare("UPDATE users SET favorite_stories_ids := ' $url_story_id ' WHERE user_id = :user_id");
 
                 // Binding
                 $add_story_to_favs->bindValue(":user_id", $user_id);

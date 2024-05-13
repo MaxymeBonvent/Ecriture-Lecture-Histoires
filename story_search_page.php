@@ -150,10 +150,10 @@
             <label for="max_word_count">Max. word count</label>
 
             <!-- INPUT -->
-            <input id="max_word_count" name="max_word_count" type="number" autocomplete="off" maxlength="10" placeholder="00000">
+            <input id="max_word_count" name="max_word_count" type="number" autocomplete="off" maxlength="10" placeholder="99999">
             
             <!-- PSEUDO FORM END BUTTONS -->
-            <div class="form_btns_div">
+            <div id="form_btns_div">
 
                 <!-- PSEUDO SUBMIT BUTTON -->
                 <p onclick="Search()" id="search_div" class="pseudoBtn">Search</p>
@@ -288,7 +288,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>Footer</p>
+        <p>&copy; Développé par Maxyme Bonvent.</p>
     </footer>
 
 </body>

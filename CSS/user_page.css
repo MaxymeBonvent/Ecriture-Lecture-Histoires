@@ -135,9 +135,6 @@ a:hover, #delete_txt:hover{
 
     /* Internal space */
     padding: 0 4px;
-
-    /* External space */
-    margin: 0 4px;
 }
 
 /* CHAPTER BOX */
@@ -490,5 +487,18 @@ a:hover, #delete_txt:hover{
     h4{
         /* Text size */
         font-size: 20px;
+    }
+
+    /* TAGS DIVS */
+    .tags_div{
+        /* Position of internal elements */
+        display: flex;
+        justify-content: space-around;
+    }
+
+    /* TEXT IN TAGS DIVS */
+    .tags_div p{
+        /* External space */
+        margin: 4px 30px;
     }
 }
