@@ -90,7 +90,7 @@
         </a>
 
         <!-- SECTION TITLE -->
-        <h3>Search Stories</h3>
+        <h3>Search Stories (max. 100)</h3>
 
         <!-- TELL USER EVERY FIELD IS OPTIONAL -->
         <p>At least one field must be filled to run a search</p>
@@ -107,24 +107,24 @@
             <input onkeyup="EmptyTagsField()" class="form_input_field" id="tags_input" name="tags" type="text" maxlength="100" autocomplete="off" placeholder="[Tag 1] [Tag 2] ... [Tag N]">
 
             <!-- TAGS SELECTION DIV -->
-            <div id="tags_div">
+            <div class="tags_div">
 
                 <!-- TAG LIST -->
-                <p class="tag_txt">Adventure</p>
-                <p class="tag_txt">Comedy</p>
-                <p class="tag_txt">Tragedy</p>
+                <p class="tag">Adventure</p>
+                <p class="tag">Comedy</p>
+                <p class="tag">Tragedy</p>
 
-                <p class="tag_txt" title="Slice of life">S.o.L</p>
-                <p class="tag_txt" title="Alternate Universe">A.U.</p>
-                <p class="tag_txt">Violence</p>
+                <p class="tag" title="Slice of life">S.o.L</p>
+                <p class="tag" title="Alternate Universe">A.U.</p>
+                <p class="tag">Violence</p>
 
-                <p class="tag_txt">Horror</p>
-                <p class="tag_txt">Romance</p>
-                <p class="tag_txt">Tale</p>
+                <p class="tag">Horror</p>
+                <p class="tag">Romance</p>
+                <p class="tag">Tale</p>
 
-                <p class="tag_txt">Poetry</p>
-                <p class="tag_txt">Fantasy</p>
-                <p class="tag_txt">Mystery</p>
+                <p class="tag">Poetry</p>
+                <p class="tag">Fantasy</p>
+                <p class="tag">Mystery</p>
 
             </div>
             
@@ -212,6 +212,7 @@
                         // Test
                         // echo "<p>Info of story n°$story_id :</p>";
                         // var_dump($story_info);
+                        // exit;
 
                         // CREATE TAGS ARRAY
                         $tags_array = explode(" ", $story_info[0]["tags"]);
@@ -222,11 +223,11 @@
 
 
                         // START of current story div
-                        echo "<div class='story_div' onclick='Synopsis(\"".$story_info[0]['story_title']."\", \"".$story_info[0]['author']."\", \"".$story_info[0]['tags']."\", \"".$story_info[0]['chapter_ids']."\")'>";
+                        echo "<div class='story_box' onclick='Synopsis(\"".$story_info[0]['story_title']."\", \"".$story_info[0]['author']."\", \"".$story_info[0]['tags']."\", \"".$story_info[0]['chapter_ids']."\")'>";
 
 
                             // START of story title div
-                            echo "<div class='story_div_inner_div'>";
+                            echo "<div class='story_title'>";
 
                                 // Story title
                                 echo "<h4>".$story_info[0]['story_title']."</h4>";
@@ -236,7 +237,7 @@
 
 
                             // START of info and stats div
-                            echo "<div class='story_div_inner_div'>";
+                            echo "<div class='story_info'>";
 
                                 // Author
                                 echo "<p>".$story_info[0]['author']."</p>";
@@ -255,7 +256,7 @@
 
 
                             // START of tags div
-                            echo "<div id='tags_div'>";
+                            echo "<div class='tags_div'>";
 
                                 // For each tag
                                 foreach($tags_array as $tag)
@@ -264,7 +265,7 @@
                                     if($tag != null && $tag != "")
                                     {
                                         // Display it
-                                        echo "<p class='tag_txt'>$tag</p>";
+                                        echo "<p class='tag'>$tag</p>";
                                     }
                                 }
 
@@ -282,8 +283,8 @@
     </main>
 
     <!-- SCRIPTS -->
-    <script src="story_search_form_check.js"></script>
-    <script src="synopsis.js"></script>
+    <script src="JS/story_search_form_check.js"></script>
+    <script src="JS/synopsis.js"></script>
 
     <!-- FOOTER -->
     <footer>

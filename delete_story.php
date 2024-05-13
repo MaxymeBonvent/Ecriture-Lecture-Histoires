@@ -1,14 +1,17 @@
 <?php
-    // ---- SESSION ----
+    // ---- SESSION ---- //
     session_start();
 
     // ---- DATABASE CONNECTION ---- //
     require_once("database_connection.php");
 
+    // ---- GET USER ID ---- //
+    require_once("get_user_id.php");
+
     // STORY ID
     $story_id = htmlspecialchars($_GET['story_id']);
 
-    // URL CHECK
+    // ---- URL CHECK ---- //
 
     // If there's no story ID
     if(!isset($story_id) || empty($story_id))
@@ -49,10 +52,7 @@
             // Separate each chapter ID in an array
             $chapter_ids_array = explode("  ", $chapter_ids);
 
-            // ---- GET USER ID ---- //
-            require_once("get_user_id.php");
-
-            // ---- DELETE EVERY CHAPTER WITH RETRIEVED IDS ---- //
+            // ---- DELETE STORY'S CHAPTERS ---- //
 
             // For every chapter ID
             for($i = 0; $i < count($chapter_ids_array); $i++)
@@ -78,6 +78,93 @@
 
                 // Execution
                 $decrease_chapter_count->execute();
+            }
+
+            // ---- GET USER IDS ---- //
+            // Prepare query
+            $get_user_ids = $db->prepare("SELECT user_id FROM users");
+
+            // Execute
+            $get_user_ids->execute();
+
+            // Store result
+            $user_ids = $get_user_ids->fetchAll(PDO::FETCH_ASSOC);
+
+            // Test
+            // echo "<p>User IDs :</p>";
+            // var_dump($user_ids);
+            // exit;
+
+            // For every user
+            for($i = 0; $i < count($user_ids); $i++)
+            {
+                // ---- GET USER'S FAVORITE STORIES ---- //
+
+                // Prepare query
+                $get_favs = $db->prepare("SELECT favorite_stories_ids FROM users WHERE user_id = :user_id");
+
+                // Binding
+                $get_favs->bindValue(":user_id", $user_ids[$i]["user_id"]);
+
+                // Execution
+                $get_favs->execute();
+
+                // Store result
+                $favs = $get_favs->fetchColumn();
+
+                // Test
+                // echo "<p>Favorite stories of user n°$i :</p>";
+                // var_dump($favs);
+                // exit;
+
+                // If story to delete is in user's favs
+                if(str_contains($favs, $story_id))
+                {
+                    // ---- REMOVE STORY ID FROM USER'S FAVS ---- //
+
+                    // Prepare query
+                    $remove_story_from_favs = $db->prepare("UPDATE users SET favorite_stories_ids = REPLACE(favorite_stories_ids, ' $story_id ', '') WHERE user_id = :user_id");
+
+                    // Binding
+                    $remove_story_from_favs->bindValue(":user_id", $user_ids[$i]["user_id"]);
+
+                    // Execution
+                    $remove_story_from_favs->execute();
+                }
+
+                // ---- GET USER'S READ LATER STORIES ---- //
+
+                // Prepare query
+                $get_later = $db->prepare("SELECT read_later_ids FROM users WHERE user_id = :user_id");
+
+                // Binding
+                $get_later->bindValue(":user_id", $user_ids[$i]["user_id"]);
+
+                // Execution
+                $get_later->execute();
+
+                // Store result
+                $later = $get_later->fetchColumn();
+
+                // Test
+                // echo "<p>Read later stories of user n°$i :</p>";
+                // var_dump($later);
+                // exit;
+
+                // If story to delete is in user's read later
+                if(str_contains($later, $story_id))
+                {
+                    // ---- REMOVE STORY ID FROM USER'S READ LATER ---- //
+
+                    // Prepare query
+                    $remove_story_from_later = $db->prepare("UPDATE users SET read_later_ids = REPLACE(read_later_ids, ' $story_id ', '') WHERE user_id = :user_id");
+
+                    // Binding
+                    $remove_story_from_later->bindValue(":user_id", $user_ids[$i]["user_id"]);
+
+                    // Execution
+                    $remove_story_from_later->execute();
+                }
             }
 
             // ---- DELETE THE STORY ---- //

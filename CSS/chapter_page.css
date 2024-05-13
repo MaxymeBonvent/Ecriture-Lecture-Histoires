@@ -4,7 +4,7 @@
 html{
     scroll-behavior: smooth;
 }
- 
+
 /* BODY */
 body{
     background-color: cornflowerblue;
@@ -156,7 +156,7 @@ section, #chapter_options, .chapter, form{
 }
 
 /* THUMB BOXES AND CHAPTER */
-.thumb_box, .chapter{
+.thumb_box{
     /* Position of internal elements */
     display: flex;
     justify-content: space-around;

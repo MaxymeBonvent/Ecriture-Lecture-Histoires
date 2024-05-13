@@ -300,7 +300,10 @@ function DeleteStory(story_id, story_title)
                 console.log("Request done.");
 
                 // Redirect user to story deletion confirmation page
-                window.location.href = "story_delete_confirm.php";
+                // window.location.href = "story_delete_confirm.php";
+
+                // Test redirection
+                window.location.href = "delete_story.php?story_id="+story_id;
             }
 
             // If request is not done

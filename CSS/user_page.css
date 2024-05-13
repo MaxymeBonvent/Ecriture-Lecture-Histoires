@@ -107,6 +107,9 @@ a:hover, #delete_txt:hover{
 .story_box{
     /* Dimensions */
     width: 80%;
+
+    /* Mouse icon */
+    cursor: pointer;
 }
 
 /* DIVS IN STORY BOXES */
@@ -439,6 +442,13 @@ a:hover, #delete_txt:hover{
     #chapter_box p, .story_info_div p{
         /* External space */
         margin-bottom: 0;
+    }
+
+    /* BOTTOM HALF SECTION */
+    #bottom_half_section{
+        /* Position of internal elements */
+        display: flex;
+        align-items: flex-start;
     }
 
     /* STORY BOXES IN VERTICAL STORY CONTAINERS */

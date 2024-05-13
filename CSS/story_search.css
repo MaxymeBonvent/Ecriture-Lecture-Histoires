@@ -21,16 +21,61 @@ main{
     align-items: center;
 }
 
-/* SECTIONS AND DIVS */
-section, div{
-    /* Outline */
-    border: 2px solid black;
+/* TITLES */
+h1, h2, h3, h4{
+    /* Centering */
+    text-align: center;
+}
+
+/* SUBTITLE */
+h3{
+    /* Size */
+    font-size: 22px;
+}
+
+/* STORY TITLES, TEXTS AND LABELS */
+h4, p, label{
+    /* Size */
+    font-size: 20px;
+}
+
+/* LABELS */
+label{
+    /* Centering */
+    text-align: center;
+}
+
+/* INPUTS */
+input{
+    /* Size */
+    font-size: 18px;
+
+    /* External space */
+    margin-bottom: 20px;
+}
+
+/* TAGS AND STORY TITLE INPUTS */
+#tags_input, #story_title_input{
+    /* Dimensions */
+    width: 80%;
+}
+
+/* AUTHOR INPUT */
+#author_input{
+    /* Dimensions */
+    width: 50%;
+}
+
+/* MIN AND MAX WORD COUNT INPUTS */
+#min_word_count_input, #max_word_count_input{
+    /* Dimensions */
+    width: 20%;
 }
 
 /* SECTIONS */
 section{
     /* Dimensions */
-    width: 50%;
+    width: 30%;
 
     /* External space */
     margin: 4px 0;
@@ -41,30 +86,20 @@ section{
     align-items: center;
 }
 
+/* OUTLINES */
+#search_section, #results_section, .tags_div, .story_box, .story_title, .story_info{
+    /* Outline */
+    border: 2px solid black;
+}
+
 /* DIVS */
 div{
     /* External space */
     margin: 6px;
 }
 
-/* LABELS */
-label{
-    /* Centering */
-    text-align: center;
-}
-
-/* TAGS DIV */
-#tags_div{
-    /* Dimensions */
-    width: 50%;
-
-    /* Position of internal elements */
-    display: flex;
-    flex-wrap: wrap;
-}
-
 /* TAG TEXT */
-.tag_txt{
+.tag{
     /* Back */
     background-color: forestgreen;
 
@@ -72,10 +107,348 @@ label{
     padding: 0 4px;
 
     /* External space */
-    margin: 4px 10px;
+    margin: 6px 10px;
 
     /* Outline */
     border-radius: 10px;
+
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* PSEUDO BUTTONS */
+.pseudoBtn{
+    /* Back */
+    background-color: rgb(210, 210, 210);
+
+    /* Internal space */
+    padding: 0 4px;
+
+    /* Mouse */
+    cursor: pointer;
+}
+
+/* STORY BOXES */
+.story_box{
+    /* Dimensions */
+    width: 80%;
+
+    /* Mouse */
+    cursor: pointer;
+
+    /* Position of internal elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* DIVS IN STORY BOXES */
+.story_box div{
+    /* Dimensions */
+    width: 80%;
+}
+
+/* STORY INFO DIVS */
+.story_info{
+    /* Position of internal elements */
+    display: flex;
+    justify-content: space-around;
 }
 
 /* ---- SIZE-BASED PROPERTIES ---- */
+
+/* SMALL VERSION */
+@media all and (max-width: 390px) 
+{
+    /* SECTION AND STORY TITLES */
+    h3, h4{
+        /* Size */
+        font-size: 18px;
+    }
+
+    /* TEXTS AND LABELS */
+    p, label{
+       /* Size */
+       font-size: 16px; 
+    }
+
+    /* SECTIONS */
+    section{
+        /* Dimensions */
+        width: 70%;
+    }
+
+    /* INPUTS */
+    input{
+        /* Size */
+       font-size: 12px;
+    }
+
+    /* SEARCH SECTION'S TAGS DIV */
+    #search_section .tags_div{
+        /* Dimensions */
+        width: 90%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* PSEUDO FORM END BUTTONS DIV */
+    #form_btns_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* STORY INFO DIVS */
+    .story_info{
+       /* Position of internal elements */
+       display: flex;
+       flex-direction: column; 
+       align-items: center;
+    }
+
+    /* TAGS DIVS IN STORY BOXES */
+    .story_box .tags_div{
+       /* Position of internal elements */
+       display: flex;
+       flex-direction: column;
+       align-items: center; 
+    }
+}
+
+/* MEDIUM VERSION */
+@media all and (min-width: 390px) and (max-width: 430px) 
+{
+    /* SECTION AND STORY TITLES */
+    h3, h4{
+        /* Size */
+        font-size: 20px;
+    }
+
+    /* TEXTS AND LABELS */
+    p, label{
+       /* Size */
+       font-size: 18px; 
+    }
+
+    /* SECTIONS */
+    section{
+        /* Dimensions */
+        width: 70%;
+    }
+
+    /* INPUTS */
+    input{
+        /* Size */
+       font-size: 14px;
+    }
+
+    /* SEARCH SECTION'S TAGS DIV */
+    #search_section .tags_div{
+        /* Dimensions */
+        width: 90%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* PSEUDO FORM END BUTTONS DIV */
+    #form_btns_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* STORY INFO DIVS */
+    .story_info{
+       /* Position of internal elements */
+       display: flex;
+       flex-direction: column; 
+       align-items: center;
+    }
+
+    /* TAGS DIVS IN STORY BOXES */
+    .story_box .tags_div{
+       /* Position of internal elements */
+       display: flex;
+       flex-direction: column;
+       align-items: center; 
+    }
+}
+
+/* BIG VERSION */
+@media all and (min-width: 430px) and (max-width: 853px) 
+{
+    /* SECTION AND STORY TITLES */
+    h3, h4{
+        /* Size */
+        font-size: 20px;
+    }
+
+    /* TEXTS AND LABELS */
+    p, label{
+       /* Size */
+       font-size: 18px; 
+    }
+
+    /* SECTIONS */
+    section{
+        /* Dimensions */
+        width: 60%;
+    }
+
+    /* INPUTS */
+    input{
+        /* Size */
+       font-size: 14px;
+    }
+
+    /* TAGS AND STORY TITLE INPUTS */
+    #tags_input, #story_title_input{
+        /* Dimensions */
+        width: 50%;
+    }
+
+    /* AUTHOR INPUT */
+    #author_input{
+        /* Dimensions */
+        width: 35%;
+    }
+
+    /* SEARCH SECTION'S TAGS DIV */
+    #search_section .tags_div{
+        /* Dimensions */
+        width: 90%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* PSEUDO FORM END BUTTONS DIV */
+    #form_btns_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* STORY INFO DIVS */
+    .story_info{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* TAGS DIVS IN STORY BOXES */
+    .story_box .tags_div{
+       /* Position of internal elements */
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+    }
+}
+
+/* VERY BIG VERSION */
+@media all and (min-width: 853px) 
+{
+    /* SECTION AND STORY TITLES */
+    h3, h4{
+        /* Size */
+        font-size: 22px;
+    }
+
+    /* TEXTS AND LABELS */
+    p, label{
+       /* Size */
+       font-size: 20px; 
+    }
+
+    /* SECTIONS */
+    section{
+        /* Dimensions */
+        width: 40%;
+    }
+
+    /* INPUTS */
+    input{
+        /* Size */
+       font-size: 16px;
+    }
+
+    /* TAGS AND STORY TITLE INPUTS */
+    #tags_input, #story_title_input{
+        /* Dimensions */
+        width: 50%;
+    }
+
+    /* AUTHOR INPUT */
+    #author_input{
+        /* Dimensions */
+        width: 35%;
+    }
+
+    /* SEARCH SECTION'S TAGS DIV */
+    #search_section .tags_div{
+        /* Dimensions */
+        width: 80%;
+
+        /* Position of internal elements */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* TAGS IN SEARCH SECTION'S TAGS DIV */
+    #search_section .tags_div .tag{
+        /* External space */
+        margin: 6px;
+    }
+
+    /* PSEUDO FORM END BUTTONS DIV */
+    #form_btns_div{
+        /* Outline */
+        border: 2px solid black;
+    }
+
+    /* FORM END BUTTONS */
+    .pseudoBtn{
+        /* External space */
+        margin: 16px 0;
+    }
+
+    /* STORY BOXES */
+    .story_box{
+        /* Dimensions */
+        width: 70%;
+    }
+
+    /* DIVS IN STORY BOXES */
+    .story_box div{
+        /* Dimensions */
+        width: 90%;
+    }
+
+    /* STORY INFO DIVS */
+    .story_info{
+        /* Position of internal elements */
+        display: flex;
+    }
+
+    /* TAGS DIVS IN STORY BOXES */
+    .story_box .tags_div{
+        /* Position of internal elements */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

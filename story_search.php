@@ -60,6 +60,9 @@
             $dynamic_query .= "AND word_count <= $max_word_count ";
         }
 
+        // Limit number of stories fetched
+        $dynamic_query .= "LIMIT 100";
+
         // Prepare full query
         $full_query = $db->prepare($dynamic_query);
 

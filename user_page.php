@@ -166,8 +166,8 @@
                 $favs_ids_array = explode("  ", $favs_ids);
 
                 // Test
-                // echo "<p>Array of Favorite Stories IDs :</p>";
-                // var_dump($favs_ids_array);
+                echo "<p>Array of Favorite Stories IDs :</p>";
+                var_dump($favs_ids_array);
 
 
                 // ---- GET USER'S READ LATER STORIES IDS ---- //
@@ -296,15 +296,11 @@
                         echo "</section>";  
                     }
 
-                    
-
                 // END of top half section
                 echo "</section>";
 
-
                 // START of bottom half section
                 echo "<section id='bottom_half_section'>";
-
 
                     // START of Favorite Stories Story Container
                     echo "<section class='vertical_story_container'>";
@@ -323,7 +319,7 @@
                                     $get_current_fav_story_info = $db->prepare("SELECT story_title, chapter_ids, author, pub_date, tags, likes, dislikes FROM stories WHERE story_id = :story_id");
 
                                     // Binding  
-                                    $get_current_fav_story_info->bindValue(":story_id", $favs_ids_array[$i]);
+                                    $get_current_fav_story_info->bindValue(":story_id", intval(trim($favs_ids_array[$i])));
 
                                     // Execution
                                     $get_current_fav_story_info->execute();
@@ -332,68 +328,80 @@
                                     $current_fav_story_info = $get_current_fav_story_info->fetchAll(PDO::FETCH_ASSOC);
 
                                     // Test
-                                    // echo "<p>Info of favorite story n°".($i+1).":</p>";
-                                    // var_dump($current_fav_story_info);
+                                    echo "<p>Info of favorite story n°".($favs_ids_array[$i]).":</p>";
+                                    var_dump($current_fav_story_info);
+                                    // exit;
 
-                                    // ---- CREATE CURRENT FAVORITE'S STORY'S TAGS ARRAY ---- //
-                                    $current_fav_story_tags_array = explode(" ", $current_fav_story_info[0]["tags"]);
+                                    // If favorite story exists
+                                    if($current_fav_story_info != null && !empty($current_fav_story_info))
+                                    {
+                                        // ---- CREATE CURRENT FAVORITE'S STORY'S TAGS ARRAY ---- //
+                                        $current_fav_story_tags_array = explode(" ", $current_fav_story_info[0]["tags"]);
 
-                                    // Test
-                                    // echo "<p>Current favorite story tags array :</p>";
-                                    // var_dump($current_fav_story_tags_array);
+                                        // Test
+                                        // echo "<p>Current favorite story tags array :</p>";
+                                        // var_dump($current_fav_story_tags_array);
 
-                                    // ---- DISPLAY CURRENT FAVORITE STORY'S STORY BOX ---- //
-                                    // START of current favorite story's story box
-                                    echo "<section class='story_box' onclick='Synopsis(\"".$current_fav_story_info[0]['story_title']."\",\"".$current_fav_story_info[0]['author']."\",\"".$current_fav_story_info[0]['tags']."\",\"".$current_fav_story_info[0]['chapter_ids']."\")'>";
+                                        // ---- DISPLAY CURRENT FAVORITE STORY'S STORY BOX ---- //
+                                        // START of current favorite story's story box
+                                        echo "<section class='story_box' onclick='Synopsis(\"".$current_fav_story_info[0]['story_title']."\",\"".$current_fav_story_info[0]['author']."\",\"".$current_fav_story_info[0]['tags']."\",\"".$current_fav_story_info[0]['chapter_ids']."\")'>";
 
-                                        // START of story title div
-                                        echo "<div>";
+                                            // START of story title div
+                                            echo "<div>";
 
-                                            // Story title
-                                            echo "<h4>".$current_fav_story_info[0]['story_title']."</h4>";
+                                                // Story title
+                                                echo "<h4>".$current_fav_story_info[0]['story_title']."</h4>";
 
-                                        // END of story title div
-                                        echo "</div>";
-
-
-                                        // START of story info div
-                                        echo "<div class='story_info_div'>";
-
-                                            // Author
-                                            echo "<p>".$current_fav_story_info[0]['author']."</p>";
-
-                                            // Date
-                                            echo "<p class='date_txt'>".date("d-m-Y", strtotime($current_fav_story_info[0]['pub_date']))."</p>";
-
-                                            // Likes
-                                            echo "<p>".$current_fav_story_info[0]['likes']." Likes</p>";
-
-                                            // Dislikes
-                                            echo "<p>".$current_fav_story_info[0]['dislikes']." Dislikes</p>";
-
-                                        // END of story stats div
-                                        echo "</div>";
+                                            // END of story title div
+                                            echo "</div>";
 
 
-                                        // START of tags div
-                                        echo "<div class='tags_div'>";
+                                            // START of story info div
+                                            echo "<div class='story_info_div'>";
 
-                                            // For each tag
-                                            foreach($current_fav_story_tags_array as $tag)
-                                            {
-                                                // If that tag is not empty
-                                                if($tag != "")
+                                                // Author
+                                                echo "<p>".$current_fav_story_info[0]['author']."</p>";
+
+                                                // Date
+                                                echo "<p class='date_txt'>".date("d-m-Y", strtotime($current_fav_story_info[0]['pub_date']))."</p>";
+
+                                                // Likes
+                                                echo "<p>".$current_fav_story_info[0]['likes']." Likes</p>";
+
+                                                // Dislikes
+                                                echo "<p>".$current_fav_story_info[0]['dislikes']." Dislikes</p>";
+
+                                            // END of story stats div
+                                            echo "</div>";
+
+
+                                            // START of tags div
+                                            echo "<div class='tags_div'>";
+
+                                                // For each tag
+                                                foreach($current_fav_story_tags_array as $tag)
                                                 {
-                                                    // Display it
-                                                    echo "<p>$tag</p>";
+                                                    // If that tag is not empty
+                                                    if($tag != "")
+                                                    {
+                                                        // Display it
+                                                        echo "<p>$tag</p>";
+                                                    }
                                                 }
-                                            }
 
-                                        // END of tags div
-                                        echo "</div>";
+                                            // END of tags div
+                                            echo "</div>";
 
-                                    // END of current favorite story's story box
-                                    echo "</section>";
+                                        // END of current favorite story's story box
+                                        echo "</section>";
+                                    }
+
+                                    // If favorite story does not exist
+                                    else if($current_fav_story_info == null || empty($current_fav_story_info))
+                                    {
+                                        // Tell user story does not exist
+                                        echo "<p>Error : story".$favs_ids_array[$i]." does not exist.</p>";
+                                    }
                                 }
                             }
 
@@ -437,65 +445,76 @@
                                 // var_dump($current_later_story_info);
                                 // exit;
 
-                                // ---- CREATE CURRENT READ LATER STORY'S TAGS ARRAY ---- //
-                                $current_later_story_tags_array = explode(" ", $current_later_story_info[0]["tags"]);
+                                // If read later story exists
+                                if($current_later_story_info != null && !empty($current_later_story_info))
+                                {
+                                    // ---- CREATE CURRENT READ LATER STORY'S TAGS ARRAY ---- //
+                                    $current_later_story_tags_array = explode(" ", $current_later_story_info[0]["tags"]);
 
-                                // Test
-                                // echo "<p>Current favorite story tags array :</p>";
-                                // var_dump($current_fav_story_tags_array);
+                                    // Test
+                                    // echo "<p>Current favorite story tags array :</p>";
+                                    // var_dump($current_fav_story_tags_array);
 
-                                // ---- DISPLAY CURRENT READ LATER STORY'S STORY BOX ---- //
-                                // START of current read later story's story box
-                                echo "<section class='story_box' onclick='Synopsis(\"".$current_later_story_info[0]['story_title']."\",\"".$current_later_story_info[0]['author']."\",\"".$current_later_story_info[0]['tags']."\",\"".$current_later_story_info[0]['chapter_ids']."\")'>";
+                                    // ---- DISPLAY CURRENT READ LATER STORY'S STORY BOX ---- //
+                                    // START of current read later story's story box
+                                    echo "<section class='story_box' onclick='Synopsis(\"".$current_later_story_info[0]['story_title']."\",\"".$current_later_story_info[0]['author']."\",\"".$current_later_story_info[0]['tags']."\",\"".$current_later_story_info[0]['chapter_ids']."\")'>";
 
-                                    // START of story title div
-                                    echo "<div>";
+                                        // START of story title div
+                                        echo "<div>";
 
-                                        // Story title
-                                        echo "<h4>".$current_later_story_info[0]['story_title']."</h4>";
+                                            // Story title
+                                            echo "<h4>".$current_later_story_info[0]['story_title']."</h4>";
 
-                                    // END of story title div
-                                    echo "</div>";
-
-
-                                    // START of story info div
-                                    echo "<div class='story_info_div'>";
-
-                                        // Author
-                                        echo "<p>".$current_later_story_info[0]['author']."</p>";
-
-                                        // Date
-                                        echo "<p class='date_txt'>".date("d-m-Y", strtotime($current_later_story_info[0]['pub_date']))."</p>";
-
-                                        // Likes
-                                        echo "<p>".$current_later_story_info[0]['likes']." Likes</p>";
-
-                                        // Dislikes
-                                        echo "<p>".$current_later_story_info[0]['dislikes']." Dislikes</p>";
-
-                                    // END of story stats div
-                                    echo "</div>";
+                                        // END of story title div
+                                        echo "</div>";
 
 
-                                    // START of tags div
-                                    echo "<div class='tags_div'>";
+                                        // START of story info div
+                                        echo "<div class='story_info_div'>";
 
-                                        // For each tag
-                                        foreach($current_later_story_tags_array as $tag)
-                                        {
-                                            // If that tag is not empty
-                                            if($tag != "")
+                                            // Author
+                                            echo "<p>".$current_later_story_info[0]['author']."</p>";
+
+                                            // Date
+                                            echo "<p class='date_txt'>".date("d-m-Y", strtotime($current_later_story_info[0]['pub_date']))."</p>";
+
+                                            // Likes
+                                            echo "<p>".$current_later_story_info[0]['likes']." Likes</p>";
+
+                                            // Dislikes
+                                            echo "<p>".$current_later_story_info[0]['dislikes']." Dislikes</p>";
+
+                                        // END of story stats div
+                                        echo "</div>";
+
+
+                                        // START of tags div
+                                        echo "<div class='tags_div'>";
+
+                                            // For each tag
+                                            foreach($current_later_story_tags_array as $tag)
                                             {
-                                                // Display it
-                                                echo "<p>$tag</p>";
+                                                // If that tag is not empty
+                                                if($tag != "")
+                                                {
+                                                    // Display it
+                                                    echo "<p>$tag</p>";
+                                                }
                                             }
-                                        }
 
-                                    // END of tags div
-                                    echo "</div>";
+                                        // END of tags div
+                                        echo "</div>";
 
-                                // END of current favorite story's story box
-                                echo "</section>";
+                                    // END of current favorite story's story box
+                                    echo "</section>";
+                                }
+
+                                // If read later story does not exist
+                                else if($current_later_story_info == null || empty($current_later_story_info))
+                                {
+                                    // Tell user story does not exist
+                                    echo "<p>Error : story".$later_ids_array[$i]." does not exist.</p>";
+                                }
                             }
                         }
 

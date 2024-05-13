@@ -16,7 +16,6 @@
     // var_dump($url_story_id);
     // exit;
 
-
     // If there's no story ID
     if(!isset($url_story_id) || empty($url_story_id))
     {
