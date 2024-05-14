@@ -77,7 +77,7 @@
             if(!isset($_SESSION['username']) || empty($_SESSION['username']))
             {
                 // Output an error message
-                echo "<p id='not_logged_in_txt'>You are not logged in and won't be able to fav, read later, like or dislike this story.</p>";
+                echo "<p id='not_logged_in_txt'>You are not logged in and won't be able to fav, read later, like, dislike nor comment this story.</p>";
 
                 // End script
                 // exit;

@@ -47,9 +47,9 @@
             // If URL's Story ID is not in user's read later string
             if(!str_contains($user_read_later, $url_story_id))
             {
-                // ---- ADD STORY ID TO USER'S READ LATER ---- //
+                // ---- ADD CLICKED STORY ID TO USER'S READ LATER ---- //
                 // Prepare query
-                $add_story_to_read_later = $db->prepare("UPDATE users SET read_later_ids := ' $url_story_id ' WHERE user_id = :user_id");
+                $add_story_to_read_later = $db->prepare("UPDATE users SET read_later_ids = CONCAT(read_later_ids, ' $url_story_id ') WHERE user_id = :user_id");
 
                 // Binding
                 $add_story_to_read_later->bindValue(":user_id", $user_id);
@@ -57,9 +57,12 @@
                 // Execution
                 $add_story_to_read_later->execute();
 
-                // ---- ADD USER'S ID TO STORY'S USER LATER IDS ---- //
+                // ---- ADD USER'S ID TO CLICKED STORY'S USER LATER IDS ---- //
                 // Prepare query
-                $add_user_id_to_story_user_later_ids = $db->prepare("UPDATE stories SET user_later_ids := ' $user_id '");
+                $add_user_id_to_story_user_later_ids = $db->prepare("UPDATE stories SET user_later_ids = CONCAT(user_later_ids, ' $user_id ') WHERE story_id = :story_id");
+
+                // Binding
+                $add_user_id_to_story_user_later_ids->bindValue(":story_id", $url_story_id);
 
                 // Execution
                 $add_user_id_to_story_user_later_ids->execute();

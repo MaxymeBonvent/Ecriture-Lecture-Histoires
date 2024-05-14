@@ -103,13 +103,16 @@ a:hover, #delete_txt:hover{
     text-decoration: underline;
 }
 
+/* STORY BOXES AND CHAPTER BOX */
+.story_box, #chapter_box{
+    /* Mouse icon */
+    cursor: pointer;
+}
+
 /* STORY BOXES IN VERTICAL STORY CONTAINERS */
 .story_box{
     /* Dimensions */
     width: 80%;
-
-    /* Mouse icon */
-    cursor: pointer;
 }
 
 /* DIVS IN STORY BOXES */

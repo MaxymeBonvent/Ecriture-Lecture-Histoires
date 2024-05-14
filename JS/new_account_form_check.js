@@ -32,6 +32,10 @@ let hasPasswordEnoughChars = false;
 // Password Equality Text variable
 let pwd_equal_txt = document.getElementById("pwd_equal_txt");
 
+// ---- FORBIDDEN CHARACTERS ---- //
+let forbidden_txt = document.getElementById("forbidden_txt");
+let hasForbidden = true;
+
 // ---- CRITERIAS ----
 // Criteria not met color
 let criteria_not_met = "rgb(110, 0, 0)";
@@ -63,7 +67,7 @@ let special = document.getElementById("one_special");
 let hasSpecial = false;
 
 // Special characters array
-let special_chars = ["&", "~", "#", "'", "{", "}", "(", ")", "[", "]", "-", "|", "`", "_", "\\", "/", "^", "@", "°", "=", "+", "-", "*", "?", "!", ",", ";", ".", "§", "ù", "$", "£", "¤", "µ", "%"];
+let special_chars = ["~", "#", "'", "{", "}", "(", ")", "[", "]", "-", "|", "`", "_", "\\", "/", "^", "@", "°", "=", "+", "-", "*", "?", "!", ",", ";", ".", "§", "ù", "$", "£", "¤", "µ"];
 let special_counter;
 
 // ---- NUMBER ----
@@ -419,8 +423,19 @@ function SpecialCharsCheck()
             // For every password character
             for(pwd_counter = 0; pwd_counter < pwd.value.length; pwd_counter++)
             {
+                // If the character is not special
+                if(pwd.value[pwd_counter] != special_chars[special_counter])
+                {
+                    // Set hasSpecial to false
+                    hasSpecial = false;
+                    console.log(`hasSpecial == ${hasSpecial}.`);
+
+                    // Change special text to red
+                    special.style.color = criteria_not_met;
+                }
+
                 // If the character is special
-                if(pwd.value[pwd_counter] == special_chars[special_counter])
+                else if(pwd.value[pwd_counter] == special_chars[special_counter])
                 {
                     // Set hasSpecial to true
                     hasSpecial = true;
@@ -432,17 +447,54 @@ function SpecialCharsCheck()
                     // Leave function
                     return;
                 }
+            }
+        }
+    }
+}
 
-                // If the character is not special
-                else if(pwd.value[pwd_counter] != special_chars[special_counter])
-                {
-                    // Set hasSpecial to false
-                    hasSpecial = false;
-                    console.log(`hasSpecial == ${hasSpecial}.`);
+// Function to check if the password contains at least 1 forbidden character
+function ForbiddenCharsCheck()
+{
+    // If the password is empty
+    if(pwd.value.length < 1)
+    {
+        // Set hasForbidden to false
+        hasForbidden = false;
+        console.log(`hasForbidden == ${hasForbidden}.`);
 
-                    // Change special text to red
-                    special.style.color = criteria_not_met;
-                }
+        // Turn special character text to red
+        forbidden_txt.style.color = criteria_met;
+    }
+
+    // If the password is not empty
+    else
+    { 
+        // For every password character
+        for(pwd_counter = 0; pwd_counter < pwd.value.length; pwd_counter++)
+        {
+            // If the character is forbidden
+            if(pwd.value[pwd_counter] == "%" || pwd.value[pwd_counter] == "&")
+            {
+                // Set hasForbidden to true
+                hasForbidden = true;
+                console.log(`hasForbidden == ${hasForbidden}.`);
+
+                // Change hasForbidden text to red
+                forbidden_txt.style.color = criteria_not_met;
+
+                // Leave loop
+                break;
+            }
+
+            // If the character is not
+            else if(pwd.value[pwd_counter] != "%" && pwd.value[pwd_counter] != "&")
+            {
+                // Set hasForbidden to false
+                hasForbidden = false;
+                console.log(`hasForbidden == ${hasForbidden}.`);
+
+                // Change forbbiden text to green
+                forbidden_txt.style.color = criteria_met;
             }
         }
     }
@@ -543,11 +595,23 @@ function AllPasswordCriteriasCheck()
     LowercaseCheck();
     UppercaseCheck();
     SpecialCharsCheck();
+    ForbiddenCharsCheck();
     NumberCheck();
     PasswordsEqualityCheck();
 
+    // If at least one criteria is not met
+    if(!isUsernameSmall || doesUsernameExist || doesMailExist || !hasPasswordEnoughChars || !hasLowercase || !hasUppercase || !hasSpecial || hasForbidden || !hasNumber || !arePasswordsEqual)
+    {
+    
+        // Confirm at least one criteria is not met
+        console.log("At least one criteria is not met.");
+
+        // Deactivate Submit Input
+        sub.disabled = true;
+    }
+
     // If every criteria is met
-    if(isUsernameSmall && !doesUsernameExist && !doesMailExist && hasPasswordEnoughChars && hasLowercase && hasUppercase && hasSpecial && hasNumber && arePasswordsEqual)
+    else if(isUsernameSmall && !doesUsernameExist && !doesMailExist && hasPasswordEnoughChars && hasLowercase && hasUppercase && hasSpecial && !hasForbidden && hasNumber && arePasswordsEqual)
     {
         // Confirm that all criterias are met
         console.log("All criterias met.");

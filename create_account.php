@@ -99,7 +99,7 @@
 
 
             <!-- PASSWORD CRITERIAS DIV -->
-            <div class="form_div_col">
+            <div id="form_div_col">
 
                 <!-- SUBTITLE -->
                 <h4>Your password must have at least :</h4>
@@ -116,8 +116,10 @@
                     <li id="one_special">1 special character (?)</li>
 
                     <li id="one_num">1 number (0)</li>
-
+ 
                 </ul>
+
+                <b id="forbidden_txt">Forbidden characters : %, &.</b>
 
             </div>
 

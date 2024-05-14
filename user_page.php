@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="CSS/footer.css">
     <link rel="stylesheet" href="CSS/back_to_top.css">
     <link rel="stylesheet" href="CSS/user_page.css">
+    <link rel="stylesheet" href="CSS/var_dump.css">
 
 </head>
 

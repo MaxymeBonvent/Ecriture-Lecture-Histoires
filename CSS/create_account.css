@@ -206,12 +206,6 @@ h4{
         width: 50%;
     }
 
-    /* FORM DIV */
-    form div{
-        /* Dimensions */
-        width: 90%;
-    }
-
     /* FORM TITLE */
     h3{
         font-size: 24px;
@@ -262,6 +256,26 @@ h4{
     form div{
         /* Dimensions */
         width: 60%;
+    }
+
+    /* COLUMN DIV */
+    #form_div_col{
+        /* Position of internal elements */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* LIST IN COLUMN DIV */
+    #form_div_col ul{
+        /* Outline */
+        border: 2px solid black;
+    }
+
+    /* LIST ELEMENTS */
+    li{
+        /* Internal space */    
+        padding: 0 4px;
     }
 
     /* FORM TITLE */

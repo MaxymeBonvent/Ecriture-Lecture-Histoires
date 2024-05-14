@@ -72,8 +72,15 @@
             // DATABASE CONNECTION
             require_once("database_connection.php");
 
+            // If user is not logged in
+            if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
+            {
+                // Tell user they won't be able to bookmark, like, dislike nor comment
+                echo "<p>You are not logged in and won't be able to bookmark, like, dislike nor comment this chapter.</p>";
+            }
+
             // If user is logged in (optional)
-            if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
+            else if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
             {
                 // GET USER ID
                 require_once("get_user_id.php");
@@ -350,22 +357,34 @@
                 // START of chapter options div
                 echo "<div id='chapter_options'>";
 
-                    // CHANGE "BOOKMARK THIS CHAPTER" COLOR
+                    // ---- CHANGE "BOOKMARK THIS CHAPTER" COLOR ---- //   
+
                     // If at least 1 user bookmarked this chapter
                     if($user_marked_ids != null && $user_marked_ids != "")
                     {
-                        // If user's ID is already in the list of users who bookmarked this chapter
-                        if(str_contains($user_marked_ids, $user_id))
+                        // If user is logged in
+                        if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
                         {
-                            // Display "Bookmark this chapter" in "already bookmarked" color
-                            echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)' style='color: rgb(0, 120, 0);'>Bookmark this chapter</p>";
+                            // If user's ID is already in the list of users who bookmarked this chapter
+                            if(str_contains($user_marked_ids, $user_id))
+                            {
+                                // Display "Bookmark this chapter" in "already bookmarked" color
+                                echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)' style='color: rgb(0, 120, 0);'>Bookmark this chapter</p>";
+                            }
+
+                            // If user's ID is not in the list of users who bookmarked this chapter
+                            else if(!str_contains($user_marked_ids, $user_id))
+                            {
+                                // Display "Bookmark this chapter" in default color
+                                echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
+                            }
                         }
 
-                        // If user's ID is not in the list of users who bookmarked this chapter
-                        else if(!str_contains($user_marked_ids, $user_id))
+                        // If user is not logged in
+                        else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                         {
-                            // Display "Bookmark this chapter" in default color
-                            echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
+                            // Display "Bookmark this chapter" in default color with no function
+                            echo "<p class='chapter_option' id='bookmark_txt'>Bookmark this chapter</p>";
                         }
                     }
 
@@ -381,18 +400,29 @@
                     // If at least 1 user liked this chapter
                     if($user_like_ids != null && $user_like_ids != "")
                     {
-                        // If user ID is in list of users who liked this chapter
-                        if(str_contains($user_like_ids, $user_id))
+                        // If user is logged in
+                        if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
                         {
-                            // Display "Like" text in "already liked" color
-                            echo "<div class='thumb_box'><p id='like_txt' style='color:rgb(0, 120, 0);'>".$chapter_info[0]['likes']."</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'></div>";
+                            // If user ID is in list of users who liked this chapter
+                            if(str_contains($user_like_ids, $user_id))
+                            {
+                                // Display "Like" text in "already liked" color
+                                echo "<div class='thumb_box'><p id='like_txt' style='color:rgb(0, 120, 0);'>".$chapter_info[0]['likes']."</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'></div>";
+                            }
+
+                            // If user ID is not in list of users who liked this chapter
+                            else if(!str_contains($user_like_ids, $user_id))
+                            {
+                                // Display "Like" in default color
+                                echo "<div class='thumb_box'><p id='like_txt'>".$chapter_info[0]['likes']."</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'></div>";
+                            }
                         }
 
-                        // If user ID is not in list of users who liked this chapter
-                        else if(!str_contains($user_like_ids, $user_id))
+                        // If user is not logged in
+                        else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                         {
-                            // Display "Like" in default color
-                            echo "<div class='thumb_box'><p id='like_txt'>".$chapter_info[0]['likes']."</p> <img src='img/like.png' alt='Like Icon' class='thumb' onclick='LikeChapter($url_chapter_id)' id='like_icon'></div>";
+                            // Display "Like" in default color with no function
+                            echo "<div class='thumb_box'><p id='like_txt'>".$chapter_info[0]['likes']."</p> <img src='img/like.png' alt='Like Icon' class='thumb' id='like_icon'></div>";
                         }
                     }
 
@@ -407,18 +437,29 @@
                     // If at least 1 user disliked this chapter
                     if($user_dislike_ids != null && $user_dislike_ids != "")
                     {
-                        // If user ID is in list of users who disliked this chapter
-                        if(str_contains($user_dislike_ids, $user_id))
+                        // if user is logged in
+                        if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
                         {
-                            // Display "Dislike" text in "already liked" color
-                            echo "<div class='thumb_box'><p id='dislike_txt' style='color:rgb(0, 120, 0);'>".$chapter_info[0]['dislikes']."</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'></div>";
+                            // If user ID is in list of users who disliked this chapter
+                            if(str_contains($user_dislike_ids, $user_id))
+                            {
+                                // Display "Dislike" text in "already liked" color
+                                echo "<div class='thumb_box'><p id='dislike_txt' style='color:rgb(0, 120, 0);'>".$chapter_info[0]['dislikes']."</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'></div>";
+                            }
+
+                            // If user ID is not in list of users who disliked this chapter
+                            else if(!str_contains($user_dislike_ids, $user_id))
+                            {
+                                // Display "Dislike" in default color
+                                echo "<div class='thumb_box'><p id='dislike_txt'>".$chapter_info[0]['dislikes']."</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'></div>";
+                            }
                         }
 
-                        // If user ID is not in list of users who disliked this chapter
-                        else if(!str_contains($user_dislike_ids, $user_id))
+                        // if user is not logged in
+                        else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                         {
-                            // Display "Dislike" in default color
-                            echo "<div class='thumb_box'><p id='dislike_txt'>".$chapter_info[0]['dislikes']."</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' onclick='DislikeChapter($url_chapter_id)' id='dislike_icon'></div>";
+                            // Display "Dislike" in default color with no function
+                            echo "<div class='thumb_box'><p id='dislike_txt'>".$chapter_info[0]['dislikes']."</p> <img src='img/dislike.png' alt='Dislike Icon' class='thumb' id='dislike_icon'></div>";
                         }
                     }
 

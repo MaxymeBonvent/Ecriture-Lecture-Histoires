@@ -1,7 +1,7 @@
 <?php
     // SESSION
     session_start();
- 
+
     // DATABASE CONNECTION
     require_once("database_connection.php");
 
@@ -60,9 +60,9 @@
                 // echo "<p>URL Story ID is not in user's favorite stories.</p>";
                 // exit;
 
-                // ---- ADD STORY ID TO USER'S FAVORITES ---- //
+                // ---- ADD CLICKED STORY ID TO USER'S FAVORITES ---- //
                 // Prepare query
-                $add_story_to_favs = $db->prepare("UPDATE users SET favorite_stories_ids := ' $url_story_id ' WHERE user_id = :user_id");
+                $add_story_to_favs = $db->prepare("UPDATE users SET favorite_stories_ids = CONCAT(favorite_stories_ids, ' $url_story_id ') WHERE user_id = :user_id");
 
                 // Binding
                 $add_story_to_favs->bindValue(":user_id", $user_id);
@@ -70,9 +70,12 @@
                 // Execution
                 $add_story_to_favs->execute();
 
-                // ---- ADD USER'S ID TO STORY'S USER FAV IDS ---- //
+                // ---- ADD USER'S ID TO CLICKED STORY'S USER FAV IDS ---- //
                 // Prepare query
-                $add_user_id_to_story_user_fav_ids = $db->prepare("UPDATE stories SET user_fav_ids := ' $user_id '");
+                $add_user_id_to_story_user_fav_ids = $db->prepare("UPDATE stories SET user_fav_ids = CONCAT(user_fav_ids, ' $user_id ') WHERE story_id = :story_id");
+
+                // Binding
+                $add_user_id_to_story_user_fav_ids->bindValue(":story_id", $url_story_id);
 
                 // Execution
                 $add_user_id_to_story_user_fav_ids->execute();
@@ -88,12 +91,13 @@
                 // echo "<p>URL Story ID is in user's favorite stories.</p>";
                 // exit;
 
-                // ---- REMOVE STORY ID FROM USER'S FAVORITES ---- //
+                // ---- REMOVE CLICKED STORY ID FROM USER'S FAVORITES ---- //
                 // Prepare query
-                $remove_story_from_favs = $db->prepare("UPDATE users SET favorite_stories_ids = REPLACE(favorite_stories_ids, ' $url_story_id ', '') WHERE user_id = :user_id");
+                $remove_story_from_favs = $db->prepare("UPDATE users SET favorite_stories_ids = REPLACE(favorite_stories_ids, ' $url_story_id ', '') WHERE user_id = :user_id AND story_id = :story_id");
 
                 // Binding
                 $remove_story_from_favs->bindValue(":user_id", $user_id);
+                $remove_story_from_favs->bindValue(":story_id", $url_story_id);
 
                 // Execution
                 $remove_story_from_favs->execute();
