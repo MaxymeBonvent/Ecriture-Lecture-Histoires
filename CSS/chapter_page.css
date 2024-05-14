@@ -138,6 +138,9 @@ section{
     /* Size */
     width: 40px;
     height: 40px;
+
+    /* Mouse */
+    cursor: pointer;
 }
 
 /* BOOKMARK, LIKE/DISLIKE ICONS, FORMATTING BUTTONS, CHAPTERS AND FORM BUTTONS */

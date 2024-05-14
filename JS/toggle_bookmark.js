@@ -4,30 +4,6 @@ let bookmark_txt = document.getElementById("bookmark_txt");
 // Request done color
 let request_done_color = "rgb(0, 130, 0)";
 
-// TOGGLE "BOOKMARK THIS CHAPTER" COLOR
-bookmark_txt.addEventListener("click", function()
-{
-    // If text is not green
-    if(bookmark_txt.style.color != request_done_color)
-    {
-        // Set text color to green
-        bookmark_txt.style.color = request_done_color;
-
-        // Log color change
-        console.log("\"Bookmark this chapter\" changed to green.");
-    }
-
-    // If text is green
-    else if(bookmark_txt.style.color == request_done_color)
-    {
-        // Set text color to default
-        bookmark_txt.style.color = "black";
-
-        // Log color change
-        console.log("\"Bookmark this chapter\" changed to black.");
-    }
-})
-
 // Function to bookmark a chapter
 function Bookmark(chapter_id, user_id)
 {
@@ -74,6 +50,27 @@ function Bookmark(chapter_id, user_id)
 
                 // Redirect user to PHP Bookmark script
                 // window.location.href = `toggle_bookmark.php?chapter_id=${chapter_id}&user_id=${user_id}`;
+
+                // ---- TOGGLE COLOR ---- //
+                // If text is not green
+                if(bookmark_txt.style.color != request_done_color)
+                {
+                    // Set text color to green
+                    bookmark_txt.style.color = request_done_color;
+
+                    // Log color change
+                    console.log("\"Bookmark this chapter\" changed to green.");
+                }
+
+                // If text is green
+                else if(bookmark_txt.style.color == request_done_color)
+                {
+                    // Set text color to default
+                    bookmark_txt.style.color = "black";
+
+                    // Log color change
+                    console.log("\"Bookmark this chapter\" changed to black.");
+                }
             }
         }
 

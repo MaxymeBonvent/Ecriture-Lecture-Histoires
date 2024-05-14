@@ -359,11 +359,11 @@
 
                     // ---- CHANGE "BOOKMARK THIS CHAPTER" COLOR ---- //   
 
-                    // If at least 1 user bookmarked this chapter
-                    if($user_marked_ids != null && $user_marked_ids != "")
+                    // If user is logged in
+                    if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
                     {
-                        // If user is logged in
-                        if(isset($_SESSION["username"]) && !empty($_SESSION["username"]))
+                        // If at least 1 user bookmarked this chapter
+                        if($user_marked_ids != null && !empty($user_marked_ids))
                         {
                             // If user's ID is already in the list of users who bookmarked this chapter
                             if(str_contains($user_marked_ids, $user_id))
@@ -380,21 +380,21 @@
                             }
                         }
 
-                        // If user is not logged in
-                        else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
+                        // If no one bookmarked this chapter
+                        else if($user_marked_ids == null || empty($user_marked_ids))
                         {
-                            // Display "Bookmark this chapter" in default color with no function
-                            echo "<p class='chapter_option' id='bookmark_txt'>Bookmark this chapter</p>";
+                            // Display "Bookmark this chapter" in default color
+                            echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";    
                         }
                     }
 
-                    // If nobody bookmarked this chapter
-                    else if($user_marked_ids == null || $user_marked_ids != "")
+                    // If user is not logged in
+                    else if(!isset($_SESSION["username"]) || empty($_SESSION["username"]))
                     {
-                        // Display "Bookmark this chapter" in default color
-                        echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)'>Bookmark this chapter</p>";
+                        // Display "Bookmark this chapter" in default color with no function
+                        echo "<p class='chapter_option' id='bookmark_txt'>Bookmark this chapter</p>";
                     }
-
+                    
                     // ---- CHANGE "LIKE" COLOR ---- //
 
                     // If at least 1 user liked this chapter

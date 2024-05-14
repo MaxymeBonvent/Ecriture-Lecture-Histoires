@@ -57,12 +57,37 @@
             // Execute
             $delete_comments->execute();
 
-            // ---- 2) DELETE USER'S  CHAPTERS ---- //
+            // ---- 2) DELETE USER'S CHAPTERS ---- //
 
-            // Get every story
-            $get_stories = $db->prepare("");
+            // GET EVERY STORY
+
+            // Prepare query
+            $get_story_ids = $db->prepare("SELECT story_id FROM stories WHERE user_id = :user_id");
+
+            // Binding
+            $get_story_ids->bindValue(":user_id", $user_id);
+
+            // Execution
+            $get_story_ids->execute();
+
+            // Store story IDs
+            $story_ids = $get_story_ids->fetchAll(PDO::FETCH_ASSOC);
+
+            // Test
+            echo "<p>Story IDs of user $user_id :</p>";
+            var_dump($story_ids);
+            exit;
+
+            // --- DELETE ACCOUNT ---- //
+            // Prepare query
+            $delete_user = $db->prepare("DELETE FROM users WHERE user_id = :user_id");
+
+            // Binding
+            $delete_user->bindValue(":user_id", $user_id);
+
+            // Execution
+            $delete_user->execute();
             
-
             // Process database modification
             $db->commit();
 

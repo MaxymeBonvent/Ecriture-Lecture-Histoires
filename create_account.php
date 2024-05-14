@@ -75,21 +75,21 @@
             <label id="user_label" for="username">Username (max. 20 char.)<span class="required_star">*</span></label>
 
             <!-- INPUT -->
-            <input type="text" name="username" id="username" placeholder="Your name" required="true" autocomplete="on" maxlength="20" oninput="UsernameCheck()">
+            <input type="text" name="username" id="username" placeholder="Your name" required="true" autocomplete="off" maxlength="20" oninput="UsernameCheck()">
 
             
 
             <!-- USERNAME EXISTENCE -->
-            <p id="username_existence">Username availability text</p>
+            <p id="username_existence"></p>
 
             <!-- LABEL -->
             <label for="mail">Mail<span class="required_star">*</span></label>
 
             <!-- INPUT -->
-            <input type="email" name="mail" id="mail" placeholder="your.adress@example.com" required="true" autocomplete="on" maxlength="50" oninput="MailExistenceCheck()">
+            <input type="email" name="mail" id="mail" placeholder="your.adress@example.com" required="true" autocomplete="off" maxlength="50" oninput="MailExistenceCheck()">
 
             <!-- MAIL EXISTENCE -->
-            <p id="mail_existence">Mail availability text</p>
+            <p id="mail_existence"></p>
 
             <!-- LABEL -->
             <label for="password">Password<span class="required_star">*</span></label>
@@ -113,9 +113,9 @@
 
                     <li id="one_upper">1 uppercase letter (A)</li>
 
-                    <li id="one_special">1 special character (?)</li>
-
                     <li id="one_num">1 number (0)</li>
+
+                    <li id="one_special">1 special character (?)</li>
  
                 </ul>
 
@@ -130,7 +130,7 @@
             <input type="password" name="password_check" id="password_check" placeholder="************" required="true" autocomplete="off" maxlength="50" oninput="AllPasswordCriteriasCheck()">
 
             <!-- PASSWORD EQUALITY TEXT -->
-            <p id="pwd_equal_txt">Password equality text</p>
+            <p id="pwd_equal_txt"></p>
 
             <!-- LOGIN SUGGESTION -->
             <p>Already have an account? <a href="log_in_form.php">Log in.</a></p>

@@ -1,7 +1,5 @@
 // ---- LIKE ---- //
 
-
-
 // CHAPTER COMMENT LIKE ICONS AND TEXTS
 let comment_like_icon = document.getElementsByClassName("comment_like_icon");
 console.log(`comment_like_icon == ${comment_like_icon}.`);
@@ -10,39 +8,6 @@ console.log(`Number of comment_like_icon == ${comment_like_icon.length}.`);
 let comment_like_txt = document.getElementsByClassName("comment_like_txt");
 console.log(`comment_like_txt == ${comment_like_txt}.`);
 console.log(`Number of comment_like_txt == ${comment_like_txt.length}.`);
-
-// TOGGLE CHAPTER COMMENTS' "LIKE" TEXT COLOR
-// For every comment like icon
-for(let i = 0; i < comment_like_icon.length; i++)
-{
-    // If current like icon exists
-    if(comment_like_icon[i] != null)
-    {
-        // If like icon is clicked
-        comment_like_icon[i].addEventListener("click", function()
-        {
-            // If "Like" is not green
-            if(comment_like_txt[i].style.color != request_done_color)
-            {
-                // Set it to green
-                comment_like_txt[i].style.color = request_done_color;
-
-                // Log color change
-                console.log(`\"Like\" n°${i} from chapter comments changed to green.`);
-            }
-
-            // If "Like" is green
-            else if(comment_like_txt[i].style.color == request_done_color)
-            {
-                // Set it to default color
-                comment_like_txt[i].style.color = "black";
-
-                // Log color change
-                console.log(`\"Like\" n°${i} from chapter comments changed to black.`);
-            }
-        })
-    }
-}
 
 // Function to pass chapter comment ID and user ID to a PHP script to toggle chapter comment liking
 function ToggleChapterCommentLike(chapter_comment_id, user_id)
@@ -68,6 +33,28 @@ function ToggleChapterCommentLike(chapter_comment_id, user_id)
 
                 // Redirect user to PHP script that toggles story comment likes
                 // window.location.href = `toggle_chapter_comment_like.php?chapter_comment_id=${chapter_comment_id}&user_id=${user_id}`;
+
+                // ---- TOGGLE LIKE COLOR ---- //
+
+                // If "Like" is not green
+                if(comment_like_txt[i].style.color != request_done_color)
+                {
+                    // Set it to green
+                    comment_like_txt[i].style.color = request_done_color;
+
+                    // Log color change
+                    console.log(`\"Like\" n°${i} from chapter comments changed to green.`);
+                }
+
+                // If "Like" is green
+                else if(comment_like_txt[i].style.color == request_done_color)
+                {
+                    // Set it to default color
+                    comment_like_txt[i].style.color = "black";
+
+                    // Log color change
+                    console.log(`\"Like\" n°${i} from chapter comments changed to black.`);
+                }
             }
         }
 
@@ -106,39 +93,6 @@ let comment_dislike_icon = document.getElementsByClassName("comment_dislike_icon
 let comment_dislike_txt = document.getElementsByClassName("comment_dislike_txt");
 // console.log(`Number of dislike texts == ${comment_dislike_txt.length}.`);
 
-// TOGGLE STORY COMMENTS' "DISLIKE" TEXT COLOR
-// For every comment dislike icon
-for(let i = 0; i < comment_dislike_icon.length; i++)
-{
-    // If current dislike icon exists
-    if(comment_dislike_icon[i] != null)
-    {
-        // If dislike icon is clicked
-        comment_dislike_icon[i].addEventListener("click", function()
-        {
-            // If "Dislike" is not green
-            if(comment_dislike_txt[i].style.color != request_done_color)
-            {
-                // Set it to green
-                comment_dislike_txt[i].style.color = request_done_color;
-
-                // Log color change
-                console.log(`\"Dislike\" n°${i} from story comments changed to green.`);
-            }
-
-            // If "Dislike" is green
-            else if(comment_dislike_txt[i].style.color == request_done_color)
-            {
-                // Set it to default color
-                comment_dislike_txt[i].style.color = "black";
-
-                // Log color change
-                console.log(`\"Dislike\" n°${i} from story comments changed to black.`);
-            }
-        })
-    }
-}
-
 // Function to pass chapter comment ID and user ID to a PHP script to toggle chapter comment disliking
 function ToggleChapterCommentDislike(chapter_comment_id, user_id)
 {
@@ -163,6 +117,28 @@ function ToggleChapterCommentDislike(chapter_comment_id, user_id)
 
                 // Redirect user to PHP script that toggles story comment dislikes
                 // window.location.href = `toggle_chapter_comment_dislike.php?chapter_comment_id=${chapter_comment_id}&user_id=${user_id}`;
+
+                // ---- TOGGLE DISLIKE COLOR ---- //
+
+                // If "Dislike" is not green
+                if(comment_dislike_txt[i].style.color != request_done_color)
+                {
+                    // Set it to green
+                    comment_dislike_txt[i].style.color = request_done_color;
+
+                    // Log color change
+                    console.log(`\"Dislike\" n°${i} from story comments changed to green.`);
+                }
+
+                // If "Dislike" is green
+                else if(comment_dislike_txt[i].style.color == request_done_color)
+                {
+                    // Set it to default color
+                    comment_dislike_txt[i].style.color = "black";
+
+                    // Log color change
+                    console.log(`\"Dislike\" n°${i} from story comments changed to black.`);
+                }
             }
         }
 

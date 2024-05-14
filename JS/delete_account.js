@@ -1,7 +1,7 @@
 // Function to call a PHP script that deletes user's chapters, stories, and account
 function DeleteAccount(user_id)
 {
-    // ---- START ----
+    // ---- START ---- //
 
     // Confirm user ID obtention
     console.log(`User ID == ${user_id}.`);
@@ -26,7 +26,10 @@ function DeleteAccount(user_id)
                 // Confirm request was done
                 console.log("Request done.");
 
-                // Redirect user to account deletion script
+                // Redirect user to account deletion confirmation page
+                // window.location.href = "user_delete_confirm.php";
+
+                // Test redirection
                 window.location.href = "delete_account.php?user_id="+user_id;
             }
 
