@@ -27,10 +27,10 @@ function DeleteAccount(user_id)
                 console.log("Request done.");
 
                 // Redirect user to account deletion confirmation page
-                // window.location.href = "user_delete_confirm.php";
+                window.location.href = "user_delete_confirm.php";
 
                 // Test redirection
-                window.location.href = "delete_account.php?user_id="+user_id;
+                // window.location.href = "delete_account.php?user_id="+user_id;
             }
 
             // If request is not done

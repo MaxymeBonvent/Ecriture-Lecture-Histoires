@@ -4,7 +4,7 @@
     $user = "root";
     $dsn_pwd = "";
 
-    // ---- DATABASE CONNECTION ----
+    // ---- DATABASE CONNECTION ---- //
 
     // Try database connection
     try

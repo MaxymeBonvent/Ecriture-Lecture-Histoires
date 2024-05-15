@@ -74,9 +74,61 @@
             $story_ids = $get_story_ids->fetchAll(PDO::FETCH_ASSOC);
 
             // Test
-            echo "<p>Story IDs of user $user_id :</p>";
-            var_dump($story_ids);
-            exit;
+            // echo "<p>Story IDs of user $user_id :</p>";
+            // var_dump($story_ids);
+            // var_dump(count($story_ids));
+            // exit;
+
+            // For every story
+            for($i = 0; $i < count($story_ids); $i++)
+            {
+                // ---- GET ITS CHAPTERS ---- //
+
+                // Prepare query
+                $get_chapter_ids = $db->prepare("SELECT chapter_ids FROM stories WHERE story_id = :story_id");
+
+                // Binding
+                $get_chapter_ids->bindValue(":story_id", $story_ids[$i]["story_id"]);
+
+                // Execution
+                $get_chapter_ids->execute();
+
+                // Store result
+                $chapter_ids = $get_chapter_ids->fetchAll(PDO::FETCH_ASSOC);
+
+                // Test
+                // echo "<p>Chapter IDs of story".$story_ids[$i]["story_id"]." :</p>";
+                // var_dump($chapter_ids);
+                // exit;
+
+                // ---- DELETE ITS CHAPTERS ---- //
+
+                // For every chapter
+                for($i = 0; $i < count($chapter_ids); $i++)
+                {
+                    // DELETE IT
+
+                    // Prepare query
+                    $delete_chapter = $db->prepare("DELETE FROM chapters WHERE chapter_id = :chapter_id");
+
+                    // Binding
+                    $delete_chapter->bindValue(":chapter_id", $chapter_ids[$i]["chapter_id"]);
+
+                    // Execution
+                    $delete_chapter->execute();
+                }
+
+                // ---- 3) DELETE USER'S STORIES  ---- //
+
+                // Prepare query
+                $delete_story = $db->prepare("DELETE FROM stories WHERE story_id = :story_id");
+
+                // Binding
+                $delete_story->bindValue(":story_id", $story_ids[$i]["story_id"]);
+
+                // Execute
+                $delete_story->execute();
+            }
 
             // --- DELETE ACCOUNT ---- //
             // Prepare query
@@ -90,14 +142,6 @@
             
             // Process database modification
             $db->commit();
-
-            // ---- REDIRECTION ---- //
-
-            // Redirect user to account deletion confirmation page
-            header("Location: user_delete_confirm.php");
-
-            // End script
-            exit();
         }
 
         // Catch any exception
@@ -109,6 +153,9 @@
             // Log and Output error message
             error_log("Exception caught during account deletion : ".$exc->getMessage());
             echo "<p>Exception caught during account deletion : ".$exc->getMessage()."</p>";
+
+            // End script
+            exit();
         }
     }
 ?>
