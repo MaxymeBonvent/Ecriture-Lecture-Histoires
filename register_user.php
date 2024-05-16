@@ -77,7 +77,7 @@
             $hashed_user_pwd = password_hash($user_pwd_check, PASSWORD_DEFAULT); // password_hash expects 2 arguments
 
             // ---- QUERY ----
-            // user registration preparation
+            // Prepare query
             $register_user = $db->prepare("INSERT INTO users (username, mail, hashed_password) VALUES (:username, :mail, :hashed_password)");
 
             // Binding
@@ -85,13 +85,14 @@
             $register_user->bindValue(":mail", $mail);
             $register_user->bindValue(":hashed_password", $hashed_user_pwd);
 
-            // user registration execution
+            // Execution
             $register_user->execute();
 
-            // user_id reset preparation
+            // ---- RESET USER ID COLUMN
+            // Prepare query
             $reset_user_id = $db->prepare("ALTER TABLE users AUTO_INCREMENT = 1");
 
-            // user_id reset execution
+            // Execution
             $reset_user_id->execute();
 
             // Closing
@@ -104,11 +105,11 @@
             $_SESSION['username'] = $username;
             $_SESSION['mail'] = $mail;
 
-            // Lead user to their page
+            // ---- REDIRECTION
             header("Location: user_page.php");
         }
 
-        // Catch the fallen user
+        // Catch any exception
         catch(Exception $exc)
         {
             // Output an error message

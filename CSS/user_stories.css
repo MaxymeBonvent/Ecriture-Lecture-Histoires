@@ -123,6 +123,17 @@ h1, h2, h3, h4{
     align-items: center;
 }
 
+/* CHAPTER INFO DIV */
+.chapter_info{
+    /* Outline */
+    border: 2px solid transparent;
+
+    /* Position of internal elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* CLICKED CHAPTER INFO DIV */
 #clicked_chpt_div{
     /* Position of internal elements */
@@ -351,6 +362,21 @@ h1, h2, h3, h4{
     .option, .delete_txt, .chapter_title, .stat, #clicked_chapter_txt{
         /* Size */
         font-size: 22px;
+    }
+
+    /* CLICKED CHAPTER DIV */
+    #clicked_chpt_div{
+        /* Outline */
+        border: 2px solid black;
+
+        /* Dimensions */
+        width: 80%;
+    }
+
+    /* CHAPTER INFO DIV */
+    .chapter_info{
+        /* Dimensions */
+        width: 80%;
     }
 
     /* CHAPTER SMALL DIVS */
