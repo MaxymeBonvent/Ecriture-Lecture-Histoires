@@ -1,8 +1,9 @@
 // Bookmark text
 let bookmark_txt = document.getElementById("bookmark_txt");
 
-// Request done color
-let request_done_color = "rgb(0, 130, 0)";
+// Bookmark style
+bookmark_txt.style.padding = "4px";
+bookmark_txt.style.borderRadius = "8px";
 
 // Function to bookmark a chapter
 function Bookmark(chapter_id, user_id)
@@ -53,20 +54,20 @@ function Bookmark(chapter_id, user_id)
 
                 // ---- TOGGLE COLOR ---- //
                 // If text is not green
-                if(bookmark_txt.style.color != request_done_color)
+                if(bookmark_txt.style.backgroundColor != "forestgreen")
                 {
-                    // Set text color to green
-                    bookmark_txt.style.color = request_done_color;
+                    // Set text background color to green
+                    bookmark_txt.style.backgroundColor = "forestgreen";
 
                     // Log color change
                     console.log("\"Bookmark this chapter\" changed to green.");
                 }
 
                 // If text is green
-                else if(bookmark_txt.style.color == request_done_color)
+                else if(bookmark_txt.style.backgroundColor == "forestgreen")
                 {
-                    // Set text color to default
-                    bookmark_txt.style.color = "black";
+                    // Set text background color to green
+                    bookmark_txt.style.backgroundColor = "transparent";
 
                     // Log color change
                     console.log("\"Bookmark this chapter\" changed to black.");

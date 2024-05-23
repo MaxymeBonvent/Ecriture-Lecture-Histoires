@@ -369,7 +369,7 @@
                             if(str_contains($user_marked_ids, $user_id))
                             {
                                 // Display "Bookmark this chapter" in "already bookmarked" color
-                                echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)' style='color: rgb(0, 120, 0);'>Bookmark this chapter</p>";
+                                echo "<p class='chapter_option' id='bookmark_txt' onclick='Bookmark($url_chapter_id, $user_id)' style='background-color: forestgreen; padding: 2px; border-radius: 4px;'>Bookmark this chapter</p>";
                             }
 
                             // If user's ID is not in the list of users who bookmarked this chapter

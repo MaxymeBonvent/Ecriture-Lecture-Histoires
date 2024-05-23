@@ -1,3 +1,6 @@
+// Valid color
+let request_done_color = "forestgreen";
+
 // ---- LIKE ---- //
 
 // CHAPTER COMMENT LIKE ICONS AND TEXTS

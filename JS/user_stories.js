@@ -92,7 +92,6 @@ function GetChapterInfo(chapter_id)
 // Function to get chapter's story ID and title to the Edit page
 function EditChapter(json_story_id, json_chapter_title)
 {
-   
     // Confirm variables obtention
     console.log(`json_story_id == ${json_story_id}.`);
     console.log(`json_chapter_title == ${json_chapter_title}.`);  

@@ -220,6 +220,18 @@ textarea{
     margin: 4px 0;
 }
 
+/* UNBOOKMARKED CHAPTER */
+#unbookmarked_chapter{
+    background-color: transparent;
+}
+
+/* BOOKMARKED CHAPTER */
+#bookmarked_chapter{
+    background-color: forestgreen;
+    padding: 4px;
+    border-radius: 10px;
+}
+
 /* ---- SIZE-BASED PROPERTIES ---- */
 
 /* SMALL VERSION */

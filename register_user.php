@@ -1,5 +1,5 @@
 <?php
-    // ---- DATABASE CONNECTION ----
+    // ---- DATABASE CONNECTION ---- //
     require_once("database_connection.php");
 
     // User variables
@@ -8,7 +8,7 @@
     $user_pwd = htmlspecialchars($_POST['password']);
     $user_pwd_check = htmlspecialchars($_POST['password_check']);
 
-    // ---- INCORRECT FORM ----
+    // ---- INCORRECT FORM ---- //
 
     // If username field is empty
     if(empty($username))
