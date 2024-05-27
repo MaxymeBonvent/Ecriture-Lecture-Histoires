@@ -60,7 +60,7 @@
         exit;
     }
 
-    // ---- CORRECT FORM ----
+    // ---- CORRECT FORM ---- //
 
     // If every field is set and filled and passwords are identical
     if  (   isset($username) && !empty($username) && 
@@ -76,7 +76,11 @@
             // Assign hashed password to a variable
             $hashed_user_pwd = password_hash($user_pwd_check, PASSWORD_DEFAULT); // password_hash expects 2 arguments
 
-            // ---- QUERY ----
+            // ---- RERGISTER USER ----//
+
+            // Begin database modification
+            $db->beginTransaction();
+
             // Prepare query
             $register_user = $db->prepare("INSERT INTO users (username, mail, hashed_password) VALUES (:username, :mail, :hashed_password)");
 
@@ -88,7 +92,8 @@
             // Execution
             $register_user->execute();
 
-            // ---- RESET USER ID COLUMN
+            // ---- RESET USER ID COLUMN ---- //
+
             // Prepare query
             $reset_user_id = $db->prepare("ALTER TABLE users AUTO_INCREMENT = 1");
 
@@ -98,20 +103,28 @@
             // Closing
             $register_user->closeCursor();
 
+            // Process database modification
+            $db->commit();
+
+            // ---- USER SESSION  ---- //
+
             // Start session
             session_start();
 
-            // Store session name in the superglobal
+            // Store session name and mail in superglobals
             $_SESSION['username'] = $username;
             $_SESSION['mail'] = $mail;
 
-            // ---- REDIRECTION
+            // ---- REDIRECTION ---- //
             header("Location: user_page.php");
         }
 
         // Catch any exception
         catch(Exception $exc)
         {
+            // Cancel database modification
+            $db->rollBack();
+
             // Output an error message
             echo "<p>Exception caught during user registration  : " . $exc->getMessage() . "</p>";
 
