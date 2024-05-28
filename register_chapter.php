@@ -1,27 +1,27 @@
 <?php
-    // ---- SESSION ----
+    // ---- SESSION ---- //
     session_start();
 
-    // ---- DATABASE CONNECTION ----
+    // ---- DATABASE CONNECTION ---- //
     require_once("database_connection.php");
 
-    // ---- FORM ANALYSIS ----
+    // ---- FORM ANALYSIS ---- //
 
     // Try to get form info and store new chapter
     try
     {
-        // ---- STORY VARIABLES ----
+        // ---- STORY VARIABLES ---- //
         $story_id = htmlspecialchars($_POST["story_id"]);
 
-        // ---- CHAPTER VARIABLES ----
+        // ---- CHAPTER VARIABLES ---- //
         $chapter_title = htmlspecialchars($_POST["chapter_title"]);
         $chapter_text = $_POST["chapter_text"];
         $chapter_word_count = str_word_count($chapter_text);
 
-        // ---- VARIABLES COMMON TO BOTH CHAPTER AND STORY ----
+        // ---- VARIABLES COMMON TO BOTH CHAPTER AND STORY ---- //
         $date = date("Y/m/d");
 
-        // --- INCORRECT FORM ----
+        // --- INCORRECT FORM ---- //
 
         // Chapter Title
         if(!isset($chapter_title) || empty($chapter_title))
@@ -63,7 +63,7 @@
             exit;
         }
 
-        // --- CORRECT FORM ----
+        // --- CORRECT FORM ---- //
 
         // If every field is set and filled and there's at least 1 word
         if  (   isset($story_id) && !empty($story_id) &&
@@ -76,7 +76,7 @@
                 // Start database modification
                 $db->beginTransaction();
 
-                // ---- INSERT NEW CHAPTER ----
+                // ---- INSERT NEW CHAPTER ---- //
 
                 // Prepare a query to insert a chapter with its story ID, title, text, word count and date
                 $insert_chapter = $db->prepare("INSERT INTO chapters (story_id, chapter_title, chapter_text, word_count, pub_date) VALUES (:story_id, :chapter_title, :chapter_text, :word_count, :pub_date)");
@@ -94,7 +94,7 @@
                 // Closing
                 $insert_chapter->closeCursor();
 
-                // ---- INCREASE CHAPTER COUNT ----
+                // ---- INCREASE CHAPTER COUNT ---- //
 
                 // Prepare a query to increase by 1 user's chapter count
                 $increase_chapter_count = $db->prepare("UPDATE users SET chapter_count = chapter_count + 1 WHERE username = :username");
@@ -108,7 +108,7 @@
                 // Closing
                 $increase_chapter_count->closeCursor();
 
-                // ---- GET NEW CHAPTER'S ID ----
+                // ---- GET NEW CHAPTER'S ID ---- //
 
                 // Query to get new chapter's ID
                 $get_new_chapter_id = $db->query("SELECT MAX(chapter_id) FROM chapters");
@@ -122,7 +122,7 @@
                 // Closing
                 $get_new_chapter_id->closeCursor();
 
-                // ---- GIVE CHAPTER'S ID TO ITS STORY ----
+                // ---- GIVE CHAPTER'S ID TO ITS STORY ---- //
 
                 // Prepare a query to insert new chapter's ID to its story's chapter IDs
                 $give_chapter_id_to_story = $db->prepare("UPDATE stories SET chapter_ids = CONCAT(chapter_ids, ' $new_chapter_id ')  WHERE story_id = :story_id");
@@ -136,7 +136,7 @@
                 // Closing
                 $give_chapter_id_to_story->closeCursor();  
 
-                // ---- INCREASE STORY'S WORD COUNT BY CHAPTER'S WORD COUNT ----
+                // ---- INCREASE STORY'S WORD COUNT BY CHAPTER'S WORD COUNT ---- //
 
                 // Prepare a query to increase story's word count by chapter's word count
                 $increase_story_word_count = $db->prepare("UPDATE stories SET word_count = word_count + :chapter_word_count WHERE story_id = :story_id");
@@ -151,7 +151,7 @@
                 // Closing
                 $increase_story_word_count->closeCursor();
 
-                // ---- REDIRECTION ----
+                // ---- REDIRECTION ---- //
 
                 // Process database modification
                 $db->commit();

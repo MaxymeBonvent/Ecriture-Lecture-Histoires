@@ -7,12 +7,12 @@ let chapter_info = document.getElementById("clicked_chapter_info");
 // Function to call a PHP script that will get info of the clicked chapter and display it on the page
 function GetChapterInfo(chapter_id)
 {
-    // ---- START ----
+    // ---- START ---- //
 
     // XMLHttpRequest Object
     let xhr = new XMLHttpRequest();
 
-    // ---- END ----
+    // ---- END ---- //
 
     // Callback function
     xhr.onload = function()
@@ -76,7 +76,7 @@ function GetChapterInfo(chapter_id)
         console.log(`AJAX Error during chapter info obtention : ${xhr.status}.`);
     }
 
-    // ---- REQUEST THROW ----
+    // ---- REQUEST THROW ---- //
 
     // Create FormData object
     let formData = new FormData();
@@ -96,12 +96,12 @@ function EditChapter(json_story_id, json_chapter_title)
     console.log(`json_story_id == ${json_story_id}.`);
     console.log(`json_chapter_title == ${json_chapter_title}.`);  
     
-    // ---- START ----
+    // ---- START ---- //
 
     // XMLHttpRequest Object
     let xhr = new XMLHttpRequest();
 
-    // ---- END ----
+    // ---- END ---- //
 
     // Callback function
     xhr.onload = function()
@@ -132,7 +132,7 @@ function EditChapter(json_story_id, json_chapter_title)
         console.log(`Error : ${xhr.status}.`);
     }
 
-    // ---- REQUEST THROW ----
+    // ---- REQUEST THROW ---- //
 
     // Open PHP script
     xhr.open("GET", "edit_chapter.php?story_id="+json_story_id+"&chapter_title="+json_chapter_title);
@@ -144,12 +144,12 @@ function EditChapter(json_story_id, json_chapter_title)
 // Function to get the clicked chapter's Story ID and use it in the New Chapter Page
 function NewChapter(json_story_id)
 {
-    // ---- START ----
+    // ---- START ---- //
 
     // XMLHttpRequest Object
     let xhr = new XMLHttpRequest();
 
-    // ---- END ----
+    // ---- END ---- //
 
     // Callback function
     xhr.onload = function()
@@ -177,7 +177,7 @@ function NewChapter(json_story_id)
         console.log(`Error : ${xhr.status}.`);
     }
 
-    // ---- REQUEST THROW ----
+    // ---- REQUEST THROW ---- //
 
     // Open PHP script
     xhr.open("GET", "new_chapter.php?story_id="+json_story_id);
@@ -189,7 +189,7 @@ function NewChapter(json_story_id)
 // Function to get chapter's title and story ID to the chapter deletion script
 function DeleteChapter(json_story_id, json_chapter_title)
 {
-    // ---- INFO ----
+    // ---- INFO ---- //
 
     // Confirm function call
     console.log("DeleteChapter() called.");
@@ -198,11 +198,11 @@ function DeleteChapter(json_story_id, json_chapter_title)
     console.log(`Story ID == ${json_story_id}.`);
     console.log(`Chapter Title == ${json_chapter_title}.`);
 
-    // ---- QUESTION ----
+    // ---- QUESTION ---- //
 
     let answer = confirm(`WARNING : You're about to DELETE chapter ${json_chapter_title}, this operation cannot be undone and will also delete the story if that chapter is its only one. Are you sure?`);
 
-    // ---- DELETE AJAX REQUEST ----
+    // ---- DELETE AJAX REQUEST ---- //
 
     // If OK is pressed
     if(answer == true)
@@ -210,12 +210,12 @@ function DeleteChapter(json_story_id, json_chapter_title)
         // Confirm OK was clicked
         console.log("OK pressed.");
 
-        // ---- START ----
+        // ---- START ---- //
 
         // XMLHttpRequest Object
         let xhr = new XMLHttpRequest();
 
-        // ---- END ----
+        // ---- END ---- //
 
         // Callback function
         xhr.onload = function()
@@ -246,7 +246,7 @@ function DeleteChapter(json_story_id, json_chapter_title)
             console.log(`Error during AJAX request for chapter deletion : ${xhr.status}.`);
         }
 
-        // ---- REQUEST ----
+        // ---- REQUEST ---- //
 
         // Open PHP script
         xhr.open("GET", "delete_chapter.php?story_id="+json_story_id+"&chapter_title="+json_chapter_title);
@@ -259,7 +259,7 @@ function DeleteChapter(json_story_id, json_chapter_title)
 // Function to get story ID to the story deletion script
 function DeleteStory(story_id, story_title)
 {
-    // ---- INFO ----
+    // ---- INFO ---- //
 
     // Confirm function call
     console.log("DeleteStory() called.");
@@ -270,11 +270,11 @@ function DeleteStory(story_id, story_title)
     // Confirm story title obtention
     console.log(`Story Title == ${story_title}.`);
 
-    // ---- QUESTION ----
+    // ---- QUESTION ---- //
 
     let answer = confirm(`WARNING : You're about to DELETE story ${story_title}, this operation cannot be undone . Are you sure?`);
 
-    // ---- DELETE AJAX REQUEST ----
+    // ---- DELETE AJAX REQUEST ---- //
 
     // If OK is pressed
     if(answer == true)
@@ -282,12 +282,12 @@ function DeleteStory(story_id, story_title)
         // Confirm OK was clicked
         console.log("OK pressed.");
 
-        // ---- START ----
+        // ---- START ---- //
 
         // XMLHttpRequest Object
         let xhr = new XMLHttpRequest();
 
-        // ---- END ----
+        // ---- END ---- //
 
         // Callback function
         xhr.onload = function()
@@ -321,7 +321,7 @@ function DeleteStory(story_id, story_title)
             console.log(`Error during AJAX request for story deletion : ${xhr.status}.`);
         }
 
-        // ---- REQUEST ----
+        // ---- REQUEST ---- //
 
         // Open PHP script
         xhr.open("GET", "delete_story.php?story_id="+story_id);
